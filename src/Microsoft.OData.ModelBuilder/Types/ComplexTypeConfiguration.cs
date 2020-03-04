@@ -31,10 +31,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <inheritdoc />
-        public override EdmTypeKind Kind
-        {
-            get { return EdmTypeKind.Complex; }
-        }
+        public override EdmTypeKind Kind => EdmTypeKind.Complex;
 
         /// <summary>
         /// Gets or sets the base type of this complex type.

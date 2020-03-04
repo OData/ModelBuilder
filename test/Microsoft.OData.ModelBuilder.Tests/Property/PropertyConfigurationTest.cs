@@ -3,7 +3,7 @@
 
 using Xunit;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     class PropertyConfigurationTest
     {

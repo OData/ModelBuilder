@@ -4,7 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     /// <summary>
     /// Helper class for generating test data for XUnit's <see cref="Xunit.Extensions.TheoryAttribute"/>-based tests.

@@ -41,10 +41,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Gets the <see cref="EdmTypeKind"/> of this <see cref="IEdmTypeConfiguration"/>
         /// </summary>
-        public override EdmTypeKind Kind
-        {
-            get { return EdmTypeKind.Entity; }
-        }
+        public override EdmTypeKind Kind => EdmTypeKind.Entity;
 
         /// <summary>
         /// Gets or sets a value indicating whether this type is a media type.

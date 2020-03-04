@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Xunit;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     public class PropertySelectorVisitorTest
     {

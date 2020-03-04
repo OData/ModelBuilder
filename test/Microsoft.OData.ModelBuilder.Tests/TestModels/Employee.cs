@@ -3,9 +3,8 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.OData.Extensions.Builder;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     public class Employee
     {

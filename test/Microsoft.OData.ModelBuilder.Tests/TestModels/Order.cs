@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     public class Order
     {

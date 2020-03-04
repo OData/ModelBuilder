@@ -2,10 +2,9 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System.Linq;
-using Microsoft.OData.Extensions.Builder;
 using Xunit;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     public class FunctionConfigurationTest
     {

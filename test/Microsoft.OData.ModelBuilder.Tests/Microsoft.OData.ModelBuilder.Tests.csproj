@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>Microsoft.OData.Extensions.ModelBuilder.Tests</AssemblyName>
-    <RootNamespace>Microsoft.OData.Extensions.ModelBuilder.Tests</RootNamespace>
+    <AssemblyName>Microsoft.OData.ModelBuilder.Tests</AssemblyName>
+    <RootNamespace>Microsoft.OData.ModelBuilder.Tests</RootNamespace>
 
     <!-- Disable GenerateAssemblyInfo to use the existing AssemblyInfo.cs -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

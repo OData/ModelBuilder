@@ -12,10 +12,10 @@ namespace Microsoft.OData.ModelBuilder
     public class PrimitiveTypeConfiguration : IEdmTypeConfiguration
     {
         /// <summary>
-        /// This constructor is public only for unit testing purposes.
+        /// This constructor is only for unit testing purposes.
         /// To get a PrimitiveTypeConfiguration use ODataModelBuilder.GetTypeConfigurationOrNull(Type)
         /// </summary>
-        public PrimitiveTypeConfiguration(ODataModelBuilder builder, IEdmPrimitiveType edmType, Type clrType)
+        internal PrimitiveTypeConfiguration(ODataModelBuilder builder, IEdmPrimitiveType edmType, Type clrType)
         {
             ModelBuilder = builder ?? throw new ArgumentNullException(nameof(builder));
             ClrType = clrType ?? throw new ArgumentNullException(nameof(clrType));

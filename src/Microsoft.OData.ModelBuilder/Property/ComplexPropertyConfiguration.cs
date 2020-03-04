@@ -22,16 +22,10 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <inheritdoc />
-        public override PropertyKind Kind
-        {
-            get { return PropertyKind.Complex; }
-        }
+        public override PropertyKind Kind => PropertyKind.Complex;
 
         /// <inheritdoc />
-        public override Type RelatedClrType
-        {
-            get { return PropertyInfo.PropertyType; }
-        }
+        public override Type RelatedClrType => PropertyInfo.PropertyType;
 
         /// <summary>
         /// Marks the current complex property as nullable.

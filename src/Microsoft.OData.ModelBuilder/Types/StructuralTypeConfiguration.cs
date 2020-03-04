@@ -39,18 +39,9 @@ namespace Microsoft.OData.ModelBuilder
         protected StructuralTypeConfiguration(ODataModelBuilder modelBuilder, Type clrType)
             : this()
         {
-            if (modelBuilder == null)
-            {
-                throw Error.ArgumentNull("modelBuilder");
-            }
+            ModelBuilder = modelBuilder ?? throw new ArgumentNullException(nameof(modelBuilder));
+            ClrType = clrType ?? throw new ArgumentNullException(nameof(clrType));
 
-            if (clrType == null)
-            {
-                throw Error.ArgumentNull("clrType");
-            }
-
-            ClrType = clrType;
-            ModelBuilder = modelBuilder;
             _name = clrType.EdmName();
 
             // Use the namespace if one was provided in builder by the user, otherwise fallback to CLR Namespace.
@@ -72,13 +63,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Gets the full name of this edm type.
         /// </summary>
-        public virtual string FullName
-        {
-            get
-            {
-                return Namespace + "." + Name;
-            }
-        }
+        public virtual string FullName => Namespace + "." + Name;
 
         /// <summary>
         /// Gets or sets the namespace of this EDM type.

@@ -5,11 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.OData.Edm;
-using Microsoft.OData.Extensions.Builder;
 using Moq;
 using Xunit;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     public class CollectionPropertyConfigurationTest
     {

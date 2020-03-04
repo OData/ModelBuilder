@@ -2,11 +2,10 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.OData.Extensions.Builder;
 using Moq;
 using Xunit;
 
-namespace Microsoft.OData.Extensions.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests
 {
     public class ComplexTypeConfigurationTest
     {

@@ -7,7 +7,7 @@ using Microsoft.OData.Edm;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// Represents an EdmType
+    /// Represents an EdmType which is associated with CLR type
     /// </summary>
     public interface IEdmTypeConfiguration
     {
