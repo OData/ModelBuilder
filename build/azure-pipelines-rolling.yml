@@ -23,21 +23,35 @@ variables:
   
   
 steps:
+# Install the nuget tooler.
 - task: NuGetToolInstaller@0
+  displayName: 'Use NuGet >=5.2.0'
   inputs:
     versionSpec: '>=5.2.0'
-    
+    checkLatest: true
+  enabled: false
+
+# Build the Product project
 - task: DotNetCoreCLI@2
   displayName: 'build Microsoft.OData.ModelBuilder.csproj '
   inputs:
     projects: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.csproj'
     arguments: '--configuration $(BuildConfiguration) --no-incremental'
 
+# Build the Unit test project
 - task: DotNetCoreCLI@2
   displayName: 'build Microsoft.OData.ModelBuilder Unit test project'
   inputs:
     projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
     arguments: '--configuration $(BuildConfiguration) --no-incremental'
+
+# Run the Unit test
+- task: DotNetCoreCLI@2
+  displayName: 'Unit Tests (Microsoft.OData.ModelBuilder.Tests.csproj) '
+  inputs:
+    command: test
+    projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
+    arguments: '--configuration $(BuildConfiguration) --no-build'
 
 # because the assemblies are delay-signed, we need to disable
 # strong name validation so that the tests may run,
