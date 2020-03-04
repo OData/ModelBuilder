@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     // Denotes a property convention used to discover foreign key properties if there is no any foreign key configured
     // on the navigation property.

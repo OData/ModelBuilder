@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     internal class TimestampAttributeEdmPropertyConvention : AttributeEdmPropertyConvention<PropertyConfiguration>
     {

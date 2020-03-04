@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.

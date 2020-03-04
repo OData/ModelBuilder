@@ -4,7 +4,7 @@
 using System;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     /// <summary>
     /// Ignores properties with the NotMappedAttribute from <see cref="IEdmStructuredType"/>.

@@ -4,7 +4,7 @@
 using System;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents a mapping from an <see cref="IEdmType"/> to a CLR type.

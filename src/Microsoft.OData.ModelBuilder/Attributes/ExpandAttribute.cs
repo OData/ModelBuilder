@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an <see cref="Attribute"/> that can be placed on a property or a class

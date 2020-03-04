@@ -4,7 +4,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     /// <summary>
     /// Sets default value for properties that have <see cref="DefaultValueAttribute"/>

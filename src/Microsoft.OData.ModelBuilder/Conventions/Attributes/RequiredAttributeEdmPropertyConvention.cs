@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     /// <summary>
     /// Marks properties that have <see cref="RequiredAttribute"/> as non-optional on their edm type.

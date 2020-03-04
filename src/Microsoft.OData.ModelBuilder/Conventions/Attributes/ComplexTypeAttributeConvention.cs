@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     internal class ComplexTypeAttributeConvention : AttributeEdmTypeConvention<EntityTypeConfiguration>
     {

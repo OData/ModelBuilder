@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Marks this entity type as media type.

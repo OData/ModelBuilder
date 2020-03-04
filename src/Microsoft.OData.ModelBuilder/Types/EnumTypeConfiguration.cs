@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an <see cref="IEdmEnumType"/> that can be built using <see cref="ODataModelBuilder"/>.

@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an <see cref="Attribute"/> that can be placed on a navigation property to specify it

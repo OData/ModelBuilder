@@ -4,7 +4,7 @@
 using System;
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Base class for all property configurations.

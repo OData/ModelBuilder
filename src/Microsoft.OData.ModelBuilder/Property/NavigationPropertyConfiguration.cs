@@ -8,7 +8,7 @@ using Microsoft.OData.Edm;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents the configuration for a navigation property of a structural type.

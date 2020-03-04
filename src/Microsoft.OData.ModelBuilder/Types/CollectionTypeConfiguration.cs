@@ -5,7 +5,7 @@ using System;
 using System.Globalization;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents a Collection of some named type.

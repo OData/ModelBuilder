@@ -5,7 +5,7 @@ using System;
 using System.Reflection;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Used to configure a primitive property of an entity type or complex type.

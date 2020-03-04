@@ -4,7 +4,7 @@
 using System;
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// CollectionPropertyConfiguration represents a CollectionProperty on either an EntityType or ComplexType.

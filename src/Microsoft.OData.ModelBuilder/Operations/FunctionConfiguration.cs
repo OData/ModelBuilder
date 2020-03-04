@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// FunctionConfiguration represents an OData function that you wish to expose via your service.

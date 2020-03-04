@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Mark a navigation property as containment.

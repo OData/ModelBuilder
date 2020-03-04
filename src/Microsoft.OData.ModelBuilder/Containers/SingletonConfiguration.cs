@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Allows configuration to be performed for a singleton in a model.

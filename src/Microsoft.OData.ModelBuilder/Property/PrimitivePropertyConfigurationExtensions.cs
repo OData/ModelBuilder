@@ -5,7 +5,7 @@ using System;
 using System.Reflection;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Extensions method for <see cref="PrimitivePropertyConfiguration"/>.

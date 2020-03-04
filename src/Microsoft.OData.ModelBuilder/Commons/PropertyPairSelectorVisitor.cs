@@ -7,7 +7,7 @@ using System.Diagnostics.Contracts;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     internal class PropertyPairSelectorVisitor : ExpressionVisitor
     {

@@ -4,7 +4,7 @@
 using System;
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents the configuration for a complex property of a structural type (an entity type or a complex type).

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents a mapping betwwen an <see cref="IEdmEnumMember"/> and a CLR Enum member.

@@ -4,7 +4,7 @@
 using System;
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Used to configure a decimal property of an entity type or complex type.

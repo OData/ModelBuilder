@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     // TODO: add support for FK properties
     // CUT: support for bi-directional properties

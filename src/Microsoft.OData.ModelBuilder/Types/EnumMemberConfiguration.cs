@@ -4,7 +4,7 @@
 using System;
 using System.Diagnostics.Contracts;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents the configuration for an enum member of an enum type.

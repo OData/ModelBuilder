@@ -11,7 +11,7 @@ using System.Xml.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.Spatial;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// 

@@ -3,7 +3,7 @@
 
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Used to configure a string or binary property length of an entity type or complex type.

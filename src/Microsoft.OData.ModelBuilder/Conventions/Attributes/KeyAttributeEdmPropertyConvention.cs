@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     /// <summary>
     /// Configures properties that have the <see cref="KeyAttribute"/> as keys in the <see cref="IEdmEntityType"/>.

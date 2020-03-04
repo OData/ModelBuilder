@@ -3,7 +3,7 @@
 
 using System;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     internal class PageAttributeEdmPropertyConvention : AttributeEdmPropertyConvention<PropertyConfiguration>
     {

@@ -5,7 +5,7 @@ using System;
 using System.Reflection;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents a mapping from an <see cref="IEdmProperty"/> to a CLR property info.

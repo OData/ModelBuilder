@@ -3,7 +3,7 @@
 
 using System.Reflection;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Used to configure a  datetime-with-offset, decimal, duration, or time-of-day property precision of an entity type or complex type.

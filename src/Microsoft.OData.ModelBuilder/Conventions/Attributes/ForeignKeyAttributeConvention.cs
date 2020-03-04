@@ -8,7 +8,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     // Denotes a property used as a foreign key in a relationship. The annotation may be placed on:
     // 1. the foreign key property and specify the associated navigation property name, or

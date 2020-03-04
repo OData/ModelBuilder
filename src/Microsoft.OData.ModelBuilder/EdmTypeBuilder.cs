@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
 
-namespace Microsoft.OData.Extensions.Builder
+namespace Microsoft.OData.ModelBuilder
 {
     internal class EdmTypeBuilder
     {

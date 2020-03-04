@@ -4,7 +4,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Microsoft.OData.Extensions.Builder.Conventions.Attributes
+namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
     /// <summary>
     /// Marks properties that have <see cref="ColumnAttribute"/> as the target EDM type.
