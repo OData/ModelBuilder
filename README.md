@@ -2,8 +2,8 @@ OData Model Builder
  ============= 
  Component | Build  | Status 
 --------|--------- |---------
-Model Builder|Rolling | <img src=""/> 
-Model Builder|Nightly | <img src=""/> 
+Model Builder|Rolling | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Rolling?branchName=master"/> 
+Model Builder|Nightly | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Nightly?branchName=master"/> 
 
 ## 1. Introduction
 This is the official OData Model Builder repository.
