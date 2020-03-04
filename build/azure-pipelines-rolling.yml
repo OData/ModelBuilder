@@ -1,0 +1,31 @@
+trigger:
+- master
+
+name: 'OData Edm Model Builder'
+
+pool:
+  vmImage: 'windows-latest'
+  
+variables:
+  snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
+  snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
+  
+  
+steps:
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '>=5.2.0'
+    
+    
+# because the assemblies are delay-signed, we need to disable
+# strong name validation so that the tests may run,
+# otherwise our assemblies will fail to load
+- task: Powershell@2
+  displayName: 'Skip strong name validation'
+  inputs:
+    targetType: 'inline'
+    script: |
+      & "$(snExe)" /Vr $(productBinPath)\$(mainDll)
+      & "$(snExe64)" /Vr $(productBinPath)\$(mainDll)
+      & "$(snExe)" /Vr $(testBinPath)\$(testDll)
+      & "$(snExe64)" /Vr $(testBinPath)\$(testDll)
