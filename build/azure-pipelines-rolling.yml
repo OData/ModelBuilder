@@ -16,6 +16,8 @@ pool:
   vmImage: 'windows-latest'
   
 variables:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
   snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
   snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
   
@@ -25,7 +27,18 @@ steps:
   inputs:
     versionSpec: '>=5.2.0'
     
-    
+- task: DotNetCoreCLI@2
+  displayName: 'build Microsoft.OData.ModelBuilder.csproj '
+  inputs:
+    projects: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.csproj'
+    arguments: '--configuration $(BuildConfiguration) --no-incremental'
+
+- task: DotNetCoreCLI@2
+  displayName: 'build Microsoft.OData.ModelBuilder Unit test project'
+  inputs:
+    projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
+    arguments: '--configuration $(BuildConfiguration) --no-incremental'
+
 # because the assemblies are delay-signed, we need to disable
 # strong name validation so that the tests may run,
 # otherwise our assemblies will fail to load
