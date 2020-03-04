@@ -1,7 +1,18 @@
-trigger:
-- master
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
-name: 'OData Edm Model Builder'
+# No trigger for nightly
+trigger: none
+
+# No Pull request (PR) triggers for nightly
+pr: none
+
+# Nightly using schedules
+schedules:
+- cron: "0 0 * * Mon,Tue,Wed,Thu,Fri"
+  displayName: midnightly build
+  branches:
+    include:
+    - master
 
 pool:
   vmImage: 'windows-latest'

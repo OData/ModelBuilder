@@ -1,7 +1,16 @@
-trigger:
-- master
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
-name: 'OData Edm Model Builder'
+trigger:
+# Set batch to true, it means to let system waits to run until current run is completed,
+# Then starts another run with all changes.
+  batch: true
+  branches:
+    include:
+    - master
+
+# Pull request (PR) triggers
+pr:
+- master
 
 pool:
   vmImage: 'windows-latest'
