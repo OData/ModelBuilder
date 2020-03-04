@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace Microsoft.OData.ModelBuilder
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IAssemblyResolver
     {
         /// <summary>

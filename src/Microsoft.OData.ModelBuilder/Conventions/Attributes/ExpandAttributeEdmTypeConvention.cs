@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
         }
 
         /// <summary>
-        /// Set the <see cref="ExpandConfiguration"/>s of navigation properties of this structural type.
+        /// Set the <see cref="ExpandAttribute"/>s of navigation properties of this structural type.
         /// </summary>
         /// <param name="edmTypeConfiguration">The entity type to configure.</param>
         /// <param name="model">The edm model that this type belongs to.</param>

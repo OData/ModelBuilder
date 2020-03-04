@@ -5,11 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Microsoft.OData.Edm;
 
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// <see cref="ODataConventionModelBuilder"/> is used to automatically map CLR classes to an EDM model based on a set of <see cref="IConvention"/>.
+    /// <see cref="ODataConventionModelBuilder"/> is used to automatically map CLR classes to an EDM model based on a set of <see cref="IODataModelConvention"/>.
     /// </summary>
     public class ODataConventionModelBuilder : ODataModelBuilder
     {
@@ -31,7 +32,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Initializes a new <see cref="ODataConventionModelBuilder"/>.
         /// </summary>
-        /// <param name="resolver">The <see cref="IWebApiAssembliesResolver"/> to use.</param>
+        /// <param name="resolver">The <see cref="IAssemblyResolver"/> to use.</param>
         public ODataConventionModelBuilder(IAssemblyResolver resolver)
             : this(resolver, isQueryCompositionMode: false)
         {
@@ -40,7 +41,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Initializes a new instance of the <see cref="ODataConventionModelBuilder"/> class.
         /// </summary>
-        /// <param name="resolver">The <see cref="IWebApiAssembliesResolver"/> to use.</param>
+        /// <param name="resolver">The <see cref="IAssemblyResolver"/> to use.</param>
         /// <param name="isQueryCompositionMode">If the model is being built for only querying.</param>
         /// <remarks>The model built if <paramref name="isQueryCompositionMode"/> is <c>true</c> has more relaxed
         /// inference rules and also treats all types as entity types. This constructor is intended for use by unit testing only.</remarks>

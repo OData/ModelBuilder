@@ -12,6 +12,9 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
     /// </summary>
     public abstract class PropertyAttributeConvention<TAttribute> : AttributeConvention
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public PropertyAttributeConvention()
             : base(attribute => attribute.GetType() == typeof(TAttribute), allowMultiple: false)
         {

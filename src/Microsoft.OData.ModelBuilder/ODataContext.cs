@@ -3,6 +3,9 @@
 
 namespace Microsoft.OData.ModelBuilder
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ODataContext
     {
     }

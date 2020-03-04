@@ -5,6 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.OData.ModelBuilder
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1040:AvoidEmptyInterfaces", Justification = "Marker interface acceptable here for derivation")]
     public interface IODataModelConvention
     {

@@ -14,7 +14,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
         public void CanGetSingleSelectedProperty()
         {
             Expression<Func<AddressEntity, int>> expr = a => a.ID;
-       //     var properties = PropertySelectorVisitor.GetSelectedProperties(expr).ToArray();
+            var properties = PropertySelectorVisitor.GetSelectedProperties(expr).ToArray();
       //      Assert.Single(properties);
        //     Assert.Equal("ID", properties[0].Name);
         }

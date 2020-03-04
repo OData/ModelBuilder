@@ -7,12 +7,9 @@
 
     <!-- Disable GenerateAssemblyInfo to use the existing AssemblyInfo.cs -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <!--
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\..\tools\StrongNamePublicKeys\testkey.snk</AssemblyOriginatorKeyFile>
-    <OutputPath>..\..\..\bin\AnyCPU\$(Configuration)\Test\.NETPortable</OutputPath>
-    -->
   </PropertyGroup>
+
+  <Import Project="..\..\build\build.props" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
