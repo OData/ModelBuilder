@@ -68,7 +68,7 @@ steps:
   displayName: 'ESRP CodeSign - WebApi Product Signing'
   inputs:
     ConnectedServiceName: 'ESRP CodeSigning - OData'
-    FolderPath: '(ProductBinPath)'
+    FolderPath: '$(ProductBinPath)'
     Pattern: 'Microsoft.OData.ModelBuilder.dll'
     signConfigType: inlineSignParams
     inlineOperation: |
