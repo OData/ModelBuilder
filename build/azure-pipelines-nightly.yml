@@ -168,13 +168,13 @@ steps:
   displayName: 'NuGet - pack Microsoft.OData.ModelBuilder.Nightly.nuspec '
   inputs:
     command: custom
-    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Nightly.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols'
+    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Nightly.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency=$(SystemComponentPackageDependency);ODataLibPackageDependency=$(ODataLibPackageDependency) -Verbosity Detailed -Symbols'
     
 - task: NuGetCommand@2
   displayName: 'NuGet - pack Microsoft.OData.ModelBuilder.Release.nuspec '
   inputs:
     command: custom
-    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols'
+    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency=$(SystemComponentPackageDependency);ODataLibPackageDependency=$(ODataLibPackageDependency) -Verbosity Detailed -Symbols'
     
     
 - task: EsrpCodeSigning@1
