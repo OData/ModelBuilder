@@ -26,7 +26,6 @@ steps:
 - task: NuGetToolInstaller@0
   inputs:
     versionSpec: '>=5.2.0'
-  enabled: false 
 
 # because the assemblies are delay-signed, we need to disable
 # strong name validation so that the tests may run,
