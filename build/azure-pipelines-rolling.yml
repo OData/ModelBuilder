@@ -20,8 +20,10 @@ variables:
   buildConfiguration: 'Release'
   snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
   snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
-  
-  
+  productBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)\netstandard2.0'
+  mainDll: 'Microsoft.OData.ModelBuilder.dll'
+  testDll: 'Microsoft.OData.ModelBuilder.Tests.dll'
+
 steps:
 
 - task: PoliCheck@1
