@@ -99,11 +99,8 @@ steps:
     debugMode: false
   enabled: false
   
-- task: FxCop@2
-  displayName: 'Run FxCop - Product Binaries'
-  inputs:
-    inputType: 'Basic'
-    targets: '$(ProductBinPath)\**\Microsoft.OData.ModelBuilder.dll'
+# Microsoft.CodeAnalysis.FxCopAnalyzers is added into the project.
+# Typically, .NET Standard (.NET Core) project doesn't need the FxCop.
 
 - task: AntiMalware@3
   displayName: 'Run MpCmdRun.exe - ProductBinPath'
