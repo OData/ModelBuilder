@@ -87,6 +87,7 @@ steps:
     toolMajorVersion: 'V2'
     scanFolder: '$(Build.SourcesDirectory)\src'
     debugMode: false
+  enabled: false
 
 - task: CredScan@2
   displayName: 'Run CredScan - Test'
@@ -94,7 +95,8 @@ steps:
     toolMajorVersion: 'V2'
     scanFolder: '$(Build.SourcesDirectory)\test'
     debugMode: false
-
+  enabled: false
+  
 - task: FxCop@2
   displayName: 'Run FxCop - Product Binaries'
   inputs:
