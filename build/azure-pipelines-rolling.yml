@@ -20,9 +20,10 @@ variables:
   buildConfiguration: 'Release'
   snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
   snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
-  productBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)\netstandard2.0'
+  ProductBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)'
   mainDll: 'Microsoft.OData.ModelBuilder.dll'
   testDll: 'Microsoft.OData.ModelBuilder.Tests.dll'
+  skipComponentGovernanceDetection: true
 
 steps:
 
@@ -75,8 +76,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      & "$(snExe)" /Vr $(productBinPath)\$(mainDll)
-      & "$(snExe64)" /Vr $(productBinPath)\$(mainDll)
+      & "$(snExe)" /Vr $(ProductBinPath)\$(mainDll)
+      & "$(snExe64)" /Vr $(ProductBinPath)\$(mainDll)
       & "$(snExe)" /Vr $(testBinPath)\$(testDll)
       & "$(snExe64)" /Vr $(testBinPath)\$(testDll)
   enabled: false
