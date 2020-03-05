@@ -1,12 +1,11 @@
 <Project>
 
   <PropertyGroup>
-	<Language Condition=" '$(Language)' == '' ">ENU</Language>
-	
+
     <!-- Everything is delay signed by default -->	
-	<DelaySign>true</DelaySign>
+    <DelaySign>true</DelaySign>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileFullPath)\..\..\tools\35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>	
   </PropertyGroup>
-  
+
 </Project>
