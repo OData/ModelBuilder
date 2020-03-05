@@ -3,7 +3,7 @@
   <metadata>
     <id>Microsoft.OData.ModelBuilder</id>
     <title>Microsoft OData Entity Data Model Builder</title>
-    <version>$VersionFullSemantic$-Nightly$NightlyBuildVersion$</version>
+    <version>$VersionFullSemantic$-Nightly$VersionNugetNightlyBuild$</version>
     <authors>Microsoft</authors>
     <copyright>&#169; Microsoft Corporation. All rights reserved.</copyright>
     <description>This package contains APIs to create OData Edm (Entity Data Model) using C# types, attributes and conventions.</description>
