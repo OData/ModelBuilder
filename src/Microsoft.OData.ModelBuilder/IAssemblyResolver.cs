@@ -16,5 +16,6 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <returns>A list of assemblies available for the application. </returns>
         IEnumerable<Assembly> Assemblies { get; }
-    }
+    
+        // Intentionally remove the } to test the CI PR triger.
 }
