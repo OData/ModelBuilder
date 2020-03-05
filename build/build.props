@@ -1,14 +1,21 @@
 <Project>
 
   <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputPath Condition="'$(OutputPath)' == ''">$(WebStackRootPath)bin\$(Configuration)\</OutputPath>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 
-    <!-- Everything is delay signed by default -->	
+    <!-- Everything is delay signed by default -->
     <DelaySign>true</DelaySign>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildThisFileFullPath)\..\..\tools\35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>	
-  </PropertyGroup>
 
+    <ModelBuildPath>$(MSBuildThisFileDirectory)</ModelBuildPath>
+
+   <!-- Use CustomAfterMicrosoftCommonTargets property (defined in Microsoft.Common.targets) to
+      inject post-Common targets files without requiring the inclusion -->
+    <CustomAfterMicrosoftCommonTargets>$(ModelBuildPath)build.targets</CustomAfterMicrosoftCommonTargets>
+  </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

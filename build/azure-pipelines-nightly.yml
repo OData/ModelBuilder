@@ -20,7 +20,7 @@ pool:
 variables:
   snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
   snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
-  
+  ProductBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)'
   
 steps:
 - task: NuGetToolInstaller@0
@@ -36,8 +36,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      & "$(snExe)" /Vr $(productBinPath)\$(mainDll)
-      & "$(snExe64)" /Vr $(productBinPath)\$(mainDll)
+      & "$(snExe)" /Vr $(ProductBinPath)\$(mainDll)
+      & "$(snExe64)" /Vr $(ProductBinPath)\$(mainDll)
       & "$(snExe)" /Vr $(testBinPath)\$(testDll)
       & "$(snExe64)" /Vr $(testBinPath)\$(testDll)
   enabled: false
@@ -68,8 +68,8 @@ steps:
   displayName: 'ESRP CodeSign - WebApi Product Signing'
   inputs:
     ConnectedServiceName: 'ESRP CodeSigning - OData'
-    FolderPath: '$(Build.SourcesDirectory)\bin\$(BuildConfiguration)'
-    Pattern: 'Microsoft.AspNet.OData.dll,Microsoft.AspNetCore.OData.dll'
+    FolderPath: '(ProductBinPath)'
+    Pattern: 'Microsoft.OData.ModelBuilder.dll'
     signConfigType: inlineSignParams
     inlineOperation: |
      [
@@ -158,17 +158,24 @@ steps:
      ]
     VerboseLogin: true
     
+- task: MSBuild@1
+  displayName: 'Get Nuget Package Metadata'
+  inputs:
+    solution: '$(Build.SourcesDirectory)\build\GetNugetPackageMetadata.proj'
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    
 - task: NuGetCommand@2
   displayName: 'NuGet - pack Microsoft.OData.ModelBuilder.Nightly.nuspec '
   inputs:
     command: custom
-    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Nightly.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);AspNetPackageDependency="$(AspNetPackageDependency)";DependencyInjection1PackageDependency="$(DependencyInjection1PackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols'
+    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Nightly.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols'
     
 - task: NuGetCommand@2
   displayName: 'NuGet - pack Microsoft.OData.ModelBuilder.Release.nuspec '
   inputs:
     command: custom
-    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);AspNetPackageDependency="$(AspNetPackageDependency)";DependencyInjection1PackageDependency="$(DependencyInjection1PackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols'
+    arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(BuildConfiguration);ProductRoot=$(ProductBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);NightlyBuildVersion=$(VersionNugetNightlyBuild);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols'
     
     
 - task: EsrpCodeSigning@1
