@@ -11,7 +11,7 @@
     <releaseNotes>https://docs.microsoft.com/en-us/odata/changelog/modelbuilder</releaseNotes>
     <language>en-US</language>
     <projectUrl>http://github.com/OData/ModelBuilder</projectUrl>
-    <license>MIT</licenseUrl>
+    <license type="expression">MIT</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <tags>Microsoft OData Edm</tags>
     <iconUrl>http://static.tumblr.com/hgchgxz/9ualgdf98/icon.png</iconUrl>

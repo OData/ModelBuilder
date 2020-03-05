@@ -10,7 +10,7 @@
     <summary>This package contains APIs to create OData Edm (Entity Data Model) using C# types, attributes and conventions.</summary>
     <language>en-US</language>
     <projectUrl>http://github.com/OData/ModelBuilder</projectUrl>
-    <license>MIT</license>
+    <license type="expression">MIT</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <tags>Microsoft OData Edm</tags>
     <iconUrl>http://static.tumblr.com/hgchgxz/9ualgdf98/icon.png</iconUrl>
