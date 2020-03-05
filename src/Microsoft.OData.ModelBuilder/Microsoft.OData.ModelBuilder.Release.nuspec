@@ -23,8 +23,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="$ProductRoot$\netstandard2.0\Microsoft.AspNetCore.OData.dll" target="lib\netstandard2.0" />
-    <file src="$ProductRoot$\netstandard2.0\Microsoft.AspNetCore.OData.xml" target="lib\netstandard2.0" />
+    <file src="$ProductRoot$\netstandard2.0\Microsoft.OData.ModelBuilder.dll" target="lib\netstandard2.0" />
+    <file src="$ProductRoot$\netstandard2.0\Microsoft.OData.ModelBuilder.xml" target="lib\netstandard2.0" />
     <file src="$SourcesRoot$\images\odata.png" target="images\" />
   </files>
 </package>
