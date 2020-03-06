@@ -4,7 +4,7 @@
 using System;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Annotations
 {
     public class ClrPropertyInfoAnnotationTest
     {

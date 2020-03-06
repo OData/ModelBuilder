@@ -13,6 +13,16 @@ namespace Microsoft.OData.ModelBuilder
     internal static class TypeHelper
     {
         /// <summary>
+        /// Determine if a type is a generic type definition.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is a generic type definition; false otherwise.</returns>
+        public static bool IsGenericTypeDefinition(this Type clrType)
+        {
+            return clrType.IsGenericTypeDefinition;
+        }
+
+        /// <summary>
         /// Return the type from a MemberInfo.
         /// </summary>
         /// <param name="memberInfo">The MemberInfo to convert.</param>

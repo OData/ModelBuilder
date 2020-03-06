@@ -305,4 +305,16 @@
   <data name="EnumTypeDoesNotExist" xml:space="preserve">
     <value>The enum type '{0}' does not exist.</value>
   </data>
+  <data name="TargetEntityTypeMissing" xml:space="preserve">
+    <value>Could not find the target entity type for the navigation property '{0}' on entity type '{1}'.</value>
+  </data>
+  <data name="GetEdmModelCalledMoreThanOnce" xml:space="preserve">
+    <value>GetEdmModel cannot be called more than once. Consider using a different instance of the model builder or reusing the model you have built earlier.</value>
+  </data>
+  <data name="CannotReconfigEntityTypeAsComplexType" xml:space="preserve">
+    <value>The entity type '{0}' cannot be configured as a complex type because the derived type '{1}' is already configured as an entity type.</value>
+  </data>
+  <data name="CannotInferEdmType" xml:space="preserve">
+    <value>Cannot determine the Edm type for the CLR type '{0}' because the derived type '{1}' is configured as entity type and another derived type '{2}' is configured as complex type.</value>
+  </data>
 </root>

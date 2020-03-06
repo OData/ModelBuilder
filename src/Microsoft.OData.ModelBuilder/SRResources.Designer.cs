@@ -124,6 +124,24 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot determine the Edm type for the CLR type &apos;{0}&apos; because the derived type &apos;{1}&apos; is configured as entity type and another derived type &apos;{2}&apos; is configured as complex type..
+        /// </summary>
+        internal static string CannotInferEdmType {
+            get {
+                return ResourceManager.GetString("CannotInferEdmType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The entity type &apos;{0}&apos; cannot be configured as a complex type because the derived type &apos;{1}&apos; is already configured as an entity type..
+        /// </summary>
+        internal static string CannotReconfigEntityTypeAsComplexType {
+            get {
+                return ResourceManager.GetString("CannotReconfigEntityTypeAsComplexType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot redefine property &apos;{0}&apos; already defined on the base type &apos;{1}&apos;..
         /// </summary>
         internal static string CannotRedefineBaseTypeProperty {
@@ -228,6 +246,15 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string EqualExpressionsMustHaveSameTypes {
             get {
                 return ResourceManager.GetString("EqualExpressionsMustHaveSameTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GetEdmModel cannot be called more than once. Consider using a different instance of the model builder or reusing the model you have built earlier..
+        /// </summary>
+        internal static string GetEdmModelCalledMoreThanOnce {
+            get {
+                return ResourceManager.GetString("GetEdmModelCalledMoreThanOnce", resourceCulture);
             }
         }
         
@@ -606,6 +633,15 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string SingletonNameAlreadyConfiguredAsEntitySet {
             get {
                 return ResourceManager.GetString("SingletonNameAlreadyConfiguredAsEntitySet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find the target entity type for the navigation property &apos;{0}&apos; on entity type &apos;{1}&apos;..
+        /// </summary>
+        internal static string TargetEntityTypeMissing {
+            get {
+                return ResourceManager.GetString("TargetEntityTypeMissing", resourceCulture);
             }
         }
         

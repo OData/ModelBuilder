@@ -3,10 +3,11 @@
 
 using System;
 using System.Reflection;
+using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Moq;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Annotations
 {
     public class DynamicPropertyDictionaryAnnotationTest
     {

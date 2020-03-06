@@ -10,9 +10,10 @@ using System.Runtime.Serialization;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.Edm.Vocabularies.V1;
+using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Types
 {
     public class EnumTypeConfigurationTest
     {
@@ -286,7 +287,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             ExceptionAssert.ThrowsArgument(
                 () => builder.EnumType<ComplexTypeWithEnumTypePropertyTestModel>(),
                 "type",
-                "The type 'Microsoft.OData.ModelBuilder.Tests.ComplexTypeWithEnumTypePropertyTestModel' cannot be configured as an enum type.");
+                "The type 'Microsoft.OData.ModelBuilder.Tests.Types.ComplexTypeWithEnumTypePropertyTestModel' cannot be configured as an enum type.");
         }
 
         [Fact]
@@ -304,7 +305,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             ExceptionAssert.ThrowsArgument(
                 () => entityTypeConfiguration.EnumProperty(e => e.ID),
                 "propertyInfo",
-                "The property 'ID' on type 'Microsoft.OData.ModelBuilder.Tests.EntityTypeWithEnumTypePropertyTestModel' must be an Enum property.");
+                "The property 'ID' on type 'Microsoft.OData.ModelBuilder.Tests.Types.EntityTypeWithEnumTypePropertyTestModel' must be an Enum property.");
         }
 
         [Fact]
@@ -336,7 +337,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
                     .DerivesFrom<BaseTypeWithEnumTypePropertyTestModel>()
                     .Property(d => d.Color),
                 "propertyInfo",
-                "Cannot redefine property 'Color' already defined on the base type 'Microsoft.OData.ModelBuilder.Tests.BaseTypeWithEnumTypePropertyTestModel'.");
+                "Cannot redefine property 'Color' already defined on the base type 'Microsoft.OData.ModelBuilder.Tests.Types.BaseTypeWithEnumTypePropertyTestModel'.");
         }
 
         [Fact]
@@ -353,7 +354,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
                 () => builder.EntityType<BaseTypeWithEnumTypePropertyTestModel>()
                     .Property(b => b.Color),
                 "propertyInfo",
-                "Cannot define property 'Color' in the base type 'Microsoft.OData.ModelBuilder.Tests.BaseTypeWithEnumTypePropertyTestModel' as the derived type 'Microsoft.OData.ModelBuilder.Tests.DerivedTypeWithEnumTypePropertyTestModel' already defines it.");
+                "Cannot define property 'Color' in the base type 'Microsoft.OData.ModelBuilder.Tests.Types.BaseTypeWithEnumTypePropertyTestModel' as the derived type 'Microsoft.OData.ModelBuilder.Tests.Types.DerivedTypeWithEnumTypePropertyTestModel' already defines it.");
         }
 
         [Fact]
@@ -575,7 +576,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             ExceptionAssert.ThrowsArgument(
                 () => structuralTypeConfiguration.AddEnumProperty(propertyInfo),
                 "propertyInfo",
-                "The property 'RequiredColor' does not belong to the type 'Microsoft.OData.ModelBuilder.Tests.ComplexTypeWithEnumTypePropertyTestModel'.");
+                "The property 'RequiredColor' does not belong to the type 'Microsoft.OData.ModelBuilder.Tests.Types.ComplexTypeWithEnumTypePropertyTestModel'.");
         }
 
         [Fact]
@@ -592,7 +593,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             ExceptionAssert.ThrowsArgument(
                 () => structuralTypeConfiguration.AddEnumProperty(propertyInfo),
                 "propertyInfo",
-                "The property 'ID' on type 'Microsoft.OData.ModelBuilder.Tests.EntityTypeWithEnumTypePropertyTestModel' must be an Enum property.");
+                "The property 'ID' on type 'Microsoft.OData.ModelBuilder.Tests.Types.EntityTypeWithEnumTypePropertyTestModel' must be an Enum property.");
         }
 
         [Fact]

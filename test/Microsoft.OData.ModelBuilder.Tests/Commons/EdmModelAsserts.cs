@@ -7,7 +7,7 @@ using System.Linq;
 using Microsoft.OData.Edm;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Commons
 {
     public static class EdmModelAsserts
     {

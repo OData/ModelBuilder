@@ -4,9 +4,10 @@
 namespace Microsoft.OData.ModelBuilder.Conventions
 {
     /// <summary>
-    ///  Represents a set of conventions used to build an Edm model.
+    /// Convention to apply to <see cref="OperationConfiguration"/> instances in the model
     /// </summary>
-    public class ODataModelConventionSet
+    internal interface INavigationSourceConvention : IODataModelConvention
     {
+        void Apply(NavigationSourceConfiguration configuration, ODataModelBuilder model);
     }
 }

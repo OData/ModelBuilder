@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Threading;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Commons
 {
     public class CultureReplacer : IDisposable
     {

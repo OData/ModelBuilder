@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Commons
 {
     public class ExceptionAssert
     {

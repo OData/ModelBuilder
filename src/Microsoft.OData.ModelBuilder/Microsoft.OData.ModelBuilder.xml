@@ -461,6 +461,13 @@
             <param name="messageArgs">An object array that contains zero or more objects to format.</param>
             <returns>The logged <see cref="T:System.Exception"/>.</returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsGenericTypeDefinition(System.Type)">
+            <summary>
+            Determine if a type is a generic type definition.
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <returns>True if the type is a generic type definition; false otherwise.</returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.AsType(System.Reflection.MemberInfo)">
             <summary>
             Return the type from a MemberInfo.
@@ -1434,6 +1441,16 @@
             The ActionLinkGenerationConvention calls action.HasActionLink(..) if the action binds to a single entity and has not previously been configured.
             </summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Conventions.AssociationSetDiscoveryConvention">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Conventions.INavigationSourceConvention"/> to configure the EDM association sets for the given entity set.
+            <remarks>This convention adds an association set for each EDM navigation property defined in this type, its base types and all its derived types.
+            The target navigation source chosen is the default navigation source for the navigation property's target entity type.
+            The default navigation source for an entity type is the navigation source that contains entity of that entity type. 
+            If more than one navigation source match, the default navigation source is none.
+            If no navigation sources match the default navigation source is the default navigation source of the base type.</remarks>
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.Conventions.Attributes.AttributeConvention">
             <summary>
             Base class for all attribute based conventions.
@@ -1754,6 +1771,27 @@
             
             </summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Conventions.INavigationSourceConvention">
+            <summary>
+            Convention to apply to <see cref="T:Microsoft.OData.ModelBuilder.OperationConfiguration"/> instances in the model
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Conventions.IODataModelConventionSetBuilder">
+            <summary>
+             Represents a set of conventions used to build an Edm model.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Conventions.IODataModelConventionSetBuilder.Build">
+            <summary>
+            Builds and returns the convention set to use.
+            </summary>
+            <returns> The convention set to use. </returns>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Conventions.ODataModelConventionSet">
+            <summary>
+             Represents a set of conventions used to build an Edm model.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.EntityKeyConvention">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.EntityTypeConvention"/> for figuring out the entity keys.
@@ -1817,25 +1855,9 @@
             
             </summary>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.IODataModelConventionSetBuilder">
-            <summary>
-             Represents a set of conventions used to build an Edm model.
-            </summary>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.IODataModelConventionSetBuilder.Build">
-            <summary>
-                Builds and returns the convention set to use.
-            </summary>
-            <returns> The convention set to use. </returns>
-        </member>
         <member name="T:Microsoft.OData.ModelBuilder.IOperationConvention">
             <summary>
             Convention to apply to <see cref="T:Microsoft.OData.ModelBuilder.OperationConfiguration"/> instances in the model
-            </summary>
-        </member>
-        <member name="T:Microsoft.OData.ModelBuilder.ODataModelConventionSet">
-            <summary>
-             Represents a set of conventions used to build an Edm model.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.BindableOperationFinder">
@@ -1928,6 +1950,60 @@
             This relationship is used to builder the navigation property and the corresponding links.
             </summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.LowerCamelCaser">
+            <summary>
+            Default lower camel caser to resolve property names for <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/>.
+            The rule is to convert the leading upper case characters to lower case, 
+            until a character, which is not the first character and is followed by a non-upper case character, is met.
+            id => id, ID => id, MyName => myName, IOStream => ioStream, MyID => myid, yourID => yourID
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.LowerCamelCaser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.LowerCamelCaser"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.LowerCamelCaser.#ctor(Microsoft.OData.ModelBuilder.NameResolverOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.LowerCamelCaser"/> class.
+            </summary>
+            <param name="options">Name resolver options for camelizing.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.LowerCamelCaser.ApplyLowerCamelCase(Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)">
+            <summary>
+            Applies lower camel case.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/> to be applied on.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.LowerCamelCaser.ToLowerCamelCase(System.String)">
+            <summary>
+            Converts a <see cref="T:System.String"/> to lower camel case.
+            </summary>
+            <param name="name">The name to be converted with lower camel case.</param>
+            <returns>The converted name.</returns>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.NameResolverOptions">
+            <summary>
+            Options for resolving names.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.NameResolverOptions.ProcessReflectedPropertyNames">
+            <summary>
+            Process reflected property names.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.NameResolverOptions.ProcessDataMemberAttributePropertyNames">
+            <summary>
+            Process property names in DataMemberAttribute
+            such as [DataMember(Name = "DataMemberCustomerName")].
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.NameResolverOptions.ProcessExplicitPropertyNames">
+            <summary>
+            Process explicit property names
+            such as entityTypeConfiguration.Property(e => e.Key).Name="Id".
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.ODataContext">
             <summary>
             
@@ -2000,6 +2076,35 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder.AddEnumType(System.Type)">
             <inheritdoc />
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder.GetEdmModel">
+            <inheritdoc />
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder.ValidateModel(Microsoft.OData.Edm.IEdmModel)">
+            <inheritdoc />
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilderExtensions">
+            <summary>
+            Provides extension methods for the <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ODataConventionModelBuilderExtensions.EnableLowerCamelCase(Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)">
+            <summary>
+            Enable lower camel case with default <see cref="T:Microsoft.OData.ModelBuilder.NameResolverOptions"/>
+            NameResolverOptions.ProcessReflectedPropertyNames |
+            NameResolverOptions.ProcessDataMemberAttributePropertyNames |
+            NameResolverOptions.ProcessExplicitPropertyNames.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/> to be enabled with lower camel case.</param>
+            <returns>Returns itself so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ODataConventionModelBuilderExtensions.EnableLowerCamelCase(Microsoft.OData.ModelBuilder.ODataConventionModelBuilder,Microsoft.OData.ModelBuilder.NameResolverOptions)">
+            <summary>
+            Enable lower camel case with given <see cref="T:Microsoft.OData.ModelBuilder.NameResolverOptions"/>.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/> to be enabled with lower camel case.</param>
+            <param name="options">The <see cref="T:Microsoft.OData.ModelBuilder.NameResolverOptions"/> for the lower camel case.</param>
+            <returns>Returns itself so that multiple calls can be chained.</returns>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ODataModelBuilder">
             <summary>
@@ -3344,6 +3449,16 @@
               Looks up a localized string similar to Cannot define keys on type &apos;{0}&apos; deriving from &apos;{1}&apos;. The base type in the entity inheritance hierarchy already contains keys..
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.CannotInferEdmType">
+            <summary>
+              Looks up a localized string similar to Cannot determine the Edm type for the CLR type &apos;{0}&apos; because the derived type &apos;{1}&apos; is configured as entity type and another derived type &apos;{2}&apos; is configured as complex type..
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.CannotReconfigEntityTypeAsComplexType">
+            <summary>
+              Looks up a localized string similar to The entity type &apos;{0}&apos; cannot be configured as a complex type because the derived type &apos;{1}&apos; is already configured as an entity type..
+            </summary>
+        </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.CannotRedefineBaseTypeProperty">
             <summary>
               Looks up a localized string similar to Cannot redefine property &apos;{0}&apos; already defined on the base type &apos;{1}&apos;..
@@ -3402,6 +3517,11 @@
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.EqualExpressionsMustHaveSameTypes">
             <summary>
               Looks up a localized string similar to The type of left property &apos;{0}.{1}&apos; is &apos;{2}&apos; while the type of right property &apos;{3}.{4}&apos; is &apos;{5}&apos;. The left and right type of the equal expression must be same..
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.GetEdmModelCalledMoreThanOnce">
+            <summary>
+              Looks up a localized string similar to GetEdmModel cannot be called more than once. Consider using a different instance of the model builder or reusing the model you have built earlier..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.InvalidBindingParameterType">
@@ -3612,6 +3732,11 @@
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.SingletonNameAlreadyConfiguredAsEntitySet">
             <summary>
               Looks up a localized string similar to The singleton name &apos;{0}&apos; was already configured as an entity set..
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.TargetEntityTypeMissing">
+            <summary>
+              Looks up a localized string similar to Could not find the target entity type for the navigation property &apos;{0}&apos; on entity type &apos;{1}&apos;..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.TypeCannotBeComplexWasEntity">

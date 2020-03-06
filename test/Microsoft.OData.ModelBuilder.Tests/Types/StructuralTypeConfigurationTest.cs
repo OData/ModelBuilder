@@ -4,7 +4,7 @@
 using Moq;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Types
 {
     public class StructuralTypeConfigurationTest
     {
