@@ -21,6 +21,12 @@ namespace Microsoft.OData.ModelBuilder
         public CollectionPropertyConfiguration(PropertyInfo property, StructuralTypeConfiguration declaringType)
             : base(property, declaringType)
         {
+            if (property == null)
+            {
+                throw Error.ArgumentNull(nameof(property));
+            }
+
+
             if (!TypeHelper.IsCollection(property.PropertyType, out _elementType))
             {
                 throw Error.Argument("property", SRResources.CollectionPropertiesMustReturnIEnumerable, property.Name, property.DeclaringType.FullName);

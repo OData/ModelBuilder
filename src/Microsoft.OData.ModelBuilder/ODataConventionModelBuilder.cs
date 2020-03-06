@@ -18,6 +18,7 @@ namespace Microsoft.OData.ModelBuilder
         private Lazy<IDictionary<Type, List<Type>>> _allTypesWithDerivedTypeMapping;
         private bool _isModelBeingBuilt;
         private HashSet<Type> _ignoredTypes;
+        private bool _isQueryCompositionMode;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ODataConventionModelBuilder"/> class.
@@ -71,8 +72,8 @@ namespace Microsoft.OData.ModelBuilder
         {
             _isModelBeingBuilt = false;
             _ignoredTypes = new HashSet<Type>();
-            /*
-            _isQueryCompositionMode = isQueryCompositionMode;
+            
+            _isQueryCompositionMode = isQueryCompositionMode;/*
             _configuredNavigationSources = new HashSet<NavigationSourceConfiguration>();
             _mappedTypes = new HashSet<StructuralTypeConfiguration>();
             
@@ -183,7 +184,7 @@ namespace Microsoft.OData.ModelBuilder
 
                 foreach (object member in Enum.GetValues(type))
                 {
-                    bool addedExplicitly = enumTypeConfiguration.Members.Any(m => m.Name.Equals(member.ToString()));
+                    bool addedExplicitly = enumTypeConfiguration.Members.Any(m => m.Name.Equals(member.ToString(), StringComparison.Ordinal));
                     EnumMemberConfiguration enumMemberConfiguration = enumTypeConfiguration.AddMember((Enum)member);
                     enumMemberConfiguration.AddedExplicitly = addedExplicitly;
                 }

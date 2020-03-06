@@ -109,6 +109,11 @@ namespace Microsoft.OData.ModelBuilder
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
         public virtual EntityTypeConfiguration HasKey(PropertyInfo keyProperty)
         {
+            if (keyProperty == null)
+            {
+                throw Error.ArgumentNull(nameof(keyProperty));
+            }
+
             if (BaseType != null && BaseType.Keys().Any())
             {
                 throw Error.InvalidOperation(SRResources.CannotDefineKeysOnDerivedTypes, FullName, BaseType.FullName);
@@ -194,6 +199,11 @@ namespace Microsoft.OData.ModelBuilder
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
         public virtual EntityTypeConfiguration DerivesFrom(EntityTypeConfiguration baseType)
         {
+            if (baseType == null)
+            {
+                throw Error.ArgumentNull(nameof(baseType));
+            }
+
             if ((Keys.Any() || EnumKeys.Any()) && baseType.Keys().Any())
             {
                 throw Error.InvalidOperation(SRResources.CannotDefineKeysOnDerivedTypes, FullName, baseType.FullName);

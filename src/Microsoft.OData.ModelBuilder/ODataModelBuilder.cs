@@ -98,7 +98,7 @@ namespace Microsoft.OData.ModelBuilder
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 _dataServiceVersion = value;
@@ -118,7 +118,7 @@ namespace Microsoft.OData.ModelBuilder
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 _maxDataServiceVersion = value;
@@ -537,7 +537,7 @@ namespace Microsoft.OData.ModelBuilder
         public virtual bool RemoveOperation(string name)
         {
             OperationConfiguration[] toRemove = _operations.Where(p => p.Name == name).ToArray();
-            int count = toRemove.Count();
+            int count = toRemove.Length;
             if (count == 1)
             {
                 return RemoveOperation(toRemove[0]);

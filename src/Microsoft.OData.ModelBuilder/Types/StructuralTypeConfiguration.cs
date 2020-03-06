@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
@@ -68,6 +69,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Gets or sets the namespace of this EDM type.
         /// </summary>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "<Pending>")]
         public virtual string Namespace
         {
             get
@@ -263,9 +265,9 @@ namespace Microsoft.OData.ModelBuilder
             ValidatePropertyNotAlreadyDefinedInDerivedTypes(propertyInfo);
 
             // Remove from the ignored properties
-            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name)))
+            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
             {
-                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name)));
+                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)));
             }
 
             PrimitivePropertyConfiguration propertyConfiguration =
@@ -322,9 +324,9 @@ namespace Microsoft.OData.ModelBuilder
             ValidatePropertyNotAlreadyDefinedInDerivedTypes(propertyInfo);
 
             // Remove from the ignored properties
-            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name)))
+            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
             {
-                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name)));
+                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)));
             }
 
             EnumPropertyConfiguration propertyConfiguration =
@@ -360,9 +362,9 @@ namespace Microsoft.OData.ModelBuilder
             ValidatePropertyNotAlreadyDefinedInDerivedTypes(propertyInfo);
 
             // Remove from the ignored properties
-            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name)))
+            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
             {
-                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name)));
+                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)));
             }
 
             ComplexPropertyConfiguration propertyConfiguration =
@@ -401,9 +403,9 @@ namespace Microsoft.OData.ModelBuilder
             ValidatePropertyNotAlreadyDefinedInDerivedTypes(propertyInfo);
 
             // Remove from the ignored properties
-            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name)))
+            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
             {
-                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name)));
+                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)));
             }
 
             CollectionPropertyConfiguration propertyConfiguration =
@@ -481,12 +483,12 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.Argument("propertyInfo", SRResources.PropertyDoesNotBelongToType, propertyInfo.Name, ClrType.FullName);
             }
 
-            if (ExplicitProperties.Keys.Any(key => key.Name.Equals(propertyInfo.Name)))
+            if (ExplicitProperties.Keys.Any(key => key.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
             {
-                ExplicitProperties.Remove(ExplicitProperties.Keys.First(key => key.Name.Equals(propertyInfo.Name)));
+                ExplicitProperties.Remove(ExplicitProperties.Keys.First(key => key.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)));
             }
 
-            if (!RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name)))
+            if (!RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
             {
                 RemovedProperties.Add(propertyInfo);
             }
@@ -572,7 +574,7 @@ namespace Microsoft.OData.ModelBuilder
         internal T ValidatePropertyNotAlreadyDefinedOtherTypes<T>(PropertyInfo propertyInfo, string typeErrorMessage) where T : class
         {
             T propertyConfiguration = default(T);
-            var explicitPropertyInfo = ExplicitProperties.Keys.FirstOrDefault(key => key.Name.Equals(propertyInfo.Name));
+            var explicitPropertyInfo = ExplicitProperties.Keys.FirstOrDefault(key => key.Name.Equals(propertyInfo.Name, StringComparison.Ordinal));
             if (explicitPropertyInfo != null)
             {
                 propertyConfiguration = ExplicitProperties[explicitPropertyInfo] as T;

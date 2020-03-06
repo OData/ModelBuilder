@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder
     internal static class Error
     {
         /// <summary>
-        /// Formats the specified resource string using <see cref="M:CultureInfo.CurrentCulture"/>.
+        /// Formats the specified resource string using <see cref="CultureInfo"/>.
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>

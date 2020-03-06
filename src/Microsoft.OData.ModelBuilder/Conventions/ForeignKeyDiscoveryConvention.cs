@@ -73,7 +73,7 @@ namespace Microsoft.OData.ModelBuilder
             IDictionary<PrimitivePropertyConfiguration, PrimitivePropertyConfiguration> typeNameForeignKeys =
                 GetForeignKeys(principalEntityType, dependentEntityType);
 
-            if (typeNameForeignKeys.Any() && typeNameForeignKeys.Count() == principalEntityType.Keys.Count())
+            if (typeNameForeignKeys.Any() && typeNameForeignKeys.Count == principalEntityType.Keys.Count())
             {
                 foreach (KeyValuePair<PrimitivePropertyConfiguration, PrimitivePropertyConfiguration> foreignKey
                     in typeNameForeignKeys)

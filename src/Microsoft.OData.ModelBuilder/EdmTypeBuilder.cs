@@ -519,7 +519,7 @@ namespace Microsoft.OData.ModelBuilder
             type.AddKeys(keys);
         }
 
-        private void CreateEnumTypeBody(EdmEnumType type, EnumTypeConfiguration config)
+        private static void CreateEnumTypeBody(EdmEnumType type, EnumTypeConfiguration config)
         {
             Contract.Assert(type != null);
             Contract.Assert(config != null);

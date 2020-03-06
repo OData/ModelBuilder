@@ -20,7 +20,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <param name="navigationSource">The target navigation source of the binding.</param>
         public NavigationPropertyBindingConfiguration(NavigationPropertyConfiguration navigationProperty,
             NavigationSourceConfiguration navigationSource)
-            : this(navigationProperty, navigationSource, new MemberInfo[] { navigationProperty.PropertyInfo })
+            : this(navigationProperty, navigationSource, new MemberInfo[] { navigationProperty?.PropertyInfo })
         {
         }
 

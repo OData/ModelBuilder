@@ -42,7 +42,7 @@ namespace Microsoft.OData.ModelBuilder
             {
                 if (String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
 
                 _name = value;

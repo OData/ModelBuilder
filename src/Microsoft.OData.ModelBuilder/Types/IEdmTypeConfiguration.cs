@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.OData.Edm;
 
 namespace Microsoft.OData.ModelBuilder
@@ -24,6 +25,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// The namespace of the EdmType.
         /// </summary>
+        [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "<Pending>")]
         string Namespace { get; }
 
         /// <summary>
