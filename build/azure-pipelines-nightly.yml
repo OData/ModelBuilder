@@ -63,7 +63,54 @@ steps:
     command: test
     projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
     arguments: '--configuration $(BuildConfiguration) --no-build'
-    
+
+# CredScan
+- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+  displayName: 'Run CredScan - Src'
+  inputs:
+    toolMajorVersion: 'V2'
+    scanFolder: '$(Build.SourcesDirectory)\src'
+    debugMode: false
+
+- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+  displayName: 'Run CredScan - Test'
+  inputs:
+    toolMajorVersion: 'V2'
+    scanFolder: '$(Build.SourcesDirectory)\test'
+    debugMode: false
+  
+# Microsoft.CodeAnalysis.FxCopAnalyzers is added into the project.
+# Typically, .NET Standard (.NET Core) project doesn't need the FxCop.
+
+# Needn't the AntiMalware@3 task?
+- task: AntiMalware@3
+  displayName: 'Run MpCmdRun.exe - ProductBinPath'
+  inputs:
+    FileDirPath: '$(ProductBinPath)'
+  enabled: false
+
+- task: BinSkim@3
+  displayName: 'Run BinSkim - Product Binaries'
+  inputs:
+    InputType: Basic
+    AnalyzeTarget: '$(ProductBinPath)\**\Microsoft.OData.ModelBuilder.dll'
+    AnalyzeSymPath: '$(ProductBinPath)'
+    AnalyzeVerbose: true
+    AnalyzeHashes: true
+    AnalyzeEnvironment: true
+
+- task: PublishSecurityAnalysisLogs@2
+  displayName: 'Publish Security Analysis Logs'
+  inputs:
+    ArtifactName: SecurityLogs
+
+- task: PostAnalysis@1
+  displayName: 'Post Analysis'
+  inputs:
+    BinSkim: true
+    CredScan: true
+    PoliCheck: true
+
 - task: EsrpCodeSigning@1
   displayName: 'ESRP CodeSign - WebApi Product Signing'
   inputs:
@@ -202,3 +249,9 @@ steps:
          }
      ]
     VerboseLogin: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact - Nuget Packages'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\Nuget'
+    ArtifactName: Nuget
