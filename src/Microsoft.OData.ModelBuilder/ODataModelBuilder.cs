@@ -354,7 +354,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
-        /// Adds a operation to the model.
+        /// Adds an operation to the model.
         /// </summary>
         public virtual void AddOperation(OperationConfiguration operation)
         {
@@ -433,7 +433,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.NotSupported(SRResources.InvalidSingletonName, name);
             }
 
-            SingletonConfiguration singleton = null;
+            SingletonConfiguration singleton;
             if (_navigationSources.ContainsKey(name))
             {
                 singleton = _navigationSources[name] as SingletonConfiguration;
@@ -599,6 +599,56 @@ namespace Microsoft.OData.ModelBuilder
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="IEdmModel"/> based on the configuration performed using this builder.
+        /// </summary>
+        /// <returns>The model that was built.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "Property is not appropriate, method does work")]
+        public virtual IEdmModel GetEdmModel()
+        {
+            IEdmModel model = EdmModelHelperMethods.BuildEdmModel(this);
+            ValidateModel(model);
+            return model;
+        }
+
+        /// <summary>
+        /// Validates the <see cref="IEdmModel"/> that is being created.
+        /// </summary>
+        /// <param name="model">The <see cref="IEdmModel"/> that will be validated.</param>
+        public virtual void ValidateModel(IEdmModel model)
+        {
+            if (model == null)
+            {
+                throw Error.ArgumentNull("model");
+            }
+
+            // The type of entity set should have key(s) defined.
+            foreach (IEdmEntitySet entitySet in model.EntityContainer.Elements.OfType<IEdmEntitySet>())
+            {
+                if (!entitySet.EntityType().Key().Any())
+                {
+                    throw Error.InvalidOperation(SRResources.EntitySetTypeHasNoKeys, entitySet.Name,
+                        entitySet.EntityType().FullName());
+                }
+            }
+
+            // The type of collection navigation property should have key(s) defined.
+            foreach (IEdmStructuredType structuredType in model.SchemaElementsAcrossModels().OfType<IEdmStructuredType>())
+            {
+                foreach (var navigationProperty in structuredType.DeclaredNavigationProperties())
+                {
+                    if (navigationProperty.TargetMultiplicity() == EdmMultiplicity.Many)
+                    {
+                        IEdmEntityType entityType = navigationProperty.ToEntityType();
+                        if (!entityType.Key().Any())
+                        {
+                            throw Error.InvalidOperation(SRResources.CollectionNavigationPropertyEntityTypeDoesntHaveKeyDefined, entityType.FullTypeName(), navigationProperty.Name, structuredType.FullTypeName());
+                        }
+                    }
+                }
+            }
         }
     }
 }

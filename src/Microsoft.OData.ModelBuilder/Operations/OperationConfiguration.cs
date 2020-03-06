@@ -8,7 +8,7 @@ using System.Linq;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// Represents a Operation that is exposed in the model
+    /// Represents an Operation (Function or Action) that is exposed in the model
     /// </summary>
     public abstract class OperationConfiguration
     {

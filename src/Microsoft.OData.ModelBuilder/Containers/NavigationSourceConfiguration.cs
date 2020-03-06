@@ -15,6 +15,7 @@ namespace Microsoft.OData.ModelBuilder
     /// </summary>
     public abstract class NavigationSourceConfiguration
     {
+        private string _url;
         private readonly ODataModelBuilder _modelBuilder;
 
         private readonly
@@ -38,6 +39,7 @@ namespace Microsoft.OData.ModelBuilder
         protected NavigationSourceConfiguration(ODataModelBuilder modelBuilder, Type entityClrType, string name)
             : this(modelBuilder, new EntityTypeConfiguration(modelBuilder, entityClrType), name)
         {
+            _url = null;
         }
 
         /// <summary>
@@ -93,6 +95,19 @@ namespace Microsoft.OData.ModelBuilder
         /// Gets the name of this navigation source.
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Gets the navigation source URL.
+        /// </summary>
+        /// <returns>The navigation source URL.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings",
+            Justification = "This Url property is not required to be a valid Uri")]
+        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate",
+            Justification = "Consistent with EF Has/Get pattern")]
+        public virtual string GetUrl()
+        {
+            return _url;
+        }
 
         /// <summary>
         /// Binds the given navigation property to the target navigation source.

@@ -133,6 +133,15 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The entity type &apos;{0}&apos; of navigation property &apos;{1}&apos; on structural type &apos;{2}&apos; does not have a key defined..
+        /// </summary>
+        internal static string CollectionNavigationPropertyEntityTypeDoesntHaveKeyDefined {
+            get {
+                return ResourceManager.GetString("CollectionNavigationPropertyEntityTypeDoesntHaveKeyDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CollectionProperties must implement IEnumerable&lt;&gt;. The property &apos;{0}&apos; declared on &apos;{1}&apos; does not implement IEnumerable&lt;&gt;..
         /// </summary>
         internal static string CollectionPropertiesMustReturnIEnumerable {
@@ -178,6 +187,42 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No EntitySet exists in the EdmModel with entitySetName &apos;{0}&apos;..
+        /// </summary>
+        internal static string EntitySetNotFoundForName {
+            get {
+                return ResourceManager.GetString("EntitySetNotFoundForName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The entity set &apos;{0}&apos; is based on type &apos;{1}&apos; that has no keys defined..
+        /// </summary>
+        internal static string EntitySetTypeHasNoKeys {
+            get {
+                return ResourceManager.GetString("EntitySetTypeHasNoKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The enum type &apos;{0}&apos; does not exist..
+        /// </summary>
+        internal static string EnumTypeDoesNotExist {
+            get {
+                return ResourceManager.GetString("EnumTypeDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value of enum member &apos;{0}&apos; cannot be converted to a long type..
+        /// </summary>
+        internal static string EnumValueCannotBeLong {
+            get {
+                return ResourceManager.GetString("EnumValueCannotBeLong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The type of left property &apos;{0}.{1}&apos; is &apos;{2}&apos; while the type of right property &apos;{3}.{4}&apos; is &apos;{5}&apos;. The left and right type of the equal expression must be same..
         /// </summary>
         internal static string EqualExpressionsMustHaveSameTypes {
@@ -201,6 +246,15 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string InvalidEntitySetName {
             get {
                 return ResourceManager.GetString("InvalidEntitySetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type &apos;{0}&apos; is not supported as dynamic property annotation. Referenced property must be of type &apos;{1}&apos;..
+        /// </summary>
+        internal static string InvalidPropertyInfoForDynamicPropertyAnnotation {
+            get {
+                return ResourceManager.GetString("InvalidPropertyInfoForDynamicPropertyAnnotation", resourceCulture);
             }
         }
         
@@ -291,6 +345,24 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string MoreThanOneOperationFound {
             get {
                 return ResourceManager.GetString("MoreThanOneOperationFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found more than one action with name &apos;{0}&apos; bound to the same type &apos;{1}&apos;. Each bound action must have a different binding type or name..
+        /// </summary>
+        internal static string MoreThanOneOverloadActionBoundToSameTypeFound {
+            get {
+                return ResourceManager.GetString("MoreThanOneOverloadActionBoundToSameTypeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found more than one unbound action with name &apos;{0}&apos;. Each unbound action must have an unique action name..
+        /// </summary>
+        internal static string MoreThanOneUnboundActionFound {
+            get {
+                return ResourceManager.GetString("MoreThanOneUnboundActionFound", resourceCulture);
             }
         }
         
@@ -430,6 +502,24 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No IEdmType could be found for &apos;{0}&apos;..
+        /// </summary>
+        internal static string NoMatchingIEdmTypeFound {
+            get {
+                return ResourceManager.GetString("NoMatchingIEdmTypeFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid EntitySetPath detected. &apos;{0}&apos; is not a valid entity set path for operation &apos;{1}&apos;..
+        /// </summary>
+        internal static string OperationHasInvalidEntitySetPath {
+            get {
+                return ResourceManager.GetString("OperationHasInvalidEntitySetPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot define property &apos;{0}&apos; in the base type &apos;{1}&apos; as the derived type &apos;{2}&apos; already defines it..
         /// </summary>
         internal static string PropertyAlreadyDefinedInDerivedType {
@@ -552,6 +642,15 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string TypeDoesNotInheritFromBaseType {
             get {
                 return ResourceManager.GetString("TypeDoesNotInheritFromBaseType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found unsupported EdmTypeKind &apos;{0}&apos; in list of available types..
+        /// </summary>
+        internal static string UnsupportedEdmTypeKind {
+            get {
+                return ResourceManager.GetString("UnsupportedEdmTypeKind", resourceCulture);
             }
         }
         

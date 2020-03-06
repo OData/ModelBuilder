@@ -25,10 +25,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <inheritdoc />
-        public override OperationKind Kind
-        {
-            get { return OperationKind.Function; }
-        }
+        public override OperationKind Kind => OperationKind.Function;
 
         /// <inheritdoc />
         public new bool IsComposable
@@ -38,10 +35,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <inheritdoc />
-        public override bool IsSideEffecting
-        {
-            get { return false; }
-        }
+        public override bool IsSideEffecting => false;
 
         /// <summary>
         /// Gets/Sets a value indicating whether the function is supported in $filter.

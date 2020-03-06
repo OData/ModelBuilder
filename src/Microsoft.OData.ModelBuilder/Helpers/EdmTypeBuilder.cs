@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
@@ -15,37 +16,17 @@ namespace Microsoft.OData.ModelBuilder
     {
         private readonly List<IEdmTypeConfiguration> _configurations;
         private readonly Dictionary<Type, IEdmType> _types = new Dictionary<Type, IEdmType>();
-        private readonly Dictionary<IEdmStructuredType, PropertyInfo> _openTypes = new Dictionary<IEdmStructuredType, PropertyInfo>();
         private readonly Dictionary<PropertyInfo, IEdmProperty> _properties = new Dictionary<PropertyInfo, IEdmProperty>();
+        private readonly Dictionary<IEdmProperty, QueryableRestrictions> _propertiesRestrictions = new Dictionary<IEdmProperty, QueryableRestrictions>();
+        private readonly Dictionary<IEdmProperty, ModelBoundQuerySettings> _propertiesQuerySettings = new Dictionary<IEdmProperty, ModelBoundQuerySettings>();
+        private readonly Dictionary<IEdmStructuredType, ModelBoundQuerySettings> _structuredTypeQuerySettings = new Dictionary<IEdmStructuredType, ModelBoundQuerySettings>();
+        private readonly Dictionary<Enum, IEdmEnumMember> _members = new Dictionary<Enum, IEdmEnumMember>();
+        private readonly Dictionary<IEdmStructuredType, PropertyInfo> _openTypes = new Dictionary<IEdmStructuredType, PropertyInfo>();
 
         internal EdmTypeBuilder(IEnumerable<IEdmTypeConfiguration> configurations)
         {
             _configurations = configurations.ToList();
         }
-
-        /*
-        /// <summary>
-        /// Builds <see cref="IEdmType"/> and <see cref="IEdmProperty"/>'s from <paramref name="configurations"/>
-        /// </summary>
-        /// <param name="configurations">A collection of <see cref="IEdmTypeConfiguration"/>'s</param>
-        /// <returns>The built dictionary of <see cref="StructuralTypeConfiguration"/>'s indexed by their backing CLR type,
-        /// and dictionary of <see cref="StructuralTypeConfiguration"/>'s indexed by their backing CLR property info</returns>
-        public static EdmTypeMap GetTypesAndProperties(IEnumerable<IEdmTypeConfiguration> configurations)
-        {
-            if (configurations == null)
-            {
-                throw Error.ArgumentNull("configurations");
-            }
-
-            EdmTypeBuilder builder = new EdmTypeBuilder(configurations);
-            return new EdmTypeMap(builder.GetEdmTypes(),
-                builder._properties,
-                builder._propertiesRestrictions,
-                builder._propertiesQuerySettings,
-                builder._structuredTypeQuerySettings,
-                builder._members,
-                builder._openTypes);
-        }*/
 
         /// <summary>
         /// Gets the <see cref="EdmPrimitiveTypeKind"/> that maps to the <see cref="Type"/>
@@ -68,7 +49,7 @@ namespace Microsoft.OData.ModelBuilder
             // Reset
             _types.Clear();
             _properties.Clear();
-      //      _members.Clear();
+            _members.Clear();
             _openTypes.Clear();
 
             // Create headers to allow CreateEdmTypeBody to blindly references other things.
@@ -157,20 +138,19 @@ namespace Microsoft.OData.ModelBuilder
                 }
             }
 
-            /*
             IEdmStructuredType structuredType = edmType as IEdmStructuredType;
             StructuralTypeConfiguration structuralTypeConfiguration = config as StructuralTypeConfiguration;
             if (structuredType != null && structuralTypeConfiguration != null &&
                 !_structuredTypeQuerySettings.ContainsKey(structuredType))
             {
-                ModelBoundQuerySettings querySettings =
-                    structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings;
-                if (querySettings != null)
-                {
-                    _structuredTypeQuerySettings.Add(structuredType,
-                        structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings);
-                }
-            }*/
+                //ModelBoundQuerySettings querySettings =
+                //    structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings;
+                //if (querySettings != null)
+                //{
+                //    _structuredTypeQuerySettings.Add(structuredType,
+                //        structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings);
+                //}
+            }
         }
 
         private IList<IEdmStructuralProperty> GetDeclaringPropertyInfo(IEnumerable<PropertyInfo> propertyInfos)
@@ -271,12 +251,12 @@ namespace Microsoft.OData.ModelBuilder
                         _properties[prop.PropertyInfo] = edmProperty;
                     }
 
-                    /*
+                   
                     if (prop.IsRestricted)
                     {
                         _propertiesRestrictions[edmProperty] = new QueryableRestrictions(prop);
                     }
-
+ /*
                     if (prop.QueryConfiguration.ModelBoundQuerySettings != null)
                     {
                         _propertiesQuerySettings.Add(edmProperty, prop.QueryConfiguration.ModelBoundQuerySettings);
@@ -424,16 +404,16 @@ namespace Microsoft.OData.ModelBuilder
                     {
                         _properties[property.PropertyInfo] = edmProperty;
                     }
-                    /*
+
                     if (property.IsRestricted)
                     {
                         _propertiesRestrictions[edmProperty] = new QueryableRestrictions(property);
                     }
 
-                    if (property.QueryConfiguration.ModelBoundQuerySettings != null)
-                    {
-                        _propertiesQuerySettings.Add(edmProperty, property.QueryConfiguration.ModelBoundQuerySettings);
-                    }*/
+                    //if (property.QueryConfiguration.ModelBoundQuerySettings != null)
+                    //{
+                    //    _propertiesQuerySettings.Add(edmProperty, property.QueryConfiguration.ModelBoundQuerySettings);
+                    //}
                 }
             }
         }
@@ -449,7 +429,7 @@ namespace Microsoft.OData.ModelBuilder
 
                 if (edmType == null)
                 {
-                 //   throw Error.InvalidOperation(SRResources.EnumTypeDoesNotExist, clrType.Name);
+                    throw Error.InvalidOperation(SRResources.EnumTypeDoesNotExist, clrType.Name);
                 }
 
                 IEdmEnumType enumElementType = (IEdmEnumType)edmType;
@@ -485,7 +465,7 @@ namespace Microsoft.OData.ModelBuilder
 
             if (edmType == null)
             {
-              //  throw Error.InvalidOperation(SRResources.EnumTypeDoesNotExist, enumPropertyType.Name);
+                throw Error.InvalidOperation(SRResources.EnumTypeDoesNotExist, enumPropertyType.Name);
             }
 
             IEdmEnumType enumType = (IEdmEnumType)edmType;
@@ -519,14 +499,13 @@ namespace Microsoft.OData.ModelBuilder
             type.AddKeys(keys);
         }
 
-        private static void CreateEnumTypeBody(EdmEnumType type, EnumTypeConfiguration config)
+        private void CreateEnumTypeBody(EdmEnumType type, EnumTypeConfiguration config)
         {
             Contract.Assert(type != null);
             Contract.Assert(config != null);
 
             foreach (EnumMemberConfiguration member in config.Members)
             {
-                /*
                 // EdmIntegerConstant can only support a value of long type.
                 long value;
                 try
@@ -535,15 +514,37 @@ namespace Microsoft.OData.ModelBuilder
                 }
                 catch
                 {
-            //        throw Error.Argument("value", SRResources.EnumValueCannotBeLong, Enum.GetName(member.MemberInfo.GetType(), member.MemberInfo));
+                    throw Error.Argument("value", SRResources.EnumValueCannotBeLong, Enum.GetName(member.MemberInfo.GetType(), member.MemberInfo));
                 }
 
                 EdmEnumMember edmMember = new EdmEnumMember(type, member.Name,
                     new EdmEnumMemberValue(value));
                 type.AddMember(edmMember);
-           //     _members[member.MemberInfo] = edmMember;
-           */
+                _members[member.MemberInfo] = edmMember;
             }
+        }
+
+        /// <summary>
+        /// Builds <see cref="IEdmType"/> and <see cref="IEdmProperty"/>'s from <paramref name="configurations"/>
+        /// </summary>
+        /// <param name="configurations">A collection of <see cref="IEdmTypeConfiguration"/>'s</param>
+        /// <returns>The built dictionary of <see cref="StructuralTypeConfiguration"/>'s indexed by their backing CLR type,
+        /// and dictionary of <see cref="StructuralTypeConfiguration"/>'s indexed by their backing CLR property info</returns>
+        public static EdmTypeMap GetTypesAndProperties(IEnumerable<IEdmTypeConfiguration> configurations)
+        {
+            if (configurations == null)
+            {
+                throw Error.ArgumentNull("configurations");
+            }
+
+            EdmTypeBuilder builder = new EdmTypeBuilder(configurations);
+            return new EdmTypeMap(builder.GetEdmTypes(),
+                builder._properties,
+                builder._propertiesRestrictions,
+                builder._propertiesQuerySettings,
+                builder._structuredTypeQuerySettings,
+                builder._members,
+                builder._openTypes);
         }
 
         private IEdmType GetEdmType(Type clrType)

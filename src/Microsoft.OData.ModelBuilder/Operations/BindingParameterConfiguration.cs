@@ -17,7 +17,7 @@ namespace Microsoft.OData.ModelBuilder
     /// i.e. if ~/Movies(1) identifies a Movie, and there exists a Checkout action that has a Movie BindingParameter,
     /// you can invoke that Action at this url ~/Movies(1)/Checkout
     /// </example>
-    /// The BindingParameter type must either be an EntityType or a Collection of EntityTypes.
+    /// The BindingParameter type must either be an EntityType or a Collection of EntityType.
     /// </remarks>
     /// </summary>
     public class BindingParameterConfiguration : ParameterConfiguration
@@ -28,17 +28,18 @@ namespace Microsoft.OData.ModelBuilder
         public const string DefaultBindingParameterName = "bindingParameter";
 
         /// <summary>
-        /// Create a BindingParameterConfiguration
+        /// Initializes a new instance of <see cref="BindingParameterConfiguration" /> class.
         /// </summary>
         /// <param name="name">The name of the Binding Parameter</param>
         /// <param name="parameterType">The type of the Binding Parameter</param>
         public BindingParameterConfiguration(string name, IEdmTypeConfiguration parameterType)
             : base(name, parameterType)
         {
+            // The BindingParameter type must either be an EntityType or a Collection of EntityType.
             EdmTypeKind kind = parameterType.Kind;
             if (kind == EdmTypeKind.Collection)
             {
-                kind = (parameterType as CollectionTypeConfiguration).ElementType.Kind;
+                kind = ((CollectionTypeConfiguration)parameterType).ElementType.Kind;
             }
 
             if (kind != EdmTypeKind.Entity)

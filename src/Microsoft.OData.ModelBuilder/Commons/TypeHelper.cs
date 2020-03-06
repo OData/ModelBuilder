@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
-
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -13,6 +12,16 @@ namespace Microsoft.OData.ModelBuilder
 {
     internal static class TypeHelper
     {
+        /// <summary>
+        /// Return the type from a MemberInfo.
+        /// </summary>
+        /// <param name="memberInfo">The MemberInfo to convert.</param>
+        /// <returns>The type from a MemberInfo.</returns>
+        public static Type AsType(MemberInfo memberInfo)
+        {
+            return memberInfo as Type;
+        }
+
         /// <summary>
         /// Return the memberInfo from a type.
         /// </summary>

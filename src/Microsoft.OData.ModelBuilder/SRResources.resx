@@ -272,4 +272,37 @@
   <data name="MultipleAttributesFound" xml:space="preserve">
     <value>The member '{0}' on type '{1}' contains multiple instances of the attribute '{2}'.</value>
   </data>
+  <data name="EntitySetTypeHasNoKeys" xml:space="preserve">
+    <value>The entity set '{0}' is based on type '{1}' that has no keys defined.</value>
+  </data>
+  <data name="CollectionNavigationPropertyEntityTypeDoesntHaveKeyDefined" xml:space="preserve">
+    <value>The entity type '{0}' of navigation property '{1}' on structural type '{2}' does not have a key defined.</value>
+  </data>
+  <data name="InvalidPropertyInfoForDynamicPropertyAnnotation" xml:space="preserve">
+    <value>Type '{0}' is not supported as dynamic property annotation. Referenced property must be of type '{1}'.</value>
+  </data>
+  <data name="NoMatchingIEdmTypeFound" xml:space="preserve">
+    <value>No IEdmType could be found for '{0}'.</value>
+  </data>
+  <data name="UnsupportedEdmTypeKind" xml:space="preserve">
+    <value>Found unsupported EdmTypeKind '{0}' in list of available types.</value>
+  </data>
+  <data name="EntitySetNotFoundForName" xml:space="preserve">
+    <value>No EntitySet exists in the EdmModel with entitySetName '{0}'.</value>
+  </data>
+  <data name="MoreThanOneOverloadActionBoundToSameTypeFound" xml:space="preserve">
+    <value>Found more than one action with name '{0}' bound to the same type '{1}'. Each bound action must have a different binding type or name.</value>
+  </data>
+  <data name="MoreThanOneUnboundActionFound" xml:space="preserve">
+    <value>Found more than one unbound action with name '{0}'. Each unbound action must have an unique action name.</value>
+  </data>
+  <data name="OperationHasInvalidEntitySetPath" xml:space="preserve">
+    <value>Invalid EntitySetPath detected. '{0}' is not a valid entity set path for operation '{1}'.</value>
+  </data>
+  <data name="EnumValueCannotBeLong" xml:space="preserve">
+    <value>The value of enum member '{0}' cannot be converted to a long type.</value>
+  </data>
+  <data name="EnumTypeDoesNotExist" xml:space="preserve">
+    <value>The enum type '{0}' does not exist.</value>
+  </data>
 </root>

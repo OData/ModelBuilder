@@ -25,16 +25,10 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <inheritdoc />
-        public override OperationKind Kind
-        {
-            get { return OperationKind.Action; }
-        }
+        public override OperationKind Kind => OperationKind.Action;
 
         /// <inheritdoc />
-        public override bool IsSideEffecting
-        {
-            get { return true; }
-        }
+        public override bool IsSideEffecting => true;
 
         /// <summary>
         /// Sets the return type to a single EntityType instance.

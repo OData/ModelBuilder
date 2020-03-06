@@ -6,7 +6,7 @@ using System;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// Represents a parameter to a Operation
+    /// Represents a parameter to an Operation
     /// </summary>
     public abstract class ParameterConfiguration
     {
