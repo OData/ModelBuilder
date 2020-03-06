@@ -83,29 +83,29 @@ steps:
   enabled: false
   
 # CredScan
-- task: CredScan@2
+- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
   displayName: 'Run CredScan - Src'
   inputs:
     toolMajorVersion: 'V2'
     scanFolder: '$(Build.SourcesDirectory)\src'
     debugMode: false
-  enabled: false
 
-- task: CredScan@2
+- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
   displayName: 'Run CredScan - Test'
   inputs:
     toolMajorVersion: 'V2'
     scanFolder: '$(Build.SourcesDirectory)\test'
     debugMode: false
-  enabled: false
   
 # Microsoft.CodeAnalysis.FxCopAnalyzers is added into the project.
 # Typically, .NET Standard (.NET Core) project doesn't need the FxCop.
 
+# Needn't the AntiMalware@3 task?
 - task: AntiMalware@3
   displayName: 'Run MpCmdRun.exe - ProductBinPath'
   inputs:
     FileDirPath: '$(ProductBinPath)'
+  enabled: false
 
 - task: BinSkim@3
   displayName: 'Run BinSkim - Product Binaries'
