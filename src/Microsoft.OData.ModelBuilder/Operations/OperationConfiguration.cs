@@ -8,7 +8,7 @@ using System.Linq;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// Represents an Operation (Function or Action) that is exposed in the model
+    /// Represents an Operation (Edm Function or Edm Action) that is exposed in the Edm model
     /// </summary>
     public abstract class OperationConfiguration
     {
@@ -65,10 +65,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// The FullyQualifiedName is the Name further qualified using the Namespace.
         /// </summary>
-        public string FullyQualifiedName
-        {
-            get { return Namespace + "." + Name; }
-        }
+        public string FullyQualifiedName => Namespace + "." + Name;
 
         /// <summary>
         /// The Namespace by default is the ModelBuilder's Namespace.
@@ -100,7 +97,7 @@ namespace Microsoft.OData.ModelBuilder
         public IEnumerable<string> EntitySetPath { get; internal set; }
 
         /// <summary>
-        /// Get the bindingParameter. 
+        /// Get the bindingParameter.
         /// <remarks>Null means the operation has no bindingParameter.</remarks>
         /// </summary>
         public virtual BindingParameterConfiguration BindingParameter
@@ -129,13 +126,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Can the operation be bound to a URL representing the BindingParameter.
         /// </summary>
-        public virtual bool IsBindable
-        {
-            get
-            {
-                return _bindingParameter != null;
-            }
-        }
+        public virtual bool IsBindable => _bindingParameter != null;
 
         /// <summary>
         /// Sets the return type to a single EntityType instance.
@@ -155,7 +146,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetName">The entitySetName which contains the returned EntityType instances</param>
-        internal void ReturnsCollectionFromEntitySetImplementation<TElementEntityType>(string entitySetName) where TElementEntityType : class
+        internal void ReturnsCollectionFromEntitySetImplementation<TElementEntityType>(string entitySetName)
+            where TElementEntityType : class
         {
             Type clrCollectionType = typeof(IEnumerable<TElementEntityType>);
             ModelBuilder.EntitySet<TElementEntityType>(entitySetName);
@@ -170,7 +162,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
-        internal void ReturnsEntityViaEntitySetPathImplementation<TEntityType>(IEnumerable<string> entitySetPath) where TEntityType : class
+        internal void ReturnsEntityViaEntitySetPathImplementation<TEntityType>(IEnumerable<string> entitySetPath)
+            where TEntityType : class
         {
             ReturnType = ModelBuilder.GetTypeConfigurationOrNull(typeof(TEntityType));
             EntitySetPath = entitySetPath;
@@ -182,7 +175,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
-        internal void ReturnsCollectionViaEntitySetPathImplementation<TElementEntityType>(IEnumerable<string> entitySetPath) where TElementEntityType : class
+        internal void ReturnsCollectionViaEntitySetPathImplementation<TElementEntityType>(IEnumerable<string> entitySetPath)
+            where TElementEntityType : class
         {
             Type clrCollectionType = typeof(IEnumerable<TElementEntityType>);
             IEdmTypeConfiguration elementType = ModelBuilder.GetTypeConfigurationOrNull(typeof(TElementEntityType));

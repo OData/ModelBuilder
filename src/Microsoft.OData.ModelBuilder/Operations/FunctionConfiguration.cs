@@ -58,7 +58,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetName">The entitySetName which contains the return EntityType instance</param>
-        public FunctionConfiguration ReturnsFromEntitySet<TEntityType>(string entitySetName) where TEntityType : class
+        public FunctionConfiguration ReturnsFromEntitySet<TEntityType>(string entitySetName)
+            where TEntityType : class
         {
             ReturnsFromEntitySetImplementation<TEntityType>(entitySetName);
             return this;
@@ -69,7 +70,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetName">The entitySetName which contains the returned EntityType instances</param>
-        public FunctionConfiguration ReturnsCollectionFromEntitySet<TElementEntityType>(string entitySetName) where TElementEntityType : class
+        public FunctionConfiguration ReturnsCollectionFromEntitySet<TElementEntityType>(string entitySetName)
+            where TElementEntityType : class
         {
             ReturnsCollectionFromEntitySetImplementation<TElementEntityType>(entitySetName);
             return this;
@@ -123,7 +125,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
-        public FunctionConfiguration ReturnsEntityViaEntitySetPath<TEntityType>(string entitySetPath) where TEntityType : class
+        public FunctionConfiguration ReturnsEntityViaEntitySetPath<TEntityType>(string entitySetPath)
+            where TEntityType : class
         {
             if (String.IsNullOrEmpty(entitySetPath))
             {
@@ -138,7 +141,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
-        public FunctionConfiguration ReturnsEntityViaEntitySetPath<TEntityType>(params string[] entitySetPath) where TEntityType : class
+        public FunctionConfiguration ReturnsEntityViaEntitySetPath<TEntityType>(params string[] entitySetPath)
+            where TEntityType : class
         {
             ReturnsEntityViaEntitySetPathImplementation<TEntityType>(entitySetPath);
             return this;
@@ -149,7 +153,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
-        public FunctionConfiguration ReturnsCollectionViaEntitySetPath<TElementEntityType>(string entitySetPath) where TElementEntityType : class
+        public FunctionConfiguration ReturnsCollectionViaEntitySetPath<TElementEntityType>(string entitySetPath)
+            where TElementEntityType : class
         {
             if (String.IsNullOrEmpty(entitySetPath))
             {
@@ -164,7 +169,8 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
-        public FunctionConfiguration ReturnsCollectionViaEntitySetPath<TElementEntityType>(params string[] entitySetPath) where TElementEntityType : class
+        public FunctionConfiguration ReturnsCollectionViaEntitySetPath<TElementEntityType>(params string[] entitySetPath)
+            where TElementEntityType : class
         {
             ReturnsCollectionViaEntitySetPathImplementation<TElementEntityType>(entitySetPath);
             return this;

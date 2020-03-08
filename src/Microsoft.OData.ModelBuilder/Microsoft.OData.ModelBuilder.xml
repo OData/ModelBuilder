@@ -2599,7 +2599,7 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.OperationConfiguration">
             <summary>
-            Represents an Operation (Function or Action) that is exposed in the model
+            Represents an Operation (Edm Function or Edm Action) that is exposed in the Edm model
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.#ctor(Microsoft.OData.ModelBuilder.ODataModelBuilder,System.String)">
@@ -2676,7 +2676,7 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.BindingParameter">
             <summary>
-            Get the bindingParameter. 
+            Get the bindingParameter.
             <remarks>Null means the operation has no bindingParameter.</remarks>
             </summary>
         </member>

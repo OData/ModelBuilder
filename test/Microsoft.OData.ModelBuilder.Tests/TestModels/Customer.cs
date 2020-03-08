@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.TestModels
 {
     public class Customer
     {
@@ -21,5 +21,6 @@ namespace Microsoft.OData.ModelBuilder.Tests
         public List<string> Aliases { get; set; }
         public List<Address> Addresses { get; set; }
         public Dictionary<string, object> DynamicProperties { get; set; }
+        public DateTimeOffset? StartDate { get; set; }
     }
 }
