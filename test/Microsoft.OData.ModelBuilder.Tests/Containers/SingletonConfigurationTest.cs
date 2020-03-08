@@ -2,7 +2,6 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Xunit;
 
@@ -38,16 +37,9 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         [Fact]
         public void CtorThatTakesClrType_Throws_ArgumentNull_For_Name()
         {
-#if NETCOREAPP3_1
             ExceptionAssert.Throws<ArgumentException>(
                 () => new SingletonConfiguration(modelBuilder: new ODataModelBuilder(), entityClrType: typeof(SingletonConfigurationTest), name: null),
                 "The argument 'name' is null or empty. (Parameter 'name')");
-#else
-
-            ExceptionAssert.Throws<ArgumentException>(
-                () => new SingletonConfiguration(modelBuilder: new ODataModelBuilder(), entityClrType: typeof(SingletonConfigurationTest), name: null),
-                "The argument 'name' is null or empty.\r\nParameter name: name");
-#endif
         }
 
         [Fact]
@@ -75,21 +67,12 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         [Fact]
         public void CtorThatTakesEntityTypeConfiguration_Throws_ArgumentNull_For_Name()
         {
-#if NETCOREAPP3_1
             ExceptionAssert.Throws<ArgumentException>(
                 () => new SingletonConfiguration(
                     modelBuilder: new ODataModelBuilder(),
                     entityType: new EntityTypeConfiguration(new ODataModelBuilder(), typeof(SingletonConfigurationTest)),
                     name: null),
                     "The argument 'name' is null or empty. (Parameter 'name')");
-#else
-            ExceptionAssert.Throws<ArgumentException>(
-                () => new SingletonConfiguration(
-                    modelBuilder: new ODataModelBuilder(),
-                    entityType: new EntityTypeConfiguration(new ODataModelBuilder(), typeof(SingletonConfigurationTest)),
-                    name: null),
-                    "The argument 'name' is null or empty.\r\nParameter name: name");
-#endif
         }
 
         [Fact]

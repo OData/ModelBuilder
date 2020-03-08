@@ -11,6 +11,7 @@ using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.Edm.Vocabularies.V1;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
+using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using Xunit;
 
 namespace Microsoft.OData.ModelBuilder.Tests.Types
@@ -200,7 +201,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.Same(requiredColorProperty, requiredColorKey);
 
             Assert.Equal(EdmTypeKind.Enum, requiredColorKey.Type.TypeKind());
-            Assert.Equal("Microsoft.OData.ModelBuilder.Tests.Color", requiredColorKey.Type.Definition.FullTypeName());
+            Assert.Equal("Microsoft.OData.ModelBuilder.Tests.TestModels.Color", requiredColorKey.Type.Definition.FullTypeName());
         }
 
         [Fact]
@@ -478,7 +479,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             ExceptionAssert.ThrowsArgument(
                 () => enumTypeConfiguration.AddMember(SimpleEnum.First),
                 "member",
-                "The property 'First' does not belong to the type 'Microsoft.OData.ModelBuilder.Tests.Color'.");
+                "The property 'First' does not belong to the type 'Microsoft.OData.ModelBuilder.Tests.TestModels.Color'.");
         }
 
         [Fact]
@@ -507,7 +508,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             ExceptionAssert.ThrowsArgument(
                 () => enumTypeConfiguration.RemoveMember(SimpleEnum.First),
                 "member",
-                "The property 'First' does not belong to the type 'Microsoft.OData.ModelBuilder.Tests.Color'.");
+                "The property 'First' does not belong to the type 'Microsoft.OData.ModelBuilder.Tests.TestModels.Color'.");
         }
 
         //[Fact]
