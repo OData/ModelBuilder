@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Microsoft.OData.ModelBuilder.Tests.Types
 {
-    public class RecursiveComplexTypesTests
+    public class RecursiveComplexTypesTest
     {
         [Fact]
         public void CanBuildModelWithDirectRecursiveReference()
