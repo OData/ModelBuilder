@@ -27,18 +27,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Annotations
             propertyInfo.Setup(p => p.PropertyType).Returns(typeof(int));
 
             // Act & Assert
-#if NETCOREAPP3_1
             ExceptionAssert.Throws<ArgumentException>(() => new DynamicPropertyDictionaryAnnotation(
                 propertyInfo: propertyInfo.Object),
                 "Type 'Int32' is not supported as dynamic property annotation. " +
                 "Referenced property must be of type 'IDictionary<string, object>'. (Parameter 'propertyInfo')");
-#else
-            ExceptionAssert.Throws<ArgumentException>(() => new DynamicPropertyDictionaryAnnotation(
-                propertyInfo: propertyInfo.Object),
-                "Type 'Int32' is not supported as dynamic property annotation. " +
-                "Referenced property must be of type 'IDictionary<string, object>'." +
-                "\r\nParameter name: propertyInfo");
-#endif
         }
     }
 }

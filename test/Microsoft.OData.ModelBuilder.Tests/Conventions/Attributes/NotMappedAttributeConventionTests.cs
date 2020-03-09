@@ -3,11 +3,12 @@
 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
+using Microsoft.OData.ModelBuilder.Conventions.Attributes;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Moq;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Conventions.Attributes.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
 {
     public class NotMappedAttributeConventionTests
     {

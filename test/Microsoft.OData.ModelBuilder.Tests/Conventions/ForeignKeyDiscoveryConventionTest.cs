@@ -7,7 +7,7 @@ using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests.Coventions
+namespace Microsoft.OData.ModelBuilder.Tests.Conventions
 {
     public class ForeignKeyDiscoveryConventionTest
     {

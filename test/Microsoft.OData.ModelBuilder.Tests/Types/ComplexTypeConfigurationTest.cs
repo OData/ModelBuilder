@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Moq;
 using Xunit;
 
@@ -17,7 +18,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Exception ex = Record.Exception(() => new ComplexTypeConfiguration(Mock.Of<ODataModelBuilder>(), type));
             Assert.Null(ex);
 
-            //ExceptionAssert.DoesNotThrow(() => new ComplexTypeConfiguration(Mock.Of<ODataModelBuilder>(), type));
+            ExceptionAssert.DoesNotThrow(() => new ComplexTypeConfiguration(Mock.Of<ODataModelBuilder>(), type));
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
-using Microsoft.OData.ModelBuilder.Tests.Commons;
 using System;
 using System.Linq;
+using Microsoft.OData.ModelBuilder.Conventions.Attributes;
+using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Conventions.Attributes.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
 {
     public class AttributeConventionTests
     {

@@ -8,7 +8,7 @@ using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using Moq;
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests.Coventions
+namespace Microsoft.OData.ModelBuilder.Tests.Conventions
 {
     public class EntityKeyConventionTests
     {

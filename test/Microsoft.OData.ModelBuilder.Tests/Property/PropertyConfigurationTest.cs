@@ -3,9 +3,9 @@
 
 using Xunit;
 
-namespace Microsoft.OData.ModelBuilder.Tests
+namespace Microsoft.OData.ModelBuilder.Tests.Property
 {
-    class PropertyConfigurationTest
+    public class PropertyConfigurationTest
     {
     }
 }
