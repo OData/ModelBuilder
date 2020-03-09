@@ -16,7 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         public void CreateByteArrayPrimitiveProperty()
         {
             ODataModelBuilder builder = new ODataModelBuilder();
-            var file = builder.EntityType<File>();
+            var file = builder.EntityType<PrimitiveFile>();
             var data = file.Property(f => f.Data);
 
             var model = builder.GetServiceModel();
@@ -33,7 +33,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         public void CreateStreamPrimitiveProperty()
         {
             ODataModelBuilder builder = new ODataModelBuilder();
-            var file = builder.EntityType<File>();
+            var file = builder.EntityType<PrimitiveFile>();
             var data = file.Property(f => f.StreamData);
 
             var model = builder.GetServiceModel();
@@ -51,7 +51,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         {
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
-            EntityTypeConfiguration<File> file = builder.EntityType<File>();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
             PrimitivePropertyConfiguration date = file.Property(f => f.DateProperty);
 
             // Act
@@ -72,7 +72,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         {
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
-            EntityTypeConfiguration<File> file = builder.EntityType<File>();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
             file.Property(f => f.Birthday).AsDate();
             file.Property(f => f.PublishDay).AsDate();
 
@@ -98,7 +98,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         {
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
-            EntityTypeConfiguration<File> file = builder.EntityType<File>();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
             PrimitivePropertyConfiguration timeOfDay = file.Property(f => f.TimeOfDayProperty);
 
             // Act
@@ -119,7 +119,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         {
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
-            EntityTypeConfiguration<File> file = builder.EntityType<File>();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
             file.Property(f => f.CreatedTime).AsTimeOfDay();
             file.Property(f => f.EndTime).AsTimeOfDay();
 
@@ -141,7 +141,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         }
     }
 
-    public class File
+    public class PrimitiveFile
     {
         public byte[] Data { get; set; }
 
