@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Helpers;
 
 namespace Microsoft.OData.ModelBuilder
 {

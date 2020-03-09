@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Config;
 
-namespace Microsoft.OData.ModelBuilder
+namespace Microsoft.OData.ModelBuilder.Helpers
 {
     internal class EdmTypeMap
     {

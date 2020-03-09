@@ -9,8 +9,9 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Config;
 
-namespace Microsoft.OData.ModelBuilder
+namespace Microsoft.OData.ModelBuilder.Helpers
 {
     internal class EdmTypeBuilder
     {

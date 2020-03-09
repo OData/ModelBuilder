@@ -4,7 +4,6 @@
 using System;
 using System.Linq;
 using Microsoft.OData.Edm;
-using Microsoft.OData.ModelBuilder.Test.Commons;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using Xunit;

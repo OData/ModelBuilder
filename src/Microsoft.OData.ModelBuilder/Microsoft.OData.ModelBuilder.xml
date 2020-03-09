@@ -104,19 +104,19 @@
             <param name="model">The EDM model that this navigation source belongs to.</param>
             <remarks>This constructor creates a link builder that generates URL's that follow OData conventions for the given navigation source.</remarks>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.QueryableRestrictionsAnnotation">
+        <member name="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation">
             <summary>
             Represents an annotation to add the queryable restrictions on an EDM property, including not filterable, 
             not sortable, not navigable, not expandable, not countable, automatically expand.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.QueryableRestrictionsAnnotation.#ctor(Microsoft.OData.ModelBuilder.QueryableRestrictions)">
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation.#ctor(Microsoft.OData.ModelBuilder.Config.QueryableRestrictions)">
             <summary>
-            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.QueryableRestrictionsAnnotation"/> class.
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation"/> class.
             </summary>
             <param name="restrictions">The queryable restrictions for the EDM property.</param>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictionsAnnotation.Restrictions">
+        <member name="P:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation.Restrictions">
             <summary>
             Gets the restrictions for the EDM property.
             </summary>
@@ -655,37 +655,37 @@
             <param name="memberInfo">The member info to convert.</param>
             <returns>The reflected type from a member info.</returns>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.ExpandConfiguration">
+        <member name="T:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings">
             <summary>
-            Represents a configuration of an expandable property.
+            This class describes the default settings to use during query composition.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ExpandConfiguration.ExpandType">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.EnableExpand">
             <summary>
-            Gets or sets the <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/>.
+            Gets or sets a value indicating whether navigation property can be expanded.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ExpandConfiguration.MaxDepth">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.EnableSelect">
             <summary>
-            Gets or sets the maximum depth.
+            Gets or sets a value indicating whether property can be selected.
             </summary>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.EnableCount">
             <summary>
-            This class describes the model bound settings to use during query composition.
+            Gets or sets a value indicating whether entity set and property can apply $count.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.#ctor">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.EnableOrderBy">
             <summary>
-            Instantiates a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings"/> class
+            Gets or sets a value indicating whether property can apply $orderby.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.#ctor(Microsoft.OData.ModelBuilder.ModelBoundQuerySettings)">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.EnableFilter">
             <summary>
-            Copy and create new instance of the <see cref="T:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings"/> class 
+            Gets or sets a value indicating whether property can apply $filter.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.MaxTop">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.MaxTop">
             <summary>
             Gets or sets the max value of $top that a client can request.
             </summary>
@@ -693,7 +693,50 @@
             The max value of $top that a client can request, or <c>null</c> if there is no limit.
             </value>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.PageSize">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings.EnableSkipToken">
+            <summary>
+            Gets or sets a value indicating whether the service will use skiptoken or not.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Config.ExpandConfiguration">
+            <summary>
+            Represents a configuration of an expandable property.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ExpandConfiguration.ExpandType">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ExpandConfiguration.MaxDepth">
+            <summary>
+            Gets or sets the maximum depth.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings">
+            <summary>
+            This class describes the model bound settings to use during query composition.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.#ctor">
+            <summary>
+            Instantiates a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings"/> class
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.#ctor(Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings)">
+            <summary>
+            Copy and create new instance of the <see cref="T:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings"/> class 
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.MaxTop">
+            <summary>
+            Gets or sets the max value of $top that a client can request.
+            </summary>
+            <value>
+            The max value of $top that a client can request, or <c>null</c> if there is no limit.
+            </value>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.PageSize">
             <summary>
             Gets or sets the maximum number of query results to return.
             </summary>
@@ -701,134 +744,134 @@
             The maximum number of query results to return, or <c>null</c> if there is no limit.
             </value>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.Countable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.Countable">
             <summary>
             Represents the $count can be applied or not.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.ExpandConfigurations">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.ExpandConfigurations">
             <summary>
-            Gets the <see cref="T:Microsoft.OData.ModelBuilder.ExpandConfiguration"/>s of navigation properties.
+            Gets the <see cref="T:Microsoft.OData.ModelBuilder.Config.ExpandConfiguration"/>s of navigation properties.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.DefaultExpandType">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.DefaultExpandType">
             <summary>
             Gets or sets the default <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of navigation properties.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.DefaultMaxDepth">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.DefaultMaxDepth">
             <summary>
             Gets or sets the default maxDepth of navigation properties.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.DefaultEnableOrderBy">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.DefaultEnableOrderBy">
             <summary>
             Gets or sets whether the properties can apply $orderby by default.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.DefaultEnableFilter">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.DefaultEnableFilter">
             <summary>
             Gets or sets whether the properties can apply $filter by default.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.DefaultSelectType">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.DefaultSelectType">
             <summary>
             Gets or sets whether the properties can apply $select by default.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.OrderByConfigurations">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.OrderByConfigurations">
             <summary>
             Gets the $orderby configuration of properties.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.FilterConfigurations">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.FilterConfigurations">
             <summary>
             Gets the $filter configuration of properties.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.SelectConfigurations">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.SelectConfigurations">
             <summary>
             Gets the $select configuration of properties.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.CopyExpandConfigurations(System.Collections.Generic.Dictionary{System.String,Microsoft.OData.ModelBuilder.ExpandConfiguration})">
+        <member name="M:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.CopyExpandConfigurations(System.Collections.Generic.Dictionary{System.String,Microsoft.OData.ModelBuilder.Config.ExpandConfiguration})">
             <summary>
-            Copy the <see cref="T:Microsoft.OData.ModelBuilder.ExpandConfiguration"/>s of navigation properties.
+            Copy the <see cref="T:Microsoft.OData.ModelBuilder.Config.ExpandConfiguration"/>s of navigation properties.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.CopyOrderByConfigurations(System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+        <member name="M:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.CopyOrderByConfigurations(System.Collections.Generic.Dictionary{System.String,System.Boolean})">
             <summary>
             Copy the $orderby configuration of properties.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.CopySelectConfigurations(System.Collections.Generic.Dictionary{System.String,Microsoft.OData.ModelBuilder.SelectExpandType})">
+        <member name="M:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.CopySelectConfigurations(System.Collections.Generic.Dictionary{System.String,Microsoft.OData.ModelBuilder.SelectExpandType})">
             <summary>
             Copy the $select configuration of properties.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ModelBoundQuerySettings.CopyFilterConfigurations(System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+        <member name="M:Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings.CopyFilterConfigurations(System.Collections.Generic.Dictionary{System.String,System.Boolean})">
             <summary>
             Copy the $filter configuration of properties.
             </summary>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.QueryableRestrictions">
+        <member name="T:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions">
             <summary>
             Represents a queryable restriction on an EDM property, including not filterable, not sortable,
             not navigable, not expandable, not countable, automatically expand.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.QueryableRestrictions.#ctor">
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.QueryableRestrictions"/> class.
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions"/> class.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.QueryableRestrictions.#ctor(Microsoft.OData.ModelBuilder.PropertyConfiguration)">
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.#ctor(Microsoft.OData.ModelBuilder.PropertyConfiguration)">
             <summary>
-            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.QueryableRestrictions"/> class.
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions"/> class.
             </summary>
             <param name="propertyConfiguration">The PropertyConfiguration containing queryable restrictions.</param>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.NotFilterable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NotFilterable">
             <summary>
             Gets or sets whether the property is not filterable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.NonFilterable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NonFilterable">
             <summary>
             Gets or sets whether the property is nonfilterable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.NotSortable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NotSortable">
             <summary>
             Gets or sets whether the property is not sortable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.Unsortable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.Unsortable">
             <summary>
             Gets or sets whether the property is unsortable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.NotNavigable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NotNavigable">
             <summary>
             Gets or sets whether the property is not navigable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.NotExpandable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NotExpandable">
             <summary>
             Gets or sets whether the property is not expandable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.NotCountable">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NotCountable">
             <summary>
             Gets or sets whether the property is not countable. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.AutoExpand">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.AutoExpand">
             <summary>
             Gets or sets whether the property is automatically expanded. default is false.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.QueryableRestrictions.DisableAutoExpandWhenSelectIsPresent">
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.DisableAutoExpandWhenSelectIsPresent">
             <summary>
             If set to <c>true</c> then automatic expand will be disabled if there is a $select specify by client.
             </summary>
@@ -1977,14 +2020,14 @@
             <param name="navigationSource">The navigation source.</param>
             <param name="navigationSourceLinkBuilder">The <see cref="T:Microsoft.OData.ModelBuilder.NavigationSourceLinkBuilderAnnotation"/> to set.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.EdmTypeBuilder.GetTypeKind(System.Type)">
+        <member name="M:Microsoft.OData.ModelBuilder.Helpers.EdmTypeBuilder.GetTypeKind(System.Type)">
             <summary>
             Gets the <see cref="T:Microsoft.OData.Edm.EdmPrimitiveTypeKind"/> that maps to the <see cref="T:System.Type"/>
             </summary>
             <param name="clrType">The clr type</param>
             <returns>The corresponding Edm primitive kind.</returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.EdmTypeBuilder.GetTypesAndProperties(System.Collections.Generic.IEnumerable{Microsoft.OData.ModelBuilder.IEdmTypeConfiguration})">
+        <member name="M:Microsoft.OData.ModelBuilder.Helpers.EdmTypeBuilder.GetTypesAndProperties(System.Collections.Generic.IEnumerable{Microsoft.OData.ModelBuilder.IEdmTypeConfiguration})">
             <summary>
             Builds <see cref="T:Microsoft.OData.Edm.IEdmType"/> and <see cref="T:Microsoft.OData.Edm.IEdmProperty"/>'s from <paramref name="configurations"/>
             </summary>

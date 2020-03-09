@@ -10,6 +10,7 @@ using System.Runtime.Serialization;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.Edm.Vocabularies.V1;
+using Microsoft.OData.ModelBuilder.Helpers;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using Xunit;

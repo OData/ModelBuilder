@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 
-namespace Microsoft.OData.ModelBuilder
+namespace Microsoft.OData.ModelBuilder.Config
 {
     /// <summary>
     /// This class describes the model bound settings to use during query composition.

@@ -532,13 +532,6 @@ public class Microsoft.OData.ModelBuilder.EnumTypeConfiguration`1 {
 	public virtual void RemoveMember (TEnumType member)
 }
 
-public class Microsoft.OData.ModelBuilder.ExpandConfiguration {
-	public ExpandConfiguration ()
-
-	Microsoft.OData.ModelBuilder.SelectExpandType ExpandType  { public get; public set; }
-	int MaxDepth  { public get; public set; }
-}
-
 public class Microsoft.OData.ModelBuilder.FunctionConfiguration : Microsoft.OData.ModelBuilder.OperationConfiguration {
 	bool IncludeInServiceDocument  { public get; public set; }
 	bool IsComposable  { public get; public set; }
@@ -571,24 +564,6 @@ public class Microsoft.OData.ModelBuilder.LowerCamelCaser {
 
 	public void ApplyLowerCamelCase (Microsoft.OData.ModelBuilder.ODataConventionModelBuilder builder)
 	public virtual string ToLowerCamelCase (string name)
-}
-
-public class Microsoft.OData.ModelBuilder.ModelBoundQuerySettings {
-	public ModelBoundQuerySettings ()
-	public ModelBoundQuerySettings (Microsoft.OData.ModelBuilder.ModelBoundQuerySettings querySettings)
-
-	System.Nullable`1[[System.Boolean]] Countable  { public get; public set; }
-	System.Nullable`1[[System.Boolean]] DefaultEnableFilter  { public get; public set; }
-	System.Nullable`1[[System.Boolean]] DefaultEnableOrderBy  { public get; public set; }
-	System.Nullable`1[[Microsoft.OData.ModelBuilder.SelectExpandType]] DefaultExpandType  { public get; public set; }
-	int DefaultMaxDepth  { public get; public set; }
-	System.Nullable`1[[Microsoft.OData.ModelBuilder.SelectExpandType]] DefaultSelectType  { public get; public set; }
-	System.Collections.Generic.Dictionary`2[[System.String],[Microsoft.OData.ModelBuilder.ExpandConfiguration]] ExpandConfigurations  { public get; }
-	System.Collections.Generic.Dictionary`2[[System.String],[System.Boolean]] FilterConfigurations  { public get; }
-	System.Nullable`1[[System.Int32]] MaxTop  { public get; public set; }
-	System.Collections.Generic.Dictionary`2[[System.String],[System.Boolean]] OrderByConfigurations  { public get; }
-	System.Nullable`1[[System.Int32]] PageSize  { public get; public set; }
-	System.Collections.Generic.Dictionary`2[[System.String],[Microsoft.OData.ModelBuilder.SelectExpandType]] SelectConfigurations  { public get; }
 }
 
 public class Microsoft.OData.ModelBuilder.NavigationPropertyBindingConfiguration {
@@ -722,27 +697,6 @@ public class Microsoft.OData.ModelBuilder.PrimitiveTypeConfiguration : IEdmTypeC
 	Microsoft.OData.ModelBuilder.ODataModelBuilder ModelBuilder  { public virtual get; }
 	string Name  { public virtual get; }
 	string Namespace  { public virtual get; }
-}
-
-public class Microsoft.OData.ModelBuilder.QueryableRestrictions {
-	public QueryableRestrictions ()
-	public QueryableRestrictions (Microsoft.OData.ModelBuilder.PropertyConfiguration propertyConfiguration)
-
-	bool AutoExpand  { public get; public set; }
-	bool DisableAutoExpandWhenSelectIsPresent  { public get; public set; }
-	bool NonFilterable  { public get; public set; }
-	bool NotCountable  { public get; public set; }
-	bool NotExpandable  { public get; public set; }
-	bool NotFilterable  { public get; public set; }
-	bool NotNavigable  { public get; public set; }
-	bool NotSortable  { public get; public set; }
-	bool Unsortable  { public get; public set; }
-}
-
-public class Microsoft.OData.ModelBuilder.QueryableRestrictionsAnnotation {
-	public QueryableRestrictionsAnnotation (Microsoft.OData.ModelBuilder.QueryableRestrictions restrictions)
-
-	Microsoft.OData.ModelBuilder.QueryableRestrictions Restrictions  { public get; }
 }
 
 public class Microsoft.OData.ModelBuilder.SingletonConfiguration : Microsoft.OData.ModelBuilder.NavigationSourceConfiguration {
@@ -899,6 +853,64 @@ AttributeUsageAttribute(),
 ]
 public sealed class Microsoft.OData.ModelBuilder.UnsortableAttribute : System.Attribute {
 	public UnsortableAttribute ()
+}
+
+public class Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation {
+	public QueryableRestrictionsAnnotation (Microsoft.OData.ModelBuilder.Config.QueryableRestrictions restrictions)
+
+	Microsoft.OData.ModelBuilder.Config.QueryableRestrictions Restrictions  { public get; }
+}
+
+public class Microsoft.OData.ModelBuilder.Config.DefaultQuerySettings {
+	public DefaultQuerySettings ()
+
+	bool EnableCount  { public get; public set; }
+	bool EnableExpand  { public get; public set; }
+	bool EnableFilter  { public get; public set; }
+	bool EnableOrderBy  { public get; public set; }
+	bool EnableSelect  { public get; public set; }
+	bool EnableSkipToken  { public get; public set; }
+	System.Nullable`1[[System.Int32]] MaxTop  { public get; public set; }
+}
+
+public class Microsoft.OData.ModelBuilder.Config.ExpandConfiguration {
+	public ExpandConfiguration ()
+
+	Microsoft.OData.ModelBuilder.SelectExpandType ExpandType  { public get; public set; }
+	int MaxDepth  { public get; public set; }
+}
+
+public class Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings {
+	public ModelBoundQuerySettings ()
+	public ModelBoundQuerySettings (Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings querySettings)
+
+	System.Nullable`1[[System.Boolean]] Countable  { public get; public set; }
+	System.Nullable`1[[System.Boolean]] DefaultEnableFilter  { public get; public set; }
+	System.Nullable`1[[System.Boolean]] DefaultEnableOrderBy  { public get; public set; }
+	System.Nullable`1[[Microsoft.OData.ModelBuilder.SelectExpandType]] DefaultExpandType  { public get; public set; }
+	int DefaultMaxDepth  { public get; public set; }
+	System.Nullable`1[[Microsoft.OData.ModelBuilder.SelectExpandType]] DefaultSelectType  { public get; public set; }
+	System.Collections.Generic.Dictionary`2[[System.String],[Microsoft.OData.ModelBuilder.Config.ExpandConfiguration]] ExpandConfigurations  { public get; }
+	System.Collections.Generic.Dictionary`2[[System.String],[System.Boolean]] FilterConfigurations  { public get; }
+	System.Nullable`1[[System.Int32]] MaxTop  { public get; public set; }
+	System.Collections.Generic.Dictionary`2[[System.String],[System.Boolean]] OrderByConfigurations  { public get; }
+	System.Nullable`1[[System.Int32]] PageSize  { public get; public set; }
+	System.Collections.Generic.Dictionary`2[[System.String],[Microsoft.OData.ModelBuilder.SelectExpandType]] SelectConfigurations  { public get; }
+}
+
+public class Microsoft.OData.ModelBuilder.Config.QueryableRestrictions {
+	public QueryableRestrictions ()
+	public QueryableRestrictions (Microsoft.OData.ModelBuilder.PropertyConfiguration propertyConfiguration)
+
+	bool AutoExpand  { public get; public set; }
+	bool DisableAutoExpandWhenSelectIsPresent  { public get; public set; }
+	bool NonFilterable  { public get; public set; }
+	bool NotCountable  { public get; public set; }
+	bool NotExpandable  { public get; public set; }
+	bool NotFilterable  { public get; public set; }
+	bool NotNavigable  { public get; public set; }
+	bool NotSortable  { public get; public set; }
+	bool Unsortable  { public get; public set; }
 }
 
 public interface Microsoft.OData.ModelBuilder.Conventions.IODataModelConventionSetBuilder {

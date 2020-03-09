@@ -11,6 +11,8 @@ using System.Xml.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.Edm.Vocabularies.V1;
+using Microsoft.OData.ModelBuilder.Annotations;
+using Microsoft.OData.ModelBuilder.Config;
 using Microsoft.Spatial;
 
 namespace Microsoft.OData.ModelBuilder
@@ -362,6 +364,225 @@ namespace Microsoft.OData.ModelBuilder
 
             return null;
         }
+
+        private static QueryableRestrictionsAnnotation GetPropertyRestrictions(IEdmProperty edmProperty,
+            IEdmModel edmModel)
+        {
+            Contract.Assert(edmProperty != null);
+            Contract.Assert(edmModel != null);
+
+            return edmModel.GetAnnotationValue<QueryableRestrictionsAnnotation>(edmProperty);
+        }
+
+        private static ModelBoundQuerySettings GetModelBoundQuerySettings<T>(T key, IEdmModel edmModel,
+            DefaultQuerySettings defaultQuerySettings = null)
+            where T : IEdmElement
+        {
+            Contract.Assert(edmModel != null);
+
+            if (key == null)
+            {
+                return null;
+            }
+            else
+            {
+                ModelBoundQuerySettings querySettings = edmModel.GetAnnotationValue<ModelBoundQuerySettings>(key);
+                if (querySettings == null)
+                {
+                    querySettings = new ModelBoundQuerySettings();
+                    if (defaultQuerySettings != null &&
+                        (!defaultQuerySettings.MaxTop.HasValue || defaultQuerySettings.MaxTop > 0))
+                    {
+                        querySettings.MaxTop = defaultQuerySettings.MaxTop;
+                    }
+                }
+                return querySettings;
+            }
+        }
+
+        private static ModelBoundQuerySettings GetMergedPropertyQuerySettings(
+    ModelBoundQuerySettings propertyQuerySettings, ModelBoundQuerySettings propertyTypeQuerySettings)
+        {
+            ModelBoundQuerySettings mergedQuerySettings = new ModelBoundQuerySettings(propertyQuerySettings);
+            if (propertyTypeQuerySettings != null)
+            {
+                if (!mergedQuerySettings.PageSize.HasValue)
+                {
+                    mergedQuerySettings.PageSize =
+                        propertyTypeQuerySettings.PageSize;
+                }
+
+                if (mergedQuerySettings.MaxTop == 0 && propertyTypeQuerySettings.MaxTop != 0)
+                {
+                    mergedQuerySettings.MaxTop =
+                        propertyTypeQuerySettings.MaxTop;
+                }
+
+                if (!mergedQuerySettings.Countable.HasValue)
+                {
+                    mergedQuerySettings.Countable = propertyTypeQuerySettings.Countable;
+                }
+
+                if (mergedQuerySettings.OrderByConfigurations.Count == 0 &&
+                    !mergedQuerySettings.DefaultEnableOrderBy.HasValue)
+                {
+                    mergedQuerySettings.CopyOrderByConfigurations(propertyTypeQuerySettings.OrderByConfigurations);
+                    mergedQuerySettings.DefaultEnableOrderBy = propertyTypeQuerySettings.DefaultEnableOrderBy;
+                }
+
+                if (mergedQuerySettings.FilterConfigurations.Count == 0 &&
+                    !mergedQuerySettings.DefaultEnableFilter.HasValue)
+                {
+                    mergedQuerySettings.CopyFilterConfigurations(propertyTypeQuerySettings.FilterConfigurations);
+                    mergedQuerySettings.DefaultEnableFilter = propertyTypeQuerySettings.DefaultEnableFilter;
+                }
+
+                if (mergedQuerySettings.SelectConfigurations.Count == 0 &&
+                    !mergedQuerySettings.DefaultSelectType.HasValue)
+                {
+                    mergedQuerySettings.CopySelectConfigurations(propertyTypeQuerySettings.SelectConfigurations);
+                    mergedQuerySettings.DefaultSelectType = propertyTypeQuerySettings.DefaultSelectType;
+                }
+
+                if (mergedQuerySettings.ExpandConfigurations.Count == 0 &&
+                    !mergedQuerySettings.DefaultExpandType.HasValue)
+                {
+                    mergedQuerySettings.CopyExpandConfigurations(
+                        propertyTypeQuerySettings.ExpandConfigurations);
+                    mergedQuerySettings.DefaultExpandType = propertyTypeQuerySettings.DefaultExpandType;
+                    mergedQuerySettings.DefaultMaxDepth = propertyTypeQuerySettings.DefaultMaxDepth;
+                }
+            }
+            return mergedQuerySettings;
+        }
+
+        public static ModelBoundQuerySettings GetModelBoundQuerySettings(IEdmProperty property,
+            IEdmStructuredType structuredType, IEdmModel edmModel, DefaultQuerySettings defaultQuerySettings = null)
+        {
+            Contract.Assert(edmModel != null);
+
+            ModelBoundQuerySettings querySettings = GetModelBoundQuerySettings(structuredType, edmModel,
+                defaultQuerySettings);
+            if (property == null)
+            {
+                return querySettings;
+            }
+            else
+            {
+                ModelBoundQuerySettings propertyQuerySettings = GetModelBoundQuerySettings(property, edmModel,
+                    defaultQuerySettings);
+                return GetMergedPropertyQuerySettings(propertyQuerySettings,
+                    querySettings);
+            }
+        }
+
+        public static bool IsNotFilterable(IEdmProperty edmProperty, IEdmProperty pathEdmProperty,
+            IEdmStructuredType pathEdmStructuredType,
+            IEdmModel edmModel, bool enableFilter)
+        {
+            QueryableRestrictionsAnnotation annotation = GetPropertyRestrictions(edmProperty, edmModel);
+            if (annotation != null && annotation.Restrictions.NotFilterable)
+            {
+                return true;
+            }
+            else
+            {
+                if (pathEdmStructuredType == null)
+                {
+                    pathEdmStructuredType = edmProperty.DeclaringType;
+                }
+
+                ModelBoundQuerySettings querySettings = GetModelBoundQuerySettings(pathEdmProperty,
+                    pathEdmStructuredType, edmModel);
+                if (!enableFilter)
+                {
+                    return !querySettings.Filterable(edmProperty.Name);
+                }
+
+                bool enable;
+                if (querySettings.FilterConfigurations.TryGetValue(edmProperty.Name, out enable))
+                {
+                    return !enable;
+                }
+                else
+                {
+                    return querySettings.DefaultEnableFilter == false;
+                }
+            }
+        }
+
+        public static bool IsNotSortable(IEdmProperty edmProperty, IEdmProperty pathEdmProperty,
+            IEdmStructuredType pathEdmStructuredType, IEdmModel edmModel, bool enableOrderBy)
+        {
+            QueryableRestrictionsAnnotation annotation = GetPropertyRestrictions(edmProperty, edmModel);
+            if (annotation != null && annotation.Restrictions.NotSortable)
+            {
+                return true;
+            }
+            else
+            {
+                if (pathEdmStructuredType == null)
+                {
+                    pathEdmStructuredType = edmProperty.DeclaringType;
+                }
+
+                ModelBoundQuerySettings querySettings = GetModelBoundQuerySettings(pathEdmProperty,
+                    pathEdmStructuredType, edmModel);
+                if (!enableOrderBy)
+                {
+                    return !querySettings.Sortable(edmProperty.Name);
+                }
+
+                bool enable;
+                if (querySettings.OrderByConfigurations.TryGetValue(edmProperty.Name, out enable))
+                {
+                    return !enable;
+                }
+                else
+                {
+                    return querySettings.DefaultEnableOrderBy == false;
+                }
+            }
+        }
+
+        public static bool IsNotSelectable(IEdmProperty edmProperty, IEdmProperty pathEdmProperty,
+            IEdmStructuredType pathEdmStructuredType, IEdmModel edmModel, bool enableSelect)
+        {
+            if (pathEdmStructuredType == null)
+            {
+                pathEdmStructuredType = edmProperty.DeclaringType;
+            }
+
+            ModelBoundQuerySettings querySettings = GetModelBoundQuerySettings(pathEdmProperty,
+                pathEdmStructuredType, edmModel);
+            if (!enableSelect)
+            {
+                return !querySettings.Selectable(edmProperty.Name);
+            }
+
+            SelectExpandType enable;
+            if (querySettings.SelectConfigurations.TryGetValue(edmProperty.Name, out enable))
+            {
+                return enable == SelectExpandType.Disabled;
+            }
+            else
+            {
+                return querySettings.DefaultSelectType == SelectExpandType.Disabled;
+            }
+        }
+
+        public static bool IsNotNavigable(IEdmProperty edmProperty, IEdmModel edmModel)
+        {
+            QueryableRestrictionsAnnotation annotation = GetPropertyRestrictions(edmProperty, edmModel);
+            return annotation == null ? false : annotation.Restrictions.NotNavigable;
+        }
+
+        public static bool IsNotExpandable(IEdmProperty edmProperty, IEdmModel edmModel)
+        {
+            QueryableRestrictionsAnnotation annotation = GetPropertyRestrictions(edmProperty, edmModel);
+            return annotation == null ? false : annotation.Restrictions.NotExpandable;
+        }
+
         public static bool IsNullable(Type type)
         {
             return !TypeHelper.IsValueType(type) || Nullable.GetUnderlyingType(type) != null;

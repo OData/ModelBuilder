@@ -3,8 +3,9 @@
 
 using Microsoft.OData.Edm;
 using Moq;
+using System;
 
-namespace Microsoft.OData.ModelBuilder.Test.Commons
+namespace Microsoft.OData.ModelBuilder.Tests.Commons
 {
     public static class ODataModelBuilderMocks
     {
@@ -21,6 +22,16 @@ namespace Microsoft.OData.ModelBuilder.Test.Commons
         public static ODataConventionModelBuilder GetConventionModelBuilder()
         {
             Mock<ODataConventionModelBuilder> mock = new Mock<ODataConventionModelBuilder>();
+            mock.Setup(b => b.ValidateModel(It.IsAny<IEdmModel>())).Callback(() => { });
+            mock.CallBase = true;
+            return mock.Object;
+        }
+
+        public static ODataConventionModelBuilder MockConventionModelBuilder(params Type[] types)
+        {
+            MockAssembly assembly = new MockAssembly(types);
+            MockAssemblyResolver resolver = new MockAssemblyResolver(assembly);
+            Mock<ODataConventionModelBuilder> mock = new Mock<ODataConventionModelBuilder>(resolver);
             mock.Setup(b => b.ValidateModel(It.IsAny<IEdmModel>())).Callback(() => { });
             mock.CallBase = true;
             return mock.Object;
