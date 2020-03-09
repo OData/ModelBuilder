@@ -255,3 +255,12 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)\Nuget'
     ArtifactName: Nuget
+
+# Push the odata model builder nightly to MyGet
+- task: NuGetCommand@2
+  displayName: 'NuGet push - Nightly packages to MyGet'
+  inputs:
+    command: push
+    packagesToPush: '$(Build.ArtifactStagingDirectory)\Nuget\*Nightly*.nupkg'
+    nuGetFeedType: external
+    publishFeedCredentials: 'MyGet.org - WebApi Netcore Feed'
