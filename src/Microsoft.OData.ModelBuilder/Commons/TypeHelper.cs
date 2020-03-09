@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -20,6 +21,148 @@ namespace Microsoft.OData.ModelBuilder
         public static bool IsGenericTypeDefinition(this Type clrType)
         {
             return clrType.IsGenericTypeDefinition;
+        }
+
+        /// <summary>
+        /// Determine if a type is an interface.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is an interface; false otherwise.</returns>
+        public static bool IsInterface(Type clrType)
+        {
+            return clrType.IsInterface;
+        }
+
+        /// <summary>
+        /// Determine if a type is a primitive.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is a primitive; false otherwise.</returns>
+        public static bool IsPrimitive(Type clrType)
+        {
+            return clrType.IsPrimitive;
+        }
+
+        /// <summary>
+        /// Determine if a type is assignable from another type.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <param name="fromType">The type to assign from.</param>
+        /// <returns>True if the type is assignable; false otherwise.</returns>
+        public static bool IsTypeAssignableFrom(Type clrType, Type fromType)
+        {
+            return clrType.IsAssignableFrom(fromType);
+        }
+
+        /// <summary>
+        /// Determines whether the given type is IQueryable.
+        /// </summary>
+        /// <param name="type">The type</param>
+        /// <returns><c>true</c> if the type is IQueryable.</returns>
+        internal static bool IsIQueryable(Type type)
+        {
+            return type == typeof(IQueryable) ||
+                (type != null && TypeHelper.IsGenericType(type) && type.GetGenericTypeDefinition() == typeof(IQueryable<>));
+        }
+
+        /// <summary>
+        /// Determines whether the given type is a primitive type or
+        /// is a <see cref="string"/>, <see cref="DateTime"/>, <see cref="Decimal"/>,
+        /// <see cref="Guid"/>, <see cref="DateTimeOffset"/> or <see cref="TimeSpan"/>.
+        /// </summary>
+        /// <param name="type">The type</param>
+        /// <returns><c>true</c> if the type is a primitive type.</returns>
+        internal static bool IsQueryPrimitiveType(Type type)
+        {
+            Contract.Assert(type != null);
+
+            type = GetInnerMostElementType(type);
+
+            return TypeHelper.IsEnum(type) ||
+                   TypeHelper.IsPrimitive(type) ||
+                   type == typeof(Uri) ||
+                   (EdmLibHelpers.GetEdmPrimitiveTypeOrNull(type) != null);
+        }
+
+        /// <summary>
+        /// Returns the innermost element type for a given type, dealing with
+        /// nullables, arrays, etc.
+        /// </summary>
+        /// <param name="type">The type from which to get the innermost type.</param>
+        /// <returns>The innermost element type</returns>
+        internal static Type GetInnerMostElementType(Type type)
+        {
+            Contract.Assert(type != null);
+
+            while (true)
+            {
+                Type nullableUnderlyingType = Nullable.GetUnderlyingType(type);
+                if (nullableUnderlyingType != null)
+                {
+                    type = nullableUnderlyingType;
+                }
+                else if (type.HasElementType)
+                {
+                    type = type.GetElementType();
+                }
+                else
+                {
+                    return type;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns type of T if the type implements IEnumerable of T, otherwise, return null.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        internal static Type GetImplementedIEnumerableType(Type type)
+        {
+            // get inner type from Task<T>
+            if (TypeHelper.IsGenericType(type) && type.GetGenericTypeDefinition() == typeof(Task<>))
+            {
+                type = type.GetGenericArguments().First();
+            }
+
+            if (TypeHelper.IsGenericType(type) && TypeHelper.IsInterface(type) &&
+                (type.GetGenericTypeDefinition() == typeof(IEnumerable<>) ||
+                 type.GetGenericTypeDefinition() == typeof(IQueryable<>)))
+            {
+                // special case the IEnumerable<T>
+                return GetInnerGenericType(type);
+            }
+            else
+            {
+                // for the rest of interfaces and strongly Type collections
+                Type[] interfaces = type.GetInterfaces();
+                foreach (Type interfaceType in interfaces)
+                {
+                    if (TypeHelper.IsGenericType(interfaceType) &&
+                        (interfaceType.GetGenericTypeDefinition() == typeof(IEnumerable<>) ||
+                         interfaceType.GetGenericTypeDefinition() == typeof(IQueryable<>)))
+                    {
+                        // special case the IEnumerable<T>
+                        return GetInnerGenericType(interfaceType);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Return the collection element type.
+        /// </summary>
+        /// <param name="clrType">The type to convert.</param>
+        /// <returns>The collection element type from a type.</returns>
+        public static Type GetInnerElementType(Type clrType)
+        {
+            Type elementType;
+            TypeHelper.IsCollection(clrType, out elementType);
+            Contract.Assert(elementType != null);
+
+            return elementType;
         }
 
         /// <summary>
@@ -297,6 +440,19 @@ namespace Microsoft.OData.ModelBuilder
             }
 
             return result;
+        }
+
+        private static Type GetInnerGenericType(Type interfaceType)
+        {
+            // Getting the type T definition if the returning type implements IEnumerable<T>
+            Type[] parameterTypes = interfaceType.GetGenericArguments();
+
+            if (parameterTypes.Length == 1)
+            {
+                return parameterTypes[0];
+            }
+
+            return null;
         }
     }
 }

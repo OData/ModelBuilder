@@ -468,6 +468,66 @@
             <param name="clrType">The type to test.</param>
             <returns>True if the type is a generic type definition; false otherwise.</returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsInterface(System.Type)">
+            <summary>
+            Determine if a type is an interface.
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <returns>True if the type is an interface; false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsPrimitive(System.Type)">
+            <summary>
+            Determine if a type is a primitive.
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <returns>True if the type is a primitive; false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsTypeAssignableFrom(System.Type,System.Type)">
+            <summary>
+            Determine if a type is assignable from another type.
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <param name="fromType">The type to assign from.</param>
+            <returns>True if the type is assignable; false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsIQueryable(System.Type)">
+            <summary>
+            Determines whether the given type is IQueryable.
+            </summary>
+            <param name="type">The type</param>
+            <returns><c>true</c> if the type is IQueryable.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsQueryPrimitiveType(System.Type)">
+            <summary>
+            Determines whether the given type is a primitive type or
+            is a <see cref="T:System.String"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Decimal"/>,
+            <see cref="T:System.Guid"/>, <see cref="T:System.DateTimeOffset"/> or <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <param name="type">The type</param>
+            <returns><c>true</c> if the type is a primitive type.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.GetInnerMostElementType(System.Type)">
+            <summary>
+            Returns the innermost element type for a given type, dealing with
+            nullables, arrays, etc.
+            </summary>
+            <param name="type">The type from which to get the innermost type.</param>
+            <returns>The innermost element type</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.GetImplementedIEnumerableType(System.Type)">
+            <summary>
+            Returns type of T if the type implements IEnumerable of T, otherwise, return null.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.GetInnerElementType(System.Type)">
+            <summary>
+            Return the collection element type.
+            </summary>
+            <param name="clrType">The type to convert.</param>
+            <returns>The collection element type from a type.</returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.AsType(System.Reflection.MemberInfo)">
             <summary>
             Return the type from a MemberInfo.
