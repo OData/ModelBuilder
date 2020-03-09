@@ -39,9 +39,45 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             return builder;
         }
 
+        public static ODataModelBuilder Add_Address_ComplexType(this ODataModelBuilder builder)
+        {
+            var address = builder.ComplexType<Address>();
+            address.Property(a => a.HouseNumber);
+            address.Property(a => a.Street);
+            address.Property(a => a.City);
+            address.Property(a => a.State);
+            return builder;
+        }
+
+        public static ODataModelBuilder Add_RecursiveZipCode_ComplexType(this ODataModelBuilder builder)
+        {
+            var zipCode = builder.ComplexType<RecursiveZipCode>();
+            zipCode.Property(z => z.Part1);
+            zipCode.Property(z => z.Part2).IsNullable();
+            return builder;
+        }
+
         public static ODataModelBuilder Add_Customers_EntitySet(this ODataModelBuilder builder)
         {
             builder.Add_Customer_EntityType().EntitySet<Customer>("Customers");
+            return builder;
+        }
+
+        public static ODataModelBuilder Add_Orders_EntitySet(this ODataModelBuilder builder)
+        {
+            builder.EntitySet<Order>("Orders");
+            return builder;
+        }
+
+        public static ODataModelBuilder Add_OrderCustomer_Binding(this ODataModelBuilder builder)
+        {
+            builder.EntitySet<Order>("Orders").HasRequiredBinding(o => o.Customer, "Customer");
+            return builder;
+        }
+
+        public static ODataModelBuilder Add_Company_Singleton(this ODataModelBuilder builder)
+        {
+            builder.Add_Company_EntityType().Singleton<Company>("OsCorp");
             return builder;
         }
 
@@ -51,9 +87,42 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             return builder;
         }
 
+        public static ODataModelBuilder Add_EmployeeComplany_Relationship(this ODataModelBuilder builder)
+        {
+            builder.EntityType<Employee>().HasRequired(o => o.WorkCompany);
+            return builder;
+        }
+
+        // EntitySet -> Singleton
+        public static ODataModelBuilder Add_CompaniesCEO_Binding(this ODataModelBuilder builder)
+        {
+            builder.EntitySet<Company>("Companies").HasSingletonBinding(c => c.CEO, "CEO");
+            return builder;
+        }
+
+        // Singleton -> Singleton
+        public static ODataModelBuilder Add_MicrosoftCEO_Binding(this ODataModelBuilder builder)
+        {
+            builder.Singleton<Company>("OsCorp").HasSingletonBinding(c => c.CEO, "CEO");
+            return builder;
+        }
+
+        // Singleton -> EntitySet
+        public static ODataModelBuilder Add_MicrosoftEmployees_Binding(this ODataModelBuilder builder)
+        {
+            builder.Singleton<Company>("OsCorp").HasManyBinding(c => c.ComplanyEmployees, "Employees");
+            return builder;
+        }
+
         public static ODataModelBuilder Add_CustomerOrders_Binding(this ODataModelBuilder builder)
         {
             builder.EntitySet<Customer>("Customers").HasManyBinding(c => c.Orders, "Orders");
+            return builder;
+        }
+
+        public static ODataModelBuilder Add_OrderCustomer_Relationship(this ODataModelBuilder builder)
+        {
+            builder.EntityType<Order>().HasRequired(o => o.Customer);
             return builder;
         }
 

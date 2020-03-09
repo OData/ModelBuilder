@@ -17,7 +17,7 @@ using Xunit;
 
 namespace Microsoft.OData.ModelBuilder.Tests.Types
 {
-    public class EnumTypeConfigurationTest
+    public class EnumTypeTest
     {
         [Fact]
         public void CreateEnumTypeWithFlags()

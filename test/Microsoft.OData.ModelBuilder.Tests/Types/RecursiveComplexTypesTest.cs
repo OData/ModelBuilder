@@ -19,14 +19,14 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             IEdmModel model = builder.GetEdmModel();
 
             var address =
-                model.SchemaElements.First(e => e.Name == typeof(Address).Name)
+                model.SchemaElements.First(e => e.Name == typeof(RecursiveAddress).Name)
                 as EdmComplexType;
 
             var previousAddressProperty =
                 address.Properties().Single(p => p.Name == "PreviousAddress") as EdmStructuralProperty;
 
             Assert.Equal(
-                typeof(Address).Name,
+                typeof(RecursiveAddress).Name,
                 previousAddressProperty.Type.AsComplex()?.ComplexDefinition().Name);
         }
 
@@ -56,7 +56,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             builder.EntitySet<JustCustomer>("justcustomer");
             IEdmModel model = builder.GetEdmModel();
 
-            string customerTypeName = typeof(Customer).Name;
+            string customerTypeName = typeof(RecursiveCustomer).Name;
 
             var customer = model.SchemaElements.First(e => e.Name == customerTypeName) as EdmComplexType;
 
@@ -125,14 +125,14 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
     {
         public int ID { get; set; }
 
-        public Customer Customer { get; set; }
+        public RecursiveCustomer Customer { get; set; }
     }
 
     public class JustAddress
     {
         public int ID { get; set; }
 
-        public Address Address { get; set; }
+        public RecursiveAddress Address { get; set; }
     }
 
     public class JustHomeDirectory

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Microsoft.OData.ModelBuilder.Tests.Types
 {
     // Scenario 1: Direct reference (complex type points to itself)
-    public class Address
+    public class RecursiveAddress
     {
         public string Street { get; set; }
 
@@ -14,7 +14,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
         public string Country { get; set; }
 
-        public Address PreviousAddress { get; set; }
+        public RecursiveAddress PreviousAddress { get; set; }
     }
 
     // Scenario 2: Collection (complex type points to itself via a collection)
@@ -28,7 +28,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
     }
 
     // Scenario 3: Composition (complex type points to itself via indirect recursion)
-    public class Customer
+    public class RecursiveCustomer
     {
         public string Name { get; set; }
 
@@ -39,7 +39,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
     {
         public int Number { get; set; }
 
-        public Customer Owner { get; set; }
+        public RecursiveCustomer Owner { get; set; }
     }
 
     // Scenario 4: Inheritance (complex type has sub-type that points back to the base type via a collection)
