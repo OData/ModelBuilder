@@ -11,13 +11,7 @@ namespace Microsoft.OData.ModelBuilder
 {
     internal class PropertyPairSelectorVisitor : ExpressionVisitor
     {
-        private readonly IDictionary<PropertyInfo, PropertyInfo> _properties =
-            new Dictionary<PropertyInfo, PropertyInfo>();
-
-        public IDictionary<PropertyInfo, PropertyInfo> Properties
-        {
-            get { return _properties; }
-        }
+        public IDictionary<PropertyInfo, PropertyInfo> Properties { get; } = new Dictionary<PropertyInfo, PropertyInfo>();
 
         public static IDictionary<PropertyInfo, PropertyInfo> GetSelectedProperty(Expression exp)
         {
@@ -94,7 +88,7 @@ namespace Microsoft.OData.ModelBuilder
                         TypeHelper.GetReflectedType(right).FullName, right.Name, right.PropertyType.FullName);
                 }
 
-                _properties.Add(left, right);
+                Properties.Add(left, right);
             }
 
             return exp;
