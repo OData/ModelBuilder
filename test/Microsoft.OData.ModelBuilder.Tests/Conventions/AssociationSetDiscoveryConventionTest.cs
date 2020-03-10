@@ -76,7 +76,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Conventions
             // Act & Assert
             ExceptionAssert.Throws<InvalidOperationException>(
                 () => AssociationSetDiscoveryConvention.GetTargetNavigationSource(config, modelBuilder.Object),
-                "Could not find the target entity type for the navigation property 'SamplePropertyName' on entity type 'Microsoft.AspNet.OData.Test.Builder.Conventions.AssociationSetDiscoveryConventionTest'.");
+                "Could not find the target entity type for the navigation property 'SamplePropertyName' on entity type 'Microsoft.OData.ModelBuilder.Tests.Conventions.AssociationSetDiscoveryConventionTest'.");
         }
 
         [Fact]
