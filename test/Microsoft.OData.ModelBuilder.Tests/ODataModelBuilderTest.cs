@@ -1014,6 +1014,36 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal(3, binaryType.MaxLength.Value);
         }
 
+        [Fact]
+        public void CanConfig_PrimitiveTypeTerm()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            var term = builder.TermType<string>("Description");
+
+            // Act
+            IEdmModel model = builder.GetEdmModel();
+            IEdmTerm edmTerm = model.SchemaElements.OfType<IEdmTerm>().First(p => p.Name == "Description");
+            IEdmStringTypeReference stringType = edmTerm.Type.AsString();
+            Assert.NotNull(stringType);
+            // Assert
+        }
+
+        [Fact]
+        public void CanConfig_CollectionPrimitiveTypeTerm()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            var term = builder.TermType<IEnumerable<string>>("Description");
+
+            // Act
+            IEdmModel model = builder.GetEdmModel();
+            IEdmTerm edmTerm = model.SchemaElements.OfType<IEdmTerm>().First(p => p.Name == "Description");
+            IEdmCollectionTypeReference stringType = edmTerm.Type.AsCollection();
+            Assert.NotNull(stringType);
+            // Assert
+        }
+
         class BasePrincipal
         {
             public int PrincipalId { get; set; }

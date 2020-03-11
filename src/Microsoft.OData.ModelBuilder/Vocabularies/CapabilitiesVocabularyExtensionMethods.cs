@@ -9,7 +9,7 @@ using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Csdl;
 using Microsoft.OData.Edm.Vocabularies;
 
-namespace Microsoft.OData.ModelBuilder
+namespace Microsoft.OData.ModelBuilder.Vocabularies
 {
     /// <summary>
     /// Contains extension methods for <see cref="EdmModel"/> to set the query capabilities vocabulary.

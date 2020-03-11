@@ -13,6 +13,7 @@ using Microsoft.OData.Edm.Validation;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.ModelBuilder.Annotations;
 using Microsoft.OData.ModelBuilder.Config;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder.Helpers
 {
@@ -32,6 +33,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             IEnumerable<IEdmTypeConfiguration> configTypes = builder.StructuralTypes.Concat<IEdmTypeConfiguration>(builder.EnumTypes);
             EdmTypeMap edmMap = EdmTypeBuilder.GetTypesAndProperties(configTypes);
             Dictionary<Type, IEdmType> edmTypeMap = model.AddTypes(edmMap);
+
+            model.AddTerms(builder.TermTypes, edmTypeMap);
 
             // Add EntitySets and build the mapping between the EdmEntitySet and the NavigationSourceConfiguration
             NavigationSourceAndAnnotations[] entitySets = container.AddEntitySetAndAnnotations(builder, edmTypeMap);
@@ -269,6 +272,20 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             if (operationConfiguration.EntitySetPath != null && !operationImport.TryGetRelativeEntitySetPath(model, out operationParameter, out relativeNavigations, out edmErrors))
             {
                 throw Error.InvalidOperation(SRResources.OperationHasInvalidEntitySetPath, String.Join("/", operationConfiguration.EntitySetPath), operationConfiguration.FullyQualifiedName);
+            }
+        }
+
+        private static void AddTerms(this EdmModel model, IEnumerable<TermConfiguration> configurations,
+            Dictionary<Type, IEdmType> edmTypeMap)
+        {
+            foreach (var term in configurations)
+            {
+                IEdmTypeReference termType = GetEdmTypeReference(edmTypeMap,
+                    term.Type,
+                    true);
+
+                EdmTerm edmTerm = new EdmTerm(term.Namespace, term.Name, termType);
+                model.AddElement(edmTerm);
             }
         }
 

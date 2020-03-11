@@ -3,10 +3,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Helpers;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -25,6 +27,7 @@ namespace Microsoft.OData.ModelBuilder
         private Dictionary<string, NavigationSourceConfiguration> _navigationSources = new Dictionary<string, NavigationSourceConfiguration>();
         private Dictionary<Type, PrimitiveTypeConfiguration> _primitiveTypes = new Dictionary<Type, PrimitiveTypeConfiguration>();
         private List<OperationConfiguration> _operations = new List<OperationConfiguration>();
+        private List<TermConfiguration> _terms = new List<TermConfiguration>();
 
         private Version _dataServiceVersion;
         private Version _maxDataServiceVersion;
@@ -172,6 +175,14 @@ namespace Microsoft.OData.ModelBuilder
         public virtual IEnumerable<OperationConfiguration> Operations
         {
             get { return _operations; }
+        }
+
+        /// <summary>
+        /// Gets the collection of EDM types in the model to be built.
+        /// </summary>
+        public virtual IEnumerable<TermConfiguration> TermTypes
+        {
+            get { return _terms; }
         }
 
         /// <summary>
@@ -352,6 +363,58 @@ namespace Microsoft.OData.ModelBuilder
 
                 return enumTypeConfig;
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TType"></typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public virtual TermConfiguration<TType> TermType<TType>(string name)
+        {
+            TermConfiguration configuration = AddTermType(name, typeof(TType));
+            return new TermConfiguration<TType>(configuration);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="clrType"></param>
+        /// <returns></returns>
+        public virtual TermConfiguration AddTermType(string name, Type clrType)
+        {
+            Type elementType;
+            bool collection = TypeHelper.IsCollection(clrType, out elementType);
+
+            IEdmTypeConfiguration typeConfiguration = GetTypeConfigurationOrNull(elementType);
+            if (typeConfiguration == null)
+            {
+                // If the elementType is primitive, it's added
+                if (TypeHelper.IsEnum(elementType))
+                {
+                    typeConfiguration = AddEnumType(elementType);
+                }
+                else
+                {
+                    typeConfiguration = AddComplexType(elementType);
+                }
+            }
+
+            if (typeConfiguration == null)
+            {
+                throw Error.NotSupported($"Not supported type '{clrType.FullName}' for the Term");
+            }
+
+            if (collection)
+            {
+                typeConfiguration = new CollectionTypeConfiguration(typeConfiguration, elementType);
+            }
+
+            TermConfiguration configuration = new TermConfiguration(this, name, typeConfiguration);
+            _terms.Add(configuration);
+            return configuration;
         }
 
         /// <summary>
