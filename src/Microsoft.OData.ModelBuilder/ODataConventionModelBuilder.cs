@@ -249,7 +249,6 @@ namespace Microsoft.OData.ModelBuilder
             return enumTypeConfiguration;
         }
 
-
         /// <inheritdoc />
         public override IEdmModel GetEdmModel()
         {
