@@ -263,4 +263,4 @@ steps:
     command: push
     packagesToPush: '$(Build.ArtifactStagingDirectory)\Nuget\*Nightly*.nupkg'
     nuGetFeedType: external
-    publishFeedCredentials: 'MyGet.org - WebApi Netcore Feed'
+    publishFeedCredentials: 'MyGet.org - OData.net new nightly feed'
