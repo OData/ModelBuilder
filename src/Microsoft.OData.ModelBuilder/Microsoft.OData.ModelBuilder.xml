@@ -2109,7 +2109,7 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ODataContext">
             <summary>
-            
+            A context to model builder.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder">

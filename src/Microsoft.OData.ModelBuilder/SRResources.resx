@@ -227,9 +227,6 @@
   <data name="DependentAndPrincipalTypeNotMatch" xml:space="preserve">
     <value>The dependent property type '{0}' is not same as the principal property type '{1}. The dependent and principal properties must have must have same types in the same order.</value>
   </data>
-  <data name="CannotRedefineBaseTypeProperty" xml:space="preserve">
-    <value>Cannot redefine property '{0}' already defined on the base type '{1}'.</value>
-  </data>
   <data name="TypeDoesNotInheritFromBaseType" xml:space="preserve">
     <value>'{0}' does not inherit from '{1}'.</value>
   </data>
