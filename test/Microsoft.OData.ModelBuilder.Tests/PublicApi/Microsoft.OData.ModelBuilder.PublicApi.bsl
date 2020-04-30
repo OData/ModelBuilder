@@ -608,10 +608,6 @@ public class Microsoft.OData.ModelBuilder.NonbindingParameterConfiguration : Mic
 	public NonbindingParameterConfiguration (string name, Microsoft.OData.ModelBuilder.IEdmTypeConfiguration parameterType)
 }
 
-public class Microsoft.OData.ModelBuilder.ODataContext {
-	public ODataContext ()
-}
-
 public class Microsoft.OData.ModelBuilder.ODataConventionModelBuilder : Microsoft.OData.ModelBuilder.ODataModelBuilder {
 	public ODataConventionModelBuilder ()
 	public ODataConventionModelBuilder (Microsoft.OData.ModelBuilder.IAssemblyResolver resolver)
