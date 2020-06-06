@@ -8,8 +8,9 @@ using System.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Csdl;
 using Microsoft.OData.Edm.Vocabularies;
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 
-namespace Microsoft.OData.ModelBuilder
+namespace Microsoft.OData.ModelBuilder.Vocabularies
 {
     /// <summary>
     /// Contains extension methods for <see cref="EdmModel"/> to set the query capabilities vocabulary.
@@ -48,19 +49,19 @@ namespace Microsoft.OData.ModelBuilder
 
             IList<IEdmPropertyConstructor> properties = new List<IEdmPropertyConstructor>
             {
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.CountRestrictionsCountable,
+                new EdmPropertyConstructor(Constants.CountRestrictionsCountable,
                     new EdmBooleanConstant(isCountable)),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.CountRestrictionsNonCountableProperties,
+                new EdmPropertyConstructor(Constants.CountRestrictionsNonCountableProperties,
                     new EdmCollectionExpression(
                         nonCountableProperties.Select(p => new EdmPropertyPathExpression(p.Name)).ToArray())),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.CountRestrictionsNonCountableNavigationProperties,
+                new EdmPropertyConstructor(Constants.CountRestrictionsNonCountableNavigationProperties,
                     new EdmCollectionExpression(
                         nonCountableNavigationProperties.Select(p => new EdmNavigationPropertyPathExpression(p.Name)).ToArray()))
             };
 
-            model.SetVocabularyAnnotation(target, properties, CapabilitiesVocabularyConstants.CountRestrictions);
+            model.SetVocabularyAnnotation(target, properties, Constants.CountRestrictions);
         }
 
         /// <summary>
@@ -71,8 +72,8 @@ namespace Microsoft.OData.ModelBuilder
         /// <param name="navigability">This entity set supports navigability.</param>
         /// <param name="restrictedProperties">These properties have navigation restrictions on.</param>
         public static void SetNavigationRestrictionsAnnotation(this EdmModel model, IEdmEntitySet target,
-            CapabilitiesNavigationType navigability,
-            IEnumerable<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>> restrictedProperties)
+            NavigationType navigability,
+            IEnumerable<Tuple<IEdmNavigationProperty, NavigationType>> restrictedProperties)
         {
             if (model == null)
             {
@@ -90,7 +91,7 @@ namespace Microsoft.OData.ModelBuilder
                 return;
             }
 
-            restrictedProperties = restrictedProperties ?? Array.Empty<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>>();
+            restrictedProperties = restrictedProperties ?? Array.Empty<Tuple<IEdmNavigationProperty, NavigationType>>();
 
             string type = new EdmEnumTypeReference(navigationType, false).ToStringLiteral((long)navigability);
 
@@ -100,23 +101,23 @@ namespace Microsoft.OData.ModelBuilder
                 return new EdmRecordExpression(new IEdmPropertyConstructor[]
                 {
                     new EdmPropertyConstructor(
-                        CapabilitiesVocabularyConstants.NavigationPropertyRestrictionNavigationProperty,
+                        Constants.NavigationPropertyRestrictionNavigationProperty,
                         new EdmNavigationPropertyPathExpression(p.Item1.Name)),
-                    new EdmPropertyConstructor(CapabilitiesVocabularyConstants.NavigationRestrictionsNavigability,
+                    new EdmPropertyConstructor(Constants.NavigationRestrictionsNavigability,
                         new EdmEnumMemberExpression(navigationType.Members.Single(m => m.Name == name)))
                 });
             });
 
             IList<IEdmPropertyConstructor> properties = new List<IEdmPropertyConstructor>
             {
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.NavigationRestrictionsNavigability,
+                new EdmPropertyConstructor(Constants.NavigationRestrictionsNavigability,
                     new EdmEnumMemberExpression(navigationType.Members.Single(m => m.Name == type))),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.NavigationRestrictionsRestrictedProperties,
+                new EdmPropertyConstructor(Constants.NavigationRestrictionsRestrictedProperties,
                     new EdmCollectionExpression(propertiesExpression))
             };
 
-            model.SetVocabularyAnnotation(target, properties, CapabilitiesVocabularyConstants.NavigationRestrictions);
+            model.SetVocabularyAnnotation(target, properties, Constants.NavigationRestrictions);
         }
 
         /// <summary>
@@ -147,22 +148,22 @@ namespace Microsoft.OData.ModelBuilder
 
             IList<IEdmPropertyConstructor> properties = new List<IEdmPropertyConstructor>
             {
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.FilterRestrictionsFilterable,
+                new EdmPropertyConstructor(Constants.FilterRestrictionsFilterable,
                     new EdmBooleanConstant(isFilterable)),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.FilterRestrictionsRequiresFilter,
+                new EdmPropertyConstructor(Constants.FilterRestrictionsRequiresFilter,
                     new EdmBooleanConstant(isRequiresFilter)),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.FilterRestrictionsRequiredProperties,
+                new EdmPropertyConstructor(Constants.FilterRestrictionsRequiredProperties,
                     new EdmCollectionExpression(
                         requiredProperties.Select(p => new EdmPropertyPathExpression(p.Name)).ToArray())),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.FilterRestrictionsNonFilterableProperties,
+                new EdmPropertyConstructor(Constants.FilterRestrictionsNonFilterableProperties,
                     new EdmCollectionExpression(
                         nonFilterableProperties.Select(p => new EdmPropertyPathExpression(p.Name)).ToArray()))
             };
 
-            model.SetVocabularyAnnotation(target, properties, CapabilitiesVocabularyConstants.FilterRestrictions);
+            model.SetVocabularyAnnotation(target, properties, Constants.FilterRestrictions);
         }
 
         /// <summary>
@@ -194,23 +195,23 @@ namespace Microsoft.OData.ModelBuilder
 
             IList<IEdmPropertyConstructor> properties = new List<IEdmPropertyConstructor>
             {
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.SortRestrictionsSortable,
+                new EdmPropertyConstructor(Constants.SortRestrictionsSortable,
                     new EdmBooleanConstant(isSortable)),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.SortRestrictionsAscendingOnlyProperties,
+                new EdmPropertyConstructor(Constants.SortRestrictionsAscendingOnlyProperties,
                     new EdmCollectionExpression(
                         ascendingOnlyProperties.Select(p => new EdmPropertyPathExpression(p.Name)).ToArray())),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.SortRestrictionsDescendingOnlyProperties,
+                new EdmPropertyConstructor(Constants.SortRestrictionsDescendingOnlyProperties,
                     new EdmCollectionExpression(
                         descendingOnlyProperties.Select(p => new EdmPropertyPathExpression(p.Name)).ToArray())),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.SortRestrictionsNonSortableProperties,
+                new EdmPropertyConstructor(Constants.SortRestrictionsNonSortableProperties,
                     new EdmCollectionExpression(
                         nonSortableProperties.Select(p => new EdmPropertyPathExpression(p.Name)).ToArray()))
             };
 
-            model.SetVocabularyAnnotation(target, properties, CapabilitiesVocabularyConstants.SortRestrictions);
+            model.SetVocabularyAnnotation(target, properties, Constants.SortRestrictions);
         }
 
         /// <summary>
@@ -237,15 +238,15 @@ namespace Microsoft.OData.ModelBuilder
 
             IList<IEdmPropertyConstructor> properties = new List<IEdmPropertyConstructor>
             {
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.ExpandRestrictionsExpandable,
+                new EdmPropertyConstructor(Constants.ExpandRestrictionsExpandable,
                     new EdmBooleanConstant(isExpandable)),
 
-                new EdmPropertyConstructor(CapabilitiesVocabularyConstants.ExpandRestrictionsNonExpandableProperties,
+                new EdmPropertyConstructor(Constants.ExpandRestrictionsNonExpandableProperties,
                     new EdmCollectionExpression(
                         nonExpandableProperties.Select(p => new EdmNavigationPropertyPathExpression(p.Name)).ToArray()))
             };
 
-            model.SetVocabularyAnnotation(target, properties, CapabilitiesVocabularyConstants.ExpandRestrictions);
+            model.SetVocabularyAnnotation(target, properties, Constants.ExpandRestrictions);
         }
 
         private static void SetVocabularyAnnotation(this EdmModel model, IEdmVocabularyAnnotatable target,
@@ -267,7 +268,7 @@ namespace Microsoft.OData.ModelBuilder
         private static IEdmEnumType GetCapabilitiesNavigationType(this EdmModel model)
         {
             return _navigationType ??
-                   (_navigationType = model.FindType(CapabilitiesVocabularyConstants.NavigationType) as IEdmEnumType);
+                   (_navigationType = model.FindType(Constants.NavigationType) as IEdmEnumType);
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
-namespace Microsoft.OData.ModelBuilder
+namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
 {
     /// <summary>
     /// Constant values for Capabilities Vocabulary
     /// </summary>
-    internal static class CapabilitiesVocabularyConstants
+    internal static class Constants
     {
         /// <summary>Org.OData.Capabilities.V1.CountRestrictions</summary>
         public const string CountRestrictions = "Org.OData.Capabilities.V1.CountRestrictions";

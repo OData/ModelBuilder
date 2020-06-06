@@ -4960,103 +4960,12 @@
              <c>Function(t) t.MyProperty</c>.</param>
             <returns>A configuration object that can be used to further configure the relationship.</returns>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.CapabilitiesNavigationType">
-            <summary>
-            Enumerates the navigation type can apply on navigation restrictions.
-            </summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesNavigationType.Recursive">
-            <summary>
-            Navigation properties can be recursively navigated.
-            </summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesNavigationType.Single">
-            <summary>
-            Navigation properties can be navigated to a single level.
-            </summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesNavigationType.None">
-            <summary>
-            Navigation properties are not navigable.
-            </summary>
-        </member>
-        <member name="T:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants">
-            <summary>
-            Constant values for Capabilities Vocabulary
-            </summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.CountRestrictions">
-            <summary>Org.OData.Capabilities.V1.CountRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.CountRestrictionsCountable">
-            <summary>Property Countable of Org.OData.Capabilities.V1.CountRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.CountRestrictionsNonCountableProperties">
-            <summary>Property NonCountableProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.CountRestrictionsNonCountableNavigationProperties">
-            <summary>Property NonCountableNavigationProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.NavigationRestrictions">
-            <summary>Org.OData.Capabilities.V1.NavigationRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.NavigationRestrictionsNavigability">
-            <summary>Property Navigability of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.NavigationRestrictionsRestrictedProperties">
-            <summary>Property RestrictedProperties of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.NavigationPropertyRestrictionNavigationProperty">
-            <summary>Property NavigationProperty of Org.OData.Capabilities.V1.NavigationPropertyRestriction</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.NavigationType">
-            <summary>Org.OData.Capabilities.V1.NavigationType</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.FilterRestrictions">
-            <summary>Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.FilterRestrictionsFilterable">
-            <summary>Property Filterable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.FilterRestrictionsRequiresFilter">
-            <summary>Property RequiresFilter of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.FilterRestrictionsRequiredProperties">
-            <summary>Property RequiredProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.FilterRestrictionsNonFilterableProperties">
-            <summary>Property NonFilterableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.SortRestrictions">
-            <summary>Org.OData.Capabilities.V1.SortRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.SortRestrictionsSortable">
-            <summary>Property Sortable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.SortRestrictionsAscendingOnlyProperties">
-            <summary>Property AscendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.SortRestrictionsDescendingOnlyProperties">
-            <summary>Property DescendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.SortRestrictionsNonSortableProperties">
-            <summary>Property NonSortableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.ExpandRestrictions">
-            <summary>Org.OData.Capabilities.V1.ExpandRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.ExpandRestrictionsExpandable">
-            <summary>Property Expandable of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
-        </member>
-        <member name="F:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyConstants.ExpandRestrictionsNonExpandableProperties">
-            <summary>Property NonExpandableProperties of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
-        </member>
-        <member name="T:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods">
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.CapabilitiesVocabularyExtensionMethods">
             <summary>
             Contains extension methods for <see cref="T:Microsoft.OData.Edm.EdmModel"/> to set the query capabilities vocabulary.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods.SetCountRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmNavigationProperty})">
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.CapabilitiesVocabularyExtensionMethods.SetCountRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmNavigationProperty})">
             <summary>
             Set Org.OData.Capabilities.V1.CountRestrictions to target.
             </summary>
@@ -5066,7 +4975,7 @@
             <param name="nonCountableProperties">These collection properties do not allow /$count segments.</param>
             <param name="nonCountableNavigationProperties">These navigation properties do not allow /$count segments.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods.SetNavigationRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,Microsoft.OData.ModelBuilder.CapabilitiesNavigationType,System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.OData.Edm.IEdmNavigationProperty,Microsoft.OData.ModelBuilder.CapabilitiesNavigationType}})">
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.CapabilitiesVocabularyExtensionMethods.SetNavigationRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType,System.Collections.Generic.IEnumerable{System.Tuple{Microsoft.OData.Edm.IEdmNavigationProperty,Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType}})">
             <summary>
             Set Org.OData.Capabilities.V1.NavigationRestrictions to target.
             </summary>
@@ -5075,7 +4984,7 @@
             <param name="navigability">This entity set supports navigability.</param>
             <param name="restrictedProperties">These properties have navigation restrictions on.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods.SetFilterRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty})">
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.CapabilitiesVocabularyExtensionMethods.SetFilterRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty})">
             <summary>
             Set Org.OData.Capabilities.V1.FilterRestrictions to target.
             </summary>
@@ -5086,7 +4995,7 @@
             <param name="requiredProperties">These properties must be specified in the $filter clause.</param>
             <param name="nonFilterableProperties">These properties cannot be used in $filter expressions.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods.SetSortRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty})">
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.CapabilitiesVocabularyExtensionMethods.SetSortRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty},System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmProperty})">
             <summary>
             Set Org.OData.Capabilities.V1.SortRestrictions to target.
             </summary>
@@ -5097,7 +5006,7 @@
             <param name="descendingOnlyProperties">These properties can only be used for sorting in descending order.</param>
             <param name="nonSortableProperties">These properties cannot be used in $orderby expressions.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods.SetExpandRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmNavigationProperty})">
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.CapabilitiesVocabularyExtensionMethods.SetExpandRestrictionsAnnotation(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.IEdmEntitySet,System.Boolean,System.Collections.Generic.IEnumerable{Microsoft.OData.Edm.IEdmNavigationProperty})">
             <summary>
             Set Org.OData.Capabilities.V1.ExpandRestrictions to target.
             </summary>
@@ -5105,6 +5014,97 @@
             <param name="target">The target entity set to set the inline annotation.</param>
             <param name="isExpandable">This entity set supports the expand expressions.</param>
             <param name="nonExpandableProperties">These properties cannot be used in $expand expressions.</param>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants">
+            <summary>
+            Constant values for Capabilities Vocabulary
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.CountRestrictions">
+            <summary>Org.OData.Capabilities.V1.CountRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.CountRestrictionsCountable">
+            <summary>Property Countable of Org.OData.Capabilities.V1.CountRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.CountRestrictionsNonCountableProperties">
+            <summary>Property NonCountableProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.CountRestrictionsNonCountableNavigationProperties">
+            <summary>Property NonCountableNavigationProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.NavigationRestrictions">
+            <summary>Org.OData.Capabilities.V1.NavigationRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.NavigationRestrictionsNavigability">
+            <summary>Property Navigability of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.NavigationRestrictionsRestrictedProperties">
+            <summary>Property RestrictedProperties of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.NavigationPropertyRestrictionNavigationProperty">
+            <summary>Property NavigationProperty of Org.OData.Capabilities.V1.NavigationPropertyRestriction</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.NavigationType">
+            <summary>Org.OData.Capabilities.V1.NavigationType</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.FilterRestrictions">
+            <summary>Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.FilterRestrictionsFilterable">
+            <summary>Property Filterable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.FilterRestrictionsRequiresFilter">
+            <summary>Property RequiresFilter of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.FilterRestrictionsRequiredProperties">
+            <summary>Property RequiredProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.FilterRestrictionsNonFilterableProperties">
+            <summary>Property NonFilterableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.SortRestrictions">
+            <summary>Org.OData.Capabilities.V1.SortRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.SortRestrictionsSortable">
+            <summary>Property Sortable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.SortRestrictionsAscendingOnlyProperties">
+            <summary>Property AscendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.SortRestrictionsDescendingOnlyProperties">
+            <summary>Property DescendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.SortRestrictionsNonSortableProperties">
+            <summary>Property NonSortableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.ExpandRestrictions">
+            <summary>Org.OData.Capabilities.V1.ExpandRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.ExpandRestrictionsExpandable">
+            <summary>Property Expandable of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.ExpandRestrictionsNonExpandableProperties">
+            <summary>Property NonExpandableProperties of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType">
+            <summary>
+            Enumerates the navigation type can apply on navigation restrictions.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType.Recursive">
+            <summary>
+            Navigation properties can be recursively navigated.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType.Single">
+            <summary>
+            Navigation properties can be navigated to a single level.
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType.None">
+            <summary>
+            Navigation properties are not navigable.
+            </summary>
         </member>
     </members>
 </doc>
