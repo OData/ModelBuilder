@@ -19,6 +19,11 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
         }
 
         /// <summary>
+        /// Bound action or function can be invoked on a collection-valued binding parameter path with a /$filter(...) segment
+        /// </summary>
+        public bool? FilterSegmentSupported { get; set; }
+
+        /// <summary>
         /// Required permissions. One of the specified sets of scopes is required to invoke an action or function.
         /// </summary>
         public List<PermissionType> Permissions { get; }

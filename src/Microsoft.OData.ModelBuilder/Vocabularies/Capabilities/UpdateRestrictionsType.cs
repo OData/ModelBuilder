@@ -29,6 +29,11 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
         public bool? Upsertable{ get; set; }
 
         /// <summary>
+        /// Entities can be inserted, updated, and deleted via a PATCH request with a delta payload.
+        /// </summary>
+        public bool? DeltaUpdateSupported { get; set; }
+
+        /// <summary>
         /// Required permissions. One of the specified sets of scopes is required to perform the update.
         /// </summary>
         public List<PermissionType> Permissions { get; }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -95,6 +96,11 @@ namespace Microsoft.OData.ModelBuilder
         /// Gets the name of this navigation source.
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Restrictions for retrieving a collection of entities, retrieving a singleton instance
+        /// </summary>
+        public ReadRestrictionsType ReadRestrictions { get; set; }
 
         /// <summary>
         /// Gets the navigation source URL.

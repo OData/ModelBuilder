@@ -140,7 +140,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         private static void AddNavigationBindings(EdmTypeMap edmMap,
             NavigationSourceConfiguration navigationSourceConfiguration,
             EdmNavigationSource navigationSource,
-         //   NavigationSourceLinkBuilderAnnotation linkBuilder,
+            //   NavigationSourceLinkBuilderAnnotation linkBuilder,
             Dictionary<string, EdmNavigationSource> edmNavigationSourceMap)
         {
             foreach (var binding in navigationSourceConfiguration.Bindings)
@@ -320,6 +320,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 {
                     model.SetAnnotationValue(operation, new ReturnedEntitySetAnnotation(operationConfiguration.NavigationSource.Name));
                 }
+
+                model.SetPermissionsRestrictionsAnnotations(operation, operationConfiguration);
 
                 AddOperationParameters(operation, operationConfiguration, edmTypeMap);
 
@@ -657,6 +659,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
             foreach (NavigationSourceAndAnnotations source in navigationSources)
             {
+                model.SetPermissionsRestrictionsAnnotations(source.NavigationSource, source.Configuration);
+
                 IEdmEntitySet entitySet = source.NavigationSource as IEdmEntitySet;
                 if (entitySet == null)
                 {

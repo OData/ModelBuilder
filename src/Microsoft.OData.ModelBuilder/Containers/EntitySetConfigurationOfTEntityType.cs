@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -25,6 +26,39 @@ namespace Microsoft.OData.ModelBuilder
         internal EntitySetConfiguration EntitySet
         {
             get { return (EntitySetConfiguration)Configuration; }
+        }
+
+        /// <summary>
+        /// Configures the insert restrictions for this navigation source.
+        /// </summary>
+        /// <param name="insertRestrictions">The insert restrictions to configure.</param>
+        /// <returns></returns>
+        public NavigationSourceConfiguration<TEntityType> AddInsertRestrictions(InsertRestrictionsType insertRestrictions)
+        {
+            EntitySet.InsertRestrictions = insertRestrictions;
+            return this;
+        }
+
+        /// <summary>
+        /// Configures the update restrictions for this navigation source.
+        /// </summary>
+        /// <param name="updateRestrictions">The update restrictions to configure.</param>
+        /// <returns></returns>
+        public NavigationSourceConfiguration<TEntityType> AddUpdateRestrictions(UpdateRestrictionsType updateRestrictions)
+        {
+            EntitySet.UpdateRestrictions = updateRestrictions;
+            return this;
+        }
+
+        /// <summary>
+        /// Configures the delete restrictions for this navigation source.
+        /// </summary>
+        /// <param name="deleteRestrictions">The delete restrictions to configure.</param>
+        /// <returns></returns>
+        public NavigationSourceConfiguration<TEntityType> AddDeleteRestrictions(DeleteRestrictionsType deleteRestrictions)
+        {
+            EntitySet.DeleteRestrictions = deleteRestrictions;
+            return this;
         }
     }
 }

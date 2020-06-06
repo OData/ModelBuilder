@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -622,6 +623,17 @@ namespace Microsoft.OData.ModelBuilder
             };
 
             return this.Configuration.AddBinding(navigation, targetSingleton.Configuration, bindingPath);
+        }
+
+        /// <summary>
+        /// Configures the read restrictions for this navigation source.
+        /// </summary>
+        /// <param name="readRestrictions">The read restrictions to configure.</param>
+        /// <returns></returns>
+        public NavigationSourceConfiguration<TEntityType> AddReadRestrictions(ReadRestrictionsType readRestrictions)
+        {
+            Configuration.ReadRestrictions = readRestrictions;
+            return this;
         }
 
         /// <summary>

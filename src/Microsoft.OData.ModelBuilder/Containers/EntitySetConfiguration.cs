@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 using System;
 
 namespace Microsoft.OData.ModelBuilder
@@ -41,5 +42,20 @@ namespace Microsoft.OData.ModelBuilder
             : base(modelBuilder, entityType, name)
         {
         }
+
+        /// <summary>
+        /// Restrictions on insert operations.
+        /// </summary>
+        public InsertRestrictionsType InsertRestrictions { get; set; }
+
+        /// <summary>
+        /// Restrictions on update operations.
+        /// </summary>
+        public UpdateRestrictionsType UpdateRestrictions { get; set; }
+
+        /// <summary>
+        /// Restrictions on delete operations.
+        /// </summary>
+        public DeleteRestrictionsType DeleteRestrictions { get; set; }
     }
 }

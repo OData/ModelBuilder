@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,6 +123,11 @@ namespace Microsoft.OData.ModelBuilder
                 }
             }
         }
+
+        /// <summary>
+        /// Restrictions for function or action operation.
+        /// </summary>
+        public OperationRestrictionsType OperationRestrictions { get; set; }
 
         /// <summary>
         /// Can the operation be bound to a URL representing the BindingParameter.

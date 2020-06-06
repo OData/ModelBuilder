@@ -8,70 +8,205 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
     /// </summary>
     internal static class Constants
     {
-        /// <summary>Org.OData.Capabilities.V1.CountRestrictions</summary>
-        public const string CountRestrictions = "Org.OData.Capabilities.V1.CountRestrictions";
+        internal static class CountRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.CountRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.CountRestrictions";
 
-        /// <summary>Property Countable of Org.OData.Capabilities.V1.CountRestrictions</summary>
-        public const string CountRestrictionsCountable = "Countable";
+            /// <summary>Property Countable of Org.OData.Capabilities.V1.CountRestrictions</summary>
+            public const string Countable = "Countable";
 
-        /// <summary>Property NonCountableProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
-        public const string CountRestrictionsNonCountableProperties = "NonCountableProperties";
+            /// <summary>Property NonCountableProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
+            public const string NonCountableProperties = "NonCountableProperties";
 
-        /// <summary>Property NonCountableNavigationProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
-        public const string CountRestrictionsNonCountableNavigationProperties = "NonCountableNavigationProperties";
+            /// <summary>Property NonCountableNavigationProperties of Org.OData.Capabilities.V1.CountRestrictions</summary>
+            public const string NonCountableNavigationProperties = "NonCountableNavigationProperties";
+        }
 
-        /// <summary>Org.OData.Capabilities.V1.NavigationRestrictions</summary>
-        public const string NavigationRestrictions = "Org.OData.Capabilities.V1.NavigationRestrictions";
+        internal static class NavigationRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.NavigationRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.NavigationRestrictions";
 
-        /// <summary>Property Navigability of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
-        public const string NavigationRestrictionsNavigability = "Navigability";
+            /// <summary>Property Navigability of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
+            public const string Navigability = "Navigability";
 
-        /// <summary>Property RestrictedProperties of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
-        public const string NavigationRestrictionsRestrictedProperties = "RestrictedProperties";
+            /// <summary>Property RestrictedProperties of Org.OData.Capabilities.V1.NavigationRestrictions</summary>
+            public const string RestrictedProperties = "RestrictedProperties";
+        }
 
-        /// <summary>Property NavigationProperty of Org.OData.Capabilities.V1.NavigationPropertyRestriction</summary>
-        public const string NavigationPropertyRestrictionNavigationProperty = "NavigationProperty";
+        internal static class NavigationPropertyRestriction
+        {
+            /// <summary>Property NavigationProperty of Org.OData.Capabilities.V1.NavigationPropertyRestriction</summary>
+            public const string NavigationProperty = "NavigationProperty";
+        }
 
-        /// <summary>Org.OData.Capabilities.V1.NavigationType</summary>
-        public const string NavigationType = "Org.OData.Capabilities.V1.NavigationType";
+        internal static class NavigationType
+        {
+            /// <summary>Org.OData.Capabilities.V1.NavigationType</summary>
+            public const string EnumType = "Org.OData.Capabilities.V1.NavigationType";
+        }
 
-        /// <summary>Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string FilterRestrictions = "Org.OData.Capabilities.V1.FilterRestrictions";
+        internal static class FilterRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.FilterRestrictions";
 
-        /// <summary>Property Filterable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string FilterRestrictionsFilterable = "Filterable";
+            /// <summary>Property Filterable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string Filterable = "Filterable";
 
-        /// <summary>Property RequiresFilter of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string FilterRestrictionsRequiresFilter = "RequiresFilter";
+            /// <summary>Property RequiresFilter of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string RequiresFilter = "RequiresFilter";
 
-        /// <summary>Property RequiredProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string FilterRestrictionsRequiredProperties = "RequiredProperties";
+            /// <summary>Property RequiredProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string RequiredProperties = "RequiredProperties";
 
-        /// <summary>Property NonFilterableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string FilterRestrictionsNonFilterableProperties = "NonFilterableProperties";
+            /// <summary>Property NonFilterableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string NonFilterableProperties = "NonFilterableProperties";
+        }
 
-        /// <summary>Org.OData.Capabilities.V1.SortRestrictions</summary>
-        public const string SortRestrictions = "Org.OData.Capabilities.V1.SortRestrictions";
+        internal static class SortRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.SortRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.SortRestrictions";
 
-        /// <summary>Property Sortable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string SortRestrictionsSortable = "Sortable";
+            /// <summary>Property Sortable of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string Sortable = "Sortable";
 
-        /// <summary>Property AscendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string SortRestrictionsAscendingOnlyProperties = "AscendingOnlyProperties";
+            /// <summary>Property AscendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string AscendingOnlyProperties = "AscendingOnlyProperties";
 
-        /// <summary>Property DescendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string SortRestrictionsDescendingOnlyProperties = "DescendingOnlyProperties";
+            /// <summary>Property DescendingOnlyProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string DescendingOnlyProperties = "DescendingOnlyProperties";
 
-        /// <summary>Property NonSortableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
-        public const string SortRestrictionsNonSortableProperties = "NonSortableProperties";
+            /// <summary>Property NonSortableProperties of Org.OData.Capabilities.V1.FilterRestrictions</summary>
+            public const string NonSortableProperties = "NonSortableProperties";
+        }
 
-        /// <summary>Org.OData.Capabilities.V1.ExpandRestrictions</summary>
-        public const string ExpandRestrictions = "Org.OData.Capabilities.V1.ExpandRestrictions";
+        internal static class ExpandRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.ExpandRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.ExpandRestrictions";
 
-        /// <summary>Property Expandable of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
-        public const string ExpandRestrictionsExpandable = "Expandable";
+            /// <summary>Property Expandable of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
+            public const string Expandable = "Expandable";
 
-        /// <summary>Property NonExpandableProperties of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
-        public const string ExpandRestrictionsNonExpandableProperties = "NonExpandableProperties";
+            /// <summary>Property NonExpandableProperties of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
+            public const string NonExpandableProperties = "NonExpandableProperties";
+        }
+
+        internal static class InsertRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.InsertRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.InsertRestrictions";
+
+            /// <summary>Property Insertable of Org.OData.Capabilities.V1.InsertRestrictions</summary>
+            public const string Insertable = "Insertable";
+
+            /// <summary>Property Permissions of Org.OData.Capabilities.V1.InsertRestrictions.</summary>
+            public const string Permissions = "Permissions";
+
+            /// <summary>Property Description of Org.OData.Capabilities.V1.InsertRestrictions.</summary>
+            public const string Description = "Description";
+
+            /// <summary>Property LongDescription of Org.OData.Capabilities.V1.InsertRestrictions.</summary>
+            public const string LongDescription = "LongDescription";
+        }
+
+        internal static class UpdateRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.UpdateRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.UpdateRestrictions";
+
+            /// <summary>Property Updatable of Org.OData.Capabilities.V1.UpdateRestrictions</summary>
+            public const string Updatable = "Updatable";
+
+            /// <summary>Property Upsertable of Org.OData.Capabilities.V1.UpdateRestrictions</summary>
+            public const string Upsertable = "Upsertable";
+
+            /// <summary>Property DeltaUpdateSupported of Org.OData.Capabilities.V1.UpdateRestrictions</summary>
+            public const string DeltaUpdateSupported = "DeltaUpdateSupported";
+
+            /// <summary>Property Permissions of Org.OData.Capabilities.V1.UpdateRestrictions.</summary>
+            public const string Permissions = "Permissions";
+
+            /// <summary>Property Description of Org.OData.Capabilities.V1.UpdateRestrictions.</summary>
+            public const string Description = "Description";
+
+            /// <summary>Property LongDescription of Org.OData.Capabilities.V1.UpdateRestrictions.</summary>
+            public const string LongDescription = "LongDescription";
+        }
+
+        internal static class DeleteRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.DeleteRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.DeleteRestrictions";
+
+            /// <summary>Property Deletable of Org.OData.Capabilities.V1.DeleteRestrictions</summary>
+            public const string Deletable = "Deletable";
+
+            /// <summary>Property Permissions of Org.OData.Capabilities.V1.DeleteRestrictions.</summary>
+            public const string Permissions = "Permissions";
+
+            /// <summary>Property Description of Org.OData.Capabilities.V1.DeleteRestrictions.</summary>
+            public const string Description = "Description";
+
+            /// <summary>Property LongDescription of Org.OData.Capabilities.V1.DeleteRestrictions.</summary>
+            public const string LongDescription = "LongDescription";
+        }
+
+        internal static class ReadRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.ReadRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.ReadRestrictions";
+
+            /// <summary>Property ReadByKeyRestrictions of Org.OData.Capabilities.V1.ReadRestrictions.</summary>
+            public const string ReadByKeyRestrictions = "ReadByKeyRestrictions";
+        }
+
+        internal static class ReadRestrictionsBase
+        {
+            /// <summary>Property Readable of Org.OData.Capabilities.V1.ReadRestrictionsBase</summary>
+            public const string Readable = "Readable";
+
+            /// <summary>Property Permissions of Org.OData.Capabilities.V1.ReadRestrictionsBase.</summary>
+            public const string Permissions = "Permissions";
+
+            /// <summary>Property Description of Org.OData.Capabilities.V1.ReadRestrictionsBase.</summary>
+            public const string Description = "Description";
+
+            /// <summary>Property LongDescription of Org.OData.Capabilities.V1.ReadRestrictionsBase.</summary>
+            public const string LongDescription = "LongDescription";
+        }
+
+        internal static class OperationRestrictions
+        {
+            /// <summary>Org.OData.Capabilities.V1.OperationRestrictions</summary>
+            public const string Term = "Org.OData.Capabilities.V1.OperationRestrictions";
+
+            /// <summary>Property FilterSegmentSupported of Org.OData.Capabilities.V1.InsertRestrictions.</summary>
+            public const string FilterSegmentSupported = "FilterSegmentSupported";
+
+            /// <summary>Property Permissions of Org.OData.Capabilities.V1.InsertRestrictions.</summary>
+            public const string Permissions = "Permissions";
+        }
+
+        internal static class PermissionType
+        {
+            /// <summary>Property SchemeName of Org.OData.Capabilities.V1.PermissionType.</summary>
+            public const string SchemeName = "SchemeName";
+
+            /// <summary>Property Scopes of Org.OData.Capabilities.V1.PermissionType.</summary>
+            public const string Scopes = "Scopes";
+        }
+
+        internal static class ScopeType
+        {
+            /// <summary>Property Scope of Org.OData.Capabilities.V1.ScopeType.</summary>
+            public const string Scope = "Scope";
+
+            /// <summary>Property RestrictedProperties of Org.OData.Capabilities.V1.ScopeType.</summary>
+            public const string RestrictedProperties = "RestrictedProperties";
+        }
     }
 }
