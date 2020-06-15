@@ -6,7 +6,7 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
     /// <summary>
     /// Enumerates the navigation type can apply on navigation restrictions.
     /// </summary>
-    internal enum NavigationType
+    internal enum CapabilitiesNavigationType
     {
         /// <summary>
         /// Navigation properties can be recursively navigated.

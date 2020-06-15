@@ -72,8 +72,8 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies
         /// <param name="navigability">This entity set supports navigability.</param>
         /// <param name="restrictedProperties">These properties have navigation restrictions on.</param>
         public static void SetNavigationRestrictionsAnnotation(this EdmModel model, IEdmEntitySet target,
-            NavigationType navigability,
-            IEnumerable<Tuple<IEdmNavigationProperty, NavigationType>> restrictedProperties)
+            CapabilitiesNavigationType navigability,
+            IEnumerable<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>> restrictedProperties)
         {
             if (model == null)
             {
@@ -91,7 +91,7 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies
                 return;
             }
 
-            restrictedProperties = restrictedProperties ?? Array.Empty<Tuple<IEdmNavigationProperty, NavigationType>>();
+            restrictedProperties = restrictedProperties ?? Array.Empty<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>>();
 
             string type = new EdmEnumTypeReference(navigationType, false).ToStringLiteral((long)navigability);
 

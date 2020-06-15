@@ -719,8 +719,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
             IEnumerable<PropertyConfiguration> notNavigableProperties = entityTypeConfig.Properties.Where(property => property.NotNavigable);
 
-            IList<Tuple<IEdmNavigationProperty, NavigationType>> properties =
-                new List<Tuple<IEdmNavigationProperty, NavigationType>>();
+            IList<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>> properties =
+                new List<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>>();
             foreach (PropertyConfiguration property in notNavigableProperties)
             {
                 IEdmProperty value;
@@ -728,15 +728,15 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 {
                     if (value != null && value.PropertyKind == EdmPropertyKind.Navigation)
                     {
-                        properties.Add(new Tuple<IEdmNavigationProperty, NavigationType>(
-                            (IEdmNavigationProperty)value, NavigationType.Recursive));
+                        properties.Add(new Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>(
+                            (IEdmNavigationProperty)value, CapabilitiesNavigationType.Recursive));
                     }
                 }
             }
 
             if (properties.Any())
             {
-                model.SetNavigationRestrictionsAnnotation(target, NavigationType.Recursive, properties);
+                model.SetNavigationRestrictionsAnnotation(target, CapabilitiesNavigationType.Recursive, properties);
             }
         }
 
