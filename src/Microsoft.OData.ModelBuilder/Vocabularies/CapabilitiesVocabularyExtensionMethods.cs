@@ -249,6 +249,20 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies
             model.SetVocabularyAnnotation(target, properties, Constants.ExpandRestrictions);
         }
 
+        public static void SetPermissionsRestrictionsAnnotations(this EdmModel model, EdmNavigationSource target, NavigationSourceConfiguration configuration)
+        {
+            _ = model ?? throw Error.ArgumentNull(nameof(model));
+            if (target == null || configuration == null)
+            {
+                return;
+            }
+
+            if (target is EdmEntitySet entitySet && configuration is EntitySetConfiguration entitySetConfiguration)
+            {
+                entitySetConfiguration.DeleteRestrictions?.SetVocabularyAnnotations(model, entitySet);
+            }
+        }
+
         private static void SetVocabularyAnnotation(this EdmModel model, IEdmVocabularyAnnotatable target,
             IList<IEdmPropertyConstructor> properties, string qualifiedName)
         {

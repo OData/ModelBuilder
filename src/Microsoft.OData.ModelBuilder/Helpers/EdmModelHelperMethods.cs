@@ -657,6 +657,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
             foreach (NavigationSourceAndAnnotations source in navigationSources)
             {
+                model.SetPermissionsRestrictionsAnnotations(source.NavigationSource, source.Configuration);
                 IEdmEntitySet entitySet = source.NavigationSource as IEdmEntitySet;
                 if (entitySet == null)
                 {

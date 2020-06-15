@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Vocabularies.Capabilities;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -25,6 +26,16 @@ namespace Microsoft.OData.ModelBuilder
         internal EntitySetConfiguration EntitySet
         {
             get { return (EntitySetConfiguration)Configuration; }
+        }
+
+        internal DeleteRestrictionsBuilder HasDeleteRestrictions()
+        {
+            if (EntitySet.DeleteRestrictions == null)
+            {
+                EntitySet.DeleteRestrictions = new DeleteRestrictionsBuilder();
+            }
+
+            return EntitySet.DeleteRestrictions;
         }
     }
 }

@@ -1,14 +1,17 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.OData.Edm.Vocabularies;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
 {
     /// <summary>
     /// Restrictions on delete operations
     /// </summary>
-    public class DeleteRestrictionsType
+    public class DeleteRestrictionsType : IRecord
     {
         /// <summary>
         /// Initialize new <see cref="DeleteRestrictionsType"/>
@@ -37,5 +40,31 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
         /// A lengthy description of the request.
         /// </summary>
         public string LongDescription { get; set; }
+
+        /// <inheritdoc/>
+        public EdmRecordExpression ToEdmRecordExpression()
+        {
+            if (!Deletable.HasValue)
+            {
+                return null;
+            }
+
+            var properties = new List<IEdmPropertyConstructor>();
+            properties.Add(new EdmPropertyConstructor(nameof(Deletable), new EdmBooleanConstant(Deletable.Value)));
+
+            if (!String.IsNullOrWhiteSpace(Description))
+            {
+                properties.Add(new EdmPropertyConstructor(nameof(Description), new EdmStringConstant(Description)));
+            }
+
+            if (!String.IsNullOrWhiteSpace(LongDescription))
+            {
+                properties.Add(new EdmPropertyConstructor(nameof(LongDescription), new EdmStringConstant(LongDescription)));
+            }
+
+            properties.Add(new EdmPropertyConstructor(nameof(Permissions), new EdmCollectionExpression(Permissions.Select(p => p.ToEdmRecordExpression()))));
+
+            return new EdmRecordExpression(properties);
+        }
     }
 }
