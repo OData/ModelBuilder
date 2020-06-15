@@ -6,7 +6,7 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
     /// <summary>
     /// Constant values for Capabilities Vocabulary
     /// </summary>
-    internal static class Constants
+    internal static class CapabilitiesVocabularyConstants
     {
         /// <summary>Org.OData.Capabilities.V1.CountRestrictions</summary>
         public const string CountRestrictions = "Org.OData.Capabilities.V1.CountRestrictions";
