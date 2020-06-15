@@ -19,12 +19,12 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
         }
 
         /// <summary>
-        /// Entities can be inserted.
+        /// Entities can be retrieved.
         /// </summary>
         public bool? Readable { get; set; }
 
         /// <summary>
-        /// Required permissions. One of the specified sets of scopes is required to perform the insert.
+        /// Required permissions. One of the specified sets of scopes is required to read.
         /// </summary>
         public List<PermissionType> Permissions { get; }
 

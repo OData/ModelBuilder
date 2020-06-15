@@ -4,7 +4,7 @@
 namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
 {
     /// <summary>
-    /// Restrictions for retrieving a collection of entities, retrieving a singleton instance.
+    /// Restrictions for retrieving an entity by key, retrieving a singleton instance.
     /// </summary>
     public class ReadByKeyRestrictionsType : ReadRestrictionsBase
     {

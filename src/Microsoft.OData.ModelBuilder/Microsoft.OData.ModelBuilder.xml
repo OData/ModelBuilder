@@ -5086,6 +5086,66 @@
         <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.Constants.ExpandRestrictionsNonExpandableProperties">
             <summary>Property NonExpandableProperties of Org.OData.Capabilities.V1.ExpandRestrictions</summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType">
+            <summary>
+            Restrictions on delete operations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType.#ctor">
+            <summary>
+            Initialize new <see cref="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType.Deletable">
+            <summary>
+            Entities can be deleted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType.Permissions">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to perform the delete.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType.Description">
+            <summary>
+            A brief description of the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType.LongDescription">
+            <summary>
+            A lengthy description of the request.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType">
+            <summary>
+            Restrictions on insert operations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType.#ctor">
+            <summary>
+            Initialize new <see cref="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType.Insertable">
+            <summary>
+            Entities can be inserted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType.Permissions">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to perform the insert.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType.Description">
+            <summary>
+            A brief description of the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType.LongDescription">
+            <summary>
+            A lengthy description of the request.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType">
             <summary>
             Enumerates the navigation type can apply on navigation restrictions.
@@ -5104,6 +5164,144 @@
         <member name="F:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.NavigationType.None">
             <summary>
             Navigation properties are not navigable.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.OperationRestrictionsType">
+            <summary>
+            Restrictions for function or action operation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.OperationRestrictionsType.#ctor">
+            <summary>
+            Initialize new <see cref="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.OperationRestrictionsType"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.OperationRestrictionsType.Permissions">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to invoke an action or function.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType">
+            <summary>
+            Specified sets of scopes required to perform an action.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType.#ctor">
+            <summary>
+            Initializes new <see cref="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType.SchemeName">
+            <summary>
+            Authorization flow scheme name
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType.Scopes">
+            <summary>
+            List of scopes that can provide access to the resource
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadByKeyRestrictionsType">
+            <summary>
+            Restrictions for retrieving an entity by key, retrieving a singleton instance.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase">
+            <summary>
+            Restrictions for retrieving a collection of entities, retrieving a singleton instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase.#ctor">
+            <summary>
+            Initialize new <see cref="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase.Readable">
+            <summary>
+            Entities can be retrieved.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase.Permissions">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to read.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase.Description">
+            <summary>
+            A brief description of the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase.LongDescription">
+            <summary>
+            A lengthy description of the request.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsType">
+            <summary>
+            Restrictions for retrieving a collection of entities, retrieving a singleton instance.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsType.ReadByKeyRestrictions">
+            <summary>
+            Restrictions for retrieving an entity by key.
+            Only valid when applied to a collection.
+            If a property of ReadByKeyRestrictions is not specified, the corresponding property value of ReadRestrictions applies.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ScopeType">
+            <summary>
+            A scopes that can provide access to a resource.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ScopeType.Scope">
+            <summary>
+            Name of the scope.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ScopeType.RestrictedProperties">
+            <summary>
+            Comma-separated string value of all properties that will be included or excluded when using the scope.<br/>
+            Possible string value identifiers when specifying properties are<br/>
+            *, PropertyName, -PropertyName.<br/>
+            * denotes all properties are accessible.<br/>
+            -PropertyName excludes that specific property.<br/>
+            PropertyName explicitly provides access to the specific property.<br/>
+            The absence of RestrictedProperties denotes all properties are accessible using that scope.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType">
+            <summary>
+            Restrictions on update operations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType.#ctor">
+            <summary>
+            Initialize new <see cref="T:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType.Updatable">
+            <summary>
+            Entities can be updated.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType.Upsertable">
+            <summary>
+            Entities can be upserted.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType.Permissions">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to perform the update.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType.Description">
+            <summary>
+            A brief description of the request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType.LongDescription">
+            <summary>
+            A lengthy description of the request.
             </summary>
         </member>
     </members>

@@ -19,12 +19,12 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies.Capabilities
         }
 
         /// <summary>
-        /// Entities can be inserted.
+        /// Entities can be deleted.
         /// </summary>
         public bool? Deletable { get; set; }
 
         /// <summary>
-        /// Required permissions. One of the specified sets of scopes is required to perform the insert.
+        /// Required permissions. One of the specified sets of scopes is required to perform the delete.
         /// </summary>
         public List<PermissionType> Permissions { get; }
 
