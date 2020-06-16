@@ -1219,6 +1219,11 @@
             Gets the name of this navigation source.
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration.VocabularyBuilders">
+            <summary>
+            Vocabulary builders to annotate this <see cref="T:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration"/>
+            </summary>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration.GetUrl">
             <summary>
             Gets the navigation source URL.
@@ -5105,6 +5110,867 @@
             <param name="target">The target entity set to set the inline annotation.</param>
             <param name="isExpandable">This entity set supports the expand expressions.</param>
             <param name="nonExpandableProperties">These properties cannot be used in $expand expressions.</param>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsBuilder">
+            <summary>
+            List of acceptable compression methods for ($batch) requests, e.g. gzip
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedBuilder">
+            <summary>
+            Supports annotation values within system query options
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedBuilder">
+            <summary>
+            Service supports the asynchronous request preference
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedBuilder">
+            <summary>
+            Service supports the continue on error preference. Supports $batch requests. Services that apply the BatchContinueOnErrorSupported term should also specify the ContinueOnErrorSupported property from the BatchSupport term.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportBuilder">
+            <summary>
+            Batch Support for the service
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedBuilder">
+            <summary>
+            Supports $batch requests. Services that apply the BatchSupported term should also apply the more comprehensive BatchSupport term.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedBuilder">
+            <summary>
+            Supports callbacks for the specified protocols
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingBuilder">
+            <summary>
+            Change tracking capabilities of this service or entity set
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsBuilder">
+            <summary>
+            Describes restrictions on operations applied to collection-valued structural properties
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedBuilder">
+            <summary>
+            Supports $compute
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelBuilder">
+            <summary>
+            The conformance level achieved by this service
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsBuilder">
+            <summary>
+            Restrictions on /$count path suffix and $count=true system query option
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedBuilder">
+            <summary>
+            Supports cross joins for the entity sets in this container
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersBuilder">
+            <summary>
+            Custom headers that are supported/required for the annotated resource
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsBuilder">
+            <summary>
+            Custom query options that are supported/required for the annotated resource
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportBuilder">
+            <summary>
+            Deep Insert Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportBuilder">
+            <summary>
+            Deep Update Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsBuilder">
+            <summary>
+            Restrictions on delete operations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsBuilder">
+            <summary>
+            Restrictions on expand expressions
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsBuilder">
+            <summary>
+            List of functions and operators supported in filter expressions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsBuilder">
+            <summary>
+            Restrictions on filter expressions
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyBuilder">
+            <summary>
+            Supports key values according to OData URL conventions
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsBuilder">
+            <summary>
+            Restrictions on insert operations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedBuilder">
+            <summary>
+            Supported odata.isolation levels
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedBuilder">
+            <summary>
+            Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedBuilder">
+            <summary>
+            Stream property supports update of its media edit URL and/or media read URL
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsBuilder">
+            <summary>
+            Support for query options with modification requests (insert, update, action invocation)
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsBuilder">
+            <summary>
+            Restrictions on navigating properties according to OData URL conventions
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsBuilder">
+            <summary>
+            Restrictions for function or action operation
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedBuilder">
+            <summary>
+            Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsBuilder">
+            <summary>
+            Restrictions for retrieving a collection of entities, retrieving a singleton instance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsBuilder">
+            <summary>
+            Restrictions on search expressions
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportBuilder">
+            <summary>
+            Support for $select and nested query options within $select
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedBuilder">
+            <summary>
+            Supports $skip
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsBuilder">
+            <summary>
+            Restrictions on orderby expressions
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsBuilder">
+            <summary>
+            Media types of supported formats, including format parameters
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsBuilder">
+            <summary>
+            Media types of supported formats for $metadata, including format parameters
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedBuilder">
+            <summary>
+            Supports $top
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsBuilder">
+            <summary>
+            Restrictions on update operations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsBuilder.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsBuilder"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.IRecord">
+            <summary>
+            Interface for clr types that can be converted into <see cref="T:Microsoft.OData.Edm.Vocabularies.EdmRecordExpression" />
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.IRecord.ToEdmExpression">
+            <summary>
+            Convert a clr type to an <see cref="T:Microsoft.OData.Edm.IEdmExpression" />
+            </summary>
+            <returns><see cref="T:Microsoft.OData.Edm.IEdmExpression" /></returns>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.VocabularyBuilder">
+            <summary>
+            Base vocabulary builder.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilder.#ctor(System.String)">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyBuilder"/>
+            </summary>
+            <param name="termName">The name of the <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmTerm"/> being built.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilder.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilder.SetVocabularyAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable)">
+            <summary>
+            Sets the vocabulary annotation on the model's target.
+            </summary>
+            <param name="model">The <see cref="T:Microsoft.OData.Edm.IEdmModel"/> having reference vocabulary models.</param>
+            <param name="target">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> to set annotations on.</param>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions">
+            <summary>
+            Extension methods for vocabulary builders configurations
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasConformanceLevel``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasSupportedFormats``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasSupportedMetadataFormats``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasAcceptableEncodings``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasAsynchronousRequestsSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasBatchContinueOnErrorSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasIsolationSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasCrossJoinSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasCallbackSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasChangeTracking``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasCountRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasNavigationRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasIndexableByKey``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasTopSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasSkipSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasComputeSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasSelectSupport``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasBatchSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasBatchSupport``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasFilterFunctions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasFilterRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasSortRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasExpandRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasSearchRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasKeyAsSegmentSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasQuerySegmentSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasInsertRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasDeepInsertSupport``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasUpdateRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasDeepUpdateSupport``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasDeleteRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasCollectionPropertyRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasOperationRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasAnnotationValuesInQuerySupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasModificationQueryOptions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasReadRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasCustomHeaders``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasCustomQueryOptions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.HasMediaLocationUpdateSupported``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedBuilder"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedBuilder"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyBuilderExtensions.SetVocabularyBuilderAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.EdmNavigationSource,Microsoft.OData.ModelBuilder.NavigationSourceConfiguration)">
+            <summary>
+            Apply all builders as configured
+            </summary>
         </member>
     </members>
 </doc>
