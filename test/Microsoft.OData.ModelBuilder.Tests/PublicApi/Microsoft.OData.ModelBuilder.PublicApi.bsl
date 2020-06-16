@@ -1,4 +1,4 @@
-﻿[
+[
 FlagsAttribute(),
 ]
 public enum Microsoft.OData.ModelBuilder.NameResolverOptions : int {
@@ -441,6 +441,8 @@ public class Microsoft.OData.ModelBuilder.EntitySetConfiguration : Microsoft.ODa
 	public EntitySetConfiguration ()
 	public EntitySetConfiguration (Microsoft.OData.ModelBuilder.ODataModelBuilder modelBuilder, Microsoft.OData.ModelBuilder.EntityTypeConfiguration entityType, string name)
 	public EntitySetConfiguration (Microsoft.OData.ModelBuilder.ODataModelBuilder modelBuilder, System.Type entityClrType, string name)
+
+	Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsBuilder DeleteRestrictions  { public get; public set; }
 }
 
 public class Microsoft.OData.ModelBuilder.EntitySetConfiguration`1 : NavigationSourceConfiguration`1 {
@@ -917,6 +919,19 @@ public class Microsoft.OData.ModelBuilder.Conventions.ODataModelConventionSet {
 	public ODataModelConventionSet ()
 }
 
+public interface Microsoft.OData.ModelBuilder.Vocabularies.IRecord {
+	Microsoft.OData.Edm.Vocabularies.EdmRecordExpression ToEdmRecordExpression ()
+}
+
+public abstract class Microsoft.OData.ModelBuilder.Vocabularies.VocabularyBuilder`1 {
+	public VocabularyBuilder`1 (string termName, T data)
+
+	T Data  { protected get; }
+	string TermName  { protected get; }
+
+	public virtual void SetVocabularyAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable target)
+}
+
 public abstract class Microsoft.OData.ModelBuilder.Conventions.Attributes.AttributeConvention : IODataModelConvention {
 	protected AttributeConvention (System.Func`2[[System.Attribute],[System.Boolean]] attributeFilter, bool allowMultiple)
 
@@ -932,5 +947,87 @@ public abstract class Microsoft.OData.ModelBuilder.Conventions.Attributes.Proper
 
 public abstract class Microsoft.OData.ModelBuilder.Conventions.Attributes.TypeAttributeConvention`1 : Microsoft.OData.ModelBuilder.Conventions.Attributes.AttributeConvention, IODataModelConvention {
 	public TypeAttributeConvention`1 ()
+}
+
+public abstract class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase {
+	public ReadRestrictionsBase ()
+
+	string Description  { public get; public set; }
+	string LongDescription  { public get; public set; }
+	System.Collections.Generic.List`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType]] Permissions  { public get; }
+	System.Nullable`1[[System.Boolean]] Readable  { public get; public set; }
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsBuilder : Microsoft.OData.ModelBuilder.Vocabularies.VocabularyBuilder`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType]] {
+	public DeleteRestrictionsBuilder ()
+
+	public Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsBuilder HasDescription (string description)
+	public Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsBuilder HasLongDescription (string longDescription)
+	public Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsBuilder HasPermissions (System.Collections.Generic.IEnumerable`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType]] permissions)
+	public Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsBuilder IsDeletable (bool deletable)
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.DeleteRestrictionsType : IRecord {
+	public DeleteRestrictionsType ()
+
+	System.Nullable`1[[System.Boolean]] Deletable  { public get; public set; }
+	string Description  { public get; public set; }
+	string LongDescription  { public get; public set; }
+	System.Collections.Generic.List`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType]] Permissions  { public get; }
+
+	public virtual Microsoft.OData.Edm.Vocabularies.EdmRecordExpression ToEdmRecordExpression ()
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.InsertRestrictionsType {
+	public InsertRestrictionsType ()
+
+	string Description  { public get; public set; }
+	System.Nullable`1[[System.Boolean]] Insertable  { public get; public set; }
+	string LongDescription  { public get; public set; }
+	System.Collections.Generic.List`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType]] Permissions  { public get; }
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.OperationRestrictionsType {
+	public OperationRestrictionsType ()
+
+	System.Collections.Generic.List`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType]] Permissions  { public get; }
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType : IRecord {
+	public PermissionType ()
+
+	string SchemeName  { public get; public set; }
+	System.Collections.Generic.List`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ScopeType]] Scopes  { public get; }
+
+	public virtual Microsoft.OData.Edm.Vocabularies.EdmRecordExpression ToEdmRecordExpression ()
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadByKeyRestrictionsType : Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase {
+	public ReadByKeyRestrictionsType ()
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsType : Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadRestrictionsBase {
+	public ReadRestrictionsType ()
+
+	Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ReadByKeyRestrictionsType ReadByKeyRestrictions  { public get; public set; }
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.ScopeType : IRecord {
+	public ScopeType ()
+
+	string RestrictedProperties  { public get; public set; }
+	string Scope  { public get; public set; }
+
+	public virtual Microsoft.OData.Edm.Vocabularies.EdmRecordExpression ToEdmRecordExpression ()
+}
+
+public class Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.UpdateRestrictionsType {
+	public UpdateRestrictionsType ()
+
+	string Description  { public get; public set; }
+	string LongDescription  { public get; public set; }
+	System.Collections.Generic.List`1[[Microsoft.OData.ModelBuilder.Vocabularies.Capabilities.PermissionType]] Permissions  { public get; }
+	System.Nullable`1[[System.Boolean]] Updatable  { public get; public set; }
+	System.Nullable`1[[System.Boolean]] Upsertable  { public get; public set; }
 }
 
