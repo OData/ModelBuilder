@@ -17,10 +17,10 @@ namespace Microsoft.OData.ModelBuilder
     {
         private string _url;
         private readonly ODataModelBuilder _modelBuilder;
-
         private readonly
             Dictionary<NavigationPropertyConfiguration, Dictionary<string, NavigationPropertyBindingConfiguration>>
             _navigationPropertyBindings = new Dictionary<NavigationPropertyConfiguration, Dictionary<string, NavigationPropertyBindingConfiguration>>();
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationSourceConfiguration"/> class.
@@ -95,6 +95,11 @@ namespace Microsoft.OData.ModelBuilder
         /// Gets the name of this navigation source.
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// Vocabulary builders to annotate this <see cref="NavigationSourceConfiguration"/>
+        /// </summary>
+        public Dictionary<Type, VocabularyBuilder> VocabularyBuilders { get; } = new Dictionary<Type, VocabularyBuilder>();
 
         /// <summary>
         /// Gets the navigation source URL.
