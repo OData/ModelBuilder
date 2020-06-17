@@ -15,6 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
 	/// </summary>
 	public partial class PrimitiveExampleValueConfiguration : IRecord
 	{
+		private string _description;
 		private object _value;
 
         /// <summary>
@@ -22,6 +23,17 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// </summary>
 		public PrimitiveExampleValueConfiguration()
 		{
+		}
+
+		/// <summary>
+		/// Description of the example value
+		/// </summary>
+		/// <param name="description">The value to set</param>
+		/// <returns><see cref="PrimitiveExampleValueConfiguration"/></returns>
+		public PrimitiveExampleValueConfiguration HasDescription(string description)
+		{
+			_description = description;
+			return this;
 		}
 
 		/// <summary>
@@ -40,9 +52,14 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
 		{
 			var properties = new List<IEdmPropertyConstructor>();
 
-			if (_value.HasValue)
+			if (string.IsNullOrEmpty(_description))
 			{
-				properties.Add(new EdmPropertyConstructor("Value", new EdmPrimitiveTypeConstant(_value.Value)));
+				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
+			}
+
+			if (_value != null)
+			{
+				// properties.Add(new EdmPropertyConstructor("Value", new EdmPrimitiveConstant(_value.Value)));
 			}
 
 			if (!properties.Any())

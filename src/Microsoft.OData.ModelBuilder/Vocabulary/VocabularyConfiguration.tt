@@ -395,7 +395,7 @@ using Microsoft.OData.Edm.Vocabularies;
 			if (allowRecurse)
 			{
 				var complexType = type as IEdmComplexType;
-				foreach (var property in complexType.DeclaredProperties)
+				foreach (var property in complexType.Properties())
 				{
 					ProcessPrivateProperties(property.Type.Definition, property.Name, @namespace, false);
 				}
@@ -452,7 +452,7 @@ using Microsoft.OData.Edm.Vocabularies;
 			if (allowRecurse)
 			{
 				var complexType = type as IEdmComplexType;
-				foreach (var property in complexType.DeclaredProperties)
+				foreach (var property in complexType.Properties())
 				{
 					description = _model.GetDescriptionAnnotation(property);
 					ProcessBuildMethods(property.Type.Definition, property.Name, returnType, description, @namespace, false);
@@ -483,6 +483,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		var clrType = GetClrType(actualType, false);
 		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
 		var camelName = CamelCase(name);
+		var fullTypeName = actualType.FullTypeName();
 
 		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
 		{
@@ -529,7 +530,7 @@ using Microsoft.OData.Edm.Vocabularies;
 			if (allowRecurse)
 			{
 				var complexType = type as IEdmComplexType;
-				foreach (var property in complexType.DeclaredProperties)
+				foreach (var property in complexType.Properties())
 				{
 					description = _model.GetDescriptionAnnotation(property);
 					ProcessEdmProperties(property.Type.Definition, property.Name, returnType, description, @namespace, false);
@@ -556,9 +557,19 @@ using Microsoft.OData.Edm.Vocabularies;
 
 <#+
 		}
-		else
+		else if (actualType.TypeKind == EdmTypeKind.Enum)
 		{
-			if (clrType == "string")
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmEnumValue(_<#= camelName #>.Value)));
+			}
+
+<#+			
+		}
+		else if (actualType.TypeKind == EdmTypeKind.Primitive)
+		{
+			if (fullTypeName == "Edm.String")
 			{
 #>
 			if (string.IsNullOrEmpty(_<#= camelName #>))
@@ -568,24 +579,39 @@ using Microsoft.OData.Edm.Vocabularies;
 
 <#+
 			}
-			else if (actualType.TypeKind == EdmTypeKind.Enum)
+			else if (fullTypeName == "Edm.PrimitiveType")
+			{
+#>
+			if (_<#= camelName #> != null)
+			{
+				// properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmPrimitiveConstant(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+			else if (fullTypeName == "Edm.Int32")
 			{
 #>
 			if (_<#= camelName #>.HasValue)
 			{
-				// properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmEnumValue(_<#= camelName #>.Value)));
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmIntegerConstant(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+			else if (fullTypeName == "Edm.Boolean")
+			{
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmBooleanConstant(_<#= camelName #>.Value)));
 			}
 
 <#+			
 			}
 			else
 			{
-				var fullTypeName = actualType.FullTypeName();
 				var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
-				if (fullTypeName == "Edm.Int32")
-				{
-					edmTypeConstant = "EdmIntegerConstant";
-				}
 #>
 			if (_<#= camelName #>.HasValue)
 			{
@@ -594,6 +620,17 @@ using Microsoft.OData.Edm.Vocabularies;
 
 <#+			
 			}
+		}
+		else
+		{
+			var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new <#= edmTypeConstant#>(_<#= camelName #>.Value)));
+			}
+
+<#+			
 		}
 	}
 	

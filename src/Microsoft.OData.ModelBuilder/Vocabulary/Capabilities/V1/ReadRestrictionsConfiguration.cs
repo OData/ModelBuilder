@@ -15,6 +15,12 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class ReadRestrictionsConfiguration : VocabularyConfiguration
 	{
+		private bool? _readable;
+		private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
+		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
+		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
+		private string _description;
+		private string _longDescription;
 		private ReadByKeyRestrictionsTypeConfiguration _readByKeyRestrictions;
 
         /// <summary>
@@ -23,6 +29,84 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		public ReadRestrictionsConfiguration()
 			: base("Org.OData.Capabilities.V1.ReadRestrictions")
 		{
+		}
+
+		/// <summary>
+		/// Entities can be retrieved
+		/// </summary>
+		/// <param name="readable">The value to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasReadable(bool readable)
+		{
+			_readable = readable;
+			return this;
+		}
+
+		/// <summary>
+		/// Required permissions. One of the specified sets of scopes is required to read.
+		/// </summary>
+		/// <param name="permissions">The value(s) to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
+		{
+			foreach (var item in permissions)
+			{
+				_ = _permissions.Add(item);
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Supported or required custom headers
+		/// </summary>
+		/// <param name="customHeaders">The value(s) to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		{
+			foreach (var item in customHeaders)
+			{
+				_ = _customHeaders.Add(item);
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Supported or required custom query options
+		/// </summary>
+		/// <param name="customQueryOptions">The value(s) to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		{
+			foreach (var item in customQueryOptions)
+			{
+				_ = _customQueryOptions.Add(item);
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// A brief description of the request
+		/// </summary>
+		/// <param name="description">The value to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasDescription(string description)
+		{
+			_description = description;
+			return this;
+		}
+
+		/// <summary>
+		/// A lengthy description of the request
+		/// </summary>
+		/// <param name="longDescription">The value to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasLongDescription(string longDescription)
+		{
+			_longDescription = longDescription;
+			return this;
 		}
 
 		/// <summary>
@@ -40,6 +124,48 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		public override IEdmExpression ToEdmExpression()
 		{
 			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_readable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Readable", new EdmBooleanConstant(_readable.Value)));
+			}
+
+			if (_permissions.Any())
+			{
+				var collection = _permissions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("Permissions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_customHeaders.Any())
+			{
+				var collection = _customHeaders.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("CustomHeaders", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_customQueryOptions.Any())
+			{
+				var collection = _customQueryOptions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("CustomQueryOptions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (string.IsNullOrEmpty(_description))
+			{
+				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
+			}
+
+			if (string.IsNullOrEmpty(_longDescription))
+			{
+				properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
+			}
 
 			if (_readByKeyRestrictions != null)
 			{
