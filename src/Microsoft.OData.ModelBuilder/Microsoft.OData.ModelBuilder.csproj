@@ -16,14 +16,6 @@
     <None Remove="Microsoft.OData.ModelBuilder.*.nuspec" />
     <None Remove="obj\**\Microsoft.OData.ModelBuilder.version.cs" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Vocabulary\VocabularyBuilder.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>VocabularyBuilder.tt</DependentUpon>
-    </None>
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
@@ -41,10 +33,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SRResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Vocabulary\VocabularyBuilder.cs">
+    <Compile Update="Vocabulary\VocabularyConfiguration.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>VocabularyBuilder.tt</DependentUpon>
+      <DependentUpon>VocabularyConfiguration.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -56,9 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Vocabulary\VocabularyBuilder.tt">
+    <None Update="Vocabulary\VocabularyConfiguration.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VocabularyBuilder.cs</LastGenOutput>
+      <LastGenOutput>VocabularyConfiguration.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

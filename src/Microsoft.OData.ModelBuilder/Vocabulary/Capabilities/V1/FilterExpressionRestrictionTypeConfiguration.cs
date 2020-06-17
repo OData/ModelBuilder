@@ -1,0 +1,57 @@
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed under the MIT License.  See License.txt in the project root for license information.
+// This is an auto generated file. Please run the template to modify it.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Vocabularies;
+
+namespace Microsoft.OData.ModelBuilder.Capabilities.V1
+{
+	/// <summary>
+	/// Summary
+/// 
+	/// </summary>
+	public partial class FilterExpressionRestrictionTypeConfiguration : IRecord
+	{
+		private EdmPropertyPathExpression _property;
+		private string _allowedExpressions;
+
+        /// <summary>
+        /// Creates a new instance of <see cref="FilterExpressionRestrictionTypeConfiguration"/>
+        /// </summary>
+		public FilterExpressionRestrictionTypeConfiguration()
+		{
+		}
+
+		/// <summary>
+		/// Path to the restricted property
+		/// </summary>
+		/// <param name="property">The value to set</param>
+		/// <returns><see cref="FilterExpressionRestrictionType"/></returns>
+		public FilterExpressionRestrictionType HasProperty(EdmPropertyPathExpression property)
+		{
+			_property = property;
+			return this;
+		}
+
+		/// <summary>
+		/// Allowed subset of expressions
+		/// </summary>
+		/// <param name="allowedExpressions">The value to set</param>
+		/// <returns><see cref="FilterExpressionRestrictionType"/></returns>
+		public FilterExpressionRestrictionType HasAllowedExpressions(string allowedExpressions)
+		{
+			_allowedExpressions = allowedExpressions;
+			return this;
+		}
+
+		/// <inheritdoc/>
+		public override IEdmExpression ToEdmExpression()
+		{
+			return null;
+		}
+	}
+}

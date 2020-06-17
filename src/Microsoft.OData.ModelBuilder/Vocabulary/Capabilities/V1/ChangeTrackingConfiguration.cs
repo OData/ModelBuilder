@@ -1,0 +1,77 @@
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed under the MIT License.  See License.txt in the project root for license information.
+// This is an auto generated file. Please run the template to modify it.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Vocabularies;
+
+namespace Microsoft.OData.ModelBuilder.Capabilities.V1
+{
+	/// <summary>
+	/// Change tracking capabilities of this service or entity set
+	/// </summary>
+	public partial class ChangeTrackingConfiguration : VocabularyConfiguration
+	{
+		private bool? _supported;
+		private readonly HashSet<EdmPropertyPathExpression> _filterableProperties = new HashSet<EdmPropertyPathExpression>();
+		private readonly HashSet<EdmNavigationPropertyPathExpression> _expandableProperties = new HashSet<EdmNavigationPropertyPathExpression>();
+
+        /// <summary>
+        /// Creates a new instance of <see cref="ChangeTrackingConfiguration"/>
+        /// </summary>
+		public ChangeTrackingConfiguration()
+			: base("Org.OData.Capabilities.V1.ChangeTracking")
+		{
+		}
+
+		/// <summary>
+		/// This entity set supports the odata.track-changes preference
+		/// </summary>
+		/// <param name="supported">The value to set</param>
+		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
+		public ChangeTrackingConfiguration HasSupported(bool supported)
+		{
+			_supported = supported;
+			return this;
+		}
+
+		/// <summary>
+		/// Change tracking supports filters on these properties
+		/// </summary>
+		/// <param name="filterableProperties">The value(s) to set</param>
+		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
+		public ChangeTrackingConfiguration AddFilterableProperties(params EdmPropertyPathExpression[] filterableProperties)
+		{
+			foreach (var item in filterableProperties)
+			{
+				_ = _filterableProperties.Add(item);
+			}
+
+			return this;
+		}
+
+		/// <summary>
+		/// Change tracking supports these properties expanded
+		/// </summary>
+		/// <param name="expandableProperties">The value(s) to set</param>
+		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
+		public ChangeTrackingConfiguration AddExpandableProperties(params EdmNavigationPropertyPathExpression[] expandableProperties)
+		{
+			foreach (var item in expandableProperties)
+			{
+				_ = _expandableProperties.Add(item);
+			}
+
+			return this;
+		}
+
+		/// <inheritdoc/>
+		public override IEdmExpression ToEdmExpression()
+		{
+			return null;
+		}
+	}
+}

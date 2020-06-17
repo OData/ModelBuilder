@@ -1,0 +1,121 @@
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed under the MIT License.  See License.txt in the project root for license information.
+// This is an auto generated file. Please run the template to modify it.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Vocabularies;
+
+namespace Microsoft.OData.ModelBuilder.Capabilities.V1
+{
+	/// <summary>
+	/// Batch Support for the service
+	/// </summary>
+	public partial class BatchSupportConfiguration : VocabularyConfiguration
+	{
+		private bool? _supported;
+		private bool? _continueOnErrorSupported;
+		private bool? _referencesInRequestBodiesSupported;
+		private bool? _referencesAcrossChangeSetsSupported;
+		private bool? _etagReferencesSupported;
+		private bool? _requestDependencyConditionsSupported;
+		private readonly HashSet<string> _supportedFormats = new HashSet<string>();
+
+        /// <summary>
+        /// Creates a new instance of <see cref="BatchSupportConfiguration"/>
+        /// </summary>
+		public BatchSupportConfiguration()
+			: base("Org.OData.Capabilities.V1.BatchSupport")
+		{
+		}
+
+		/// <summary>
+		/// Service supports requests to $batch
+		/// </summary>
+		/// <param name="supported">The value to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration HasSupported(bool supported)
+		{
+			_supported = supported;
+			return this;
+		}
+
+		/// <summary>
+		/// Service supports the continue on error preference
+		/// </summary>
+		/// <param name="continueOnErrorSupported">The value to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration HasContinueOnErrorSupported(bool continueOnErrorSupported)
+		{
+			_continueOnErrorSupported = continueOnErrorSupported;
+			return this;
+		}
+
+		/// <summary>
+		/// Service supports Content-ID referencing in request bodies
+		/// </summary>
+		/// <param name="referencesInRequestBodiesSupported">The value to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration HasReferencesInRequestBodiesSupported(bool referencesInRequestBodiesSupported)
+		{
+			_referencesInRequestBodiesSupported = referencesInRequestBodiesSupported;
+			return this;
+		}
+
+		/// <summary>
+		/// Service supports Content-ID referencing across change sets
+		/// </summary>
+		/// <param name="referencesAcrossChangeSetsSupported">The value to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration HasReferencesAcrossChangeSetsSupported(bool referencesAcrossChangeSetsSupported)
+		{
+			_referencesAcrossChangeSetsSupported = referencesAcrossChangeSetsSupported;
+			return this;
+		}
+
+		/// <summary>
+		/// Service supports referencing Etags from previous requests
+		/// </summary>
+		/// <param name="etagReferencesSupported">The value to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration HasEtagReferencesSupported(bool etagReferencesSupported)
+		{
+			_etagReferencesSupported = etagReferencesSupported;
+			return this;
+		}
+
+		/// <summary>
+		/// Service supports the `if` member in JSON batch requests
+		/// </summary>
+		/// <param name="requestDependencyConditionsSupported">The value to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration HasRequestDependencyConditionsSupported(bool requestDependencyConditionsSupported)
+		{
+			_requestDependencyConditionsSupported = requestDependencyConditionsSupported;
+			return this;
+		}
+
+		/// <summary>
+		/// Media types of supported formats for $batch
+		/// </summary>
+		/// <param name="supportedFormats">The value(s) to set</param>
+		/// <returns><see cref="BatchSupportConfiguration"/></returns>
+		public BatchSupportConfiguration AddSupportedFormats(params string[] supportedFormats)
+		{
+			foreach (var item in supportedFormats)
+			{
+				_ = _supportedFormats.Add(item);
+			}
+
+			return this;
+		}
+
+		/// <inheritdoc/>
+		public override IEdmExpression ToEdmExpression()
+		{
+			return null;
+		}
+	}
+}

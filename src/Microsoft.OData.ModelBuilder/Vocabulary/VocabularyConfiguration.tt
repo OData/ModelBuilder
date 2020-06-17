@@ -168,7 +168,7 @@ namespace Microsoft.OData.ModelBuilder
 <#+
 class Manager : GeneratedTextTransformation
 {
-	private readonly Dictionary<string, (string Namespace, string FilePath)> _namespaceMap = new Dictionary<string, (string, string)>();
+	private readonly Dictionary<string, (string Namespace, string FilePath, string ClrType)> _namespaceMap = new Dictionary<string, (string, string, string)>();
 	private readonly string _templateDirectory;
 	private readonly IEdmModel _model;
 	private readonly Dictionary<IEdmType, bool> _typesToGenerateMap = new Dictionary<IEdmType, bool>();
@@ -215,6 +215,7 @@ class Manager : GeneratedTextTransformation
 	{
 		var actualType = term.Type.Definition;
 		var description = _model.GetDescriptionAnnotation(term);
+		var clrType = GetClrType(term);
 		if (actualType.TypeKind == EdmTypeKind.Complex)
 		{
 			_typesToGenerateMap[actualType] = true;
@@ -227,21 +228,21 @@ namespace <#= GetNamespace(term) #>
 	/// <summary>
 	<#+ ProcessSummary(description, "	"); #>
 	/// </summary>
-	public partial class <#= term.Name #>Configuration : VocabularyConfiguration
+	public partial class <#= clrType #> : VocabularyConfiguration
 	{
 <#+
 		ProcessPrivateProperties(term.Type.Definition, term.FullName());
 #>
 
         /// <summary>
-        /// Creates a new instance of <see cref="<#= term.Name #>Configuration"/>
+        /// Creates a new instance of <see cref="<#= clrType #>"/>
         /// </summary>
-		public <#= term.Name #>Configuration()
+		public <#= clrType #>()
 			: base("<#= term.FullName()#>")
 		{
 		}
 <#+
-		ProcessBuildMethods(term.Type.Definition, term.FullName(), term.Name, description);
+		ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description);
 #>
 
 		/// <inheritdoc/>
@@ -258,7 +259,7 @@ namespace <#= GetNamespace(term) #>
 	public void WriteClass(IEdmComplexType complexType)
 	{
 		var description = _model.GetDescriptionAnnotation(complexType);
-
+		var clrType = GetClrType(complexType);
 		WriteHeader();
 #>
 namespace <#= GetNamespace(complexType) #>
@@ -266,16 +267,16 @@ namespace <#= GetNamespace(complexType) #>
 	/// <summary>
 	<#+ ProcessSummary(description, "	"); #>
 	/// </summary>
-	public partial class <#= complexType.Name #>Configuration : IRecord
+	public partial class <#= clrType #> : IRecord
 	{
 <#+
 		ProcessPrivateProperties(complexType, complexType.FullName());
 #>
 
         /// <summary>
-        /// Creates a new instance of <see cref="<#= complexType.Name #>Configuration"/>
+        /// Creates a new instance of <see cref="<#= clrType #>"/>
         /// </summary>
-		public <#= complexType.Name #>Configuration()
+		public <#= clrType #>()
 		{
 		}
 <#+
@@ -373,8 +374,6 @@ using Microsoft.OData.Edm.Vocabularies;
 
 				return;
 			}
-
-			clrType = clrType + "Configuration";
 		}
 #>
 		private <#= clrType #> _<#= CamelCase(name) #>;
@@ -398,8 +397,8 @@ using Microsoft.OData.Edm.Vocabularies;
 		<#+ ProcessSummary(description, "		"); #>
 		/// </summary>
 		/// <param name="<#= camelName #>">The value(s) to set</param>
-		/// <returns><see cref="<#=returnType #>Configuration"/></returns>
-		public <#=returnType #>Configuration Add<#= name #>(params <#= clrType #>[] <#= camelName #>)
+		/// <returns><see cref="<#=returnType #>"/></returns>
+		public <#=returnType #> Add<#= name #>(params <#= clrType #>[] <#= camelName #>)
 		{
 			foreach (var item in <#= camelName #>)
 			{
@@ -425,8 +424,6 @@ using Microsoft.OData.Edm.Vocabularies;
 
 				return;
 			}
-
-			clrType = clrType + "Configuration";
 		}
 #>
 
@@ -434,14 +431,16 @@ using Microsoft.OData.Edm.Vocabularies;
 		<#+ ProcessSummary(description, "		"); #>
 		/// </summary>
 		/// <param name="<#= camelName #>">The value to set</param>
-		/// <returns><see cref="<#=returnType #>Configuration"/></returns>
-		public <#=returnType #>Configuration Has<#= name #>(<#= clrType #> <#= camelName #>)
+		/// <returns><see cref="<#=returnType #>"/></returns>
+		public <#=returnType #> Has<#= name #>(<#= clrType #> <#= camelName #>)
 		{
 			_<#= camelName #> = <#= camelName #>;
 			return this;
 		}
 <#+
 	}
+	
+	private string GetClrType(IEdmTerm term) => GetFileDetails(term).ClrType;
 
 	private string GetClrType(IEdmType type, bool nullable = false)
 	{
@@ -479,10 +478,10 @@ using Microsoft.OData.Edm.Vocabularies;
 		
 		if (type.TypeKind == EdmTypeKind.Complex)
 		{
-			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsElementType().AsActualType() == type)	;
+			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsActualType() == type)	;
 			if (term != null)
 			{
-				clrType = term.Name.Substring(term.Name.LastIndexOf('.') + 1);
+				clrType = GetClrType(term);
 			}
 			else
 			{
@@ -539,7 +538,7 @@ using Microsoft.OData.Edm.Vocabularies;
 
 	private string GetFilePath(IEdmSchemaElement element) => GetFileDetails(element).FilePath;	
 
-	private (string Namespace, string FilePath) GetFileDetails(IEdmSchemaElement element)
+	private (string Namespace, string FilePath, string ClrType) GetFileDetails(IEdmSchemaElement element)
 	{
 		var key = element.FullName();
 		if (_namespaceMap.TryGetValue(key, out var details))
@@ -553,14 +552,16 @@ using Microsoft.OData.Edm.Vocabularies;
 			suffix = string.Empty;
 		}
 
+		var clrType = element.Name + suffix;
+
 		var vocabulary = element.Namespace.Replace("Org.OData", string.Empty);
 		var @namespace = $"Microsoft.OData.ModelBuilder{vocabulary}";
 		var fileParts = vocabulary.Split(new char[]{'.'}, StringSplitOptions.RemoveEmptyEntries).ToList();
 		fileParts.Insert(0, _templateDirectory);
-		fileParts.Add($"{element.Name}{suffix}.cs");
+		fileParts.Add($"{clrType}.cs");
 		var filePath = Path.Combine(fileParts.ToArray());
 
-		details = (@namespace, filePath);
+		details = (@namespace, filePath, clrType);
 		_namespaceMap.Add(key, details);
 
 		return details;
