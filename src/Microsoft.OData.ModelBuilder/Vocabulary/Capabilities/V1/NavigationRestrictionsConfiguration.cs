@@ -15,7 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class NavigationRestrictionsConfiguration : VocabularyConfiguration
 	{
-		private NavigationType _navigability;
+		private NavigationType? _navigability;
 		private readonly HashSet<NavigationPropertyRestrictionConfiguration> _restrictedProperties = new HashSet<NavigationPropertyRestrictionConfiguration>();
 
         /// <summary>
@@ -55,7 +55,28 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_navigability.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("Navigability", new EdmEnumValue(_navigability.Value)));
+			}
+
+			if (_restrictedProperties.Any())
+			{
+				var collection = _restrictedProperties.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("RestrictedProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

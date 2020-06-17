@@ -111,7 +111,56 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_filterable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Filterable", new EdmBooleanConstant(_filterable.Value)));
+			}
+
+			if (_requiresFilter.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("RequiresFilter", new EdmBooleanConstant(_requiresFilter.Value)));
+			}
+
+			if (_requiredProperties.Any())
+			{
+				var collection = _requiredProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("RequiredProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_nonFilterableProperties.Any())
+			{
+				var collection = _nonFilterableProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("NonFilterableProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_filterExpressionRestrictions.Any())
+			{
+				var collection = _filterExpressionRestrictions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("FilterExpressionRestrictions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_maxLevels.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("MaxLevels", new EdmIntegerConstant(_maxLevels.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

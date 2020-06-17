@@ -73,6 +73,8 @@ namespace Microsoft.OData.ModelBuilder
 	/// </summary>
 	public static class VocabularyConfigurationExtensions
 	{
+		internal static IEdmExpression ToEdmExpression(this string text)
+			=> string.IsNullOrEmpty(text) ? null: new EdmStringConstant(text);
 		/// <summary>
 		/// <see cref="CallbackSupportedConfiguration"/> configuration
 		/// </summary>

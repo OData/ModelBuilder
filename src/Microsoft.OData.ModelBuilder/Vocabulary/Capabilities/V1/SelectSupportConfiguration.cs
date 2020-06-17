@@ -147,7 +147,64 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_supported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Supported", new EdmBooleanConstant(_supported.Value)));
+			}
+
+			if (_instanceAnnotationsSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("InstanceAnnotationsSupported", new EdmBooleanConstant(_instanceAnnotationsSupported.Value)));
+			}
+
+			if (_expandable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Expandable", new EdmBooleanConstant(_expandable.Value)));
+			}
+
+			if (_filterable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Filterable", new EdmBooleanConstant(_filterable.Value)));
+			}
+
+			if (_searchable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Searchable", new EdmBooleanConstant(_searchable.Value)));
+			}
+
+			if (_topSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("TopSupported", new EdmBooleanConstant(_topSupported.Value)));
+			}
+
+			if (_skipSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("SkipSupported", new EdmBooleanConstant(_skipSupported.Value)));
+			}
+
+			if (_computeSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("ComputeSupported", new EdmBooleanConstant(_computeSupported.Value)));
+			}
+
+			if (_countable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Countable", new EdmBooleanConstant(_countable.Value)));
+			}
+
+			if (_sortable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Sortable", new EdmBooleanConstant(_sortable.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

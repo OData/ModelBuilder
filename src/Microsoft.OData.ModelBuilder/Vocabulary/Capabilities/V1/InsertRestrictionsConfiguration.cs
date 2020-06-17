@@ -179,7 +179,89 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_insertable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Insertable", new EdmBooleanConstant(_insertable.Value)));
+			}
+
+			if (_nonInsertableProperties.Any())
+			{
+				var collection = _nonInsertableProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("NonInsertableProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_nonInsertableNavigationProperties.Any())
+			{
+				var collection = _nonInsertableNavigationProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("NonInsertableNavigationProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_maxLevels.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("MaxLevels", new EdmIntegerConstant(_maxLevels.Value)));
+			}
+
+			if (_typecastSegmentSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("TypecastSegmentSupported", new EdmBooleanConstant(_typecastSegmentSupported.Value)));
+			}
+
+			if (_permissions.Any())
+			{
+				var collection = _permissions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("Permissions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_queryOptions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("QueryOptions", _queryOptions.ToEdmExpression()));
+			}
+
+			if (_customHeaders.Any())
+			{
+				var collection = _customHeaders.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("CustomHeaders", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_customQueryOptions.Any())
+			{
+				var collection = _customQueryOptions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("CustomQueryOptions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (string.IsNullOrEmpty(_description))
+			{
+				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
+			}
+
+			if (string.IsNullOrEmpty(_longDescription))
+			{
+				properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

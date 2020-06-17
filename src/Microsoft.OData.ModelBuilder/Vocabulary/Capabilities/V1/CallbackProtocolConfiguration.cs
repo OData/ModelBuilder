@@ -11,8 +11,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.CallbackProtocol
 	/// </summary>
 	public partial class CallbackProtocolConfiguration : IRecord
 	{
@@ -63,7 +62,29 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (string.IsNullOrEmpty(_id))
+			{
+				properties.Add(new EdmPropertyConstructor("Id", new EdmStringConstant(_id)));
+			}
+
+			if (string.IsNullOrEmpty(_urlTemplate))
+			{
+				properties.Add(new EdmPropertyConstructor("UrlTemplate", new EdmStringConstant(_urlTemplate)));
+			}
+
+			if (string.IsNullOrEmpty(_documentationUrl))
+			{
+				properties.Add(new EdmPropertyConstructor("DocumentationUrl", new EdmStringConstant(_documentationUrl)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

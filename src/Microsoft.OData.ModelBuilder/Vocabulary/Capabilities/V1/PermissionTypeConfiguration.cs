@@ -11,8 +11,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.PermissionType
 	/// </summary>
 	public partial class PermissionTypeConfiguration : IRecord
 	{
@@ -55,7 +54,28 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (string.IsNullOrEmpty(_schemeName))
+			{
+				properties.Add(new EdmPropertyConstructor("SchemeName", new EdmStringConstant(_schemeName)));
+			}
+
+			if (_scopes.Any())
+			{
+				var collection = _scopes.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("Scopes", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

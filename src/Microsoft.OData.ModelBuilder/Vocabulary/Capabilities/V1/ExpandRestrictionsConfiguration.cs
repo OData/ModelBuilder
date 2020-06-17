@@ -79,7 +79,38 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_expandable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Expandable", new EdmBooleanConstant(_expandable.Value)));
+			}
+
+			if (_streamsExpandable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("StreamsExpandable", new EdmBooleanConstant(_streamsExpandable.Value)));
+			}
+
+			if (_nonExpandableProperties.Any())
+			{
+				var collection = _nonExpandableProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("NonExpandableProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_maxLevels.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("MaxLevels", new EdmIntegerConstant(_maxLevels.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

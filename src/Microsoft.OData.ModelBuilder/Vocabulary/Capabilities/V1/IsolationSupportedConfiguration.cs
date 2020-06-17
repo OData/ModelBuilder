@@ -15,7 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class IsolationSupportedConfiguration : VocabularyConfiguration
 	{
-		private IsolationLevel _isolationSupported;
+		private IsolationLevel? _isolationSupported;
 
         /// <summary>
         /// Creates a new instance of <see cref="IsolationSupportedConfiguration"/>
@@ -39,7 +39,19 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_isolationSupported.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("IsolationSupported", new EdmEnumValue(_isolationSupported.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

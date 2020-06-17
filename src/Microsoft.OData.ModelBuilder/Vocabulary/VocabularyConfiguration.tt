@@ -99,6 +99,8 @@ namespace Microsoft.OData.ModelBuilder
 	/// </summary>
 	public static class VocabularyConfigurationExtensions
 	{
+		internal static IEdmExpression ToEdmExpression(this string text)
+			=> string.IsNullOrEmpty(text) ? null: new EdmStringConstant(text);
 <#
 		foreach (var term in model.SchemaElements.OfType<IEdmTerm>())
 		{
@@ -231,9 +233,7 @@ namespace <#= @namespace #>
 	/// </summary>
 	public partial class <#= clrType #> : VocabularyConfiguration
 	{
-<#+
-		ProcessPrivateProperties(term.Type.Definition, term.FullName(), @namespace);
-#>
+<#+ ProcessPrivateProperties(term.Type.Definition, term.FullName(), @namespace); #>
 
         /// <summary>
         /// Creates a new instance of <see cref="<#= clrType #>"/>
@@ -242,14 +242,20 @@ namespace <#= @namespace #>
 			: base("<#= term.FullName()#>")
 		{
 		}
-<#+
-		ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description, @namespace);
-#>
+<#+ ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description, @namespace); #>
 
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+<#+ ProcessEdmProperties(term.Type.Definition, term.FullName(), clrType, description, @namespace); #>
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }
@@ -267,13 +273,11 @@ namespace <#= @namespace #>
 namespace <#= @namespace #>
 {
 	/// <summary>
-	<#+ ProcessSummary(description, "	"); #>
+	<#+ ProcessSummary(description ?? complexType.FullName(), "	"); #>
 	/// </summary>
 	public partial class <#= clrType #> : IRecord
 	{
-<#+
-		ProcessPrivateProperties(complexType, complexType.FullName(), @namespace);
-#>
+<#+ ProcessPrivateProperties(complexType, complexType.FullName(), @namespace); #>
 
         /// <summary>
         /// Creates a new instance of <see cref="<#= clrType #>"/>
@@ -281,14 +285,20 @@ namespace <#= @namespace #>
 		public <#= clrType #>()
 		{
 		}
-<#+
-		ProcessBuildMethods(complexType, complexType.FullName(), clrType, description, @namespace);
-#>
+<#+ ProcessBuildMethods(complexType, complexType.FullName(), clrType, description, @namespace); #>
 
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+<#+ ProcessEdmProperties(complexType, complexType.FullName(), clrType, description, @namespace); #>
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }
@@ -298,7 +308,7 @@ namespace <#= @namespace #>
 
 	public void WriteEnum(IEdmEnumType enumType)
 	{
-		var description = _model.GetDescriptionAnnotation(enumType);
+		var description = _model.GetDescriptionAnnotation(enumType) ?? enumType.FullName();
 		var @namespace = GetNamespace(enumType);
 
 		WriteHeader();
@@ -308,6 +318,14 @@ namespace <#= @namespace #>
 	/// <summary>
 	<#+ ProcessSummary(description, "	"); #>
 	/// </summary>
+<#+
+	if (enumType.IsFlags)
+	{
+#>
+	[Flags]
+<#+
+	}
+#>
 	public enum <#= enumType.Name #>
 	{
 <#+
@@ -458,11 +476,131 @@ using Microsoft.OData.Edm.Vocabularies;
 <#+
 	}
 	
+	private void ProcessEdmProperties(IEdmType type, string fullName, string returnType, string description, string @namespace, bool allowRecurse = true)
+	{
+		var typeKind = type.TypeKind;
+		var actualType = type.AsElementType().AsActualType();
+		var clrType = GetClrType(actualType, false);
+		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
+		var camelName = CamelCase(name);
+
+		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
+		{
+			var typeName = GetNamespace(element);
+			if (!typeName.StartsWith(@namespace))
+			{
+				clrType = typeName + "." + clrType;
+			}
+		}
+
+		if (typeKind == EdmTypeKind.Collection)
+		{
+			if (actualType.TypeKind == EdmTypeKind.Path)
+			{
+#>
+			if (_<#= camelName #>.Any())
+			{
+				var collection = _<#= camelName #>.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmCollectionExpression(collection)));
+				}
+			}
+
+<#+
+			}
+			else
+			{
+#>
+			if (_<#= camelName #>.Any())
+			{
+				var collection = _<#= camelName #>.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmCollectionExpression(collection)));
+				}
+			}
+
+<#+
+			}
+		}
+		else if (typeKind == EdmTypeKind.Complex)
+		{
+			if (allowRecurse)
+			{
+				var complexType = type as IEdmComplexType;
+				foreach (var property in complexType.DeclaredProperties)
+				{
+					description = _model.GetDescriptionAnnotation(property);
+					ProcessEdmProperties(property.Type.Definition, property.Name, returnType, description, @namespace, false);
+				}
+			}
+			else
+			{
+#>
+			if (_<#= camelName #> != null)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", _<#= camelName #>.ToEdmExpression()));
+			}
+
+<#+
+			}
+		}
+		else if (type.TypeKind == EdmTypeKind.Path)
+		{
+#>
+			if (_<#= camelName #> != null)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", _<#= camelName #>));
+			}
+
+<#+
+		}
+		else
+		{
+			if (clrType == "string")
+			{
+#>
+			if (string.IsNullOrEmpty(_<#= camelName #>))
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmStringConstant(_<#= camelName #>)));
+			}
+
+<#+
+			}
+			else if (actualType.TypeKind == EdmTypeKind.Enum)
+			{
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmEnumValue(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+			else
+			{
+				var fullTypeName = actualType.FullTypeName();
+				var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
+				if (fullTypeName == "Edm.Int32")
+				{
+					edmTypeConstant = "EdmIntegerConstant";
+				}
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new <#= edmTypeConstant#>(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+		}
+	}
+	
 	private string GetClrType(IEdmTerm term) => GetFileDetails(term).ClrType;
 
 	private string GetClrType(IEdmType type, bool nullable = false)
 	{
-		var suffix = nullable ? "?" : string.Empty;
 		if (_typesClrMap.TryGetValue(type, out var clrType))
 		{	
 			return AddSuffix(clrType);
@@ -518,7 +656,7 @@ using Microsoft.OData.Edm.Vocabularies;
 				return clr;
 			}
 
-			if (clr == "bool" || clr == "int")
+			if (clr == "bool" || clr == "int" || type.TypeKind == EdmTypeKind.Enum)
 			{
 				return clr + "?";
 			}
@@ -543,8 +681,9 @@ using Microsoft.OData.Edm.Vocabularies;
 		if (string.IsNullOrEmpty(text))
 		{
 			WriteLine("/// Summary");
+			return;
 		}
-		var lines = text?.Split(new char[] { '\r', '\n' }) ?? new string[0];
+		var lines = text.Split(new char[] { '\r', '\n' }) ?? new string[0];
 		WriteLine($"/// {lines.FirstOrDefault()}");
 		foreach (var line in lines.Skip(1))
 		{

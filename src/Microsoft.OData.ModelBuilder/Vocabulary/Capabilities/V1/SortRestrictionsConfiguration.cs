@@ -87,7 +87,46 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_sortable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Sortable", new EdmBooleanConstant(_sortable.Value)));
+			}
+
+			if (_ascendingOnlyProperties.Any())
+			{
+				var collection = _ascendingOnlyProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("AscendingOnlyProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_descendingOnlyProperties.Any())
+			{
+				var collection = _descendingOnlyProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("DescendingOnlyProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_nonSortableProperties.Any())
+			{
+				var collection = _nonSortableProperties.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("NonSortableProperties", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

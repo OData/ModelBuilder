@@ -11,8 +11,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Core.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Core.V1.PrimitiveExampleValue
 	/// </summary>
 	public partial class PrimitiveExampleValueConfiguration : IRecord
 	{
@@ -39,7 +38,19 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_value.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Value", new EdmPrimitiveTypeConstant(_value.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

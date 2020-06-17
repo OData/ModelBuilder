@@ -11,8 +11,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.CollectionPropertyRestrictionsType
 	/// </summary>
 	public partial class CollectionPropertyRestrictionsTypeConfiguration : IRecord
 	{
@@ -163,7 +162,73 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_collectionProperty != null)
+			{
+				properties.Add(new EdmPropertyConstructor("CollectionProperty", _collectionProperty));
+			}
+
+			if (_filterFunctions.Any())
+			{
+				var collection = _filterFunctions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("FilterFunctions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_filterRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("FilterRestrictions", _filterRestrictions.ToEdmExpression()));
+			}
+
+			if (_searchRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("SearchRestrictions", _searchRestrictions.ToEdmExpression()));
+			}
+
+			if (_sortRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("SortRestrictions", _sortRestrictions.ToEdmExpression()));
+			}
+
+			if (_topSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("TopSupported", new EdmBooleanConstant(_topSupported.Value)));
+			}
+
+			if (_skipSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("SkipSupported", new EdmBooleanConstant(_skipSupported.Value)));
+			}
+
+			if (_selectSupport != null)
+			{
+				properties.Add(new EdmPropertyConstructor("SelectSupport", _selectSupport.ToEdmExpression()));
+			}
+
+			if (_insertable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Insertable", new EdmBooleanConstant(_insertable.Value)));
+			}
+
+			if (_updatable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Updatable", new EdmBooleanConstant(_updatable.Value)));
+			}
+
+			if (_deletable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Deletable", new EdmBooleanConstant(_deletable.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

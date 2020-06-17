@@ -15,7 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class ConformanceLevelConfiguration : VocabularyConfiguration
 	{
-		private ConformanceLevelType _conformanceLevel;
+		private ConformanceLevelType? _conformanceLevel;
 
         /// <summary>
         /// Creates a new instance of <see cref="ConformanceLevelConfiguration"/>
@@ -39,7 +39,19 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_conformanceLevel.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("ConformanceLevel", new EdmEnumValue(_conformanceLevel.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

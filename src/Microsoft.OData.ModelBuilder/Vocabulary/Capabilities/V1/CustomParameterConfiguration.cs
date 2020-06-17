@@ -90,7 +90,43 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (string.IsNullOrEmpty(_name))
+			{
+				properties.Add(new EdmPropertyConstructor("Name", new EdmStringConstant(_name)));
+			}
+
+			if (string.IsNullOrEmpty(_description))
+			{
+				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
+			}
+
+			if (string.IsNullOrEmpty(_documentationURL))
+			{
+				properties.Add(new EdmPropertyConstructor("DocumentationURL", new EdmStringConstant(_documentationURL)));
+			}
+
+			if (_required.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Required", new EdmBooleanConstant(_required.Value)));
+			}
+
+			if (_exampleValues.Any())
+			{
+				var collection = _exampleValues.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("ExampleValues", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

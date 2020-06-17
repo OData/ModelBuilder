@@ -99,7 +99,44 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_expandSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("ExpandSupported", new EdmBooleanConstant(_expandSupported.Value)));
+			}
+
+			if (_selectSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("SelectSupported", new EdmBooleanConstant(_selectSupported.Value)));
+			}
+
+			if (_computeSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("ComputeSupported", new EdmBooleanConstant(_computeSupported.Value)));
+			}
+
+			if (_filterSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("FilterSupported", new EdmBooleanConstant(_filterSupported.Value)));
+			}
+
+			if (_searchSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("SearchSupported", new EdmBooleanConstant(_searchSupported.Value)));
+			}
+
+			if (_sortSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("SortSupported", new EdmBooleanConstant(_sortSupported.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

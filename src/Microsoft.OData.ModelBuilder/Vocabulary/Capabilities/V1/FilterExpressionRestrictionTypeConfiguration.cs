@@ -11,8 +11,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.FilterExpressionRestrictionType
 	/// </summary>
 	public partial class FilterExpressionRestrictionTypeConfiguration : IRecord
 	{
@@ -51,7 +50,24 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_property != null)
+			{
+				properties.Add(new EdmPropertyConstructor("Property", _property));
+			}
+
+			if (string.IsNullOrEmpty(_allowedExpressions))
+			{
+				properties.Add(new EdmPropertyConstructor("AllowedExpressions", new EdmStringConstant(_allowedExpressions)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

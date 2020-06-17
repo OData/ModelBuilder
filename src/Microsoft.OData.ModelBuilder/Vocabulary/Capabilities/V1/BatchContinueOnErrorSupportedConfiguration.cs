@@ -39,7 +39,19 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_batchContinueOnErrorSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("BatchContinueOnErrorSupported", new EdmBooleanConstant(_batchContinueOnErrorSupported.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

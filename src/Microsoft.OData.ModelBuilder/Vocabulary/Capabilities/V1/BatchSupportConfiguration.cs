@@ -115,7 +115,53 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_supported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Supported", new EdmBooleanConstant(_supported.Value)));
+			}
+
+			if (_continueOnErrorSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("ContinueOnErrorSupported", new EdmBooleanConstant(_continueOnErrorSupported.Value)));
+			}
+
+			if (_referencesInRequestBodiesSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("ReferencesInRequestBodiesSupported", new EdmBooleanConstant(_referencesInRequestBodiesSupported.Value)));
+			}
+
+			if (_referencesAcrossChangeSetsSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("ReferencesAcrossChangeSetsSupported", new EdmBooleanConstant(_referencesAcrossChangeSetsSupported.Value)));
+			}
+
+			if (_etagReferencesSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("EtagReferencesSupported", new EdmBooleanConstant(_etagReferencesSupported.Value)));
+			}
+
+			if (_requestDependencyConditionsSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("RequestDependencyConditionsSupported", new EdmBooleanConstant(_requestDependencyConditionsSupported.Value)));
+			}
+
+			if (_supportedFormats.Any())
+			{
+				var collection = _supportedFormats.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("SupportedFormats", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

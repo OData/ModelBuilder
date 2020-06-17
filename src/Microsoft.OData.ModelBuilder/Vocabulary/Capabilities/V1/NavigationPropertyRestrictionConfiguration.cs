@@ -11,13 +11,12 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.NavigationPropertyRestriction
 	/// </summary>
 	public partial class NavigationPropertyRestrictionConfiguration : IRecord
 	{
 		private EdmNavigationPropertyPathExpression _navigationProperty;
-		private NavigationType _navigability;
+		private NavigationType? _navigability;
 		private readonly HashSet<string> _filterFunctions = new HashSet<string>();
 		private FilterRestrictionsConfiguration _filterRestrictions;
 		private SearchRestrictionsConfiguration _searchRestrictions;
@@ -235,7 +234,103 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_navigationProperty != null)
+			{
+				properties.Add(new EdmPropertyConstructor("NavigationProperty", _navigationProperty));
+			}
+
+			if (_navigability.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("Navigability", new EdmEnumValue(_navigability.Value)));
+			}
+
+			if (_filterFunctions.Any())
+			{
+				var collection = _filterFunctions.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("FilterFunctions", new EdmCollectionExpression(collection)));
+				}
+			}
+
+			if (_filterRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("FilterRestrictions", _filterRestrictions.ToEdmExpression()));
+			}
+
+			if (_searchRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("SearchRestrictions", _searchRestrictions.ToEdmExpression()));
+			}
+
+			if (_sortRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("SortRestrictions", _sortRestrictions.ToEdmExpression()));
+			}
+
+			if (_topSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("TopSupported", new EdmBooleanConstant(_topSupported.Value)));
+			}
+
+			if (_skipSupported.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("SkipSupported", new EdmBooleanConstant(_skipSupported.Value)));
+			}
+
+			if (_selectSupport != null)
+			{
+				properties.Add(new EdmPropertyConstructor("SelectSupport", _selectSupport.ToEdmExpression()));
+			}
+
+			if (_indexableByKey.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("IndexableByKey", new EdmBooleanConstant(_indexableByKey.Value)));
+			}
+
+			if (_insertRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("InsertRestrictions", _insertRestrictions.ToEdmExpression()));
+			}
+
+			if (_deepInsertSupport != null)
+			{
+				properties.Add(new EdmPropertyConstructor("DeepInsertSupport", _deepInsertSupport.ToEdmExpression()));
+			}
+
+			if (_updateRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("UpdateRestrictions", _updateRestrictions.ToEdmExpression()));
+			}
+
+			if (_deepUpdateSupport != null)
+			{
+				properties.Add(new EdmPropertyConstructor("DeepUpdateSupport", _deepUpdateSupport.ToEdmExpression()));
+			}
+
+			if (_deleteRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("DeleteRestrictions", _deleteRestrictions.ToEdmExpression()));
+			}
+
+			if (_optimisticConcurrencyControl.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("OptimisticConcurrencyControl", new EdmBooleanConstant(_optimisticConcurrencyControl.Value)));
+			}
+
+			if (_readRestrictions != null)
+			{
+				properties.Add(new EdmPropertyConstructor("ReadRestrictions", _readRestrictions.ToEdmExpression()));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

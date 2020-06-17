@@ -16,7 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	public partial class SearchRestrictionsConfiguration : VocabularyConfiguration
 	{
 		private bool? _searchable;
-		private SearchExpressions _unsupportedExpressions;
+		private SearchExpressions? _unsupportedExpressions;
 
         /// <summary>
         /// Creates a new instance of <see cref="SearchRestrictionsConfiguration"/>
@@ -51,7 +51,24 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public override IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (_searchable.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("Searchable", new EdmBooleanConstant(_searchable.Value)));
+			}
+
+			if (_unsupportedExpressions.HasValue)
+			{
+				// properties.Add(new EdmPropertyConstructor("UnsupportedExpressions", new EdmEnumValue(_unsupportedExpressions.Value)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

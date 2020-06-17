@@ -11,8 +11,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.ScopeType
 	/// </summary>
 	public partial class ScopeTypeConfiguration : IRecord
 	{
@@ -51,7 +50,24 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <inheritdoc/>
 		public IEdmExpression ToEdmExpression()
 		{
-			return null;
+			var properties = new List<IEdmPropertyConstructor>();
+
+			if (string.IsNullOrEmpty(_scope))
+			{
+				properties.Add(new EdmPropertyConstructor("Scope", new EdmStringConstant(_scope)));
+			}
+
+			if (string.IsNullOrEmpty(_restrictedProperties))
+			{
+				properties.Add(new EdmPropertyConstructor("RestrictedProperties", new EdmStringConstant(_restrictedProperties)));
+			}
+
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
 		}
 	}
 }

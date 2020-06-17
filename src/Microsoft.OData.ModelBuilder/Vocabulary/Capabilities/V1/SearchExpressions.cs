@@ -11,9 +11,9 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
-	/// Summary
-/// 
+	/// Org.OData.Capabilities.V1.SearchExpressions
 	/// </summary>
+	[Flags]
 	public enum SearchExpressions
 	{
 
