@@ -22,8 +22,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _typecastSegmentSupported;
 		private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
 		private ModificationQueryOptionsConfiguration _queryOptions;
-		private readonly HashSet<CustomHeadersConfiguration> _customHeaders = new HashSet<CustomHeadersConfiguration>();
-		private readonly HashSet<CustomHeadersConfiguration> _customQueryOptions = new HashSet<CustomHeadersConfiguration>();
+		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
+		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
 		private string _description;
 		private string _longDescription;
 
@@ -129,7 +129,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddCustomHeaders(params CustomHeadersConfiguration[] customHeaders)
+		public InsertRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			foreach (var item in customHeaders)
 			{
@@ -144,7 +144,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddCustomQueryOptions(params CustomHeadersConfiguration[] customQueryOptions)
+		public InsertRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
 			foreach (var item in customQueryOptions)
 			{

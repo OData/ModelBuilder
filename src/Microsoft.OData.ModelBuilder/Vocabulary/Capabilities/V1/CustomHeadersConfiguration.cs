@@ -15,7 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class CustomHeadersConfiguration : VocabularyConfiguration
 	{
-		private readonly HashSet<CustomHeadersConfiguration> _customHeaders = new HashSet<CustomHeadersConfiguration>();
+		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
 
         /// <summary>
         /// Creates a new instance of <see cref="CustomHeadersConfiguration"/>
@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
-		public CustomHeadersConfiguration AddCustomHeaders(params CustomHeadersConfiguration[] customHeaders)
+		public CustomHeadersConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			foreach (var item in customHeaders)
 			{

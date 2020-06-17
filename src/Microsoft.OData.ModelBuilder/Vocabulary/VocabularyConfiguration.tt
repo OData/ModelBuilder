@@ -216,6 +216,7 @@ class Manager : GeneratedTextTransformation
 		var actualType = term.Type.Definition;
 		var description = _model.GetDescriptionAnnotation(term);
 		var clrType = GetClrType(term);
+		var @namespace = GetNamespace(term);
 		if (actualType.TypeKind == EdmTypeKind.Complex)
 		{
 			_typesToGenerateMap[actualType] = true;
@@ -223,7 +224,7 @@ class Manager : GeneratedTextTransformation
 
 		WriteHeader();
 #>
-namespace <#= GetNamespace(term) #>
+namespace <#= @namespace #>
 {
 	/// <summary>
 	<#+ ProcessSummary(description, "	"); #>
@@ -231,7 +232,7 @@ namespace <#= GetNamespace(term) #>
 	public partial class <#= clrType #> : VocabularyConfiguration
 	{
 <#+
-		ProcessPrivateProperties(term.Type.Definition, term.FullName());
+		ProcessPrivateProperties(term.Type.Definition, term.FullName(), @namespace);
 #>
 
         /// <summary>
@@ -242,7 +243,7 @@ namespace <#= GetNamespace(term) #>
 		{
 		}
 <#+
-		ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description);
+		ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description, @namespace);
 #>
 
 		/// <inheritdoc/>
@@ -260,9 +261,10 @@ namespace <#= GetNamespace(term) #>
 	{
 		var description = _model.GetDescriptionAnnotation(complexType);
 		var clrType = GetClrType(complexType);
+		var @namespace = GetNamespace(complexType);
 		WriteHeader();
 #>
-namespace <#= GetNamespace(complexType) #>
+namespace <#= @namespace #>
 {
 	/// <summary>
 	<#+ ProcessSummary(description, "	"); #>
@@ -270,7 +272,7 @@ namespace <#= GetNamespace(complexType) #>
 	public partial class <#= clrType #> : IRecord
 	{
 <#+
-		ProcessPrivateProperties(complexType, complexType.FullName());
+		ProcessPrivateProperties(complexType, complexType.FullName(), @namespace);
 #>
 
         /// <summary>
@@ -280,7 +282,7 @@ namespace <#= GetNamespace(complexType) #>
 		{
 		}
 <#+
-		ProcessBuildMethods(complexType, complexType.FullName(), clrType, description);
+		ProcessBuildMethods(complexType, complexType.FullName(), clrType, description, @namespace);
 #>
 
 		/// <inheritdoc/>
@@ -297,10 +299,11 @@ namespace <#= GetNamespace(complexType) #>
 	public void WriteEnum(IEdmEnumType enumType)
 	{
 		var description = _model.GetDescriptionAnnotation(enumType);
+		var @namespace = GetNamespace(enumType);
 
 		WriteHeader();
 #>
-namespace <#= GetNamespace(enumType) #>
+namespace <#= @namespace #>
 {
 	/// <summary>
 	<#+ ProcessSummary(description, "	"); #>
@@ -342,21 +345,28 @@ using Microsoft.OData.Edm.Vocabularies;
 <#+
 	}
 
-	private void ProcessPrivateProperties(IEdmType type, string fullName, bool allowRecurse = true)
+	private void ProcessPrivateProperties(IEdmType type, string fullName, string @namespace, bool allowRecurse = true)
 	{
 		var typeKind = type.TypeKind;
 		var actualType = type.AsElementType().AsActualType();
 		var clrType = GetClrType(actualType, true);
 		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
-		
 		if (!_typesToGenerateMap.ContainsKey(actualType))
 		{
 			_typesToGenerateMap.Add(actualType, false);
 		}
 
+		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
+		{
+			var typeName = GetNamespace(element);
+			if (!typeName.StartsWith(@namespace))
+			{
+				clrType = typeName + "." + clrType;
+			}
+		}
+
 		if (typeKind == EdmTypeKind.Collection)
 		{
-			clrType = GetClrType(actualType, false);
 #>
 		private readonly HashSet<<#= clrType #>> _<#= CamelCase(name) #> = new HashSet<<#= clrType #>>();
 <#+
@@ -369,7 +379,7 @@ using Microsoft.OData.Edm.Vocabularies;
 				var complexType = type as IEdmComplexType;
 				foreach (var property in complexType.DeclaredProperties)
 				{
-					ProcessPrivateProperties(property.Type.Definition, property.Name, false);
+					ProcessPrivateProperties(property.Type.Definition, property.Name, @namespace, false);
 				}
 
 				return;
@@ -380,13 +390,22 @@ using Microsoft.OData.Edm.Vocabularies;
 <#+
 	}
 
-	private void ProcessBuildMethods(IEdmType type, string fullName, string returnType, string description, bool allowRecurse = true)
+	private void ProcessBuildMethods(IEdmType type, string fullName, string returnType, string description, string @namespace, bool allowRecurse = true)
 	{
 		var typeKind = type.TypeKind;
 		var actualType = type.AsElementType().AsActualType();
 		var clrType = GetClrType(actualType, false);
 		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
 		var camelName = CamelCase(name);
+
+		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
+		{
+			var typeName = GetNamespace(element);
+			if (!typeName.StartsWith(@namespace))
+			{
+				clrType = typeName + "." + clrType;
+			}
+		}
 
 		if (typeKind == EdmTypeKind.Collection)
 		{
@@ -418,7 +437,7 @@ using Microsoft.OData.Edm.Vocabularies;
 				foreach (var property in complexType.DeclaredProperties)
 				{
 					description = _model.GetDescriptionAnnotation(property);
-					ProcessBuildMethods(property.Type.Definition, property.Name, returnType, description, false);
+					ProcessBuildMethods(property.Type.Definition, property.Name, returnType, description, @namespace, false);
 				}
 
 				return;
@@ -477,7 +496,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		
 		if (type.TypeKind == EdmTypeKind.Complex)
 		{
-			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsElementType().AsActualType() == type || t.Type.Definition.AsActualType() == type);
+			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsActualType() == type);
 			if (term != null)
 			{
 				clrType = GetClrType(term);
