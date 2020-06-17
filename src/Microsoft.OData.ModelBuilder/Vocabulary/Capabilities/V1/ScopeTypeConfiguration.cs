@@ -30,8 +30,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Name of the scope.
 		/// </summary>
 		/// <param name="scope">The value to set</param>
-		/// <returns><see cref="ScopeType"/></returns>
-		public ScopeType HasScope(string scope)
+		/// <returns><see cref="ScopeTypeConfiguration"/></returns>
+		public ScopeTypeConfiguration HasScope(string scope)
 		{
 			_scope = scope;
 			return this;
@@ -41,15 +41,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Comma-separated string value of all properties that will be included or excluded when using the scope.
 		/// </summary>
 		/// <param name="restrictedProperties">The value to set</param>
-		/// <returns><see cref="ScopeType"/></returns>
-		public ScopeType HasRestrictedProperties(string restrictedProperties)
+		/// <returns><see cref="ScopeTypeConfiguration"/></returns>
+		public ScopeTypeConfiguration HasRestrictedProperties(string restrictedProperties)
 		{
 			_restrictedProperties = restrictedProperties;
 			return this;
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

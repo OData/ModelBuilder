@@ -31,8 +31,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Protocol Identifier
 		/// </summary>
 		/// <param name="id">The value to set</param>
-		/// <returns><see cref="CallbackProtocol"/></returns>
-		public CallbackProtocol HasId(string id)
+		/// <returns><see cref="CallbackProtocolConfiguration"/></returns>
+		public CallbackProtocolConfiguration HasId(string id)
 		{
 			_id = id;
 			return this;
@@ -42,8 +42,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// URL Template including parameters. Parameters are enclosed in curly braces {} as defined in RFC6570
 		/// </summary>
 		/// <param name="urlTemplate">The value to set</param>
-		/// <returns><see cref="CallbackProtocol"/></returns>
-		public CallbackProtocol HasUrlTemplate(string urlTemplate)
+		/// <returns><see cref="CallbackProtocolConfiguration"/></returns>
+		public CallbackProtocolConfiguration HasUrlTemplate(string urlTemplate)
 		{
 			_urlTemplate = urlTemplate;
 			return this;
@@ -53,15 +53,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Human readable description of the meaning of the URL Template parameters
 		/// </summary>
 		/// <param name="documentationUrl">The value to set</param>
-		/// <returns><see cref="CallbackProtocol"/></returns>
-		public CallbackProtocol HasDocumentationUrl(string documentationUrl)
+		/// <returns><see cref="CallbackProtocolConfiguration"/></returns>
+		public CallbackProtocolConfiguration HasDocumentationUrl(string documentationUrl)
 		{
 			_documentationUrl = documentationUrl;
 			return this;
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

@@ -24,7 +24,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

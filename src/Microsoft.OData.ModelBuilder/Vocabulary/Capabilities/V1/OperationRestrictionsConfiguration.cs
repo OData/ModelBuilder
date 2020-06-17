@@ -17,8 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _filterSegmentSupported;
 		private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
-		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
-		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
+		private readonly HashSet<CustomHeadersConfiguration> _customHeaders = new HashSet<CustomHeadersConfiguration>();
+		private readonly HashSet<CustomHeadersConfiguration> _customQueryOptions = new HashSet<CustomHeadersConfiguration>();
 
         /// <summary>
         /// Creates a new instance of <see cref="OperationRestrictionsConfiguration"/>
@@ -59,7 +59,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-		public OperationRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public OperationRestrictionsConfiguration AddCustomHeaders(params CustomHeadersConfiguration[] customHeaders)
 		{
 			foreach (var item in customHeaders)
 			{
@@ -74,7 +74,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-		public OperationRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public OperationRestrictionsConfiguration AddCustomQueryOptions(params CustomHeadersConfiguration[] customQueryOptions)
 		{
 			foreach (var item in customQueryOptions)
 			{

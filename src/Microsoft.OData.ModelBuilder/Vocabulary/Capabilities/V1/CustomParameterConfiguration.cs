@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// A custom parameter is either a header or a query option
 	/// </summary>
-	public partial class CustomParameterConfiguration : IRecord
+	public partial class CustomHeadersConfiguration : IRecord
 	{
 		private string _name;
 		private string _description;
@@ -22,9 +22,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private readonly HashSet<PrimitiveExampleValueConfiguration> _exampleValues = new HashSet<PrimitiveExampleValueConfiguration>();
 
         /// <summary>
-        /// Creates a new instance of <see cref="CustomParameterConfiguration"/>
+        /// Creates a new instance of <see cref="CustomHeadersConfiguration"/>
         /// </summary>
-		public CustomParameterConfiguration()
+		public CustomHeadersConfiguration()
 		{
 		}
 
@@ -32,8 +32,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Name of the custom parameter
 		/// </summary>
 		/// <param name="name">The value to set</param>
-		/// <returns><see cref="CustomParameter"/></returns>
-		public CustomParameter HasName(string name)
+		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
+		public CustomHeadersConfiguration HasName(string name)
 		{
 			_name = name;
 			return this;
@@ -43,8 +43,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Description of the custom parameter
 		/// </summary>
 		/// <param name="description">The value to set</param>
-		/// <returns><see cref="CustomParameter"/></returns>
-		public CustomParameter HasDescription(string description)
+		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
+		public CustomHeadersConfiguration HasDescription(string description)
 		{
 			_description = description;
 			return this;
@@ -54,8 +54,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// URL of related documentation
 		/// </summary>
 		/// <param name="documentationURL">The value to set</param>
-		/// <returns><see cref="CustomParameter"/></returns>
-		public CustomParameter HasDocumentationURL(string documentationURL)
+		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
+		public CustomHeadersConfiguration HasDocumentationURL(string documentationURL)
 		{
 			_documentationURL = documentationURL;
 			return this;
@@ -65,8 +65,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// true: parameter is required, false or not specified: parameter is optional
 		/// </summary>
 		/// <param name="required">The value to set</param>
-		/// <returns><see cref="CustomParameter"/></returns>
-		public CustomParameter HasRequired(bool required)
+		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
+		public CustomHeadersConfiguration HasRequired(bool required)
 		{
 			_required = required;
 			return this;
@@ -76,8 +76,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Example values for the custom parameter
 		/// </summary>
 		/// <param name="exampleValues">The value(s) to set</param>
-		/// <returns><see cref="CustomParameter"/></returns>
-		public CustomParameter AddExampleValues(params PrimitiveExampleValueConfiguration[] exampleValues)
+		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
+		public CustomHeadersConfiguration AddExampleValues(params PrimitiveExampleValueConfiguration[] exampleValues)
 		{
 			foreach (var item in exampleValues)
 			{
@@ -88,7 +88,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

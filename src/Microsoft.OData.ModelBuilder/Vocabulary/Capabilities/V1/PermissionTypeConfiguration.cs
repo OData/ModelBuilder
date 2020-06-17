@@ -30,8 +30,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Authorization flow scheme name
 		/// </summary>
 		/// <param name="schemeName">The value to set</param>
-		/// <returns><see cref="PermissionType"/></returns>
-		public PermissionType HasSchemeName(string schemeName)
+		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
+		public PermissionTypeConfiguration HasSchemeName(string schemeName)
 		{
 			_schemeName = schemeName;
 			return this;
@@ -41,8 +41,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// List of scopes that can provide access to the resource
 		/// </summary>
 		/// <param name="scopes">The value(s) to set</param>
-		/// <returns><see cref="PermissionType"/></returns>
-		public PermissionType AddScopes(params ScopeTypeConfiguration[] scopes)
+		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
+		public PermissionTypeConfiguration AddScopes(params ScopeTypeConfiguration[] scopes)
 		{
 			foreach (var item in scopes)
 			{
@@ -53,7 +53,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

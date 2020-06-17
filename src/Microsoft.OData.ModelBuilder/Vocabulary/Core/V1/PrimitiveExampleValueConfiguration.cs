@@ -29,15 +29,15 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
 		/// Example value for the custom parameter
 		/// </summary>
 		/// <param name="value">The value to set</param>
-		/// <returns><see cref="PrimitiveExampleValue"/></returns>
-		public PrimitiveExampleValue HasValue(object value)
+		/// <returns><see cref="PrimitiveExampleValueConfiguration"/></returns>
+		public PrimitiveExampleValueConfiguration HasValue(object value)
 		{
 			_value = value;
 			return this;
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

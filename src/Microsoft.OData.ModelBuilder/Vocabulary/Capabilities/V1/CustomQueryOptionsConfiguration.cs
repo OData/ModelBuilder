@@ -15,7 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class CustomQueryOptionsConfiguration : VocabularyConfiguration
 	{
-		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
+		private readonly HashSet<CustomHeadersConfiguration> _customQueryOptions = new HashSet<CustomHeadersConfiguration>();
 
         /// <summary>
         /// Creates a new instance of <see cref="CustomQueryOptionsConfiguration"/>
@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>
-		public CustomQueryOptionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public CustomQueryOptionsConfiguration AddCustomQueryOptions(params CustomHeadersConfiguration[] customQueryOptions)
 		{
 			foreach (var item in customQueryOptions)
 			{

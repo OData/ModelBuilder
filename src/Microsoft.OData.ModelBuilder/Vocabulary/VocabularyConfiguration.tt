@@ -280,11 +280,11 @@ namespace <#= GetNamespace(complexType) #>
 		{
 		}
 <#+
-		ProcessBuildMethods(complexType, complexType.FullName(), complexType.Name, description);
+		ProcessBuildMethods(complexType, complexType.FullName(), clrType, description);
 #>
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}
@@ -390,7 +390,6 @@ using Microsoft.OData.Edm.Vocabularies;
 
 		if (typeKind == EdmTypeKind.Collection)
 		{
-			clrType = GetClrType(actualType, false);
 #>
 
 		/// <summary>
@@ -478,7 +477,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		
 		if (type.TypeKind == EdmTypeKind.Complex)
 		{
-			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsActualType() == type)	;
+			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsElementType().AsActualType() == type || t.Type.Definition.AsActualType() == type);
 			if (term != null)
 			{
 				clrType = GetClrType(term);

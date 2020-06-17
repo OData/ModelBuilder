@@ -14,7 +14,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// Summary
 /// 
 	/// </summary>
-	public partial class CollectionPropertyRestrictionsTypeConfiguration : IRecord
+	public partial class CollectionPropertyRestrictionsConfiguration : IRecord
 	{
 		private EdmPropertyPathExpression _collectionProperty;
 		private readonly HashSet<string> _filterFunctions = new HashSet<string>();
@@ -29,9 +29,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _deletable;
 
         /// <summary>
-        /// Creates a new instance of <see cref="CollectionPropertyRestrictionsTypeConfiguration"/>
+        /// Creates a new instance of <see cref="CollectionPropertyRestrictionsConfiguration"/>
         /// </summary>
-		public CollectionPropertyRestrictionsTypeConfiguration()
+		public CollectionPropertyRestrictionsConfiguration()
 		{
 		}
 
@@ -39,8 +39,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Restricted Collection-valued property
 		/// </summary>
 		/// <param name="collectionProperty">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasCollectionProperty(EdmPropertyPathExpression collectionProperty)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasCollectionProperty(EdmPropertyPathExpression collectionProperty)
 		{
 			_collectionProperty = collectionProperty;
 			return this;
@@ -50,8 +50,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// List of functions and operators supported in filter expressions.
 		/// </summary>
 		/// <param name="filterFunctions">The value(s) to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType AddFilterFunctions(params string[] filterFunctions)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration AddFilterFunctions(params string[] filterFunctions)
 		{
 			foreach (var item in filterFunctions)
 			{
@@ -65,8 +65,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Restrictions on filter expressions
 		/// </summary>
 		/// <param name="filterRestrictions">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasFilterRestrictions(FilterRestrictionsConfiguration filterRestrictions)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasFilterRestrictions(FilterRestrictionsConfiguration filterRestrictions)
 		{
 			_filterRestrictions = filterRestrictions;
 			return this;
@@ -76,8 +76,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Restrictions on search expressions
 		/// </summary>
 		/// <param name="searchRestrictions">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasSearchRestrictions(SearchRestrictionsConfiguration searchRestrictions)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasSearchRestrictions(SearchRestrictionsConfiguration searchRestrictions)
 		{
 			_searchRestrictions = searchRestrictions;
 			return this;
@@ -87,8 +87,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Restrictions on orderby expressions
 		/// </summary>
 		/// <param name="sortRestrictions">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasSortRestrictions(SortRestrictionsConfiguration sortRestrictions)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasSortRestrictions(SortRestrictionsConfiguration sortRestrictions)
 		{
 			_sortRestrictions = sortRestrictions;
 			return this;
@@ -98,8 +98,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Supports $top
 		/// </summary>
 		/// <param name="topSupported">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasTopSupported(bool topSupported)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasTopSupported(bool topSupported)
 		{
 			_topSupported = topSupported;
 			return this;
@@ -109,8 +109,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Supports $skip
 		/// </summary>
 		/// <param name="skipSupported">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasSkipSupported(bool skipSupported)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasSkipSupported(bool skipSupported)
 		{
 			_skipSupported = skipSupported;
 			return this;
@@ -120,8 +120,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Support for $select
 		/// </summary>
 		/// <param name="selectSupport">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasSelectSupport(SelectSupportConfiguration selectSupport)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasSelectSupport(SelectSupportConfiguration selectSupport)
 		{
 			_selectSupport = selectSupport;
 			return this;
@@ -131,8 +131,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Members can be inserted into this collection
 		/// </summary>
 		/// <param name="insertable">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasInsertable(bool insertable)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasInsertable(bool insertable)
 		{
 			_insertable = insertable;
 			return this;
@@ -142,8 +142,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Members of this ordered collection can be updated by ordinal
 		/// </summary>
 		/// <param name="updatable">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasUpdatable(bool updatable)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasUpdatable(bool updatable)
 		{
 			_updatable = updatable;
 			return this;
@@ -153,15 +153,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Members of this ordered collection can be deleted by ordinal
 		/// </summary>
 		/// <param name="deletable">The value to set</param>
-		/// <returns><see cref="CollectionPropertyRestrictionsType"/></returns>
-		public CollectionPropertyRestrictionsType HasDeletable(bool deletable)
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasDeletable(bool deletable)
 		{
 			_deletable = deletable;
 			return this;
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

@@ -21,8 +21,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _filterSegmentSupported;
 		private bool? _typecastSegmentSupported;
 		private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
-		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
-		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
+		private readonly HashSet<CustomHeadersConfiguration> _customHeaders = new HashSet<CustomHeadersConfiguration>();
+		private readonly HashSet<CustomHeadersConfiguration> _customQueryOptions = new HashSet<CustomHeadersConfiguration>();
 		private string _description;
 		private string _longDescription;
 
@@ -113,7 +113,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public DeleteRestrictionsConfiguration AddCustomHeaders(params CustomHeadersConfiguration[] customHeaders)
 		{
 			foreach (var item in customHeaders)
 			{
@@ -128,7 +128,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public DeleteRestrictionsConfiguration AddCustomQueryOptions(params CustomHeadersConfiguration[] customQueryOptions)
 		{
 			foreach (var item in customQueryOptions)
 			{

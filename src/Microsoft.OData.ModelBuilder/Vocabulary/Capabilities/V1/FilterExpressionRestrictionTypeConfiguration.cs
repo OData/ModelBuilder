@@ -30,8 +30,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Path to the restricted property
 		/// </summary>
 		/// <param name="property">The value to set</param>
-		/// <returns><see cref="FilterExpressionRestrictionType"/></returns>
-		public FilterExpressionRestrictionType HasProperty(EdmPropertyPathExpression property)
+		/// <returns><see cref="FilterExpressionRestrictionTypeConfiguration"/></returns>
+		public FilterExpressionRestrictionTypeConfiguration HasProperty(EdmPropertyPathExpression property)
 		{
 			_property = property;
 			return this;
@@ -41,15 +41,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Allowed subset of expressions
 		/// </summary>
 		/// <param name="allowedExpressions">The value to set</param>
-		/// <returns><see cref="FilterExpressionRestrictionType"/></returns>
-		public FilterExpressionRestrictionType HasAllowedExpressions(string allowedExpressions)
+		/// <returns><see cref="FilterExpressionRestrictionTypeConfiguration"/></returns>
+		public FilterExpressionRestrictionTypeConfiguration HasAllowedExpressions(string allowedExpressions)
 		{
 			_allowedExpressions = allowedExpressions;
 			return this;
 		}
 
 		/// <inheritdoc/>
-		public override IEdmExpression ToEdmExpression()
+		public IEdmExpression ToEdmExpression()
 		{
 			return null;
 		}

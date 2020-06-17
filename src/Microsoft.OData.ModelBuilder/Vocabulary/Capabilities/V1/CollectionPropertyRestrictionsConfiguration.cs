@@ -15,7 +15,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public partial class CollectionPropertyRestrictionsConfiguration : VocabularyConfiguration
 	{
-		private readonly HashSet<CollectionPropertyRestrictionsTypeConfiguration> _collectionPropertyRestrictions = new HashSet<CollectionPropertyRestrictionsTypeConfiguration>();
+		private readonly HashSet<CollectionPropertyRestrictionsConfiguration> _collectionPropertyRestrictions = new HashSet<CollectionPropertyRestrictionsConfiguration>();
 
         /// <summary>
         /// Creates a new instance of <see cref="CollectionPropertyRestrictionsConfiguration"/>
@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="collectionPropertyRestrictions">The value(s) to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
-		public CollectionPropertyRestrictionsConfiguration AddCollectionPropertyRestrictions(params CollectionPropertyRestrictionsTypeConfiguration[] collectionPropertyRestrictions)
+		public CollectionPropertyRestrictionsConfiguration AddCollectionPropertyRestrictions(params CollectionPropertyRestrictionsConfiguration[] collectionPropertyRestrictions)
 		{
 			foreach (var item in collectionPropertyRestrictions)
 			{
