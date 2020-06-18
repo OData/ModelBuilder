@@ -111,6 +111,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 		/// <summary>
 		/// Restrictions for retrieving an entity by key
+		/// Only valid when applied to a collection. If a property of `ReadByKeyRestrictions` is not specified, the corresponding property value of `ReadRestrictions` applies.
 		/// </summary>
 		/// <param name="readByKeyRestrictions">The value to set</param>
 		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
@@ -157,12 +158,12 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 				}
 			}
 
-			if (string.IsNullOrEmpty(_description))
+			if (!string.IsNullOrEmpty(_description))
 			{
 				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
 			}
 
-			if (string.IsNullOrEmpty(_longDescription))
+			if (!string.IsNullOrEmpty(_longDescription))
 			{
 				properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
 			}

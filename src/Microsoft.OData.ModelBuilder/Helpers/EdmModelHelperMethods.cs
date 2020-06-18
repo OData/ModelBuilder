@@ -138,7 +138,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         private static void AddNavigationBindings(EdmTypeMap edmMap,
             NavigationSourceConfiguration navigationSourceConfiguration,
             EdmNavigationSource navigationSource,
-         //   NavigationSourceLinkBuilderAnnotation linkBuilder,
+            //   NavigationSourceLinkBuilderAnnotation linkBuilder,
             Dictionary<string, EdmNavigationSource> edmNavigationSourceMap)
         {
             foreach (var binding in navigationSourceConfiguration.Bindings)
@@ -655,6 +655,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
             foreach (NavigationSourceAndAnnotations source in navigationSources)
             {
+                model.SetVocabularyConfigurationAnnotations(source.NavigationSource, source.Configuration);
                 IEdmEntitySet entitySet = source.NavigationSource as IEdmEntitySet;
                 if (entitySet == null)
                 {

@@ -12,6 +12,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
 	/// Custom query options that are supported/required for the annotated resource
+	/// If the entity container is annotated, the query option is supported/required by all resources in that container.
 	/// </summary>
 	public partial class CustomQueryOptionsConfiguration : VocabularyConfiguration
 	{
@@ -27,6 +28,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 		/// <summary>
 		/// Custom query options that are supported/required for the annotated resource
+		/// If the entity container is annotated, the query option is supported/required by all resources in that container.
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>

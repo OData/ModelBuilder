@@ -216,7 +216,7 @@ class Manager : GeneratedTextTransformation
 	public void WriteTerm(IEdmTerm term)
 	{
 		var actualType = term.Type.Definition;
-		var description = _model.GetDescriptionAnnotation(term);
+		var description = GetDescription(term);
 		var clrType = GetClrType(term);
 		var @namespace = GetNamespace(term);
 		if (actualType.TypeKind == EdmTypeKind.Complex)
@@ -265,7 +265,7 @@ namespace <#= @namespace #>
 
 	public void WriteClass(IEdmComplexType complexType)
 	{
-		var description = _model.GetDescriptionAnnotation(complexType);
+		var description = GetDescription(complexType);
 		var clrType = GetClrType(complexType);
 		var @namespace = GetNamespace(complexType);
 		WriteHeader();
@@ -308,7 +308,7 @@ namespace <#= @namespace #>
 
 	public void WriteEnum(IEdmEnumType enumType)
 	{
-		var description = _model.GetDescriptionAnnotation(enumType) ?? enumType.FullName();
+		var description = GetDescription(enumType);
 		var @namespace = GetNamespace(enumType);
 
 		WriteHeader();
@@ -454,7 +454,7 @@ using Microsoft.OData.Edm.Vocabularies;
 				var complexType = type as IEdmComplexType;
 				foreach (var property in complexType.Properties())
 				{
-					description = _model.GetDescriptionAnnotation(property);
+					description = GetDescription(property);
 					ProcessBuildMethods(property.Type.Definition, property.Name, returnType, description, @namespace, false);
 				}
 
@@ -532,7 +532,7 @@ using Microsoft.OData.Edm.Vocabularies;
 				var complexType = type as IEdmComplexType;
 				foreach (var property in complexType.Properties())
 				{
-					description = _model.GetDescriptionAnnotation(property);
+					description = GetDescription(property);
 					ProcessEdmProperties(property.Type.Definition, property.Name, returnType, description, @namespace, false);
 				}
 			}
@@ -572,7 +572,7 @@ using Microsoft.OData.Edm.Vocabularies;
 			if (fullTypeName == "Edm.String")
 			{
 #>
-			if (string.IsNullOrEmpty(_<#= camelName #>))
+			if (!string.IsNullOrEmpty(_<#= camelName #>))
 			{
 				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmStringConstant(_<#= camelName #>)));
 			}
@@ -703,15 +703,21 @@ using Microsoft.OData.Edm.Vocabularies;
 	}
 
 	private string CamelCase(string input)
+		=> string.Concat(input[0].ToString().ToLower(), input.Substring(1));
+
+	private string GetDescription(IEdmVocabularyAnnotatable target)
 	{
-		return string.Concat(input[0].ToString().ToLower(), input.Substring(1));
+		var description = string.Concat(_model.GetDescriptionAnnotation(target), Environment.NewLine, _model.GetLongDescriptionAnnotation(target));
+		if (string.IsNullOrWhiteSpace(description))
+		{
+			return target.ToString();
+		}
+
+		return description.Trim();
 	}
 
 	private void ProcessSummary(IEdmVocabularyAnnotatable target, string indent)
-	{
-		var description = _model.GetDescriptionAnnotation(target) ?? target.ToString();
-		ProcessSummary(description, indent);
-	}
+		=> ProcessSummary(GetDescription(target), indent);
 
 	private void ProcessSummary(string text, string indent)
 	{
@@ -720,8 +726,8 @@ using Microsoft.OData.Edm.Vocabularies;
 			WriteLine("/// Summary");
 			return;
 		}
-		var lines = text.Split(new char[] { '\r', '\n' }) ?? new string[0];
-		WriteLine($"/// {lines.FirstOrDefault()}");
+		var lines = text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		WriteLine($"/// {lines.FirstOrDefault() ?? "Summary" }");
 		foreach (var line in lines.Skip(1))
 		{
 			WriteLine($"{indent}/// {line}");

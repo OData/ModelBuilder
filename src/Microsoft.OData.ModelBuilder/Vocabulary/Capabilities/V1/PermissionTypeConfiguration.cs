@@ -56,7 +56,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			var properties = new List<IEdmPropertyConstructor>();
 
-			if (string.IsNullOrEmpty(_schemeName))
+			if (!string.IsNullOrEmpty(_schemeName))
 			{
 				properties.Add(new EdmPropertyConstructor("SchemeName", new EdmStringConstant(_schemeName)));
 			}

@@ -40,6 +40,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 		/// <summary>
 		/// Change tracking supports filters on these properties
+		/// If no properties are specified or FilterableProperties is omitted, clients cannot assume support for filtering on any properties in combination with change tracking.
 		/// </summary>
 		/// <param name="filterableProperties">The value(s) to set</param>
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
@@ -55,6 +56,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 		/// <summary>
 		/// Change tracking supports these properties expanded
+		/// If no properties are specified or ExpandableProperties is omitted, clients cannot assume support for expanding any properties in combination with change tracking.
 		/// </summary>
 		/// <param name="expandableProperties">The value(s) to set</param>
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>

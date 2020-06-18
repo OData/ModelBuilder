@@ -144,12 +144,12 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 				}
 			}
 
-			if (string.IsNullOrEmpty(_description))
+			if (!string.IsNullOrEmpty(_description))
 			{
 				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
 			}
 
-			if (string.IsNullOrEmpty(_longDescription))
+			if (!string.IsNullOrEmpty(_longDescription))
 			{
 				properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
 			}

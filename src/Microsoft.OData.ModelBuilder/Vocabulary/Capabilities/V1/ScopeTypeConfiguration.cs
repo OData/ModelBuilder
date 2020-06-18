@@ -38,6 +38,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 		/// <summary>
 		/// Comma-separated string value of all properties that will be included or excluded when using the scope.
+		/// Possible string value identifiers when specifying properties are '*', _PropertyName_, '-'_PropertyName_. Where, '*' denotes all properties are accessible,'-'_PropertyName_ excludes that specific property and _PropertyName_ explicitly provides access to the specific property. The absence of 'RestrictedProperties' denotes all properties are accessible using that scope.
 		/// </summary>
 		/// <param name="restrictedProperties">The value to set</param>
 		/// <returns><see cref="ScopeTypeConfiguration"/></returns>
@@ -52,12 +53,12 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			var properties = new List<IEdmPropertyConstructor>();
 
-			if (string.IsNullOrEmpty(_scope))
+			if (!string.IsNullOrEmpty(_scope))
 			{
 				properties.Add(new EdmPropertyConstructor("Scope", new EdmStringConstant(_scope)));
 			}
 
-			if (string.IsNullOrEmpty(_restrictedProperties))
+			if (!string.IsNullOrEmpty(_restrictedProperties))
 			{
 				properties.Add(new EdmPropertyConstructor("RestrictedProperties", new EdmStringConstant(_restrictedProperties)));
 			}

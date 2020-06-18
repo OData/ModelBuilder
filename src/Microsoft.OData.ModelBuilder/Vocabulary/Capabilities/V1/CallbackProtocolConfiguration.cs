@@ -64,17 +64,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			var properties = new List<IEdmPropertyConstructor>();
 
-			if (string.IsNullOrEmpty(_id))
+			if (!string.IsNullOrEmpty(_id))
 			{
 				properties.Add(new EdmPropertyConstructor("Id", new EdmStringConstant(_id)));
 			}
 
-			if (string.IsNullOrEmpty(_urlTemplate))
+			if (!string.IsNullOrEmpty(_urlTemplate))
 			{
 				properties.Add(new EdmPropertyConstructor("UrlTemplate", new EdmStringConstant(_urlTemplate)));
 			}
 
-			if (string.IsNullOrEmpty(_documentationUrl))
+			if (!string.IsNullOrEmpty(_documentationUrl))
 			{
 				properties.Add(new EdmPropertyConstructor("DocumentationUrl", new EdmStringConstant(_documentationUrl)));
 			}

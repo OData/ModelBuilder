@@ -12,6 +12,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
 	/// <summary>
 	/// A custom parameter is either a header or a query option
+	/// The type of a custom parameter is always a string. Restrictions on the parameter values can be expressed by annotating the record expression describing the parameter with terms from the Validation vocabulary, e.g. Validation.Pattern or Validation.AllowedValues.
 	/// </summary>
 	public partial class CustomParameterConfiguration : IRecord
 	{
@@ -92,17 +93,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			var properties = new List<IEdmPropertyConstructor>();
 
-			if (string.IsNullOrEmpty(_name))
+			if (!string.IsNullOrEmpty(_name))
 			{
 				properties.Add(new EdmPropertyConstructor("Name", new EdmStringConstant(_name)));
 			}
 
-			if (string.IsNullOrEmpty(_description))
+			if (!string.IsNullOrEmpty(_description))
 			{
 				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
 			}
 
-			if (string.IsNullOrEmpty(_documentationURL))
+			if (!string.IsNullOrEmpty(_documentationURL))
 			{
 				properties.Add(new EdmPropertyConstructor("DocumentationURL", new EdmStringConstant(_documentationURL)));
 			}

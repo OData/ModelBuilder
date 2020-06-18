@@ -57,7 +57,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 				properties.Add(new EdmPropertyConstructor("Property", _property));
 			}
 
-			if (string.IsNullOrEmpty(_allowedExpressions))
+			if (!string.IsNullOrEmpty(_allowedExpressions))
 			{
 				properties.Add(new EdmPropertyConstructor("AllowedExpressions", new EdmStringConstant(_allowedExpressions)));
 			}

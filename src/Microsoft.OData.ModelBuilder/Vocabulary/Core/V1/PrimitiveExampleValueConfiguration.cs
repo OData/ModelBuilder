@@ -52,7 +52,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
 		{
 			var properties = new List<IEdmPropertyConstructor>();
 
-			if (string.IsNullOrEmpty(_description))
+			if (!string.IsNullOrEmpty(_description))
 			{
 				properties.Add(new EdmPropertyConstructor("Description", new EdmStringConstant(_description)));
 			}

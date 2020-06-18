@@ -64,6 +64,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 		/// <summary>
 		/// List of functions and operators supported in filter expressions.
+		/// If not specified, null, or empty, all functions and operators may be attempted.
 		/// </summary>
 		/// <param name="filterFunctions">The value(s) to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
