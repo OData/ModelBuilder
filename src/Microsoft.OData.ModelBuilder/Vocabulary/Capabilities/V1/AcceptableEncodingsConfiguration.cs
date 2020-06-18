@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// List of acceptable compression methods for ($batch) requests, e.g. gzip
 	/// </summary>
-	public partial class AcceptableEncodingsConfiguration : VocabularyConfiguration
+	public partial class AcceptableEncodingsConfiguration : VocabularyTermConfiguration
 	{
 		private readonly HashSet<string> _acceptableEncodings = new HashSet<string>();
 

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports $top
 	/// </summary>
-	public partial class TopSupportedConfiguration : VocabularyConfiguration
+	public partial class TopSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _topSupported;
 

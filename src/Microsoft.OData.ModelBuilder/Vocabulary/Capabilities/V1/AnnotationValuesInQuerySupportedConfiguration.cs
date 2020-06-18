@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports annotation values within system query options
 	/// </summary>
-	public partial class AnnotationValuesInQuerySupportedConfiguration : VocabularyConfiguration
+	public partial class AnnotationValuesInQuerySupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _annotationValuesInQuerySupported;
 

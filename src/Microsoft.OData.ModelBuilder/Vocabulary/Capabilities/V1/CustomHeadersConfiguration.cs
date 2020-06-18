@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Custom headers that are supported/required for the annotated resource
 	/// </summary>
-	public partial class CustomHeadersConfiguration : VocabularyConfiguration
+	public partial class CustomHeadersConfiguration : VocabularyTermConfiguration
 	{
 		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
 

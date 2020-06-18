@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// The conformance level achieved by this service
 	/// </summary>
-	public partial class ConformanceLevelConfiguration : VocabularyConfiguration
+	public partial class ConformanceLevelConfiguration : VocabularyTermConfiguration
 	{
 		private ConformanceLevelType? _conformanceLevel;
 

@@ -14,7 +14,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// List of functions and operators supported in filter expressions.
 	/// If not specified, null, or empty, all functions and operators may be attempted.
 	/// </summary>
-	public partial class FilterFunctionsConfiguration : VocabularyConfiguration
+	public partial class FilterFunctionsConfiguration : VocabularyTermConfiguration
 	{
 		private readonly HashSet<string> _filterFunctions = new HashSet<string>();
 

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports cross joins for the entity sets in this container
 	/// </summary>
-	public partial class CrossJoinSupportedConfiguration : VocabularyConfiguration
+	public partial class CrossJoinSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _crossJoinSupported;
 

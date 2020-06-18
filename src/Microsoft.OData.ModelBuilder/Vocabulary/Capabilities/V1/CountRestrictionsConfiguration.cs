@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on /$count path suffix and $count=true system query option
 	/// </summary>
-	public partial class CountRestrictionsConfiguration : VocabularyConfiguration
+	public partial class CountRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _countable;
 		private readonly HashSet<EdmPropertyPathExpression> _nonCountableProperties = new HashSet<EdmPropertyPathExpression>();

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on delete operations
 	/// </summary>
-	public partial class DeleteRestrictionsConfiguration : VocabularyConfiguration
+	public partial class DeleteRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _deletable;
 		private readonly HashSet<EdmNavigationPropertyPathExpression> _nonDeletableNavigationProperties = new HashSet<EdmNavigationPropertyPathExpression>();

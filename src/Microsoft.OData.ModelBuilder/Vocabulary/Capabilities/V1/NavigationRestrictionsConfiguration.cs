@@ -14,7 +14,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// Restrictions on navigating properties according to OData URL conventions
 	/// Restrictions specified on an entity set are valid whether the request is directly to the entity set or through a navigation property bound to that entity set. Services can specify a different set of restrictions specific to a path, in which case the more specific restrictions take precedence.
 	/// </summary>
-	public partial class NavigationRestrictionsConfiguration : VocabularyConfiguration
+	public partial class NavigationRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private NavigationType? _navigability;
 		private readonly HashSet<NavigationPropertyRestrictionConfiguration> _restrictedProperties = new HashSet<NavigationPropertyRestrictionConfiguration>();

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions for retrieving a collection of entities, retrieving a singleton instance.
 	/// </summary>
-	public partial class ReadRestrictionsConfiguration : VocabularyConfiguration
+	public partial class ReadRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _readable;
 		private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();

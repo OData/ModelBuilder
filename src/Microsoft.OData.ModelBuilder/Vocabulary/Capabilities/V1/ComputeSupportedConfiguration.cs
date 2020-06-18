@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports $compute
 	/// </summary>
-	public partial class ComputeSupportedConfiguration : VocabularyConfiguration
+	public partial class ComputeSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _computeSupported;
 

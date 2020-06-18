@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Describes restrictions on operations applied to collection-valued structural properties
 	/// </summary>
-	public partial class CollectionPropertyRestrictionsConfiguration : VocabularyConfiguration
+	public partial class CollectionPropertyRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private readonly HashSet<CollectionPropertyRestrictionsTypeConfiguration> _collectionPropertyRestrictions = new HashSet<CollectionPropertyRestrictionsTypeConfiguration>();
 

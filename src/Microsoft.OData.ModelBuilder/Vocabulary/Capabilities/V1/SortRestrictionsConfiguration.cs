@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on orderby expressions
 	/// </summary>
-	public partial class SortRestrictionsConfiguration : VocabularyConfiguration
+	public partial class SortRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _sortable;
 		private readonly HashSet<EdmPropertyPathExpression> _ascendingOnlyProperties = new HashSet<EdmPropertyPathExpression>();

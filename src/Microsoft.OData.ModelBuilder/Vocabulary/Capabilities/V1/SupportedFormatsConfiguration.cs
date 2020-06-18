@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Media types of supported formats, including format parameters
 	/// </summary>
-	public partial class SupportedFormatsConfiguration : VocabularyConfiguration
+	public partial class SupportedFormatsConfiguration : VocabularyTermConfiguration
 	{
 		private readonly HashSet<string> _supportedFormats = new HashSet<string>();
 

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Support for query options with modification requests (insert, update, action invocation)
 	/// </summary>
-	public partial class ModificationQueryOptionsConfiguration : VocabularyConfiguration
+	public partial class ModificationQueryOptionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _expandSupported;
 		private bool? _selectSupported;

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Support for $select and nested query options within $select
 	/// </summary>
-	public partial class SelectSupportConfiguration : VocabularyConfiguration
+	public partial class SelectSupportConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _supported;
 		private bool? _instanceAnnotationsSupported;

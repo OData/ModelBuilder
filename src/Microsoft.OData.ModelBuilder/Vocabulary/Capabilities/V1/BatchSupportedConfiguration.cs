@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports $batch requests. Services that apply the BatchSupported term should also apply the more comprehensive BatchSupport term.
 	/// </summary>
-	public partial class BatchSupportedConfiguration : VocabularyConfiguration
+	public partial class BatchSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _batchSupported;
 

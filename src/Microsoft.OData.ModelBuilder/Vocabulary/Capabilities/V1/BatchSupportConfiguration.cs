@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Batch Support for the service
 	/// </summary>
-	public partial class BatchSupportConfiguration : VocabularyConfiguration
+	public partial class BatchSupportConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _supported;
 		private bool? _continueOnErrorSupported;

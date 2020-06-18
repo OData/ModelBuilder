@@ -99,7 +99,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Vocabulary builders to annotate this <see cref="NavigationSourceConfiguration"/>
         /// </summary> 
-        public Dictionary<Type, VocabularyConfiguration> VocabularyConfigurations { get; } = new Dictionary<Type, VocabularyConfiguration>();
+        public Dictionary<Type, VocabularyTermConfiguration> VocabularyTermConfigurations { get; } = new Dictionary<Type, VocabularyTermConfiguration>();
 
         /// <summary>
         /// Gets the navigation source URL.

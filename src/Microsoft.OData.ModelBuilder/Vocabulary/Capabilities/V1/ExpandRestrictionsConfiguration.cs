@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on expand expressions
 	/// </summary>
-	public partial class ExpandRestrictionsConfiguration : VocabularyConfiguration
+	public partial class ExpandRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _expandable;
 		private bool? _streamsExpandable;

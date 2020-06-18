@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on insert operations
 	/// </summary>
-	public partial class InsertRestrictionsConfiguration : VocabularyConfiguration
+	public partial class InsertRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _insertable;
 		private readonly HashSet<EdmPropertyPathExpression> _nonInsertableProperties = new HashSet<EdmPropertyPathExpression>();

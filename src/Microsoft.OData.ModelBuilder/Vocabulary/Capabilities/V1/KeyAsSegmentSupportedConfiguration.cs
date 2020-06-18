@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection
 	/// </summary>
-	public partial class KeyAsSegmentSupportedConfiguration : VocabularyConfiguration
+	public partial class KeyAsSegmentSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _keyAsSegmentSupported;
 

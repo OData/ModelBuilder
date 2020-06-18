@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)
 	/// </summary>
-	public partial class QuerySegmentSupportedConfiguration : VocabularyConfiguration
+	public partial class QuerySegmentSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _querySegmentSupported;
 

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Deep Insert Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
 	/// </summary>
-	public partial class DeepInsertSupportConfiguration : VocabularyConfiguration
+	public partial class DeepInsertSupportConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _supported;
 		private bool? _contentIDSupported;

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions for function or action operation
 	/// </summary>
-	public partial class OperationRestrictionsConfiguration : VocabularyConfiguration
+	public partial class OperationRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _filterSegmentSupported;
 		private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Change tracking capabilities of this service or entity set
 	/// </summary>
-	public partial class ChangeTrackingConfiguration : VocabularyConfiguration
+	public partial class ChangeTrackingConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _supported;
 		private readonly HashSet<EdmPropertyPathExpression> _filterableProperties = new HashSet<EdmPropertyPathExpression>();

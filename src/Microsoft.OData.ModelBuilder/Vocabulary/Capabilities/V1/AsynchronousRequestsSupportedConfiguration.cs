@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Service supports the asynchronous request preference
 	/// </summary>
-	public partial class AsynchronousRequestsSupportedConfiguration : VocabularyConfiguration
+	public partial class AsynchronousRequestsSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _asynchronousRequestsSupported;
 

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Stream property supports update of its media edit URL and/or media read URL
 	/// </summary>
-	public partial class MediaLocationUpdateSupportedConfiguration : VocabularyConfiguration
+	public partial class MediaLocationUpdateSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _mediaLocationUpdateSupported;
 

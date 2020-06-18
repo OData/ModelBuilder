@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports $skip
 	/// </summary>
-	public partial class SkipSupportedConfiguration : VocabularyConfiguration
+	public partial class SkipSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _skipSupported;
 

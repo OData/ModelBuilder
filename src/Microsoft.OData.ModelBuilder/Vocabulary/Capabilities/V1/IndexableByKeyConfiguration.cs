@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports key values according to OData URL conventions
 	/// </summary>
-	public partial class IndexableByKeyConfiguration : VocabularyConfiguration
+	public partial class IndexableByKeyConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _indexableByKey;
 

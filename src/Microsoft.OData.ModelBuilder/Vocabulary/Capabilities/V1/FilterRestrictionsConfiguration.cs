@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on filter expressions
 	/// </summary>
-	public partial class FilterRestrictionsConfiguration : VocabularyConfiguration
+	public partial class FilterRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _filterable;
 		private bool? _requiresFilter;

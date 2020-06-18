@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supported odata.isolation levels
 	/// </summary>
-	public partial class IsolationSupportedConfiguration : VocabularyConfiguration
+	public partial class IsolationSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private IsolationLevel? _isolationSupported;
 

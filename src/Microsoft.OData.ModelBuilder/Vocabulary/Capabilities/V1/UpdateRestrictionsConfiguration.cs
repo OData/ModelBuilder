@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on update operations
 	/// </summary>
-	public partial class UpdateRestrictionsConfiguration : VocabularyConfiguration
+	public partial class UpdateRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _updatable;
 		private bool? _upsertable;

@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Restrictions on search expressions
 	/// </summary>
-	public partial class SearchRestrictionsConfiguration : VocabularyConfiguration
+	public partial class SearchRestrictionsConfiguration : VocabularyTermConfiguration
 	{
 		private bool? _searchable;
 		private SearchExpressions? _unsupportedExpressions;

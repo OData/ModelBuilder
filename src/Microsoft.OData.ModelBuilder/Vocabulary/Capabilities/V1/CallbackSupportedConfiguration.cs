@@ -13,7 +13,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// <summary>
 	/// Supports callbacks for the specified protocols
 	/// </summary>
-	public partial class CallbackSupportedConfiguration : VocabularyConfiguration
+	public partial class CallbackSupportedConfiguration : VocabularyTermConfiguration
 	{
 		private readonly HashSet<CallbackProtocolConfiguration> _callbackProtocols = new HashSet<CallbackProtocolConfiguration>();
 
