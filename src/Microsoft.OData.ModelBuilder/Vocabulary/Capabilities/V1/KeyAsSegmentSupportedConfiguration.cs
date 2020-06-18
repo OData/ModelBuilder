@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="keyAsSegmentSupported">The value to set</param>
 		/// <returns><see cref="KeyAsSegmentSupportedConfiguration"/></returns>
-		public KeyAsSegmentSupportedConfiguration HasKeyAsSegmentSupported(bool keyAsSegmentSupported)
+		public KeyAsSegmentSupportedConfiguration IsKeyAsSegmentSupported(bool keyAsSegmentSupported)
 		{
 			_keyAsSegmentSupported = keyAsSegmentSupported;
 			return this;

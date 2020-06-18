@@ -36,7 +36,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="readable">The value to set</param>
 		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
-		public ReadRestrictionsConfiguration HasReadable(bool readable)
+		public ReadRestrictionsConfiguration IsReadable(bool readable)
 		{
 			_readable = readable;
 			return this;

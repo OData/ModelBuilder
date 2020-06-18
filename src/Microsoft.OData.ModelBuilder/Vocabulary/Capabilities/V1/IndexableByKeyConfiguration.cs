@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="indexableByKey">The value to set</param>
 		/// <returns><see cref="IndexableByKeyConfiguration"/></returns>
-		public IndexableByKeyConfiguration HasIndexableByKey(bool indexableByKey)
+		public IndexableByKeyConfiguration IsIndexableByKey(bool indexableByKey)
 		{
 			_indexableByKey = indexableByKey;
 			return this;

@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="skipSupported">The value to set</param>
 		/// <returns><see cref="SkipSupportedConfiguration"/></returns>
-		public SkipSupportedConfiguration HasSkipSupported(bool skipSupported)
+		public SkipSupportedConfiguration IsSkipSupported(bool skipSupported)
 		{
 			_skipSupported = skipSupported;
 			return this;

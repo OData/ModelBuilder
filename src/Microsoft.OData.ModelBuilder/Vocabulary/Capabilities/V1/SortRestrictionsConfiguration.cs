@@ -33,7 +33,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="sortable">The value to set</param>
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
-		public SortRestrictionsConfiguration HasSortable(bool sortable)
+		public SortRestrictionsConfiguration IsSortable(bool sortable)
 		{
 			_sortable = sortable;
 			return this;

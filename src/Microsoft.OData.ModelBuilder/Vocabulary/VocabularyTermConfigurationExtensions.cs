@@ -27,7 +27,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="CallbackSupportedConfiguration"/></returns>
 		public static CallbackSupportedConfiguration HasCallbackSupported<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<CallbackSupportedConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<CallbackSupportedConfiguration>();
 
 		/// <summary>
 		/// <see cref="ChangeTrackingConfiguration"/> configuration
@@ -36,7 +36,15 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
 		public static ChangeTrackingConfiguration HasChangeTracking<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<ChangeTrackingConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ChangeTrackingConfiguration>();
+
+		/// <summary>
+		/// <see cref="ChangeTrackingConfiguration"/> configuration
+		/// </summary>
+		/// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
+		public static ChangeTrackingConfiguration HasChangeTracking(this FunctionConfiguration operationSource)
+			=> operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<ChangeTrackingConfiguration>();
 
 		/// <summary>
 		/// <see cref="CountRestrictionsConfiguration"/> configuration
@@ -45,7 +53,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="CountRestrictionsConfiguration"/></returns>
 		public static CountRestrictionsConfiguration HasCountRestrictions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<CountRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<CountRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="NavigationRestrictionsConfiguration"/> configuration
@@ -54,7 +62,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="NavigationRestrictionsConfiguration"/></returns>
 		public static NavigationRestrictionsConfiguration HasNavigationRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<NavigationRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<NavigationRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="IndexableByKeyConfiguration"/> configuration
@@ -63,7 +71,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="IndexableByKeyConfiguration"/></returns>
 		public static IndexableByKeyConfiguration HasIndexableByKey<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<IndexableByKeyConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<IndexableByKeyConfiguration>();
 
 		/// <summary>
 		/// <see cref="TopSupportedConfiguration"/> configuration
@@ -72,7 +80,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="TopSupportedConfiguration"/></returns>
 		public static TopSupportedConfiguration HasTopSupported<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<TopSupportedConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<TopSupportedConfiguration>();
 
 		/// <summary>
 		/// <see cref="SkipSupportedConfiguration"/> configuration
@@ -81,7 +89,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="SkipSupportedConfiguration"/></returns>
 		public static SkipSupportedConfiguration HasSkipSupported<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<SkipSupportedConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<SkipSupportedConfiguration>();
 
 		/// <summary>
 		/// <see cref="ComputeSupportedConfiguration"/> configuration
@@ -90,7 +98,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="ComputeSupportedConfiguration"/></returns>
 		public static ComputeSupportedConfiguration HasComputeSupported<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<ComputeSupportedConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ComputeSupportedConfiguration>();
 
 		/// <summary>
 		/// <see cref="SelectSupportConfiguration"/> configuration
@@ -99,7 +107,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
 		public static SelectSupportConfiguration HasSelectSupport<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<SelectSupportConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<SelectSupportConfiguration>();
 
 		/// <summary>
 		/// <see cref="FilterFunctionsConfiguration"/> configuration
@@ -108,7 +116,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="FilterFunctionsConfiguration"/></returns>
 		public static FilterFunctionsConfiguration HasFilterFunctions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<FilterFunctionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<FilterFunctionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="FilterRestrictionsConfiguration"/> configuration
@@ -117,7 +125,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
 		public static FilterRestrictionsConfiguration HasFilterRestrictions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<FilterRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<FilterRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="SortRestrictionsConfiguration"/> configuration
@@ -126,7 +134,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
 		public static SortRestrictionsConfiguration HasSortRestrictions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<SortRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<SortRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="ExpandRestrictionsConfiguration"/> configuration
@@ -135,7 +143,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>
 		public static ExpandRestrictionsConfiguration HasExpandRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<ExpandRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ExpandRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="SearchRestrictionsConfiguration"/> configuration
@@ -144,7 +152,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="SearchRestrictionsConfiguration"/></returns>
 		public static SearchRestrictionsConfiguration HasSearchRestrictions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<SearchRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<SearchRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="InsertRestrictionsConfiguration"/> configuration
@@ -153,7 +161,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public static InsertRestrictionsConfiguration HasInsertRestrictions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<InsertRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<InsertRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="DeepInsertSupportConfiguration"/> configuration
@@ -162,7 +170,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="DeepInsertSupportConfiguration"/></returns>
 		public static DeepInsertSupportConfiguration HasDeepInsertSupport<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<DeepInsertSupportConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DeepInsertSupportConfiguration>();
 
 		/// <summary>
 		/// <see cref="UpdateRestrictionsConfiguration"/> configuration
@@ -171,7 +179,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
 		public static UpdateRestrictionsConfiguration HasUpdateRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<UpdateRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<UpdateRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="DeepUpdateSupportConfiguration"/> configuration
@@ -180,7 +188,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="DeepUpdateSupportConfiguration"/></returns>
 		public static DeepUpdateSupportConfiguration HasDeepUpdateSupport<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<DeepUpdateSupportConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DeepUpdateSupportConfiguration>();
 
 		/// <summary>
 		/// <see cref="DeleteRestrictionsConfiguration"/> configuration
@@ -189,7 +197,7 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
 		public static DeleteRestrictionsConfiguration HasDeleteRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<DeleteRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DeleteRestrictionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="CollectionPropertyRestrictionsConfiguration"/> configuration
@@ -198,7 +206,23 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
 		public static CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<CollectionPropertyRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<CollectionPropertyRestrictionsConfiguration>();
+
+		/// <summary>
+		/// <see cref="OperationRestrictionsConfiguration"/> configuration
+		/// </summary>
+		/// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
+		public static OperationRestrictionsConfiguration HasOperationRestrictions(this OperationConfiguration operationSource)
+			=> operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<OperationRestrictionsConfiguration>();
+
+		/// <summary>
+		/// <see cref="ModificationQueryOptionsConfiguration"/> configuration
+		/// </summary>
+		/// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
+		public static ModificationQueryOptionsConfiguration HasModificationQueryOptions(this ActionConfiguration operationSource)
+			=> operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<ModificationQueryOptionsConfiguration>();
 
 		/// <summary>
 		/// <see cref="ReadRestrictionsConfiguration"/> configuration
@@ -207,31 +231,52 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
 		public static ReadRestrictionsConfiguration HasReadRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<ReadRestrictionsConfiguration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ReadRestrictionsConfiguration>();
 
 		/// <summary>
-		/// Apply all builders as configured
+		/// Add vocabulary annotations to a model target.
 		/// </summary>
-        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmNavigationSource target, NavigationSourceConfiguration navigationConfiguration)
+		/// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+		/// <param name="target"><see cref="EdmNavigationSource"/> to annotate</param>
+		/// <param name="navigationSourceConfiguration"><see cref="NavigationSourceConfiguration"/> containing the collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+		public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmNavigationSource target, NavigationSourceConfiguration navigationSourceConfiguration)
+			=> model.SetVocabularyConfigurationAnnotations(target as IEdmVocabularyAnnotatable, navigationSourceConfiguration?.VocabularyTermConfigurations.Values);
+
+        /// <summary>
+        /// Add vocabulary annotations to a model target.
+        /// </summary>
+        /// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+        /// <param name="target"><see cref="EdmOperation"/> to annotate</param>
+        /// <param name="operationConfiguration"><see cref="OperationConfiguration"/> containing the collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmOperation target, OperationConfiguration operationConfiguration)
+            => model.SetVocabularyConfigurationAnnotations(target as IEdmVocabularyAnnotatable, operationConfiguration?.VocabularyTermConfigurations.Values);
+
+        /// <summary>
+        /// Add vocabulary annotations to a model target.
+        /// </summary>
+        /// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+        /// <param name="target"><see cref="IEdmVocabularyAnnotatable"/> to annotate</param>
+        /// <param name="configurations">Collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, IEdmVocabularyAnnotatable target, IEnumerable<VocabularyTermConfiguration> configurations)
         {
             _ = model ?? throw Error.ArgumentNull(nameof(model));
-            if (target == null || navigationConfiguration == null)
+            if (target == null || configurations == null)
             {
                 return;
             }
 
-			foreach (var configuration in navigationConfiguration.VocabularyTermConfigurations.Values)
-			{
-				configuration.SetVocabularyAnnotations(model, (IEdmVocabularyAnnotatable)target);
-			}
+            foreach (var configuration in configurations)
+            {
+                configuration.SetVocabularyAnnotations(model, target);
+            }
         }
 
-		private static TConfiguration GetVocabularyConfiguration<TConfiguration, TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TConfiguration : VocabularyTermConfiguration, new() where TEntity : class
+        private static TConfiguration GetOrCreateConfiguration<TConfiguration>(this Dictionary<Type, VocabularyTermConfiguration> vocabularyConfigurations)
+            where TConfiguration : VocabularyTermConfiguration, new()
         {
-            var vocabularyConfigurations = navigationSource.Configuration.VocabularyTermConfigurations;
             if (vocabularyConfigurations.TryGetValue(typeof(TConfiguration), out var configuration))
             {
-                return configuration as TConfiguration;
+                return (TConfiguration)configuration;
             }
 
             configuration = new TConfiguration();

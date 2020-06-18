@@ -67,7 +67,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="required">The value to set</param>
 		/// <returns><see cref="CustomParameterConfiguration"/></returns>
-		public CustomParameterConfiguration HasRequired(bool required)
+		public CustomParameterConfiguration IsRequired(bool required)
 		{
 			_required = required;
 			return this;

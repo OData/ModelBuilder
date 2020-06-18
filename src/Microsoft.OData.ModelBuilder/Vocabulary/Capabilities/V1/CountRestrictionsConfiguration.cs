@@ -32,7 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="countable">The value to set</param>
 		/// <returns><see cref="CountRestrictionsConfiguration"/></returns>
-		public CountRestrictionsConfiguration HasCountable(bool countable)
+		public CountRestrictionsConfiguration IsCountable(bool countable)
 		{
 			_countable = countable;
 			return this;

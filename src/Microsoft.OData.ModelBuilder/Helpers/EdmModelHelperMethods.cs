@@ -332,6 +332,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 }
 
                 model.AddElement(operation);
+                model.SetVocabularyConfigurationAnnotations(operation, operationConfiguration);
             }
         }
 

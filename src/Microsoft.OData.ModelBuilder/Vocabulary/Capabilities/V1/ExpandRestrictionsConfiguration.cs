@@ -33,7 +33,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="expandable">The value to set</param>
 		/// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>
-		public ExpandRestrictionsConfiguration HasExpandable(bool expandable)
+		public ExpandRestrictionsConfiguration IsExpandable(bool expandable)
 		{
 			_expandable = expandable;
 			return this;
@@ -44,7 +44,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="streamsExpandable">The value to set</param>
 		/// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>
-		public ExpandRestrictionsConfiguration HasStreamsExpandable(bool streamsExpandable)
+		public ExpandRestrictionsConfiguration IsStreamsExpandable(bool streamsExpandable)
 		{
 			_streamsExpandable = streamsExpandable;
 			return this;

@@ -40,7 +40,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="insertable">The value to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration HasInsertable(bool insertable)
+		public InsertRestrictionsConfiguration IsInsertable(bool insertable)
 		{
 			_insertable = insertable;
 			return this;
@@ -92,7 +92,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="typecastSegmentSupported">The value to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration HasTypecastSegmentSupported(bool typecastSegmentSupported)
+		public InsertRestrictionsConfiguration IsTypecastSegmentSupported(bool typecastSegmentSupported)
 		{
 			_typecastSegmentSupported = typecastSegmentSupported;
 			return this;

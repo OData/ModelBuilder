@@ -116,7 +116,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="topSupported">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
-		public NavigationPropertyRestrictionConfiguration HasTopSupported(bool topSupported)
+		public NavigationPropertyRestrictionConfiguration IsTopSupported(bool topSupported)
 		{
 			_topSupported = topSupported;
 			return this;
@@ -127,7 +127,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="skipSupported">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
-		public NavigationPropertyRestrictionConfiguration HasSkipSupported(bool skipSupported)
+		public NavigationPropertyRestrictionConfiguration IsSkipSupported(bool skipSupported)
 		{
 			_skipSupported = skipSupported;
 			return this;
@@ -149,7 +149,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="indexableByKey">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
-		public NavigationPropertyRestrictionConfiguration HasIndexableByKey(bool indexableByKey)
+		public NavigationPropertyRestrictionConfiguration IsIndexableByKey(bool indexableByKey)
 		{
 			_indexableByKey = indexableByKey;
 			return this;
@@ -215,7 +215,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="optimisticConcurrencyControl">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
-		public NavigationPropertyRestrictionConfiguration HasOptimisticConcurrencyControl(bool optimisticConcurrencyControl)
+		public NavigationPropertyRestrictionConfiguration IsOptimisticConcurrencyControl(bool optimisticConcurrencyControl)
 		{
 			_optimisticConcurrencyControl = optimisticConcurrencyControl;
 			return this;

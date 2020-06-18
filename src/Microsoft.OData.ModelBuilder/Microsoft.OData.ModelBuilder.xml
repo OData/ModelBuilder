@@ -2782,6 +2782,11 @@
             The EntitySetPathExpression that entities are returned from.
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.VocabularyTermConfigurations">
+            <summary>
+            Vocabulary builders to annotate this <see cref="T:Microsoft.OData.ModelBuilder.OperationConfiguration"/>
+            </summary> 
+        </member>
         <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.BindingParameter">
             <summary>
             Get the bindingParameter.
@@ -5141,7 +5146,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.HasAnnotationValuesInQuerySupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.IsAnnotationValuesInQuerySupported(System.Boolean)">
             <summary>
             Supports annotation values within system query options
             </summary>
@@ -5161,7 +5166,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.HasAsynchronousRequestsSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.IsAsynchronousRequestsSupported(System.Boolean)">
             <summary>
             Service supports the asynchronous request preference
             </summary>
@@ -5181,7 +5186,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.HasBatchContinueOnErrorSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.IsBatchContinueOnErrorSupported(System.Boolean)">
             <summary>
             Service supports the continue on error preference. Supports $batch requests. Services that apply the BatchContinueOnErrorSupported term should also specify the ContinueOnErrorSupported property from the BatchSupport term.
             </summary>
@@ -5201,42 +5206,42 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
             Service supports requests to $batch
             </summary>
             <param name="supported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasContinueOnErrorSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsContinueOnErrorSupported(System.Boolean)">
             <summary>
             Service supports the continue on error preference
             </summary>
             <param name="continueOnErrorSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasReferencesInRequestBodiesSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsReferencesInRequestBodiesSupported(System.Boolean)">
             <summary>
             Service supports Content-ID referencing in request bodies
             </summary>
             <param name="referencesInRequestBodiesSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasReferencesAcrossChangeSetsSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsReferencesAcrossChangeSetsSupported(System.Boolean)">
             <summary>
             Service supports Content-ID referencing across change sets
             </summary>
             <param name="referencesAcrossChangeSetsSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasEtagReferencesSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsEtagReferencesSupported(System.Boolean)">
             <summary>
             Service supports referencing Etags from previous requests
             </summary>
             <param name="etagReferencesSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasRequestDependencyConditionsSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsRequestDependencyConditionsSupported(System.Boolean)">
             <summary>
             Service supports the `if` member in JSON batch requests
             </summary>
@@ -5263,7 +5268,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.HasBatchSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.IsBatchSupported(System.Boolean)">
             <summary>
             Supports $batch requests. Services that apply the BatchSupported term should also apply the more comprehensive BatchSupport term.
             </summary>
@@ -5337,7 +5342,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.HasSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.IsSupported(System.Boolean)">
             <summary>
             This entity set supports the odata.track-changes preference
             </summary>
@@ -5429,14 +5434,14 @@
             <param name="sortRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasTopSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.IsTopSupported(System.Boolean)">
             <summary>
             Supports $top
             </summary>
             <param name="topSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSkipSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.IsSkipSupported(System.Boolean)">
             <summary>
             Supports $skip
             </summary>
@@ -5450,7 +5455,7 @@
             <param name="selectSupport">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasInsertable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.IsInsertable(System.Boolean)">
             <summary>
             Members can be inserted into this collection
             If additionally annotated with [Core.PositionalInsert](Org.OData.Core.V1.md#PositionalInsert), members can be inserted at a specific position
@@ -5458,14 +5463,14 @@
             <param name="insertable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasUpdatable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.IsUpdatable(System.Boolean)">
             <summary>
             Members of this ordered collection can be updated by ordinal
             </summary>
             <param name="updatable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasDeletable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.IsDeletable(System.Boolean)">
             <summary>
             Members of this ordered collection can be deleted by ordinal
             </summary>
@@ -5485,7 +5490,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.HasComputeSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.IsComputeSupported(System.Boolean)">
             <summary>
             Supports $compute
             </summary>
@@ -5545,7 +5550,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.HasCountable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.IsCountable(System.Boolean)">
             <summary>
             Entities can be counted
             </summary>
@@ -5579,7 +5584,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.HasCrossJoinSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.IsCrossJoinSupported(System.Boolean)">
             <summary>
             Supports cross joins for the entity sets in this container
             </summary>
@@ -5641,7 +5646,7 @@
             <param name="documentationURL">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.HasRequired(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.IsRequired(System.Boolean)">
             <summary>
             true: parameter is required, false or not specified: parameter is optional
             </summary>
@@ -5690,14 +5695,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.HasSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
             Annotation target supports deep inserts
             </summary>
             <param name="supported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.HasContentIDSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.IsContentIDSupported(System.Boolean)">
             <summary>
             Annotation target supports accepting and returning nested entities annotated with the `Core.ContentID` instance annotation.
             </summary>
@@ -5717,14 +5722,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.HasSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
             Annotation target supports deep updates
             </summary>
             <param name="supported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.HasContentIDSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.IsContentIDSupported(System.Boolean)">
             <summary>
             Annotation target supports accepting and returning nested entities annotated with the `Core.ContentID` instance annotation.
             </summary>
@@ -5744,7 +5749,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasDeletable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.IsDeletable(System.Boolean)">
             <summary>
             Entities can be deleted
             </summary>
@@ -5765,14 +5770,14 @@
             <param name="maxLevels">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasFilterSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.IsFilterSegmentSupported(System.Boolean)">
             <summary>
             Members of collections can be updated via a PATCH request with a `/$filter(...)/$each` segment
             </summary>
             <param name="filterSegmentSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasTypecastSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.IsTypecastSegmentSupported(System.Boolean)">
             <summary>
             Members of collections can be updated via a PATCH request with a type-cast segment and a `/$each` segment
             </summary>
@@ -5827,14 +5832,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.HasExpandable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.IsExpandable(System.Boolean)">
             <summary>
             $expand is supported
             </summary>
             <param name="expandable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.HasStreamsExpandable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.IsStreamsExpandable(System.Boolean)">
             <summary>
             $expand is supported for stream properties and media resources
             </summary>
@@ -5917,14 +5922,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.HasFilterable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.IsFilterable(System.Boolean)">
             <summary>
             $filter is supported
             </summary>
             <param name="filterable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.HasRequiresFilter(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.IsRequiresFilter(System.Boolean)">
             <summary>
             $filter is required
             </summary>
@@ -5972,7 +5977,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.HasIndexableByKey(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.IsIndexableByKey(System.Boolean)">
             <summary>
             Supports key values according to OData URL conventions
             </summary>
@@ -5992,7 +5997,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasInsertable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.IsInsertable(System.Boolean)">
             <summary>
             Entities can be inserted
             </summary>
@@ -6020,7 +6025,7 @@
             <param name="maxLevels">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasTypecastSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.IsTypecastSegmentSupported(System.Boolean)">
             <summary>
             Entities of a specific derived type can be created by specifying a type-cast segment
             </summary>
@@ -6112,7 +6117,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.HasKeyAsSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.IsKeyAsSegmentSupported(System.Boolean)">
             <summary>
             Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection
             </summary>
@@ -6132,7 +6137,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.HasMediaLocationUpdateSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.IsMediaLocationUpdateSupported(System.Boolean)">
             <summary>
             Stream property supports update of its media edit URL and/or media read URL
             </summary>
@@ -6152,42 +6157,42 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasExpandSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsExpandSupported(System.Boolean)">
             <summary>
             Supports $expand with modification requests
             </summary>
             <param name="expandSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasSelectSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsSelectSupported(System.Boolean)">
             <summary>
             Supports $select with modification requests
             </summary>
             <param name="selectSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasComputeSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsComputeSupported(System.Boolean)">
             <summary>
             Supports $compute with modification requests
             </summary>
             <param name="computeSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasFilterSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsFilterSupported(System.Boolean)">
             <summary>
             Supports $filter with modification requests
             </summary>
             <param name="filterSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasSearchSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsSearchSupported(System.Boolean)">
             <summary>
             Supports $search with modification requests
             </summary>
             <param name="searchSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasSortSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsSortSupported(System.Boolean)">
             <summary>
             Supports $orderby with modification requests
             </summary>
@@ -6250,14 +6255,14 @@
             <param name="sortRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasTopSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.IsTopSupported(System.Boolean)">
             <summary>
             Supports $top
             </summary>
             <param name="topSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSkipSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.IsSkipSupported(System.Boolean)">
             <summary>
             Supports $skip
             </summary>
@@ -6271,7 +6276,7 @@
             <param name="selectSupport">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasIndexableByKey(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.IsIndexableByKey(System.Boolean)">
             <summary>
             Supports key values according to OData URL conventions
             </summary>
@@ -6313,7 +6318,7 @@
             <param name="deleteRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasOptimisticConcurrencyControl(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.IsOptimisticConcurrencyControl(System.Boolean)">
             <summary>
             Data modification (including insert) along this navigation property requires the use of ETags
             </summary>
@@ -6388,7 +6393,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasFilterSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.IsFilterSegmentSupported(System.Boolean)">
             <summary>
             Bound action or function can be invoked on a collection-valued binding parameter path with a `/$filter(...)` segment
             </summary>
@@ -6456,7 +6461,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.HasQuerySegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.IsQuerySegmentSupported(System.Boolean)">
             <summary>
             Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)
             </summary>
@@ -6476,7 +6481,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasReadable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.IsReadable(System.Boolean)">
             <summary>
             Entities can be retrieved
             </summary>
@@ -6531,7 +6536,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasReadable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.IsReadable(System.Boolean)">
             <summary>
             Entities can be retrieved
             </summary>
@@ -6657,7 +6662,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration.HasSearchable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration.IsSearchable(System.Boolean)">
             <summary>
             $search is supported
             </summary>
@@ -6684,70 +6689,70 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
             Supports $select
             </summary>
             <param name="supported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasInstanceAnnotationsSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsInstanceAnnotationsSupported(System.Boolean)">
             <summary>
             Supports instance annotations in $select list
             </summary>
             <param name="instanceAnnotationsSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasExpandable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsExpandable(System.Boolean)">
             <summary>
             $expand within $select is supported
             </summary>
             <param name="expandable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasFilterable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsFilterable(System.Boolean)">
             <summary>
             $filter within $select is supported
             </summary>
             <param name="filterable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasSearchable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsSearchable(System.Boolean)">
             <summary>
             $search within $select is supported
             </summary>
             <param name="searchable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasTopSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsTopSupported(System.Boolean)">
             <summary>
             $top within $select is supported
             </summary>
             <param name="topSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasSkipSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsSkipSupported(System.Boolean)">
             <summary>
             $skip within $select is supported
             </summary>
             <param name="skipSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasComputeSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsComputeSupported(System.Boolean)">
             <summary>
             $compute within $select is supported
             </summary>
             <param name="computeSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasCountable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsCountable(System.Boolean)">
             <summary>
             $count within $select is supported
             </summary>
             <param name="countable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasSortable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsSortable(System.Boolean)">
             <summary>
             $orderby within $select is supported
             </summary>
@@ -6767,7 +6772,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.HasSkipSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.IsSkipSupported(System.Boolean)">
             <summary>
             Supports $skip
             </summary>
@@ -6787,7 +6792,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration.HasSortable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration.IsSortable(System.Boolean)">
             <summary>
             $orderby is supported
             </summary>
@@ -6868,7 +6873,7 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.HasTopSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.IsTopSupported(System.Boolean)">
             <summary>
             Supports $top
             </summary>
@@ -6888,35 +6893,35 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasUpdatable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsUpdatable(System.Boolean)">
             <summary>
             Entities can be updated
             </summary>
             <param name="updatable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasUpsertable(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsUpsertable(System.Boolean)">
             <summary>
             Entities can be upserted
             </summary>
             <param name="upsertable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasDeltaUpdateSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsDeltaUpdateSupported(System.Boolean)">
             <summary>
             Entities can be inserted, updated, and deleted via a PATCH request with a delta payload
             </summary>
             <param name="deltaUpdateSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasFilterSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsFilterSegmentSupported(System.Boolean)">
             <summary>
             Members of collections can be updated via a PATCH request with a `/$filter(...)/$each` segment
             </summary>
             <param name="filterSegmentSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasTypecastSegmentSupported(System.Boolean)">
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsTypecastSegmentSupported(System.Boolean)">
             <summary>
             Members of collections can be updated via a PATCH request with a type-cast segment and a `/$each` segment
             </summary>
@@ -7060,6 +7065,13 @@
             </summary>
             <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasChangeTracking(Microsoft.OData.ModelBuilder.FunctionConfiguration)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/> configuration
+            </summary>
+            <param name="operationSource">The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCountRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
@@ -7206,6 +7218,20 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOperationRestrictions(Microsoft.OData.ModelBuilder.OperationConfiguration)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/> configuration
+            </summary>
+            <param name="operationSource">The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasModificationQueryOptions(Microsoft.OData.ModelBuilder.ActionConfiguration)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/> configuration
+            </summary>
+            <param name="operationSource">The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasReadRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/> configuration
@@ -7216,8 +7242,27 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.SetVocabularyConfigurationAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.EdmNavigationSource,Microsoft.OData.ModelBuilder.NavigationSourceConfiguration)">
             <summary>
-            Apply all builders as configured
+            Add vocabulary annotations to a model target.
             </summary>
+            <param name="model"><see cref="T:Microsoft.OData.Edm.EdmModel"/> to add annotations to</param>
+            <param name="target"><see cref="T:Microsoft.OData.Edm.EdmNavigationSource"/> to annotate</param>
+            <param name="navigationSourceConfiguration"><see cref="T:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration"/> containing the collection of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/> annotation configurations</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.SetVocabularyConfigurationAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.EdmOperation,Microsoft.OData.ModelBuilder.OperationConfiguration)">
+            <summary>
+            Add vocabulary annotations to a model target.
+            </summary>
+            <param name="model"><see cref="T:Microsoft.OData.Edm.EdmModel"/> to add annotations to</param>
+            <param name="target"><see cref="T:Microsoft.OData.Edm.EdmOperation"/> to annotate</param>
+            <param name="operationConfiguration"><see cref="T:Microsoft.OData.ModelBuilder.OperationConfiguration"/> containing the collection of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/> annotation configurations</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.SetVocabularyConfigurationAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable,System.Collections.Generic.IEnumerable{Microsoft.OData.ModelBuilder.VocabularyTermConfiguration})">
+            <summary>
+            Add vocabulary annotations to a model target.
+            </summary>
+            <param name="model"><see cref="T:Microsoft.OData.Edm.EdmModel"/> to add annotations to</param>
+            <param name="target"><see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> to annotate</param>
+            <param name="configurations">Collection of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/> annotation configurations</param>
         </member>
     </members>
 </doc>

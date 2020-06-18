@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="crossJoinSupported">The value to set</param>
 		/// <returns><see cref="CrossJoinSupportedConfiguration"/></returns>
-		public CrossJoinSupportedConfiguration HasCrossJoinSupported(bool crossJoinSupported)
+		public CrossJoinSupportedConfiguration IsCrossJoinSupported(bool crossJoinSupported)
 		{
 			_crossJoinSupported = crossJoinSupported;
 			return this;

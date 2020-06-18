@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="asynchronousRequestsSupported">The value to set</param>
 		/// <returns><see cref="AsynchronousRequestsSupportedConfiguration"/></returns>
-		public AsynchronousRequestsSupportedConfiguration HasAsynchronousRequestsSupported(bool asynchronousRequestsSupported)
+		public AsynchronousRequestsSupportedConfiguration IsAsynchronousRequestsSupported(bool asynchronousRequestsSupported)
 		{
 			_asynchronousRequestsSupported = asynchronousRequestsSupported;
 			return this;

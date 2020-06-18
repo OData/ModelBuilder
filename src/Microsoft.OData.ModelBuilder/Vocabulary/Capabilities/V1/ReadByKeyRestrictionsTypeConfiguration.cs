@@ -34,7 +34,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="readable">The value to set</param>
 		/// <returns><see cref="ReadByKeyRestrictionsTypeConfiguration"/></returns>
-		public ReadByKeyRestrictionsTypeConfiguration HasReadable(bool readable)
+		public ReadByKeyRestrictionsTypeConfiguration IsReadable(bool readable)
 		{
 			_readable = readable;
 			return this;

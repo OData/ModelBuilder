@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="batchContinueOnErrorSupported">The value to set</param>
 		/// <returns><see cref="BatchContinueOnErrorSupportedConfiguration"/></returns>
-		public BatchContinueOnErrorSupportedConfiguration HasBatchContinueOnErrorSupported(bool batchContinueOnErrorSupported)
+		public BatchContinueOnErrorSupportedConfiguration IsBatchContinueOnErrorSupported(bool batchContinueOnErrorSupported)
 		{
 			_batchContinueOnErrorSupported = batchContinueOnErrorSupported;
 			return this;

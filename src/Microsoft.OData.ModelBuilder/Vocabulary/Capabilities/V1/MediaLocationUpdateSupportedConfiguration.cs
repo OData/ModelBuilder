@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="mediaLocationUpdateSupported">The value to set</param>
 		/// <returns><see cref="MediaLocationUpdateSupportedConfiguration"/></returns>
-		public MediaLocationUpdateSupportedConfiguration HasMediaLocationUpdateSupported(bool mediaLocationUpdateSupported)
+		public MediaLocationUpdateSupportedConfiguration IsMediaLocationUpdateSupported(bool mediaLocationUpdateSupported)
 		{
 			_mediaLocationUpdateSupported = mediaLocationUpdateSupported;
 			return this;

@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="computeSupported">The value to set</param>
 		/// <returns><see cref="ComputeSupportedConfiguration"/></returns>
-		public ComputeSupportedConfiguration HasComputeSupported(bool computeSupported)
+		public ComputeSupportedConfiguration IsComputeSupported(bool computeSupported)
 		{
 			_computeSupported = computeSupported;
 			return this;

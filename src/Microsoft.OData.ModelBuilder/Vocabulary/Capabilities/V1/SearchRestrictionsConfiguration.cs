@@ -31,7 +31,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="searchable">The value to set</param>
 		/// <returns><see cref="SearchRestrictionsConfiguration"/></returns>
-		public SearchRestrictionsConfiguration HasSearchable(bool searchable)
+		public SearchRestrictionsConfiguration IsSearchable(bool searchable)
 		{
 			_searchable = searchable;
 			return this;

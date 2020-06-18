@@ -33,7 +33,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterSegmentSupported">The value to set</param>
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-		public OperationRestrictionsConfiguration HasFilterSegmentSupported(bool filterSegmentSupported)
+		public OperationRestrictionsConfiguration IsFilterSegmentSupported(bool filterSegmentSupported)
 		{
 			_filterSegmentSupported = filterSegmentSupported;
 			return this;

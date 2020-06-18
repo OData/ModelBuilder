@@ -32,7 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="supported">The value to set</param>
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
-		public ChangeTrackingConfiguration HasSupported(bool supported)
+		public ChangeTrackingConfiguration IsSupported(bool supported)
 		{
 			_supported = supported;
 			return this;

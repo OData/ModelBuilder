@@ -49,23 +49,23 @@ namespace Microsoft.OData.ModelBuilder
 <#
 		foreach (var term in model.SchemaElements.OfType<IEdmTerm>())
 		{
+			var targets = term.AppliesTo.Split(' ').ToHashSet();
 			var sourceConfig = default(string);
-			if (term.AppliesTo.Contains("Singleton") && term.AppliesTo.Contains("EntitySet"))
+			if (targets.IsSupersetOf(new[]{ "Singleton", "EntitySet" }))
 			{
 				sourceConfig = "NavigationSourceConfiguration";
 			}
-			else if (term.AppliesTo.Contains("Singleton"))
+			else if (targets.Contains("Singleton"))
 			{
 				sourceConfig = "SingletonConfiguration";
 			}
-			else if (term.AppliesTo.Contains("EntitySet"))
+			else if (targets.Contains("EntitySet"))
 			{
 				sourceConfig = "EntitySetConfiguration";
 			}
-			else
+
+			if (!string.IsNullOrEmpty(sourceConfig))
 			{
-				continue;
-			}
 #>
 		/// <summary>
 		/// <see cref="<#= term.Name #>Configuration"/> configuration
@@ -74,34 +74,87 @@ namespace Microsoft.OData.ModelBuilder
 		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
 		/// <returns><see cref="<#= term.Name #>Configuration"/></returns>
 		public static <#= term.Name #>Configuration Has<#= term.Name #><TEntity>(this <#= sourceConfig #><TEntity> navigationSource) where TEntity : class
-			=> navigationSource?.GetVocabularyConfiguration<<#= term.Name #>Configuration, TEntity>();
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<<#= term.Name #>Configuration>();
 
 <#
+			}
+
+			sourceConfig = default(string);
+			var actions = new[] { "Action", "ActionImport" };
+			var functions = new[] { "Function", "FunctionImport" };
+			if (targets.Intersect(actions).Any() && targets.Intersect(functions).Any())
+			{
+				sourceConfig = "OperationConfiguration";
+			}
+			else if (targets.Intersect(actions).Any())
+			{
+				sourceConfig = "ActionConfiguration";
+			}
+			else if (targets.Intersect(functions).Any())
+			{
+				sourceConfig = "FunctionConfiguration";
+			}
+
+			if (!string.IsNullOrEmpty(sourceConfig))
+			{
+#>
+		/// <summary>
+		/// <see cref="<#= term.Name #>Configuration"/> configuration
+		/// </summary>
+		/// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+		/// <returns><see cref="<#= term.Name #>Configuration"/></returns>
+		public static <#= term.Name #>Configuration Has<#= term.Name #>(this <#= sourceConfig #> operationSource)
+			=> operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<<#= term.Name #>Configuration>();
+
+<#
+			}
+
 		}
 #>
 		/// <summary>
-		/// Apply all builders as configured
+		/// Add vocabulary annotations to a model target.
 		/// </summary>
-        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmNavigationSource target, NavigationSourceConfiguration navigationConfiguration)
+		/// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+		/// <param name="target"><see cref="EdmNavigationSource"/> to annotate</param>
+		/// <param name="navigationSourceConfiguration"><see cref="NavigationSourceConfiguration"/> containing the collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+		public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmNavigationSource target, NavigationSourceConfiguration navigationSourceConfiguration)
+			=> model.SetVocabularyConfigurationAnnotations(target as IEdmVocabularyAnnotatable, navigationSourceConfiguration?.VocabularyTermConfigurations.Values);
+
+        /// <summary>
+        /// Add vocabulary annotations to a model target.
+        /// </summary>
+        /// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+        /// <param name="target"><see cref="EdmOperation"/> to annotate</param>
+        /// <param name="operationConfiguration"><see cref="OperationConfiguration"/> containing the collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmOperation target, OperationConfiguration operationConfiguration)
+            => model.SetVocabularyConfigurationAnnotations(target as IEdmVocabularyAnnotatable, operationConfiguration?.VocabularyTermConfigurations.Values);
+
+        /// <summary>
+        /// Add vocabulary annotations to a model target.
+        /// </summary>
+        /// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+        /// <param name="target"><see cref="IEdmVocabularyAnnotatable"/> to annotate</param>
+        /// <param name="configurations">Collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, IEdmVocabularyAnnotatable target, IEnumerable<VocabularyTermConfiguration> configurations)
         {
             _ = model ?? throw Error.ArgumentNull(nameof(model));
-            if (target == null || navigationConfiguration == null)
+            if (target == null || configurations == null)
             {
                 return;
             }
 
-			foreach (var configuration in navigationConfiguration.VocabularyConfigurations.Values)
-			{
-				configuration.SetVocabularyAnnotations(model, (IEdmVocabularyAnnotatable)target);
-			}
+            foreach (var configuration in configurations)
+            {
+                configuration.SetVocabularyAnnotations(model, target);
+            }
         }
 
-		private static TConfiguration GetVocabularyConfiguration<TConfiguration, TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TConfiguration : VocabularyTermConfiguration, new() where TEntity : class
+        private static TConfiguration GetOrCreateConfiguration<TConfiguration>(this Dictionary<Type, VocabularyTermConfiguration> vocabularyConfigurations)
+            where TConfiguration : VocabularyTermConfiguration, new()
         {
-            var vocabularyConfigurations = navigationSource.Configuration.VocabularyConfigurations;
             if (vocabularyConfigurations.TryGetValue(typeof(TConfiguration), out var configuration))
             {
-                return configuration as TConfiguration;
+                return (TConfiguration)configuration;
             }
 
             configuration = new TConfiguration();
@@ -406,6 +459,12 @@ using Microsoft.OData.Edm.Vocabularies;
 				return;
 			}
 		}
+
+		var methodPrefix = "Has";
+		if (clrType == "bool")
+		{
+			methodPrefix = "Is";
+		}
 #>
 
 		/// <summary>
@@ -413,7 +472,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		/// </summary>
 		/// <param name="<#= camelName #>">The value to set</param>
 		/// <returns><see cref="<#=returnType #>"/></returns>
-		public <#=returnType #> Has<#= name #>(<#= clrType #> <#= camelName #>)
+		public <#=returnType #> <#= methodPrefix #><#= name #>(<#= clrType #> <#= camelName #>)
 		{
 			_<#= camelName #> = <#= camelName #>;
 			return this;

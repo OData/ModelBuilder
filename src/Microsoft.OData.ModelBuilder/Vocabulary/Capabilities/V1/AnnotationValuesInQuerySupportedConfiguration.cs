@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="annotationValuesInQuerySupported">The value to set</param>
 		/// <returns><see cref="AnnotationValuesInQuerySupportedConfiguration"/></returns>
-		public AnnotationValuesInQuerySupportedConfiguration HasAnnotationValuesInQuerySupported(bool annotationValuesInQuerySupported)
+		public AnnotationValuesInQuerySupportedConfiguration IsAnnotationValuesInQuerySupported(bool annotationValuesInQuerySupported)
 		{
 			_annotationValuesInQuerySupported = annotationValuesInQuerySupported;
 			return this;

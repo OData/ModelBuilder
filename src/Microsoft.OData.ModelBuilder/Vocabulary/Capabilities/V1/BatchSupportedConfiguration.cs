@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="batchSupported">The value to set</param>
 		/// <returns><see cref="BatchSupportedConfiguration"/></returns>
-		public BatchSupportedConfiguration HasBatchSupported(bool batchSupported)
+		public BatchSupportedConfiguration IsBatchSupported(bool batchSupported)
 		{
 			_batchSupported = batchSupported;
 			return this;

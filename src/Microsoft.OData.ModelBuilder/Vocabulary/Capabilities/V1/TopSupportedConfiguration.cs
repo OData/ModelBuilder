@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="topSupported">The value to set</param>
 		/// <returns><see cref="TopSupportedConfiguration"/></returns>
-		public TopSupportedConfiguration HasTopSupported(bool topSupported)
+		public TopSupportedConfiguration IsTopSupported(bool topSupported)
 		{
 			_topSupported = topSupported;
 			return this;

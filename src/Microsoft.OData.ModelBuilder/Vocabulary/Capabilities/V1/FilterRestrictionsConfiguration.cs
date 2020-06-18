@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterable">The value to set</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
-		public FilterRestrictionsConfiguration HasFilterable(bool filterable)
+		public FilterRestrictionsConfiguration IsFilterable(bool filterable)
 		{
 			_filterable = filterable;
 			return this;
@@ -46,7 +46,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="requiresFilter">The value to set</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
-		public FilterRestrictionsConfiguration HasRequiresFilter(bool requiresFilter)
+		public FilterRestrictionsConfiguration IsRequiresFilter(bool requiresFilter)
 		{
 			_requiresFilter = requiresFilter;
 			return this;

@@ -99,7 +99,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="topSupported">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
-		public CollectionPropertyRestrictionsTypeConfiguration HasTopSupported(bool topSupported)
+		public CollectionPropertyRestrictionsTypeConfiguration IsTopSupported(bool topSupported)
 		{
 			_topSupported = topSupported;
 			return this;
@@ -110,7 +110,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="skipSupported">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
-		public CollectionPropertyRestrictionsTypeConfiguration HasSkipSupported(bool skipSupported)
+		public CollectionPropertyRestrictionsTypeConfiguration IsSkipSupported(bool skipSupported)
 		{
 			_skipSupported = skipSupported;
 			return this;
@@ -133,7 +133,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="insertable">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
-		public CollectionPropertyRestrictionsTypeConfiguration HasInsertable(bool insertable)
+		public CollectionPropertyRestrictionsTypeConfiguration IsInsertable(bool insertable)
 		{
 			_insertable = insertable;
 			return this;
@@ -144,7 +144,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="updatable">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
-		public CollectionPropertyRestrictionsTypeConfiguration HasUpdatable(bool updatable)
+		public CollectionPropertyRestrictionsTypeConfiguration IsUpdatable(bool updatable)
 		{
 			_updatable = updatable;
 			return this;
@@ -155,7 +155,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="deletable">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
-		public CollectionPropertyRestrictionsTypeConfiguration HasDeletable(bool deletable)
+		public CollectionPropertyRestrictionsTypeConfiguration IsDeletable(bool deletable)
 		{
 			_deletable = deletable;
 			return this;

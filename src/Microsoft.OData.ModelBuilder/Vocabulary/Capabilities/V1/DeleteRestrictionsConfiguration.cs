@@ -39,7 +39,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="deletable">The value to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration HasDeletable(bool deletable)
+		public DeleteRestrictionsConfiguration IsDeletable(bool deletable)
 		{
 			_deletable = deletable;
 			return this;
@@ -76,7 +76,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterSegmentSupported">The value to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration HasFilterSegmentSupported(bool filterSegmentSupported)
+		public DeleteRestrictionsConfiguration IsFilterSegmentSupported(bool filterSegmentSupported)
 		{
 			_filterSegmentSupported = filterSegmentSupported;
 			return this;
@@ -87,7 +87,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="typecastSegmentSupported">The value to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration HasTypecastSegmentSupported(bool typecastSegmentSupported)
+		public DeleteRestrictionsConfiguration IsTypecastSegmentSupported(bool typecastSegmentSupported)
 		{
 			_typecastSegmentSupported = typecastSegmentSupported;
 			return this;

@@ -36,7 +36,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="supported">The value to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration HasSupported(bool supported)
+		public BatchSupportConfiguration IsSupported(bool supported)
 		{
 			_supported = supported;
 			return this;
@@ -47,7 +47,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="continueOnErrorSupported">The value to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration HasContinueOnErrorSupported(bool continueOnErrorSupported)
+		public BatchSupportConfiguration IsContinueOnErrorSupported(bool continueOnErrorSupported)
 		{
 			_continueOnErrorSupported = continueOnErrorSupported;
 			return this;
@@ -58,7 +58,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="referencesInRequestBodiesSupported">The value to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration HasReferencesInRequestBodiesSupported(bool referencesInRequestBodiesSupported)
+		public BatchSupportConfiguration IsReferencesInRequestBodiesSupported(bool referencesInRequestBodiesSupported)
 		{
 			_referencesInRequestBodiesSupported = referencesInRequestBodiesSupported;
 			return this;
@@ -69,7 +69,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="referencesAcrossChangeSetsSupported">The value to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration HasReferencesAcrossChangeSetsSupported(bool referencesAcrossChangeSetsSupported)
+		public BatchSupportConfiguration IsReferencesAcrossChangeSetsSupported(bool referencesAcrossChangeSetsSupported)
 		{
 			_referencesAcrossChangeSetsSupported = referencesAcrossChangeSetsSupported;
 			return this;
@@ -80,7 +80,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="etagReferencesSupported">The value to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration HasEtagReferencesSupported(bool etagReferencesSupported)
+		public BatchSupportConfiguration IsEtagReferencesSupported(bool etagReferencesSupported)
 		{
 			_etagReferencesSupported = etagReferencesSupported;
 			return this;
@@ -91,7 +91,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="requestDependencyConditionsSupported">The value to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration HasRequestDependencyConditionsSupported(bool requestDependencyConditionsSupported)
+		public BatchSupportConfiguration IsRequestDependencyConditionsSupported(bool requestDependencyConditionsSupported)
 		{
 			_requestDependencyConditionsSupported = requestDependencyConditionsSupported;
 			return this;

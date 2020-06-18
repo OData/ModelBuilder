@@ -31,7 +31,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="supported">The value to set</param>
 		/// <returns><see cref="DeepInsertSupportConfiguration"/></returns>
-		public DeepInsertSupportConfiguration HasSupported(bool supported)
+		public DeepInsertSupportConfiguration IsSupported(bool supported)
 		{
 			_supported = supported;
 			return this;
@@ -42,7 +42,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="contentIDSupported">The value to set</param>
 		/// <returns><see cref="DeepInsertSupportConfiguration"/></returns>
-		public DeepInsertSupportConfiguration HasContentIDSupported(bool contentIDSupported)
+		public DeepInsertSupportConfiguration IsContentIDSupported(bool contentIDSupported)
 		{
 			_contentIDSupported = contentIDSupported;
 			return this;

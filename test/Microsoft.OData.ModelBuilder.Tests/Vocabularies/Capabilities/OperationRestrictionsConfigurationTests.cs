@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
 {
-    public class DeleteRestrictionsTests
+    public class OperationRestrictionsConfigurationTests
     {
         private const string Description = "A brief description";
         private const string LongDescription = "A very long description";
@@ -19,13 +19,14 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
         private const string CustomerReadWriteAllScope = "Customers.ReadWrite.All";
 
         [Fact]
-        public void DeleteRestrictionsChainsToSameInstance()
+        public void OperationRestrictionsChainsToSameInstance()
         {
-            var modelBuilder = new ODataModelBuilder().Add_Customers_EntitySet();
-            var entitySetConfiguration = modelBuilder.EntitySet<Customer>("Customers");
+            // Arrange
+            var modelBuilder = new ODataModelBuilder();
+            var actionConfiguration = modelBuilder.Action("MyAction");
 
-            var builder1 = entitySetConfiguration.HasDeleteRestrictions();
-            var builder2 = builder1.HasDeletable(true);
+            var builder1 = actionConfiguration.HasOperationRestrictions();
+            var builder2 = builder1.IsFilterSegmentSupported(false);
 
             Assert.Same(builder1, builder2);
         }
@@ -33,60 +34,49 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
         [Fact]
         public void AnnotationsAreAddedToModelOnBuild()
         {
-            var modelBuilder = new ODataModelBuilder().Add_Customer_EntityType().Add_Customers_EntitySet();
-            var entitySetConfiguration = modelBuilder.EntitySet<Customer>("Customers");
+            var modelBuilder = new ODataModelBuilder();
+            var actionConfiguration = modelBuilder.Action("MyAction");
 
-            var deleteRestrictionsBuilder = entitySetConfiguration
-                .HasDeleteRestrictions()
-                .HasDeletable(false)
-                .HasDescription(Description);
+            var operationRestrictionsBuilder = actionConfiguration
+                .HasOperationRestrictions()
+                .IsFilterSegmentSupported(true);
 
             var model = modelBuilder.GetServiceModel();
-            var container = model.SchemaElements.OfType<IEdmEntityContainer>().SingleOrDefault();
-            var customers = container.EntitySets().SingleOrDefault(e => e.Name == "Customers");
+            var action = model.SchemaElements.OfType<IEdmAction>().Single();
 
-            var term = model.FindTerm("Org.OData.Capabilities.V1.DeleteRestrictions");
-            var annotation = customers.VocabularyAnnotations(model).FirstOrDefault(a => a.Term == term);
+            var term = model.FindTerm("Org.OData.Capabilities.V1.OperationRestrictions");
+            var annotation = action.VocabularyAnnotations(model).FirstOrDefault(a => a.Term == term);
             Assert.NotNull(annotation);
 
             var annotationValue = annotation.Value as EdmRecordExpression;
             Assert.NotNull(annotationValue);
 
-            var descriptionProperty = annotationValue.FindProperty("Description");
-            Assert.NotNull(descriptionProperty);
-
-            var stringValue = descriptionProperty.Value as IEdmStringValue;
-            Assert.NotNull(stringValue);
-
-            Assert.Equal(Description, stringValue.Value);
+            var filterSegmentSupportedValue = GetRecordValue<EdmBooleanConstant>(annotationValue, "FilterSegmentSupported");
+            Assert.True(filterSegmentSupportedValue.Value);
         }
 
         [Fact]
-        public void PermissionsCanBeAddedToEntitySet()
+        public void PermissionsCanBeAddedToOperation()
         {
-            var modelBuilder = new ODataModelBuilder().Add_Customer_EntityType().Add_Customers_EntitySet();
+            var modelBuilder = new ODataModelBuilder();
+            var actionConfiguration = modelBuilder.Action("MyAction");
 
-
-            var deleteRestrictionsBuilder = modelBuilder
-                .EntitySet<Customer>("Customers")
-                .HasDeleteRestrictions()
-                .HasDeletable(false)
-                .HasDescription(Description)
+            var operationRestrictionsBuilder = actionConfiguration
+                .HasOperationRestrictions()
+                .IsFilterSegmentSupported(true)
                 .AddPermissions(
                     new PermissionTypeConfiguration()
                         .HasSchemeName(SchemeName)
                         .AddScopes(
                             new ScopeTypeConfiguration()
                                 .HasScope(CustomerReadWriteAllScope)
-                                .HasRestrictedProperties("*")))
-                .HasLongDescription(LongDescription);
+                                .HasRestrictedProperties("*")));
 
             var model = modelBuilder.GetServiceModel();
-            var container = model.SchemaElements.OfType<IEdmEntityContainer>().SingleOrDefault();
-            var customers = container.EntitySets().SingleOrDefault(e => e.Name == "Customers");
+            var action = model.SchemaElements.OfType<IEdmAction>().Single();
 
-            var term = model.FindTerm("Org.OData.Capabilities.V1.DeleteRestrictions");
-            var annotation = customers.VocabularyAnnotations(model).FirstOrDefault(a => a.Term == term);
+            var term = model.FindTerm("Org.OData.Capabilities.V1.OperationRestrictions");
+            var annotation = action.VocabularyAnnotations(model).FirstOrDefault(a => a.Term == term);
             Assert.NotNull(annotation);
 
             var annotationValue = annotation.Value as EdmRecordExpression;

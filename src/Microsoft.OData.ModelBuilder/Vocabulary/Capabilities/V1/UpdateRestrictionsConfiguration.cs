@@ -42,7 +42,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="updatable">The value to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration HasUpdatable(bool updatable)
+		public UpdateRestrictionsConfiguration IsUpdatable(bool updatable)
 		{
 			_updatable = updatable;
 			return this;
@@ -53,7 +53,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="upsertable">The value to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration HasUpsertable(bool upsertable)
+		public UpdateRestrictionsConfiguration IsUpsertable(bool upsertable)
 		{
 			_upsertable = upsertable;
 			return this;
@@ -64,7 +64,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="deltaUpdateSupported">The value to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration HasDeltaUpdateSupported(bool deltaUpdateSupported)
+		public UpdateRestrictionsConfiguration IsDeltaUpdateSupported(bool deltaUpdateSupported)
 		{
 			_deltaUpdateSupported = deltaUpdateSupported;
 			return this;
@@ -75,7 +75,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterSegmentSupported">The value to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration HasFilterSegmentSupported(bool filterSegmentSupported)
+		public UpdateRestrictionsConfiguration IsFilterSegmentSupported(bool filterSegmentSupported)
 		{
 			_filterSegmentSupported = filterSegmentSupported;
 			return this;
@@ -86,7 +86,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="typecastSegmentSupported">The value to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration HasTypecastSegmentSupported(bool typecastSegmentSupported)
+		public UpdateRestrictionsConfiguration IsTypecastSegmentSupported(bool typecastSegmentSupported)
 		{
 			_typecastSegmentSupported = typecastSegmentSupported;
 			return this;

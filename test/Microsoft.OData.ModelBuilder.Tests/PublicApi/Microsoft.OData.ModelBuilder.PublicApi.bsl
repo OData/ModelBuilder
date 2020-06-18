@@ -61,7 +61,7 @@ public abstract class Microsoft.OData.ModelBuilder.NavigationSourceConfiguration
 	System.Type ClrType  { public get; }
 	Microsoft.OData.ModelBuilder.EntityTypeConfiguration EntityType  { public virtual get; }
 	string Name  { public get; }
-	System.Collections.Generic.Dictionary`2[[System.Type],[Microsoft.OData.ModelBuilder.VocabularyConfiguration]] VocabularyConfigurations  { public get; }
+	System.Collections.Generic.Dictionary`2[[System.Type],[Microsoft.OData.ModelBuilder.VocabularyTermConfiguration]] VocabularyTermConfigurations  { public get; }
 
 	public virtual Microsoft.OData.ModelBuilder.NavigationPropertyBindingConfiguration AddBinding (Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration navigationConfiguration, Microsoft.OData.ModelBuilder.NavigationSourceConfiguration targetNavigationSource)
 	public virtual Microsoft.OData.ModelBuilder.NavigationPropertyBindingConfiguration AddBinding (Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration navigationConfiguration, Microsoft.OData.ModelBuilder.NavigationSourceConfiguration targetNavigationSource, System.Collections.Generic.IList`1[[System.Reflection.MemberInfo]] bindingPath)
@@ -115,6 +115,7 @@ public abstract class Microsoft.OData.ModelBuilder.OperationConfiguration {
 	bool ReturnNullable  { public get; public set; }
 	Microsoft.OData.ModelBuilder.IEdmTypeConfiguration ReturnType  { public get; public set; }
 	string Title  { public get; public set; }
+	System.Collections.Generic.Dictionary`2[[System.Type],[Microsoft.OData.ModelBuilder.VocabularyTermConfiguration]] VocabularyTermConfigurations  { public get; }
 
 	public Microsoft.OData.ModelBuilder.ParameterConfiguration AddParameter (string name, Microsoft.OData.ModelBuilder.IEdmTypeConfiguration parameterType)
 	public Microsoft.OData.ModelBuilder.ParameterConfiguration CollectionEntityParameter (string name)
@@ -257,8 +258,8 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1
 	public Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration Property (Expression`1 propertyExpression)
 }
 
-public abstract class Microsoft.OData.ModelBuilder.VocabularyConfiguration : IRecord {
-	public VocabularyConfiguration (string termName)
+public abstract class Microsoft.OData.ModelBuilder.VocabularyTermConfiguration : IRecord {
+	public VocabularyTermConfiguration (string termName)
 
 	public virtual void SetVocabularyAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable target)
 	public abstract Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
@@ -312,7 +313,7 @@ public sealed class Microsoft.OData.ModelBuilder.PrimitivePropertyConfigurationE
 [
 ExtensionAttribute(),
 ]
-public sealed class Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions {
+public sealed class Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions {
 	[
 	ExtensionAttribute(),
 	]
@@ -322,6 +323,11 @@ public sealed class Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensio
 	ExtensionAttribute(),
 	]
 	public static Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration HasChangeTracking (NavigationSourceConfiguration`1 navigationSource)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration HasChangeTracking (Microsoft.OData.ModelBuilder.FunctionConfiguration operationSource)
 
 	[
 	ExtensionAttribute(),
@@ -381,7 +387,17 @@ public sealed class Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensio
 	[
 	ExtensionAttribute(),
 	]
+	public static Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasModificationQueryOptions (Microsoft.OData.ModelBuilder.ActionConfiguration operationSource)
+
+	[
+	ExtensionAttribute(),
+	]
 	public static Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration HasNavigationRestrictions (NavigationSourceConfiguration`1 navigationSource)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration HasOperationRestrictions (Microsoft.OData.ModelBuilder.OperationConfiguration operationSource)
 
 	[
 	ExtensionAttribute(),
@@ -421,7 +437,17 @@ public sealed class Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensio
 	[
 	ExtensionAttribute(),
 	]
-	public static void SetVocabularyConfigurationAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.EdmNavigationSource target, Microsoft.OData.ModelBuilder.NavigationSourceConfiguration navigationConfiguration)
+	public static void SetVocabularyConfigurationAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.EdmNavigationSource target, Microsoft.OData.ModelBuilder.NavigationSourceConfiguration navigationSourceConfiguration)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static void SetVocabularyConfigurationAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.EdmOperation target, Microsoft.OData.ModelBuilder.OperationConfiguration operationConfiguration)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static void SetVocabularyConfigurationAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable target, System.Collections.Generic.IEnumerable`1[[Microsoft.OData.ModelBuilder.VocabularyTermConfiguration]] configurations)
 }
 
 public class Microsoft.OData.ModelBuilder.ActionConfiguration : Microsoft.OData.ModelBuilder.OperationConfiguration {
@@ -1075,51 +1101,51 @@ public enum Microsoft.OData.ModelBuilder.Capabilities.V1.SearchExpressions : int
 	phrase = 4
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public AcceptableEncodingsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsConfiguration AddAcceptableEncodings (string[] acceptableEncodings)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public AnnotationValuesInQuerySupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration HasAnnotationValuesInQuerySupported (bool annotationValuesInQuerySupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration IsAnnotationValuesInQuerySupported (bool annotationValuesInQuerySupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public AsynchronousRequestsSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration HasAsynchronousRequestsSupported (bool asynchronousRequestsSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration IsAsynchronousRequestsSupported (bool asynchronousRequestsSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public BatchContinueOnErrorSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration HasBatchContinueOnErrorSupported (bool batchContinueOnErrorSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration IsBatchContinueOnErrorSupported (bool batchContinueOnErrorSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public BatchSupportConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration AddSupportedFormats (string[] supportedFormats)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration HasContinueOnErrorSupported (bool continueOnErrorSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration HasEtagReferencesSupported (bool etagReferencesSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration HasReferencesAcrossChangeSetsSupported (bool referencesAcrossChangeSetsSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration HasReferencesInRequestBodiesSupported (bool referencesInRequestBodiesSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration HasRequestDependencyConditionsSupported (bool requestDependencyConditionsSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration HasSupported (bool supported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration IsContinueOnErrorSupported (bool continueOnErrorSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration IsEtagReferencesSupported (bool etagReferencesSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration IsReferencesAcrossChangeSetsSupported (bool referencesAcrossChangeSetsSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration IsReferencesInRequestBodiesSupported (bool referencesInRequestBodiesSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration IsRequestDependencyConditionsSupported (bool requestDependencyConditionsSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration IsSupported (bool supported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public BatchSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration HasBatchSupported (bool batchSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration IsBatchSupported (bool batchSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -1132,23 +1158,23 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfig
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public CallbackSupportedConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration AddCallbackProtocols (Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration[] callbackProtocols)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public ChangeTrackingConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration AddExpandableProperties (Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[] expandableProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration AddFilterableProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] filterableProperties)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration HasSupported (bool supported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration IsSupported (bool supported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public CollectionPropertyRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration AddCollectionPropertyRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration[] collectionPropertyRestrictions)
@@ -1160,49 +1186,49 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRest
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration AddFilterFunctions (string[] filterFunctions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasCollectionProperty (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression collectionProperty)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasDeletable (bool deletable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasFilterRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration filterRestrictions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasInsertable (bool insertable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasSearchRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration searchRestrictions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasSelectSupport (Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration selectSupport)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasSkipSupported (bool skipSupported)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasSortRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration sortRestrictions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasTopSupported (bool topSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration HasUpdatable (bool updatable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration IsDeletable (bool deletable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration IsInsertable (bool insertable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration IsSkipSupported (bool skipSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration IsTopSupported (bool topSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration IsUpdatable (bool updatable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public ComputeSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration HasComputeSupported (bool computeSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration IsComputeSupported (bool computeSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public ConformanceLevelConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelConfiguration HasConformanceLevel (Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelType conformanceLevel)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public CountRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration AddNonCountableNavigationProperties (Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[] nonCountableNavigationProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration AddNonCountableProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] nonCountableProperties)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration HasCountable (bool countable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration IsCountable (bool countable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public CrossJoinSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration HasCrossJoinSupported (bool crossJoinSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration IsCrossJoinSupported (bool crossJoinSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public CustomHeadersConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration AddCustomHeaders (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customHeaders)
@@ -1216,56 +1242,56 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfigu
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration HasDescription (string description)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration HasDocumentationURL (string documentationURL)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration HasName (string name)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration HasRequired (bool required)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration IsRequired (bool required)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public CustomQueryOptionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration AddCustomQueryOptions (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customQueryOptions)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public DeepInsertSupportConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration HasContentIDSupported (bool contentIDSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration HasSupported (bool supported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration IsContentIDSupported (bool contentIDSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration IsSupported (bool supported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public DeepUpdateSupportConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration HasContentIDSupported (bool contentIDSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration HasSupported (bool supported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration IsContentIDSupported (bool contentIDSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration IsSupported (bool supported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public DeleteRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration AddCustomHeaders (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customHeaders)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration AddCustomQueryOptions (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customQueryOptions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration AddNonDeletableNavigationProperties (Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[] nonDeletableNavigationProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration AddPermissions (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[] permissions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration HasDeletable (bool deletable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration HasDescription (string description)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration HasFilterSegmentSupported (bool filterSegmentSupported)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration HasLongDescription (string longDescription)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration HasMaxLevels (int maxLevels)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration HasTypecastSegmentSupported (bool typecastSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration IsDeletable (bool deletable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration IsFilterSegmentSupported (bool filterSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration IsTypecastSegmentSupported (bool typecastSegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public ExpandRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration AddNonExpandableProperties (Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[] nonExpandableProperties)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration HasExpandable (bool expandable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration HasMaxLevels (int maxLevels)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration HasStreamsExpandable (bool streamsExpandable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration IsExpandable (bool expandable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration IsStreamsExpandable (bool streamsExpandable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -1277,33 +1303,33 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestri
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public FilterFunctionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration AddFilterFunctions (string[] filterFunctions)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public FilterRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration AddFilterExpressionRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration[] filterExpressionRestrictions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration AddNonFilterableProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] nonFilterableProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration AddRequiredProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] requiredProperties)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration HasFilterable (bool filterable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration HasMaxLevels (int maxLevels)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration HasRequiresFilter (bool requiresFilter)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration IsFilterable (bool filterable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration IsRequiresFilter (bool requiresFilter)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public IndexableByKeyConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration HasIndexableByKey (bool indexableByKey)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration IsIndexableByKey (bool indexableByKey)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public InsertRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration AddCustomHeaders (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customHeaders)
@@ -1312,44 +1338,44 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConf
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration AddNonInsertableProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] nonInsertableProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration AddPermissions (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[] permissions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration HasDescription (string description)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration HasInsertable (bool insertable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration HasLongDescription (string longDescription)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration HasMaxLevels (int maxLevels)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration HasQueryOptions (Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration queryOptions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration HasTypecastSegmentSupported (bool typecastSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration IsInsertable (bool insertable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration IsTypecastSegmentSupported (bool typecastSegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public IsolationSupportedConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationSupportedConfiguration HasIsolationSupported (Microsoft.OData.ModelBuilder.Capabilities.V1.IsolationLevel isolationSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public KeyAsSegmentSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration HasKeyAsSegmentSupported (bool keyAsSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration IsKeyAsSegmentSupported (bool keyAsSegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public MediaLocationUpdateSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration HasMediaLocationUpdateSupported (bool mediaLocationUpdateSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration IsMediaLocationUpdateSupported (bool mediaLocationUpdateSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public ModificationQueryOptionsConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasComputeSupported (bool computeSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasExpandSupported (bool expandSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasFilterSupported (bool filterSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasSearchSupported (bool searchSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasSelectSupported (bool selectSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration HasSortSupported (bool sortSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration IsComputeSupported (bool computeSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration IsExpandSupported (bool expandSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration IsFilterSupported (bool filterSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration IsSearchSupported (bool searchSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration IsSelectSupported (bool selectSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration IsSortSupported (bool sortSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -1361,22 +1387,22 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRest
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasDeepUpdateSupport (Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration deepUpdateSupport)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasDeleteRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration deleteRestrictions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasFilterRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration filterRestrictions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasIndexableByKey (bool indexableByKey)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasInsertRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration insertRestrictions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasNavigability (Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationType navigability)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasNavigationProperty (Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression navigationProperty)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasOptimisticConcurrencyControl (bool optimisticConcurrencyControl)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasReadRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration readRestrictions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasSearchRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration searchRestrictions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasSelectSupport (Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration selectSupport)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasSkipSupported (bool skipSupported)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasSortRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration sortRestrictions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasTopSupported (bool topSupported)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration HasUpdateRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration updateRestrictions)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration IsIndexableByKey (bool indexableByKey)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration IsOptimisticConcurrencyControl (bool optimisticConcurrencyControl)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration IsSkipSupported (bool skipSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration IsTopSupported (bool topSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public NavigationRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration AddRestrictedProperties (Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration[] restrictedProperties)
@@ -1384,13 +1410,13 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictions
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public OperationRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration AddCustomHeaders (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customHeaders)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration AddCustomQueryOptions (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customQueryOptions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration AddPermissions (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[] permissions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration HasFilterSegmentSupported (bool filterSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration IsFilterSegmentSupported (bool filterSegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -1402,10 +1428,10 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfigur
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public QuerySegmentSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration HasQuerySegmentSupported (bool querySegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration IsQuerySegmentSupported (bool querySegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -1417,11 +1443,11 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsT
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration AddPermissions (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[] permissions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration HasDescription (string description)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration HasLongDescription (string longDescription)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration HasReadable (bool readable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration IsReadable (bool readable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public ReadRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration AddCustomHeaders (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customHeaders)
@@ -1429,8 +1455,8 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfig
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration AddPermissions (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[] permissions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration HasDescription (string description)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration HasLongDescription (string longDescription)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration HasReadable (bool readable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration HasReadByKeyRestrictions (Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration readByKeyRestrictions)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration IsReadable (bool readable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -1442,84 +1468,84 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public SearchRestrictionsConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration HasSearchable (bool searchable)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration HasUnsupportedExpressions (Microsoft.OData.ModelBuilder.Capabilities.V1.SearchExpressions unsupportedExpressions)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration IsSearchable (bool searchable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public SelectSupportConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasComputeSupported (bool computeSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasCountable (bool countable)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasExpandable (bool expandable)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasFilterable (bool filterable)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasInstanceAnnotationsSupported (bool instanceAnnotationsSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasSearchable (bool searchable)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasSkipSupported (bool skipSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasSortable (bool sortable)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasSupported (bool supported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration HasTopSupported (bool topSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsComputeSupported (bool computeSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsCountable (bool countable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsExpandable (bool expandable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsFilterable (bool filterable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsInstanceAnnotationsSupported (bool instanceAnnotationsSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsSearchable (bool searchable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsSkipSupported (bool skipSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsSortable (bool sortable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsSupported (bool supported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration IsTopSupported (bool topSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public SkipSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration HasSkipSupported (bool skipSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration IsSkipSupported (bool skipSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public SortRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration AddAscendingOnlyProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] ascendingOnlyProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration AddDescendingOnlyProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] descendingOnlyProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration AddNonSortableProperties (Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[] nonSortableProperties)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration HasSortable (bool sortable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration IsSortable (bool sortable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public SupportedFormatsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedFormatsConfiguration AddSupportedFormats (string[] supportedFormats)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public SupportedMetadataFormatsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SupportedMetadataFormatsConfiguration AddSupportedMetadataFormats (string[] supportedMetadataFormats)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public TopSupportedConfiguration ()
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration HasTopSupported (bool topSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration IsTopSupported (bool topSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
-public class Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyConfiguration, IRecord {
+public class Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration : Microsoft.OData.ModelBuilder.VocabularyTermConfiguration, IRecord {
 	public UpdateRestrictionsConfiguration ()
 
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration AddCustomHeaders (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customHeaders)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration AddCustomQueryOptions (Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[] customQueryOptions)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration AddNonUpdatableNavigationProperties (Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[] nonUpdatableNavigationProperties)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration AddPermissions (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[] permissions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasDeltaUpdateSupported (bool deltaUpdateSupported)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasDescription (string description)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasFilterSegmentSupported (bool filterSegmentSupported)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasLongDescription (string longDescription)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasMaxLevels (int maxLevels)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasQueryOptions (Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration queryOptions)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasTypecastSegmentSupported (bool typecastSegmentSupported)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasUpdatable (bool updatable)
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration HasUpsertable (bool upsertable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration IsDeltaUpdateSupported (bool deltaUpdateSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration IsFilterSegmentSupported (bool filterSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration IsTypecastSegmentSupported (bool typecastSegmentSupported)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration IsUpdatable (bool updatable)
+	public Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration IsUpsertable (bool upsertable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 

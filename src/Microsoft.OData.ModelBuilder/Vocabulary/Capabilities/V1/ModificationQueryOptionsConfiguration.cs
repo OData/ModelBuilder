@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="expandSupported">The value to set</param>
 		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-		public ModificationQueryOptionsConfiguration HasExpandSupported(bool expandSupported)
+		public ModificationQueryOptionsConfiguration IsExpandSupported(bool expandSupported)
 		{
 			_expandSupported = expandSupported;
 			return this;
@@ -46,7 +46,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="selectSupported">The value to set</param>
 		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-		public ModificationQueryOptionsConfiguration HasSelectSupported(bool selectSupported)
+		public ModificationQueryOptionsConfiguration IsSelectSupported(bool selectSupported)
 		{
 			_selectSupported = selectSupported;
 			return this;
@@ -57,7 +57,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="computeSupported">The value to set</param>
 		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-		public ModificationQueryOptionsConfiguration HasComputeSupported(bool computeSupported)
+		public ModificationQueryOptionsConfiguration IsComputeSupported(bool computeSupported)
 		{
 			_computeSupported = computeSupported;
 			return this;
@@ -68,7 +68,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterSupported">The value to set</param>
 		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-		public ModificationQueryOptionsConfiguration HasFilterSupported(bool filterSupported)
+		public ModificationQueryOptionsConfiguration IsFilterSupported(bool filterSupported)
 		{
 			_filterSupported = filterSupported;
 			return this;
@@ -79,7 +79,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="searchSupported">The value to set</param>
 		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-		public ModificationQueryOptionsConfiguration HasSearchSupported(bool searchSupported)
+		public ModificationQueryOptionsConfiguration IsSearchSupported(bool searchSupported)
 		{
 			_searchSupported = searchSupported;
 			return this;
@@ -90,7 +90,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="sortSupported">The value to set</param>
 		/// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-		public ModificationQueryOptionsConfiguration HasSortSupported(bool sortSupported)
+		public ModificationQueryOptionsConfiguration IsSortSupported(bool sortSupported)
 		{
 			_sortSupported = sortSupported;
 			return this;

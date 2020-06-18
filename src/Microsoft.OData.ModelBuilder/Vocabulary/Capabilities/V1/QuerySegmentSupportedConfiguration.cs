@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="querySegmentSupported">The value to set</param>
 		/// <returns><see cref="QuerySegmentSupportedConfiguration"/></returns>
-		public QuerySegmentSupportedConfiguration HasQuerySegmentSupported(bool querySegmentSupported)
+		public QuerySegmentSupportedConfiguration IsQuerySegmentSupported(bool querySegmentSupported)
 		{
 			_querySegmentSupported = querySegmentSupported;
 			return this;

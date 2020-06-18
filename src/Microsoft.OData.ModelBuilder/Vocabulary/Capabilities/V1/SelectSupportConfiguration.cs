@@ -39,7 +39,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="supported">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasSupported(bool supported)
+		public SelectSupportConfiguration IsSupported(bool supported)
 		{
 			_supported = supported;
 			return this;
@@ -50,7 +50,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="instanceAnnotationsSupported">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasInstanceAnnotationsSupported(bool instanceAnnotationsSupported)
+		public SelectSupportConfiguration IsInstanceAnnotationsSupported(bool instanceAnnotationsSupported)
 		{
 			_instanceAnnotationsSupported = instanceAnnotationsSupported;
 			return this;
@@ -61,7 +61,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="expandable">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasExpandable(bool expandable)
+		public SelectSupportConfiguration IsExpandable(bool expandable)
 		{
 			_expandable = expandable;
 			return this;
@@ -72,7 +72,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterable">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasFilterable(bool filterable)
+		public SelectSupportConfiguration IsFilterable(bool filterable)
 		{
 			_filterable = filterable;
 			return this;
@@ -83,7 +83,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="searchable">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasSearchable(bool searchable)
+		public SelectSupportConfiguration IsSearchable(bool searchable)
 		{
 			_searchable = searchable;
 			return this;
@@ -94,7 +94,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="topSupported">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasTopSupported(bool topSupported)
+		public SelectSupportConfiguration IsTopSupported(bool topSupported)
 		{
 			_topSupported = topSupported;
 			return this;
@@ -105,7 +105,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="skipSupported">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasSkipSupported(bool skipSupported)
+		public SelectSupportConfiguration IsSkipSupported(bool skipSupported)
 		{
 			_skipSupported = skipSupported;
 			return this;
@@ -116,7 +116,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="computeSupported">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasComputeSupported(bool computeSupported)
+		public SelectSupportConfiguration IsComputeSupported(bool computeSupported)
 		{
 			_computeSupported = computeSupported;
 			return this;
@@ -127,7 +127,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="countable">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasCountable(bool countable)
+		public SelectSupportConfiguration IsCountable(bool countable)
 		{
 			_countable = countable;
 			return this;
@@ -138,7 +138,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="sortable">The value to set</param>
 		/// <returns><see cref="SelectSupportConfiguration"/></returns>
-		public SelectSupportConfiguration HasSortable(bool sortable)
+		public SelectSupportConfiguration IsSortable(bool sortable)
 		{
 			_sortable = sortable;
 			return this;
