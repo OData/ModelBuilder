@@ -1219,7 +1219,7 @@
             Gets the name of this navigation source.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration.VocabularyConfigurations">
+        <member name="P:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration.VocabularyTermConfigurations">
             <summary>
             Vocabulary builders to annotate this <see cref="T:Microsoft.OData.ModelBuilder.NavigationSourceConfiguration"/>
             </summary> 
@@ -5347,6 +5347,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.AddFilterableProperties(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
             <summary>
             Change tracking supports filters on these properties
+            If no properties are specified or FilterableProperties is omitted, clients cannot assume support for filtering on any properties in combination with change tracking.
             </summary>
             <param name="filterableProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
@@ -5354,6 +5355,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.AddExpandableProperties(Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[])">
             <summary>
             Change tracking supports these properties expanded
+            If no properties are specified or ExpandableProperties is omitted, clients cannot assume support for expanding any properties in combination with change tracking.
             </summary>
             <param name="expandableProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
@@ -5401,6 +5403,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.AddFilterFunctions(System.String[])">
             <summary>
             List of functions and operators supported in filter expressions.
+            If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
             <param name="filterFunctions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
@@ -5450,6 +5453,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasInsertable(System.Boolean)">
             <summary>
             Members can be inserted into this collection
+            If additionally annotated with [Core.PositionalInsert](Org.OData.Core.V1.md#PositionalInsert), members can be inserted at a specific position
             </summary>
             <param name="insertable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
@@ -5608,6 +5612,7 @@
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration">
             <summary>
             A custom parameter is either a header or a query option
+            The type of a custom parameter is always a string. Restrictions on the parameter values can be expressed by annotating the record expression describing the parameter with terms from the Validation vocabulary, e.g. Validation.Pattern or Validation.AllowedValues.
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.#ctor">
@@ -5656,6 +5661,7 @@
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration">
             <summary>
             Custom query options that are supported/required for the annotated resource
+            If the entity container is annotated, the query option is supported/required by all resources in that container.
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration.#ctor">
@@ -5666,6 +5672,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration.AddCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Custom query options that are supported/required for the annotated resource
+            If the entity container is annotated, the query option is supported/required by all resources in that container.
             </summary>
             <param name="customQueryOptions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration"/></returns>
@@ -5881,6 +5888,7 @@
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration">
             <summary>
             List of functions and operators supported in filter expressions.
+            If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration.#ctor">
@@ -5891,6 +5899,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration.AddFilterFunctions(System.String[])">
             <summary>
             List of functions and operators supported in filter expressions.
+            If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
             <param name="filterFunctions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration"/></returns>
@@ -6215,6 +6224,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.AddFilterFunctions(System.String[])">
             <summary>
             List of functions and operators supported in filter expressions.
+            If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
             <param name="filterFunctions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
@@ -6323,6 +6333,7 @@
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration">
             <summary>
             Restrictions on navigating properties according to OData URL conventions
+            Restrictions specified on an entity set are valid whether the request is directly to the entity set or through a navigation property bound to that entity set. Services can specify a different set of restrictions specific to a path, in which case the more specific restrictions take precedence.
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration.#ctor">
@@ -6565,6 +6576,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasReadByKeyRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration)">
             <summary>
             Restrictions for retrieving an entity by key
+            Only valid when applied to a collection. If a property of `ReadByKeyRestrictions` is not specified, the corresponding property value of `ReadRestrictions` applies.
             </summary>
             <param name="readByKeyRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
@@ -6592,6 +6604,7 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration.HasRestrictedProperties(System.String)">
             <summary>
             Comma-separated string value of all properties that will be included or excluded when using the scope.
+            Possible string value identifiers when specifying properties are '*', _PropertyName_, '-'_PropertyName_. Where, '*' denotes all properties are accessible,'-'_PropertyName_ excludes that specific property and _PropertyName_ explicitly provides access to the specific property. The absence of 'RestrictedProperties' denotes all properties are accessible using that scope.
             </summary>
             <param name="restrictedProperties">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration"/></returns>
@@ -7007,33 +7020,33 @@
             </summary>
             <returns><see cref="T:Microsoft.OData.Edm.IEdmExpression" /></returns>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.VocabularyConfiguration">
+        <member name="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration">
             <summary>
             Base vocabulary configuration.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfiguration.#ctor(System.String)">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration.#ctor(System.String)">
             <summary>
-            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyConfiguration"/>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/>
             </summary>
             <param name="termName">The name of the <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmTerm"/> being built.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfiguration.ToEdmExpression">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration.ToEdmExpression">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfiguration.SetVocabularyAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable)">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration.SetVocabularyAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable)">
             <summary>
             Sets the vocabulary annotation on the model's target.
             </summary>
             <param name="model">The <see cref="T:Microsoft.OData.Edm.IEdmModel"/> having reference vocabulary models.</param>
             <param name="target">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> to set annotations on.</param>
         </member>
-        <member name="T:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions">
+        <member name="T:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions">
             <summary>
             Extension methods for vocabulary builders configurations
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasCallbackSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCallbackSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration"/> configuration
             </summary>
@@ -7041,7 +7054,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasChangeTracking``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasChangeTracking``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/> configuration
             </summary>
@@ -7049,7 +7062,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasCountRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCountRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/> configuration
             </summary>
@@ -7057,7 +7070,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasNavigationRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasNavigationRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration"/> configuration
             </summary>
@@ -7065,7 +7078,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasIndexableByKey``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasIndexableByKey``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration"/> configuration
             </summary>
@@ -7073,7 +7086,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasTopSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasTopSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration"/> configuration
             </summary>
@@ -7081,7 +7094,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasSkipSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasSkipSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration"/> configuration
             </summary>
@@ -7089,7 +7102,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasComputeSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasComputeSupported``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration"/> configuration
             </summary>
@@ -7097,7 +7110,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasSelectSupport``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasSelectSupport``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/> configuration
             </summary>
@@ -7105,7 +7118,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasFilterFunctions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasFilterFunctions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration"/> configuration
             </summary>
@@ -7113,7 +7126,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasFilterRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasFilterRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/> configuration
             </summary>
@@ -7121,7 +7134,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasSortRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasSortRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration"/> configuration
             </summary>
@@ -7129,7 +7142,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasExpandRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasExpandRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/> configuration
             </summary>
@@ -7137,7 +7150,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasSearchRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasSearchRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration"/> configuration
             </summary>
@@ -7145,7 +7158,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasInsertRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasInsertRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/> configuration
             </summary>
@@ -7153,7 +7166,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasDeepInsertSupport``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDeepInsertSupport``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration"/> configuration
             </summary>
@@ -7161,7 +7174,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasUpdateRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasUpdateRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/> configuration
             </summary>
@@ -7169,7 +7182,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasDeepUpdateSupport``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDeepUpdateSupport``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration"/> configuration
             </summary>
@@ -7177,7 +7190,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasDeleteRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDeleteRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/> configuration
             </summary>
@@ -7185,7 +7198,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasCollectionPropertyRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCollectionPropertyRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/> configuration
             </summary>
@@ -7193,7 +7206,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.HasReadRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasReadRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/> configuration
             </summary>
@@ -7201,7 +7214,7 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyConfigurationExtensions.SetVocabularyConfigurationAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.EdmNavigationSource,Microsoft.OData.ModelBuilder.NavigationSourceConfiguration)">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.SetVocabularyConfigurationAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.EdmNavigationSource,Microsoft.OData.ModelBuilder.NavigationSourceConfiguration)">
             <summary>
             Apply all builders as configured
             </summary>
