@@ -138,7 +138,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         private static void AddNavigationBindings(EdmTypeMap edmMap,
             NavigationSourceConfiguration navigationSourceConfiguration,
             EdmNavigationSource navigationSource,
-            //   NavigationSourceLinkBuilderAnnotation linkBuilder,
+            // NavigationSourceLinkBuilderAnnotation linkBuilder,
             Dictionary<string, EdmNavigationSource> edmNavigationSourceMap)
         {
             foreach (var binding in navigationSourceConfiguration.Bindings)
