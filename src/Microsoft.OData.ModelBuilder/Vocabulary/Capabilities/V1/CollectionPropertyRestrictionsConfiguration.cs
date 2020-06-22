@@ -32,11 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
 		public CollectionPropertyRestrictionsConfiguration AddCollectionPropertyRestrictions(params CollectionPropertyRestrictionsTypeConfiguration[] collectionPropertyRestrictions)
 		{
-			foreach (var item in collectionPropertyRestrictions)
-			{
-				_ = _collectionPropertyRestrictions.Add(item);
-			}
-
+			_collectionPropertyRestrictions.UnionWith(collectionPropertyRestrictions);
 			return this;
 		}
 

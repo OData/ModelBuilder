@@ -32,11 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CallbackSupportedConfiguration"/></returns>
 		public CallbackSupportedConfiguration AddCallbackProtocols(params CallbackProtocolConfiguration[] callbackProtocols)
 		{
-			foreach (var item in callbackProtocols)
-			{
-				_ = _callbackProtocols.Add(item);
-			}
-
+			_callbackProtocols.UnionWith(callbackProtocols);
 			return this;
 		}
 

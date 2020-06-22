@@ -53,11 +53,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration AddNonInsertableProperties(params EdmPropertyPathExpression[] nonInsertableProperties)
 		{
-			foreach (var item in nonInsertableProperties)
-			{
-				_ = _nonInsertableProperties.Add(item);
-			}
-
+			_nonInsertableProperties.UnionWith(nonInsertableProperties);
 			return this;
 		}
 
@@ -68,11 +64,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration AddNonInsertableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonInsertableNavigationProperties)
 		{
-			foreach (var item in nonInsertableNavigationProperties)
-			{
-				_ = _nonInsertableNavigationProperties.Add(item);
-			}
-
+			_nonInsertableNavigationProperties.UnionWith(nonInsertableNavigationProperties);
 			return this;
 		}
 
@@ -105,11 +97,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
 		{
-			foreach (var item in permissions)
-			{
-				_ = _permissions.Add(item);
-			}
-
+			_permissions.UnionWith(permissions);
 			return this;
 		}
 
@@ -131,11 +119,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
-			foreach (var item in customHeaders)
-			{
-				_ = _customHeaders.Add(item);
-			}
-
+			_customHeaders.UnionWith(customHeaders);
 			return this;
 		}
 
@@ -146,11 +130,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
-			foreach (var item in customQueryOptions)
-			{
-				_ = _customQueryOptions.Add(item);
-			}
-
+			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;
 		}
 

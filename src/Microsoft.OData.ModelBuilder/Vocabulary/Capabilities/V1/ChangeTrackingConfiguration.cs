@@ -46,11 +46,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
 		public ChangeTrackingConfiguration AddFilterableProperties(params EdmPropertyPathExpression[] filterableProperties)
 		{
-			foreach (var item in filterableProperties)
-			{
-				_ = _filterableProperties.Add(item);
-			}
-
+			_filterableProperties.UnionWith(filterableProperties);
 			return this;
 		}
 
@@ -62,11 +58,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
 		public ChangeTrackingConfiguration AddExpandableProperties(params EdmNavigationPropertyPathExpression[] expandableProperties)
 		{
-			foreach (var item in expandableProperties)
-			{
-				_ = _expandableProperties.Add(item);
-			}
-
+			_expandableProperties.UnionWith(expandableProperties);
 			return this;
 		}
 

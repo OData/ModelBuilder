@@ -70,11 +70,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration AddFilterFunctions(params string[] filterFunctions)
 		{
-			foreach (var item in filterFunctions)
-			{
-				_ = _filterFunctions.Add(item);
-			}
-
+			_filterFunctions.UnionWith(filterFunctions);
 			return this;
 		}
 

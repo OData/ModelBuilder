@@ -43,11 +43,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
 		public PermissionTypeConfiguration AddScopes(params ScopeTypeConfiguration[] scopes)
 		{
-			foreach (var item in scopes)
-			{
-				_ = _scopes.Add(item);
-			}
-
+			_scopes.UnionWith(scopes);
 			return this;
 		}
 

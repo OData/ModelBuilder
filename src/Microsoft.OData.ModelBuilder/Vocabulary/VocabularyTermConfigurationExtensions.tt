@@ -434,11 +434,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		/// <returns><see cref="<#=returnType #>"/></returns>
 		public <#=returnType #> Add<#= name #>(params <#= clrType #>[] <#= camelName #>)
 		{
-			foreach (var item in <#= camelName #>)
-			{
-				_ = _<#= camelName #>.Add(item);
-			}
-
+			_<#= camelName #>.UnionWith(<#= camelName #>);
 			return this;
 		}
 <#+

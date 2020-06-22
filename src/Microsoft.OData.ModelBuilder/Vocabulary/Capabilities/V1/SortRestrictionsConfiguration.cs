@@ -46,11 +46,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
 		public SortRestrictionsConfiguration AddAscendingOnlyProperties(params EdmPropertyPathExpression[] ascendingOnlyProperties)
 		{
-			foreach (var item in ascendingOnlyProperties)
-			{
-				_ = _ascendingOnlyProperties.Add(item);
-			}
-
+			_ascendingOnlyProperties.UnionWith(ascendingOnlyProperties);
 			return this;
 		}
 
@@ -61,11 +57,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
 		public SortRestrictionsConfiguration AddDescendingOnlyProperties(params EdmPropertyPathExpression[] descendingOnlyProperties)
 		{
-			foreach (var item in descendingOnlyProperties)
-			{
-				_ = _descendingOnlyProperties.Add(item);
-			}
-
+			_descendingOnlyProperties.UnionWith(descendingOnlyProperties);
 			return this;
 		}
 
@@ -76,11 +68,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
 		public SortRestrictionsConfiguration AddNonSortableProperties(params EdmPropertyPathExpression[] nonSortableProperties)
 		{
-			foreach (var item in nonSortableProperties)
-			{
-				_ = _nonSortableProperties.Add(item);
-			}
-
+			_nonSortableProperties.UnionWith(nonSortableProperties);
 			return this;
 		}
 

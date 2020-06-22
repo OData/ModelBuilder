@@ -53,11 +53,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration AddFilterFunctions(params string[] filterFunctions)
 		{
-			foreach (var item in filterFunctions)
-			{
-				_ = _filterFunctions.Add(item);
-			}
-
+			_filterFunctions.UnionWith(filterFunctions);
 			return this;
 		}
 

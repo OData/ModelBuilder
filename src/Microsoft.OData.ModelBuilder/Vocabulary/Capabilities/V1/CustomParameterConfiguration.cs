@@ -80,11 +80,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CustomParameterConfiguration"/></returns>
 		public CustomParameterConfiguration AddExampleValues(params Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration[] exampleValues)
 		{
-			foreach (var item in exampleValues)
-			{
-				_ = _exampleValues.Add(item);
-			}
-
+			_exampleValues.UnionWith(exampleValues);
 			return this;
 		}
 

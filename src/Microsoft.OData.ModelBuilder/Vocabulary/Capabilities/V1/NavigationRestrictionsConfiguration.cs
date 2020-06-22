@@ -45,11 +45,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="NavigationRestrictionsConfiguration"/></returns>
 		public NavigationRestrictionsConfiguration AddRestrictedProperties(params NavigationPropertyRestrictionConfiguration[] restrictedProperties)
 		{
-			foreach (var item in restrictedProperties)
-			{
-				_ = _restrictedProperties.Add(item);
-			}
-
+			_restrictedProperties.UnionWith(restrictedProperties);
 			return this;
 		}
 

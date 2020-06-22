@@ -34,11 +34,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>
 		public CustomQueryOptionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
-			foreach (var item in customQueryOptions)
-			{
-				_ = _customQueryOptions.Add(item);
-			}
-
+			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;
 		}
 

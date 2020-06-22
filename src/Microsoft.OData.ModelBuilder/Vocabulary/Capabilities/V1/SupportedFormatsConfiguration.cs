@@ -32,11 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="SupportedFormatsConfiguration"/></returns>
 		public SupportedFormatsConfiguration AddSupportedFormats(params string[] supportedFormats)
 		{
-			foreach (var item in supportedFormats)
-			{
-				_ = _supportedFormats.Add(item);
-			}
-
+			_supportedFormats.UnionWith(supportedFormats);
 			return this;
 		}
 

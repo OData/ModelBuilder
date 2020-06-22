@@ -32,11 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="AcceptableEncodingsConfiguration"/></returns>
 		public AcceptableEncodingsConfiguration AddAcceptableEncodings(params string[] acceptableEncodings)
 		{
-			foreach (var item in acceptableEncodings)
-			{
-				_ = _acceptableEncodings.Add(item);
-			}
-
+			_acceptableEncodings.UnionWith(acceptableEncodings);
 			return this;
 		}
 

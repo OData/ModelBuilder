@@ -45,11 +45,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CountRestrictionsConfiguration"/></returns>
 		public CountRestrictionsConfiguration AddNonCountableProperties(params EdmPropertyPathExpression[] nonCountableProperties)
 		{
-			foreach (var item in nonCountableProperties)
-			{
-				_ = _nonCountableProperties.Add(item);
-			}
-
+			_nonCountableProperties.UnionWith(nonCountableProperties);
 			return this;
 		}
 
@@ -60,11 +56,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CountRestrictionsConfiguration"/></returns>
 		public CountRestrictionsConfiguration AddNonCountableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonCountableNavigationProperties)
 		{
-			foreach (var item in nonCountableNavigationProperties)
-			{
-				_ = _nonCountableNavigationProperties.Add(item);
-			}
-
+			_nonCountableNavigationProperties.UnionWith(nonCountableNavigationProperties);
 			return this;
 		}
 

@@ -34,11 +34,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="FilterFunctionsConfiguration"/></returns>
 		public FilterFunctionsConfiguration AddFilterFunctions(params string[] filterFunctions)
 		{
-			foreach (var item in filterFunctions)
-			{
-				_ = _filterFunctions.Add(item);
-			}
-
+			_filterFunctions.UnionWith(filterFunctions);
 			return this;
 		}
 

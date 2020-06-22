@@ -32,11 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
 		public CustomHeadersConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
-			foreach (var item in customHeaders)
-			{
-				_ = _customHeaders.Add(item);
-			}
-
+			_customHeaders.UnionWith(customHeaders);
 			return this;
 		}
 

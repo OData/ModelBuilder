@@ -52,11 +52,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
 		public DeleteRestrictionsConfiguration AddNonDeletableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonDeletableNavigationProperties)
 		{
-			foreach (var item in nonDeletableNavigationProperties)
-			{
-				_ = _nonDeletableNavigationProperties.Add(item);
-			}
-
+			_nonDeletableNavigationProperties.UnionWith(nonDeletableNavigationProperties);
 			return this;
 		}
 
@@ -100,11 +96,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
 		public DeleteRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
 		{
-			foreach (var item in permissions)
-			{
-				_ = _permissions.Add(item);
-			}
-
+			_permissions.UnionWith(permissions);
 			return this;
 		}
 
@@ -115,11 +107,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
 		public DeleteRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
-			foreach (var item in customHeaders)
-			{
-				_ = _customHeaders.Add(item);
-			}
-
+			_customHeaders.UnionWith(customHeaders);
 			return this;
 		}
 
@@ -130,11 +118,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
 		public DeleteRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
-			foreach (var item in customQueryOptions)
-			{
-				_ = _customQueryOptions.Add(item);
-			}
-
+			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;
 		}
 
