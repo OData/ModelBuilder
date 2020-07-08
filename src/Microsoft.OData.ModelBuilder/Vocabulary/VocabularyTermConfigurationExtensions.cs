@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Vocabularies;
-
 using Microsoft.OData.ModelBuilder.Capabilities.V1;
 using Microsoft.OData.ModelBuilder.Core.V1;
 
