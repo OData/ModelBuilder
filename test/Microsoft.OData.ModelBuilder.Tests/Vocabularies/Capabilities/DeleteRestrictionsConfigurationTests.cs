@@ -31,6 +31,31 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
         }
 
         [Fact]
+        public void ModelBuilderHasNoCapabilitiesAnnotationsUnlessExplicitlyAdded()
+        {
+            var modelBuilder = new ODataModelBuilder().Add_Customers_EntitySet();
+            var entitySetConfiguration = modelBuilder.EntitySet<Customer>("Customers");
+
+            var model1 = modelBuilder.GetEdmModel();
+            var entityContainer1 = model1.SchemaElements.OfType<IEdmEntityContainer>().SingleOrDefault();
+            var customers1 = entityContainer1.EntitySets().SingleOrDefault();
+            var term1 = model1.FindTerm("Org.OData.Capabilities.V1.DeleteRestrictions");
+            var annotations1 = customers1.VocabularyAnnotations(model1).Where(a => a.Term == term1);
+
+            Assert.Empty(annotations1);
+
+            // Add annotations
+            _ = modelBuilder.EntitySet<Customer>("Customers").HasDeleteRestrictions().IsDeletable(false);
+            var model2 = modelBuilder.GetEdmModel();
+            var entityContainer2 = model2.SchemaElements.OfType<IEdmEntityContainer>().SingleOrDefault();
+            var customers2 = entityContainer2.EntitySets().SingleOrDefault();
+            var term2 = model2.FindTerm("Org.OData.Capabilities.V1.DeleteRestrictions");
+            var annotations2 = customers2.VocabularyAnnotations(model2).Where(a => a.Term == term2);
+
+            _ = Assert.Single(annotations2);
+        }
+
+        [Fact]
         public void AnnotationsAreAddedToModelOnBuild()
         {
             var modelBuilder = new ODataModelBuilder().Add_Customer_EntityType().Add_Customers_EntitySet();
