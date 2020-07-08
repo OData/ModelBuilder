@@ -33,7 +33,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SRResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Vocabulary\VocabularyTermConfigurationExtensions.cs">
+    <Compile Update="Vocabularies\VocabularyTermConfigurationExtensions.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>VocabularyTermConfigurationExtensions.tt</DependentUpon>
@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Vocabulary\VocabularyTermConfigurationExtensions.tt">
+    <None Update="Vocabularies\VocabularyTermConfigurationExtensions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VocabularyTermConfigurationExtensions.cs</LastGenOutput>
     </None>
