@@ -57,7 +57,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="requiredProperties">The value(s) to set</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
-		public FilterRestrictionsConfiguration AddRequiredProperties(params EdmPropertyPathExpression[] requiredProperties)
+		public FilterRestrictionsConfiguration HasRequiredProperties(params EdmPropertyPathExpression[] requiredProperties)
 		{
 			_requiredProperties.UnionWith(requiredProperties);
 			return this;
@@ -68,7 +68,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonFilterableProperties">The value(s) to set</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
-		public FilterRestrictionsConfiguration AddNonFilterableProperties(params EdmPropertyPathExpression[] nonFilterableProperties)
+		public FilterRestrictionsConfiguration HasNonFilterableProperties(params EdmPropertyPathExpression[] nonFilterableProperties)
 		{
 			_nonFilterableProperties.UnionWith(nonFilterableProperties);
 			return this;
@@ -79,7 +79,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterExpressionRestrictions">The value(s) to set</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
-		public FilterRestrictionsConfiguration AddFilterExpressionRestrictions(params FilterExpressionRestrictionTypeConfiguration[] filterExpressionRestrictions)
+		public FilterRestrictionsConfiguration HasFilterExpressionRestrictions(params FilterExpressionRestrictionTypeConfiguration[] filterExpressionRestrictions)
 		{
 			_filterExpressionRestrictions.UnionWith(filterExpressionRestrictions);
 			return this;

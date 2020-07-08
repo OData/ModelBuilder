@@ -92,10 +92,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
                 .HasDeleteRestrictions()
                 .IsDeletable(false)
                 .HasDescription(Description)
-                .AddPermissions(
+                .HasPermissions(
                     new PermissionTypeConfiguration()
                         .HasSchemeName(SchemeName)
-                        .AddScopes(
+                        .HasScopes(
                             new ScopeTypeConfiguration()
                                 .HasScope(CustomerReadWriteAllScope)
                                 .HasRestrictedProperties("*")))

@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="collectionPropertyRestrictions">The value(s) to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
-		public CollectionPropertyRestrictionsConfiguration AddCollectionPropertyRestrictions(params CollectionPropertyRestrictionsTypeConfiguration[] collectionPropertyRestrictions)
+		public CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions(params CollectionPropertyRestrictionsTypeConfiguration[] collectionPropertyRestrictions)
 		{
 			_collectionPropertyRestrictions.UnionWith(collectionPropertyRestrictions);
 			return this;

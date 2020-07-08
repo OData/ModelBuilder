@@ -50,7 +50,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonDeletableNavigationProperties">The value(s) to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration AddNonDeletableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonDeletableNavigationProperties)
+		public DeleteRestrictionsConfiguration HasNonDeletableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonDeletableNavigationProperties)
 		{
 			_nonDeletableNavigationProperties.UnionWith(nonDeletableNavigationProperties);
 			return this;
@@ -94,7 +94,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="permissions">The value(s) to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
+		public DeleteRestrictionsConfiguration HasPermissions(params PermissionTypeConfiguration[] permissions)
 		{
 			_permissions.UnionWith(permissions);
 			return this;
@@ -105,7 +105,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public DeleteRestrictionsConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;
@@ -116,7 +116,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
-		public DeleteRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public DeleteRestrictionsConfiguration HasCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
 			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;

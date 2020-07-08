@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="supportedFormats">The value(s) to set</param>
 		/// <returns><see cref="SupportedFormatsConfiguration"/></returns>
-		public SupportedFormatsConfiguration AddSupportedFormats(params string[] supportedFormats)
+		public SupportedFormatsConfiguration HasSupportedFormats(params string[] supportedFormats)
 		{
 			_supportedFormats.UnionWith(supportedFormats);
 			return this;

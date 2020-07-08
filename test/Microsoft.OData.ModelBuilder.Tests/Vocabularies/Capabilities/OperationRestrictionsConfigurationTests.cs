@@ -63,10 +63,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
             var operationRestrictionsBuilder = actionConfiguration
                 .HasOperationRestrictions()
                 .IsFilterSegmentSupported(true)
-                .AddPermissions(
+                .HasPermissions(
                     new PermissionTypeConfiguration()
                         .HasSchemeName(SchemeName)
-                        .AddScopes(
+                        .HasScopes(
                             new ScopeTypeConfiguration()
                                 .HasScope(CustomerReadWriteAllScope)
                                 .HasRestrictedProperties("*")));

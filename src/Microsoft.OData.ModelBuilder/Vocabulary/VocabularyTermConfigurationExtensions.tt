@@ -431,7 +431,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		/// </summary>
 		/// <param name="<#= camelName #>">The value(s) to set</param>
 		/// <returns><see cref="<#=returnType #>"/></returns>
-		public <#=returnType #> Add<#= name #>(params <#= clrType #>[] <#= camelName #>)
+		public <#=returnType #> Has<#= name #>(params <#= clrType #>[] <#= camelName #>)
 		{
 			_<#= camelName #>.UnionWith(<#= camelName #>);
 			return this;

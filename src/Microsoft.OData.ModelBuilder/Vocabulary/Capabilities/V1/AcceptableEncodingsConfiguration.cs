@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="acceptableEncodings">The value(s) to set</param>
 		/// <returns><see cref="AcceptableEncodingsConfiguration"/></returns>
-		public AcceptableEncodingsConfiguration AddAcceptableEncodings(params string[] acceptableEncodings)
+		public AcceptableEncodingsConfiguration HasAcceptableEncodings(params string[] acceptableEncodings)
 		{
 			_acceptableEncodings.UnionWith(acceptableEncodings);
 			return this;

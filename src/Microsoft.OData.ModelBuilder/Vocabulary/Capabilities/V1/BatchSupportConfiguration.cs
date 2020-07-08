@@ -102,7 +102,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="supportedFormats">The value(s) to set</param>
 		/// <returns><see cref="BatchSupportConfiguration"/></returns>
-		public BatchSupportConfiguration AddSupportedFormats(params string[] supportedFormats)
+		public BatchSupportConfiguration HasSupportedFormats(params string[] supportedFormats)
 		{
 			_supportedFormats.UnionWith(supportedFormats);
 			return this;

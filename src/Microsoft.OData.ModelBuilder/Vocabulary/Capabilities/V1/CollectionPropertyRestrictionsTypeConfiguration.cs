@@ -51,7 +51,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterFunctions">The value(s) to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
-		public CollectionPropertyRestrictionsTypeConfiguration AddFilterFunctions(params string[] filterFunctions)
+		public CollectionPropertyRestrictionsTypeConfiguration HasFilterFunctions(params string[] filterFunctions)
 		{
 			_filterFunctions.UnionWith(filterFunctions);
 			return this;

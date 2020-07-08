@@ -32,7 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterFunctions">The value(s) to set</param>
 		/// <returns><see cref="FilterFunctionsConfiguration"/></returns>
-		public FilterFunctionsConfiguration AddFilterFunctions(params string[] filterFunctions)
+		public FilterFunctionsConfiguration HasFilterFunctions(params string[] filterFunctions)
 		{
 			_filterFunctions.UnionWith(filterFunctions);
 			return this;

@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
-		public CustomHeadersConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public CustomHeadersConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;

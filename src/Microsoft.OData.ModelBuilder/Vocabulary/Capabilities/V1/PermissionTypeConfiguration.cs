@@ -41,7 +41,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="scopes">The value(s) to set</param>
 		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
-		public PermissionTypeConfiguration AddScopes(params ScopeTypeConfiguration[] scopes)
+		public PermissionTypeConfiguration HasScopes(params ScopeTypeConfiguration[] scopes)
 		{
 			_scopes.UnionWith(scopes);
 			return this;

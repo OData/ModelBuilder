@@ -97,7 +97,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonUpdatableNavigationProperties">The value(s) to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration AddNonUpdatableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonUpdatableNavigationProperties)
+		public UpdateRestrictionsConfiguration HasNonUpdatableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonUpdatableNavigationProperties)
 		{
 			_nonUpdatableNavigationProperties.UnionWith(nonUpdatableNavigationProperties);
 			return this;
@@ -119,7 +119,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="permissions">The value(s) to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
+		public UpdateRestrictionsConfiguration HasPermissions(params PermissionTypeConfiguration[] permissions)
 		{
 			_permissions.UnionWith(permissions);
 			return this;
@@ -141,7 +141,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public UpdateRestrictionsConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;
@@ -152,7 +152,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
-		public UpdateRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public UpdateRestrictionsConfiguration HasCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
 			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;

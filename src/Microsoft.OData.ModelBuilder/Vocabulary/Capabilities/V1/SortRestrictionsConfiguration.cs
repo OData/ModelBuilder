@@ -44,7 +44,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="ascendingOnlyProperties">The value(s) to set</param>
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
-		public SortRestrictionsConfiguration AddAscendingOnlyProperties(params EdmPropertyPathExpression[] ascendingOnlyProperties)
+		public SortRestrictionsConfiguration HasAscendingOnlyProperties(params EdmPropertyPathExpression[] ascendingOnlyProperties)
 		{
 			_ascendingOnlyProperties.UnionWith(ascendingOnlyProperties);
 			return this;
@@ -55,7 +55,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="descendingOnlyProperties">The value(s) to set</param>
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
-		public SortRestrictionsConfiguration AddDescendingOnlyProperties(params EdmPropertyPathExpression[] descendingOnlyProperties)
+		public SortRestrictionsConfiguration HasDescendingOnlyProperties(params EdmPropertyPathExpression[] descendingOnlyProperties)
 		{
 			_descendingOnlyProperties.UnionWith(descendingOnlyProperties);
 			return this;
@@ -66,7 +66,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonSortableProperties">The value(s) to set</param>
 		/// <returns><see cref="SortRestrictionsConfiguration"/></returns>
-		public SortRestrictionsConfiguration AddNonSortableProperties(params EdmPropertyPathExpression[] nonSortableProperties)
+		public SortRestrictionsConfiguration HasNonSortableProperties(params EdmPropertyPathExpression[] nonSortableProperties)
 		{
 			_nonSortableProperties.UnionWith(nonSortableProperties);
 			return this;

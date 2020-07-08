@@ -51,7 +51,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonInsertableProperties">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddNonInsertableProperties(params EdmPropertyPathExpression[] nonInsertableProperties)
+		public InsertRestrictionsConfiguration HasNonInsertableProperties(params EdmPropertyPathExpression[] nonInsertableProperties)
 		{
 			_nonInsertableProperties.UnionWith(nonInsertableProperties);
 			return this;
@@ -62,7 +62,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonInsertableNavigationProperties">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddNonInsertableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonInsertableNavigationProperties)
+		public InsertRestrictionsConfiguration HasNonInsertableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonInsertableNavigationProperties)
 		{
 			_nonInsertableNavigationProperties.UnionWith(nonInsertableNavigationProperties);
 			return this;
@@ -95,7 +95,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="permissions">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
+		public InsertRestrictionsConfiguration HasPermissions(params PermissionTypeConfiguration[] permissions)
 		{
 			_permissions.UnionWith(permissions);
 			return this;
@@ -117,7 +117,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public InsertRestrictionsConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;
@@ -128,7 +128,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
-		public InsertRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public InsertRestrictionsConfiguration HasCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
 			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;

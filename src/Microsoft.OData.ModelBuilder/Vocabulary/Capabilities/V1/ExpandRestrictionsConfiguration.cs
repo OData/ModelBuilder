@@ -55,7 +55,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="nonExpandableProperties">The value(s) to set</param>
 		/// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>
-		public ExpandRestrictionsConfiguration AddNonExpandableProperties(params EdmNavigationPropertyPathExpression[] nonExpandableProperties)
+		public ExpandRestrictionsConfiguration HasNonExpandableProperties(params EdmNavigationPropertyPathExpression[] nonExpandableProperties)
 		{
 			_nonExpandableProperties.UnionWith(nonExpandableProperties);
 			return this;

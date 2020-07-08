@@ -32,7 +32,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>
-		public CustomQueryOptionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public CustomQueryOptionsConfiguration HasCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
 			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;

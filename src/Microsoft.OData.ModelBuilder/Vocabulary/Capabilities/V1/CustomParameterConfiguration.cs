@@ -78,7 +78,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="exampleValues">The value(s) to set</param>
 		/// <returns><see cref="CustomParameterConfiguration"/></returns>
-		public CustomParameterConfiguration AddExampleValues(params Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration[] exampleValues)
+		public CustomParameterConfiguration HasExampleValues(params Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration[] exampleValues)
 		{
 			_exampleValues.UnionWith(exampleValues);
 			return this;

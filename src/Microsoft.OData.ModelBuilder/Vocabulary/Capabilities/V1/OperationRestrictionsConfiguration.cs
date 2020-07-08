@@ -44,7 +44,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="permissions">The value(s) to set</param>
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-		public OperationRestrictionsConfiguration AddPermissions(params PermissionTypeConfiguration[] permissions)
+		public OperationRestrictionsConfiguration HasPermissions(params PermissionTypeConfiguration[] permissions)
 		{
 			_permissions.UnionWith(permissions);
 			return this;
@@ -55,7 +55,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-		public OperationRestrictionsConfiguration AddCustomHeaders(params CustomParameterConfiguration[] customHeaders)
+		public OperationRestrictionsConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;
@@ -66,7 +66,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-		public OperationRestrictionsConfiguration AddCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
+		public OperationRestrictionsConfiguration HasCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)
 		{
 			_customQueryOptions.UnionWith(customQueryOptions);
 			return this;

@@ -44,7 +44,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterableProperties">The value(s) to set</param>
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
-		public ChangeTrackingConfiguration AddFilterableProperties(params EdmPropertyPathExpression[] filterableProperties)
+		public ChangeTrackingConfiguration HasFilterableProperties(params EdmPropertyPathExpression[] filterableProperties)
 		{
 			_filterableProperties.UnionWith(filterableProperties);
 			return this;
@@ -56,7 +56,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="expandableProperties">The value(s) to set</param>
 		/// <returns><see cref="ChangeTrackingConfiguration"/></returns>
-		public ChangeTrackingConfiguration AddExpandableProperties(params EdmNavigationPropertyPathExpression[] expandableProperties)
+		public ChangeTrackingConfiguration HasExpandableProperties(params EdmNavigationPropertyPathExpression[] expandableProperties)
 		{
 			_expandableProperties.UnionWith(expandableProperties);
 			return this;

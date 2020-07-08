@@ -43,7 +43,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="restrictedProperties">The value(s) to set</param>
 		/// <returns><see cref="NavigationRestrictionsConfiguration"/></returns>
-		public NavigationRestrictionsConfiguration AddRestrictedProperties(params NavigationPropertyRestrictionConfiguration[] restrictedProperties)
+		public NavigationRestrictionsConfiguration HasRestrictedProperties(params NavigationPropertyRestrictionConfiguration[] restrictedProperties)
 		{
 			_restrictedProperties.UnionWith(restrictedProperties);
 			return this;

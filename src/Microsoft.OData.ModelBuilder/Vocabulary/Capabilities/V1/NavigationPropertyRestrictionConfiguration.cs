@@ -68,7 +68,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// </summary>
 		/// <param name="filterFunctions">The value(s) to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
-		public NavigationPropertyRestrictionConfiguration AddFilterFunctions(params string[] filterFunctions)
+		public NavigationPropertyRestrictionConfiguration HasFilterFunctions(params string[] filterFunctions)
 		{
 			_filterFunctions.UnionWith(filterFunctions);
 			return this;
