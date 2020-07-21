@@ -30,6 +30,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// Custom query options that are supported/required for the annotated resource
 		/// If the entity container is annotated, the query option is supported/required by all resources in that container.
 		/// </summary>
+		/// <param name="customQueryOptionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>
+		public CustomQueryOptionsConfiguration HasCustomQueryOptions(Func<CustomParameterConfiguration, CustomParameterConfiguration> customQueryOptionsConfiguration)
+		{
+			var customQueryOptions = customQueryOptionsConfiguration?.Invoke(new CustomParameterConfiguration());
+			return HasCustomQueryOptions(customQueryOptions);
+		}
+
+		/// <summary>
+		/// Custom query options that are supported/required for the annotated resource
+		/// If the entity container is annotated, the query option is supported/required by all resources in that container.
+		/// </summary>
 		/// <param name="customQueryOptions">The value(s) to set</param>
 		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>
 		public CustomQueryOptionsConfiguration HasCustomQueryOptions(params CustomParameterConfiguration[] customQueryOptions)

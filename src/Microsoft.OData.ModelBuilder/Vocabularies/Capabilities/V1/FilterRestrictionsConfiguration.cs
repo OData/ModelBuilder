@@ -77,6 +77,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// These properties only allow a subset of filter expressions. A valid filter expression for a single property can be enclosed in parentheses and combined by `and` with valid expressions for other properties.
 		/// </summary>
+		/// <param name="filterExpressionRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
+		public FilterRestrictionsConfiguration HasFilterExpressionRestrictions(Func<FilterExpressionRestrictionTypeConfiguration, FilterExpressionRestrictionTypeConfiguration> filterExpressionRestrictionsConfiguration)
+		{
+			var filterExpressionRestrictions = filterExpressionRestrictionsConfiguration?.Invoke(new FilterExpressionRestrictionTypeConfiguration());
+			return HasFilterExpressionRestrictions(filterExpressionRestrictions);
+		}
+
+		/// <summary>
+		/// These properties only allow a subset of filter expressions. A valid filter expression for a single property can be enclosed in parentheses and combined by `and` with valid expressions for other properties.
+		/// </summary>
 		/// <param name="filterExpressionRestrictions">The value(s) to set</param>
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
 		public FilterRestrictionsConfiguration HasFilterExpressionRestrictions(params FilterExpressionRestrictionTypeConfiguration[] filterExpressionRestrictions)

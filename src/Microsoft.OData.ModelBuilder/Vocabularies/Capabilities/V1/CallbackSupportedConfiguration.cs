@@ -28,6 +28,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// List of supported callback protocols, e.g. `http` or `wss`
 		/// </summary>
+		/// <param name="callbackProtocolsConfiguration">The configuration to set</param>
+		/// <returns><see cref="CallbackSupportedConfiguration"/></returns>
+		public CallbackSupportedConfiguration HasCallbackProtocols(Func<CallbackProtocolConfiguration, CallbackProtocolConfiguration> callbackProtocolsConfiguration)
+		{
+			var callbackProtocols = callbackProtocolsConfiguration?.Invoke(new CallbackProtocolConfiguration());
+			return HasCallbackProtocols(callbackProtocols);
+		}
+
+		/// <summary>
+		/// List of supported callback protocols, e.g. `http` or `wss`
+		/// </summary>
 		/// <param name="callbackProtocols">The value(s) to set</param>
 		/// <returns><see cref="CallbackSupportedConfiguration"/></returns>
 		public CallbackSupportedConfiguration HasCallbackProtocols(params CallbackProtocolConfiguration[] callbackProtocols)

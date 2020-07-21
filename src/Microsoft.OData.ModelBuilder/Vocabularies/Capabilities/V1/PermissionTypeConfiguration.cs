@@ -39,6 +39,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// List of scopes that can provide access to the resource
 		/// </summary>
+		/// <param name="scopesConfiguration">The configuration to set</param>
+		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
+		public PermissionTypeConfiguration HasScopes(Func<ScopeTypeConfiguration, ScopeTypeConfiguration> scopesConfiguration)
+		{
+			var scopes = scopesConfiguration?.Invoke(new ScopeTypeConfiguration());
+			return HasScopes(scopes);
+		}
+
+		/// <summary>
+		/// List of scopes that can provide access to the resource
+		/// </summary>
 		/// <param name="scopes">The value(s) to set</param>
 		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
 		public PermissionTypeConfiguration HasScopes(params ScopeTypeConfiguration[] scopes)

@@ -412,6 +412,7 @@ using Microsoft.OData.Edm.Vocabularies;
 		var clrType = GetClrType(actualType, false);
 		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
 		var camelName = CamelCase(name);
+		var isComplexElement = false;
 
 		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
 		{
@@ -420,6 +421,25 @@ using Microsoft.OData.Edm.Vocabularies;
 			{
 				clrType = typeName + "." + clrType;
 			}
+
+			isComplexElement = typeKind == EdmTypeKind.Collection || !allowRecurse;
+		}
+
+		if (isComplexElement)
+		{
+#>
+
+		/// <summary>
+		<#+ ProcessSummary(description, "		"); #>
+		/// </summary>
+		/// <param name="<#= camelName #>Configuration">The configuration to set</param>
+		/// <returns><see cref="<#=returnType #>"/></returns>
+		public <#=returnType #> Has<#= name #>(Func<<#= clrType #>, <#= clrType #>> <#= camelName #>Configuration)
+		{
+			var <#= camelName #> = <#= camelName #>Configuration?.Invoke(new <#= clrType #>());
+			return Has<#= name #>(<#= camelName #>);
+		}
+<#+
 		}
 
 		if (typeKind == EdmTypeKind.Collection)

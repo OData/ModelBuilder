@@ -86,19 +86,17 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
         {
             var modelBuilder = new ODataModelBuilder().Add_Customer_EntityType().Add_Customers_EntitySet();
 
-
             var deleteRestrictionsBuilder = modelBuilder
                 .EntitySet<Customer>("Customers")
                 .HasDeleteRestrictions()
                 .IsDeletable(false)
                 .HasDescription(Description)
                 .HasPermissions(
-                    new PermissionTypeConfiguration()
+                    permission => permission
                         .HasSchemeName(SchemeName)
-                        .HasScopes(
-                            new ScopeTypeConfiguration()
-                                .HasScope(CustomerReadWriteAllScope)
-                                .HasRestrictedProperties("*")))
+                        .HasScopes(scope => scope
+                            .HasScope(CustomerReadWriteAllScope)
+                            .HasRestrictedProperties("*")))
                 .HasLongDescription(LongDescription);
 
             var model = modelBuilder.GetServiceModel();

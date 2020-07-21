@@ -60,6 +60,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Restrictions on filter expressions
 		/// </summary>
+		/// <param name="filterRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+		public CollectionPropertyRestrictionsTypeConfiguration HasFilterRestrictions(Func<FilterRestrictionsConfiguration, FilterRestrictionsConfiguration> filterRestrictionsConfiguration)
+		{
+			var filterRestrictions = filterRestrictionsConfiguration?.Invoke(new FilterRestrictionsConfiguration());
+			return HasFilterRestrictions(filterRestrictions);
+		}
+
+		/// <summary>
+		/// Restrictions on filter expressions
+		/// </summary>
 		/// <param name="filterRestrictions">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration HasFilterRestrictions(FilterRestrictionsConfiguration filterRestrictions)
@@ -71,12 +82,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Restrictions on search expressions
 		/// </summary>
+		/// <param name="searchRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+		public CollectionPropertyRestrictionsTypeConfiguration HasSearchRestrictions(Func<SearchRestrictionsConfiguration, SearchRestrictionsConfiguration> searchRestrictionsConfiguration)
+		{
+			var searchRestrictions = searchRestrictionsConfiguration?.Invoke(new SearchRestrictionsConfiguration());
+			return HasSearchRestrictions(searchRestrictions);
+		}
+
+		/// <summary>
+		/// Restrictions on search expressions
+		/// </summary>
 		/// <param name="searchRestrictions">The value to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration HasSearchRestrictions(SearchRestrictionsConfiguration searchRestrictions)
 		{
 			_searchRestrictions = searchRestrictions;
 			return this;
+		}
+
+		/// <summary>
+		/// Restrictions on orderby expressions
+		/// </summary>
+		/// <param name="sortRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+		public CollectionPropertyRestrictionsTypeConfiguration HasSortRestrictions(Func<SortRestrictionsConfiguration, SortRestrictionsConfiguration> sortRestrictionsConfiguration)
+		{
+			var sortRestrictions = sortRestrictionsConfiguration?.Invoke(new SortRestrictionsConfiguration());
+			return HasSortRestrictions(sortRestrictions);
 		}
 
 		/// <summary>
@@ -110,6 +143,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			_skipSupported = skipSupported;
 			return this;
+		}
+
+		/// <summary>
+		/// Support for $select
+		/// </summary>
+		/// <param name="selectSupportConfiguration">The configuration to set</param>
+		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+		public CollectionPropertyRestrictionsTypeConfiguration HasSelectSupport(Func<SelectSupportConfiguration, SelectSupportConfiguration> selectSupportConfiguration)
+		{
+			var selectSupport = selectSupportConfiguration?.Invoke(new SelectSupportConfiguration());
+			return HasSelectSupport(selectSupport);
 		}
 
 		/// <summary>

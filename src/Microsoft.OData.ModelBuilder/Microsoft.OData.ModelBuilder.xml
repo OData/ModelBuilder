@@ -5322,6 +5322,13 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration.HasCallbackProtocols(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration})">
+            <summary>
+            List of supported callback protocols, e.g. `http` or `wss`
+            </summary>
+            <param name="callbackProtocolsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration.HasCallbackProtocols(Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration[])">
             <summary>
             List of supported callback protocols, e.g. `http` or `wss`
@@ -5378,6 +5385,13 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration.HasCollectionPropertyRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration})">
+            <summary>
+            Describes restrictions on operations applied to collection-valued structural properties
+            </summary>
+            <param name="collectionPropertyRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration.HasCollectionPropertyRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration[])">
             <summary>
             Describes restrictions on operations applied to collection-valued structural properties
@@ -5413,6 +5427,13 @@
             <param name="filterFunctions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasFilterRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration})">
+            <summary>
+            Restrictions on filter expressions
+            </summary>
+            <param name="filterRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasFilterRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration)">
             <summary>
             Restrictions on filter expressions
@@ -5420,11 +5441,25 @@
             <param name="filterRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSearchRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration})">
+            <summary>
+            Restrictions on search expressions
+            </summary>
+            <param name="searchRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSearchRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration)">
             <summary>
             Restrictions on search expressions
             </summary>
             <param name="searchRestrictions">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSortRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration})">
+            <summary>
+            Restrictions on orderby expressions
+            </summary>
+            <param name="sortRestrictionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSortRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration)">
@@ -5446,6 +5481,13 @@
             Supports $skip
             </summary>
             <param name="skipSupported">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSelectSupport(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration})">
+            <summary>
+            Support for $select
+            </summary>
+            <param name="selectSupportConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasSelectSupport(Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration)">
@@ -5604,6 +5646,13 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Custom headers that are supported/required for the annotated resource
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomHeadersConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Custom headers that are supported/required for the annotated resource
@@ -5653,6 +5702,13 @@
             <param name="required">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.HasExampleValues(System.Func{Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration,Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration})">
+            <summary>
+            Example values for the custom parameter
+            </summary>
+            <param name="exampleValuesConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.HasExampleValues(Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration[])">
             <summary>
             Example values for the custom parameter
@@ -5673,6 +5729,14 @@
             <summary>
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration"/>
             </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Custom query options that are supported/required for the annotated resource
+            If the entity container is annotated, the query option is supported/required by all resources in that container.
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomQueryOptionsConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
@@ -5784,6 +5848,13 @@
             <param name="typecastSegmentSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasPermissions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration})">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to perform the delete.
+            </summary>
+            <param name="permissionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[])">
             <summary>
             Required permissions. One of the specified sets of scopes is required to perform the delete.
@@ -5791,11 +5862,25 @@
             <param name="permissions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom headers
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Supported or required custom headers
             </summary>
             <param name="customHeaders">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom query options
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
@@ -5950,6 +6035,13 @@
             <param name="nonFilterableProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.HasFilterExpressionRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration})">
+            <summary>
+            These properties only allow a subset of filter expressions. A valid filter expression for a single property can be enclosed in parentheses and combined by `and` with valid expressions for other properties.
+            </summary>
+            <param name="filterExpressionRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.HasFilterExpressionRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration[])">
             <summary>
             These properties only allow a subset of filter expressions. A valid filter expression for a single property can be enclosed in parentheses and combined by `and` with valid expressions for other properties.
@@ -6032,11 +6124,25 @@
             <param name="typecastSegmentSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasPermissions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration})">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to perform the insert.
+            </summary>
+            <param name="permissionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[])">
             <summary>
             Required permissions. One of the specified sets of scopes is required to perform the insert.
             </summary>
             <param name="permissions">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration})">
+            <summary>
+            Support for query options with insert requests
+            </summary>
+            <param name="queryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration)">
@@ -6046,11 +6152,25 @@
             <param name="queryOptions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom headers
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Supported or required custom headers
             </summary>
             <param name="customHeaders">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom query options
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
@@ -6234,6 +6354,13 @@
             <param name="filterFunctions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasFilterRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration})">
+            <summary>
+            Restrictions on filter expressions
+            </summary>
+            <param name="filterRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasFilterRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration)">
             <summary>
             Restrictions on filter expressions
@@ -6241,11 +6368,25 @@
             <param name="filterRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSearchRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration})">
+            <summary>
+            Restrictions on search expressions
+            </summary>
+            <param name="searchRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSearchRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration)">
             <summary>
             Restrictions on search expressions
             </summary>
             <param name="searchRestrictions">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSortRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration})">
+            <summary>
+            Restrictions on orderby expressions
+            </summary>
+            <param name="sortRestrictionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSortRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration)">
@@ -6269,6 +6410,13 @@
             <param name="skipSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSelectSupport(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration})">
+            <summary>
+            Support for $select
+            </summary>
+            <param name="selectSupportConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasSelectSupport(Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration)">
             <summary>
             Support for $select
@@ -6283,11 +6431,25 @@
             <param name="indexableByKey">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasInsertRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration})">
+            <summary>
+            Restrictions on insert operations
+            </summary>
+            <param name="insertRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasInsertRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration)">
             <summary>
             Restrictions on insert operations
             </summary>
             <param name="insertRestrictions">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDeepInsertSupport(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration})">
+            <summary>
+            Deep Insert Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
+            </summary>
+            <param name="deepInsertSupportConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDeepInsertSupport(Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration)">
@@ -6297,6 +6459,13 @@
             <param name="deepInsertSupport">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasUpdateRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration})">
+            <summary>
+            Restrictions on update operations
+            </summary>
+            <param name="updateRestrictionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasUpdateRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration)">
             <summary>
             Restrictions on update operations
@@ -6304,11 +6473,25 @@
             <param name="updateRestrictions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDeepUpdateSupport(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration})">
+            <summary>
+            Deep Update Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
+            </summary>
+            <param name="deepUpdateSupportConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDeepUpdateSupport(Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration)">
             <summary>
             Deep Update Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
             </summary>
             <param name="deepUpdateSupport">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDeleteRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration})">
+            <summary>
+            Restrictions on delete operations
+            </summary>
+            <param name="deleteRestrictionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDeleteRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration)">
@@ -6323,6 +6506,13 @@
             Data modification (including insert) along this navigation property requires the use of ETags
             </summary>
             <param name="optimisticConcurrencyControl">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasReadRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration})">
+            <summary>
+            Restrictions for retrieving entities
+            </summary>
+            <param name="readRestrictionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasReadRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration)">
@@ -6351,6 +6541,13 @@
             Default navigability for all navigation properties of the annotation target. Individual navigation properties can override this value via `RestrictedProperties/Navigability`.
             </summary>
             <param name="navigability">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration.HasRestrictedProperties(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration})">
+            <summary>
+            List of navigation properties with restrictions
+            </summary>
+            <param name="restrictedPropertiesConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration.HasRestrictedProperties(Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration[])">
@@ -6400,6 +6597,13 @@
             <param name="filterSegmentSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasPermissions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration})">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to invoke an action or function
+            </summary>
+            <param name="permissionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[])">
             <summary>
             Required permissions. One of the specified sets of scopes is required to invoke an action or function
@@ -6407,11 +6611,25 @@
             <param name="permissions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom headers
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Supported or required custom headers
             </summary>
             <param name="customHeaders">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom query options
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
@@ -6439,6 +6657,13 @@
             Authorization flow scheme name
             </summary>
             <param name="schemeName">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration.HasScopes(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration})">
+            <summary>
+            List of scopes that can provide access to the resource
+            </summary>
+            <param name="scopesConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration.HasScopes(Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration[])">
@@ -6488,6 +6713,13 @@
             <param name="readable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasPermissions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration})">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to read.
+            </summary>
+            <param name="permissionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[])">
             <summary>
             Required permissions. One of the specified sets of scopes is required to read.
@@ -6495,11 +6727,25 @@
             <param name="permissions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom headers
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Supported or required custom headers
             </summary>
             <param name="customHeaders">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom query options
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
@@ -6543,6 +6789,13 @@
             <param name="readable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasPermissions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration})">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to read.
+            </summary>
+            <param name="permissionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[])">
             <summary>
             Required permissions. One of the specified sets of scopes is required to read.
@@ -6550,11 +6803,25 @@
             <param name="permissions">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom headers
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Supported or required custom headers
             </summary>
             <param name="customHeaders">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom query options
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
@@ -6576,6 +6843,14 @@
             A lengthy description of the request
             </summary>
             <param name="longDescription">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasReadByKeyRestrictions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration})">
+            <summary>
+            Restrictions for retrieving an entity by key
+            Only valid when applied to a collection. If a property of `ReadByKeyRestrictions` is not specified, the corresponding property value of `ReadRestrictions` applies.
+            </summary>
+            <param name="readByKeyRestrictionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasReadByKeyRestrictions(Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration)">
@@ -6942,11 +7217,25 @@
             <param name="maxLevels">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasPermissions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration})">
+            <summary>
+            Required permissions. One of the specified sets of scopes is required to perform the update.
+            </summary>
+            <param name="permissionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration[])">
             <summary>
             Required permissions. One of the specified sets of scopes is required to perform the update.
             </summary>
             <param name="permissions">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration})">
+            <summary>
+            Support for query options with update requests
+            </summary>
+            <param name="queryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration)">
@@ -6956,11 +7245,25 @@
             <param name="queryOptions">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasCustomHeaders(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom headers
+            </summary>
+            <param name="customHeadersConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasCustomHeaders(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">
             <summary>
             Supported or required custom headers
             </summary>
             <param name="customHeaders">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasCustomQueryOptions(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration})">
+            <summary>
+            Supported or required custom query options
+            </summary>
+            <param name="customQueryOptionsConfiguration">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasCustomQueryOptions(Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration[])">

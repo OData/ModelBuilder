@@ -77,6 +77,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Restrictions on filter expressions
 		/// </summary>
+		/// <param name="filterRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasFilterRestrictions(Func<FilterRestrictionsConfiguration, FilterRestrictionsConfiguration> filterRestrictionsConfiguration)
+		{
+			var filterRestrictions = filterRestrictionsConfiguration?.Invoke(new FilterRestrictionsConfiguration());
+			return HasFilterRestrictions(filterRestrictions);
+		}
+
+		/// <summary>
+		/// Restrictions on filter expressions
+		/// </summary>
 		/// <param name="filterRestrictions">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration HasFilterRestrictions(FilterRestrictionsConfiguration filterRestrictions)
@@ -88,12 +99,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Restrictions on search expressions
 		/// </summary>
+		/// <param name="searchRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasSearchRestrictions(Func<SearchRestrictionsConfiguration, SearchRestrictionsConfiguration> searchRestrictionsConfiguration)
+		{
+			var searchRestrictions = searchRestrictionsConfiguration?.Invoke(new SearchRestrictionsConfiguration());
+			return HasSearchRestrictions(searchRestrictions);
+		}
+
+		/// <summary>
+		/// Restrictions on search expressions
+		/// </summary>
 		/// <param name="searchRestrictions">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration HasSearchRestrictions(SearchRestrictionsConfiguration searchRestrictions)
 		{
 			_searchRestrictions = searchRestrictions;
 			return this;
+		}
+
+		/// <summary>
+		/// Restrictions on orderby expressions
+		/// </summary>
+		/// <param name="sortRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasSortRestrictions(Func<SortRestrictionsConfiguration, SortRestrictionsConfiguration> sortRestrictionsConfiguration)
+		{
+			var sortRestrictions = sortRestrictionsConfiguration?.Invoke(new SortRestrictionsConfiguration());
+			return HasSortRestrictions(sortRestrictions);
 		}
 
 		/// <summary>
@@ -132,6 +165,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Support for $select
 		/// </summary>
+		/// <param name="selectSupportConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasSelectSupport(Func<SelectSupportConfiguration, SelectSupportConfiguration> selectSupportConfiguration)
+		{
+			var selectSupport = selectSupportConfiguration?.Invoke(new SelectSupportConfiguration());
+			return HasSelectSupport(selectSupport);
+		}
+
+		/// <summary>
+		/// Support for $select
+		/// </summary>
 		/// <param name="selectSupport">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration HasSelectSupport(SelectSupportConfiguration selectSupport)
@@ -154,12 +198,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Restrictions on insert operations
 		/// </summary>
+		/// <param name="insertRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasInsertRestrictions(Func<InsertRestrictionsConfiguration, InsertRestrictionsConfiguration> insertRestrictionsConfiguration)
+		{
+			var insertRestrictions = insertRestrictionsConfiguration?.Invoke(new InsertRestrictionsConfiguration());
+			return HasInsertRestrictions(insertRestrictions);
+		}
+
+		/// <summary>
+		/// Restrictions on insert operations
+		/// </summary>
 		/// <param name="insertRestrictions">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration HasInsertRestrictions(InsertRestrictionsConfiguration insertRestrictions)
 		{
 			_insertRestrictions = insertRestrictions;
 			return this;
+		}
+
+		/// <summary>
+		/// Deep Insert Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
+		/// </summary>
+		/// <param name="deepInsertSupportConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasDeepInsertSupport(Func<DeepInsertSupportConfiguration, DeepInsertSupportConfiguration> deepInsertSupportConfiguration)
+		{
+			var deepInsertSupport = deepInsertSupportConfiguration?.Invoke(new DeepInsertSupportConfiguration());
+			return HasDeepInsertSupport(deepInsertSupport);
 		}
 
 		/// <summary>
@@ -176,6 +242,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Restrictions on update operations
 		/// </summary>
+		/// <param name="updateRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasUpdateRestrictions(Func<UpdateRestrictionsConfiguration, UpdateRestrictionsConfiguration> updateRestrictionsConfiguration)
+		{
+			var updateRestrictions = updateRestrictionsConfiguration?.Invoke(new UpdateRestrictionsConfiguration());
+			return HasUpdateRestrictions(updateRestrictions);
+		}
+
+		/// <summary>
+		/// Restrictions on update operations
+		/// </summary>
 		/// <param name="updateRestrictions">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration HasUpdateRestrictions(UpdateRestrictionsConfiguration updateRestrictions)
@@ -187,12 +264,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Deep Update Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
 		/// </summary>
+		/// <param name="deepUpdateSupportConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasDeepUpdateSupport(Func<DeepUpdateSupportConfiguration, DeepUpdateSupportConfiguration> deepUpdateSupportConfiguration)
+		{
+			var deepUpdateSupport = deepUpdateSupportConfiguration?.Invoke(new DeepUpdateSupportConfiguration());
+			return HasDeepUpdateSupport(deepUpdateSupport);
+		}
+
+		/// <summary>
+		/// Deep Update Support of the annotated resource (the whole service, an entity set, or a collection-valued resource)
+		/// </summary>
 		/// <param name="deepUpdateSupport">The value to set</param>
 		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
 		public NavigationPropertyRestrictionConfiguration HasDeepUpdateSupport(DeepUpdateSupportConfiguration deepUpdateSupport)
 		{
 			_deepUpdateSupport = deepUpdateSupport;
 			return this;
+		}
+
+		/// <summary>
+		/// Restrictions on delete operations
+		/// </summary>
+		/// <param name="deleteRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasDeleteRestrictions(Func<DeleteRestrictionsConfiguration, DeleteRestrictionsConfiguration> deleteRestrictionsConfiguration)
+		{
+			var deleteRestrictions = deleteRestrictionsConfiguration?.Invoke(new DeleteRestrictionsConfiguration());
+			return HasDeleteRestrictions(deleteRestrictions);
 		}
 
 		/// <summary>
@@ -215,6 +314,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			_optimisticConcurrencyControl = optimisticConcurrencyControl;
 			return this;
+		}
+
+		/// <summary>
+		/// Restrictions for retrieving entities
+		/// </summary>
+		/// <param name="readRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+		public NavigationPropertyRestrictionConfiguration HasReadRestrictions(Func<ReadRestrictionsConfiguration, ReadRestrictionsConfiguration> readRestrictionsConfiguration)
+		{
+			var readRestrictions = readRestrictionsConfiguration?.Invoke(new ReadRestrictionsConfiguration());
+			return HasReadRestrictions(readRestrictions);
 		}
 
 		/// <summary>

@@ -45,6 +45,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Required permissions. One of the specified sets of scopes is required to read.
 		/// </summary>
+		/// <param name="permissionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasPermissions(Func<PermissionTypeConfiguration, PermissionTypeConfiguration> permissionsConfiguration)
+		{
+			var permissions = permissionsConfiguration?.Invoke(new PermissionTypeConfiguration());
+			return HasPermissions(permissions);
+		}
+
+		/// <summary>
+		/// Required permissions. One of the specified sets of scopes is required to read.
+		/// </summary>
 		/// <param name="permissions">The value(s) to set</param>
 		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
 		public ReadRestrictionsConfiguration HasPermissions(params PermissionTypeConfiguration[] permissions)
@@ -56,12 +67,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Supported or required custom headers
 		/// </summary>
+		/// <param name="customHeadersConfiguration">The configuration to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasCustomHeaders(Func<CustomParameterConfiguration, CustomParameterConfiguration> customHeadersConfiguration)
+		{
+			var customHeaders = customHeadersConfiguration?.Invoke(new CustomParameterConfiguration());
+			return HasCustomHeaders(customHeaders);
+		}
+
+		/// <summary>
+		/// Supported or required custom headers
+		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
 		public ReadRestrictionsConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;
+		}
+
+		/// <summary>
+		/// Supported or required custom query options
+		/// </summary>
+		/// <param name="customQueryOptionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasCustomQueryOptions(Func<CustomParameterConfiguration, CustomParameterConfiguration> customQueryOptionsConfiguration)
+		{
+			var customQueryOptions = customQueryOptionsConfiguration?.Invoke(new CustomParameterConfiguration());
+			return HasCustomQueryOptions(customQueryOptions);
 		}
 
 		/// <summary>
@@ -95,6 +128,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		{
 			_longDescription = longDescription;
 			return this;
+		}
+
+		/// <summary>
+		/// Restrictions for retrieving an entity by key
+		/// Only valid when applied to a collection. If a property of `ReadByKeyRestrictions` is not specified, the corresponding property value of `ReadRestrictions` applies.
+		/// </summary>
+		/// <param name="readByKeyRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+		public ReadRestrictionsConfiguration HasReadByKeyRestrictions(Func<ReadByKeyRestrictionsTypeConfiguration, ReadByKeyRestrictionsTypeConfiguration> readByKeyRestrictionsConfiguration)
+		{
+			var readByKeyRestrictions = readByKeyRestrictionsConfiguration?.Invoke(new ReadByKeyRestrictionsTypeConfiguration());
+			return HasReadByKeyRestrictions(readByKeyRestrictions);
 		}
 
 		/// <summary>

@@ -28,6 +28,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Custom headers that are supported/required for the annotated resource
 		/// </summary>
+		/// <param name="customHeadersConfiguration">The configuration to set</param>
+		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
+		public CustomHeadersConfiguration HasCustomHeaders(Func<CustomParameterConfiguration, CustomParameterConfiguration> customHeadersConfiguration)
+		{
+			var customHeaders = customHeadersConfiguration?.Invoke(new CustomParameterConfiguration());
+			return HasCustomHeaders(customHeaders);
+		}
+
+		/// <summary>
+		/// Custom headers that are supported/required for the annotated resource
+		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
 		public CustomHeadersConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)

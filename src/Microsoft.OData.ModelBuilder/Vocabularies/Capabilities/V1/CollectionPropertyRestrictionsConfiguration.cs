@@ -28,6 +28,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Describes restrictions on operations applied to collection-valued structural properties
 		/// </summary>
+		/// <param name="collectionPropertyRestrictionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
+		public CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions(Func<CollectionPropertyRestrictionsTypeConfiguration, CollectionPropertyRestrictionsTypeConfiguration> collectionPropertyRestrictionsConfiguration)
+		{
+			var collectionPropertyRestrictions = collectionPropertyRestrictionsConfiguration?.Invoke(new CollectionPropertyRestrictionsTypeConfiguration());
+			return HasCollectionPropertyRestrictions(collectionPropertyRestrictions);
+		}
+
+		/// <summary>
+		/// Describes restrictions on operations applied to collection-valued structural properties
+		/// </summary>
 		/// <param name="collectionPropertyRestrictions">The value(s) to set</param>
 		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
 		public CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions(params CollectionPropertyRestrictionsTypeConfiguration[] collectionPropertyRestrictions)

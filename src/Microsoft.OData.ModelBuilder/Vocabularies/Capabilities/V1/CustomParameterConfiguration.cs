@@ -76,6 +76,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Example values for the custom parameter
 		/// </summary>
+		/// <param name="exampleValuesConfiguration">The configuration to set</param>
+		/// <returns><see cref="CustomParameterConfiguration"/></returns>
+		public CustomParameterConfiguration HasExampleValues(Func<Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration, Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration> exampleValuesConfiguration)
+		{
+			var exampleValues = exampleValuesConfiguration?.Invoke(new Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration());
+			return HasExampleValues(exampleValues);
+		}
+
+		/// <summary>
+		/// Example values for the custom parameter
+		/// </summary>
 		/// <param name="exampleValues">The value(s) to set</param>
 		/// <returns><see cref="CustomParameterConfiguration"/></returns>
 		public CustomParameterConfiguration HasExampleValues(params Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration[] exampleValues)

@@ -93,12 +93,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Required permissions. One of the specified sets of scopes is required to perform the insert.
 		/// </summary>
+		/// <param name="permissionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+		public InsertRestrictionsConfiguration HasPermissions(Func<PermissionTypeConfiguration, PermissionTypeConfiguration> permissionsConfiguration)
+		{
+			var permissions = permissionsConfiguration?.Invoke(new PermissionTypeConfiguration());
+			return HasPermissions(permissions);
+		}
+
+		/// <summary>
+		/// Required permissions. One of the specified sets of scopes is required to perform the insert.
+		/// </summary>
 		/// <param name="permissions">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration HasPermissions(params PermissionTypeConfiguration[] permissions)
 		{
 			_permissions.UnionWith(permissions);
 			return this;
+		}
+
+		/// <summary>
+		/// Support for query options with insert requests
+		/// </summary>
+		/// <param name="queryOptionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+		public InsertRestrictionsConfiguration HasQueryOptions(Func<ModificationQueryOptionsConfiguration, ModificationQueryOptionsConfiguration> queryOptionsConfiguration)
+		{
+			var queryOptions = queryOptionsConfiguration?.Invoke(new ModificationQueryOptionsConfiguration());
+			return HasQueryOptions(queryOptions);
 		}
 
 		/// <summary>
@@ -115,12 +137,34 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <summary>
 		/// Supported or required custom headers
 		/// </summary>
+		/// <param name="customHeadersConfiguration">The configuration to set</param>
+		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+		public InsertRestrictionsConfiguration HasCustomHeaders(Func<CustomParameterConfiguration, CustomParameterConfiguration> customHeadersConfiguration)
+		{
+			var customHeaders = customHeadersConfiguration?.Invoke(new CustomParameterConfiguration());
+			return HasCustomHeaders(customHeaders);
+		}
+
+		/// <summary>
+		/// Supported or required custom headers
+		/// </summary>
 		/// <param name="customHeaders">The value(s) to set</param>
 		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
 		public InsertRestrictionsConfiguration HasCustomHeaders(params CustomParameterConfiguration[] customHeaders)
 		{
 			_customHeaders.UnionWith(customHeaders);
 			return this;
+		}
+
+		/// <summary>
+		/// Supported or required custom query options
+		/// </summary>
+		/// <param name="customQueryOptionsConfiguration">The configuration to set</param>
+		/// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+		public InsertRestrictionsConfiguration HasCustomQueryOptions(Func<CustomParameterConfiguration, CustomParameterConfiguration> customQueryOptionsConfiguration)
+		{
+			var customQueryOptions = customQueryOptionsConfiguration?.Invoke(new CustomParameterConfiguration());
+			return HasCustomQueryOptions(customQueryOptions);
 		}
 
 		/// <summary>
