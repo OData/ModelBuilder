@@ -1070,6 +1070,16 @@ public class Microsoft.OData.ModelBuilder.Conventions.ODataModelConventionSet {
 	public ODataModelConventionSet ()
 }
 
+[
+ExtensionAttribute(),
+]
+public sealed class Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions {
+	[
+	ExtensionAttribute(),
+	]
+	public static Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration HasScopes (Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration permissionTypeConfiguration, string[] scopeNames)
+}
+
 public enum Microsoft.OData.ModelBuilder.Capabilities.V1.ConformanceLevelType : int {
 	Advanced = 2
 	Intermediate = 1

@@ -7567,5 +7567,18 @@
             <param name="target"><see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> to annotate</param>
             <param name="configurations">Collection of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/> annotation configurations</param>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions">
+            <summary>
+            Shortcuts for common configurations to be extended in here.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions.HasScopes(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,System.String[])">
+            <summary>
+            List of scopes that can provide access to the resource
+            </summary>
+            <param name="permissionTypeConfiguration"><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/></param>
+            <param name="scopeNames">The value(s) to set</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
