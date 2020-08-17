@@ -43,8 +43,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="PermissionTypeConfiguration"/></returns>
 		public PermissionTypeConfiguration HasScopes(Func<ScopeTypeConfiguration, ScopeTypeConfiguration> scopesConfiguration)
 		{
-			var scopes = scopesConfiguration?.Invoke(new ScopeTypeConfiguration());
-			return HasScopes(scopes);
+			var instance = new ScopeTypeConfiguration();
+			instance = scopesConfiguration?.Invoke(instance);
+			return HasScopes(instance);
 		}
 
 		/// <summary>

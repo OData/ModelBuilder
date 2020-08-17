@@ -32,8 +32,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
 		public CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions(Func<CollectionPropertyRestrictionsTypeConfiguration, CollectionPropertyRestrictionsTypeConfiguration> collectionPropertyRestrictionsConfiguration)
 		{
-			var collectionPropertyRestrictions = collectionPropertyRestrictionsConfiguration?.Invoke(new CollectionPropertyRestrictionsTypeConfiguration());
-			return HasCollectionPropertyRestrictions(collectionPropertyRestrictions);
+			var instance = new CollectionPropertyRestrictionsTypeConfiguration();
+			instance = collectionPropertyRestrictionsConfiguration?.Invoke(instance);
+			return HasCollectionPropertyRestrictions(instance);
 		}
 
 		/// <summary>

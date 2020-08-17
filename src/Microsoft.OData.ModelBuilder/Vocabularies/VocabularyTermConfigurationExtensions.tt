@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Runtime" #>
-<#@ assembly name="Microsoft.OData.Edm" #>
+<#@ assembly name="$(NuGetPackageRoot)microsoft.odata.edm\7.7.0\lib\net45\Microsoft.OData.Edm.dll" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -427,6 +427,12 @@ using Microsoft.OData.Edm.Vocabularies;
 
 		if (isComplexElement)
 		{
+			var configurationInstance = $"new {clrType}()";
+			if (typeKind != EdmTypeKind.Collection)
+			{
+				configurationInstance = $"_{camelName} ?? {configurationInstance}";
+			}
+			
 #>
 
 		/// <summary>
@@ -436,8 +442,9 @@ using Microsoft.OData.Edm.Vocabularies;
 		/// <returns><see cref="<#=returnType #>"/></returns>
 		public <#=returnType #> Has<#= name #>(Func<<#= clrType #>, <#= clrType #>> <#= camelName #>Configuration)
 		{
-			var <#= camelName #> = <#= camelName #>Configuration?.Invoke(new <#= clrType #>());
-			return Has<#= name #>(<#= camelName #>);
+			var instance = <#= configurationInstance #>;
+			instance = <#= camelName #>Configuration?.Invoke(instance);
+			return Has<#= name #>(instance);
 		}
 <#+
 		}

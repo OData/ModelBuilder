@@ -64,8 +64,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration HasFilterRestrictions(Func<FilterRestrictionsConfiguration, FilterRestrictionsConfiguration> filterRestrictionsConfiguration)
 		{
-			var filterRestrictions = filterRestrictionsConfiguration?.Invoke(new FilterRestrictionsConfiguration());
-			return HasFilterRestrictions(filterRestrictions);
+			var instance = _filterRestrictions ?? new FilterRestrictionsConfiguration();
+			instance = filterRestrictionsConfiguration?.Invoke(instance);
+			return HasFilterRestrictions(instance);
 		}
 
 		/// <summary>
@@ -86,8 +87,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration HasSearchRestrictions(Func<SearchRestrictionsConfiguration, SearchRestrictionsConfiguration> searchRestrictionsConfiguration)
 		{
-			var searchRestrictions = searchRestrictionsConfiguration?.Invoke(new SearchRestrictionsConfiguration());
-			return HasSearchRestrictions(searchRestrictions);
+			var instance = _searchRestrictions ?? new SearchRestrictionsConfiguration();
+			instance = searchRestrictionsConfiguration?.Invoke(instance);
+			return HasSearchRestrictions(instance);
 		}
 
 		/// <summary>
@@ -108,8 +110,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration HasSortRestrictions(Func<SortRestrictionsConfiguration, SortRestrictionsConfiguration> sortRestrictionsConfiguration)
 		{
-			var sortRestrictions = sortRestrictionsConfiguration?.Invoke(new SortRestrictionsConfiguration());
-			return HasSortRestrictions(sortRestrictions);
+			var instance = _sortRestrictions ?? new SortRestrictionsConfiguration();
+			instance = sortRestrictionsConfiguration?.Invoke(instance);
+			return HasSortRestrictions(instance);
 		}
 
 		/// <summary>
@@ -152,8 +155,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
 		public CollectionPropertyRestrictionsTypeConfiguration HasSelectSupport(Func<SelectSupportConfiguration, SelectSupportConfiguration> selectSupportConfiguration)
 		{
-			var selectSupport = selectSupportConfiguration?.Invoke(new SelectSupportConfiguration());
-			return HasSelectSupport(selectSupport);
+			var instance = _selectSupport ?? new SelectSupportConfiguration();
+			instance = selectSupportConfiguration?.Invoke(instance);
+			return HasSelectSupport(instance);
 		}
 
 		/// <summary>

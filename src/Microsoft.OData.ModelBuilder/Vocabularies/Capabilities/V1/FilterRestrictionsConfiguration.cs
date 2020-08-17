@@ -81,8 +81,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="FilterRestrictionsConfiguration"/></returns>
 		public FilterRestrictionsConfiguration HasFilterExpressionRestrictions(Func<FilterExpressionRestrictionTypeConfiguration, FilterExpressionRestrictionTypeConfiguration> filterExpressionRestrictionsConfiguration)
 		{
-			var filterExpressionRestrictions = filterExpressionRestrictionsConfiguration?.Invoke(new FilterExpressionRestrictionTypeConfiguration());
-			return HasFilterExpressionRestrictions(filterExpressionRestrictions);
+			var instance = new FilterExpressionRestrictionTypeConfiguration();
+			instance = filterExpressionRestrictionsConfiguration?.Invoke(instance);
+			return HasFilterExpressionRestrictions(instance);
 		}
 
 		/// <summary>

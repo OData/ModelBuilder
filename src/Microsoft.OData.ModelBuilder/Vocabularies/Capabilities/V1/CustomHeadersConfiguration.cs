@@ -32,8 +32,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CustomHeadersConfiguration"/></returns>
 		public CustomHeadersConfiguration HasCustomHeaders(Func<CustomParameterConfiguration, CustomParameterConfiguration> customHeadersConfiguration)
 		{
-			var customHeaders = customHeadersConfiguration?.Invoke(new CustomParameterConfiguration());
-			return HasCustomHeaders(customHeaders);
+			var instance = new CustomParameterConfiguration();
+			instance = customHeadersConfiguration?.Invoke(instance);
+			return HasCustomHeaders(instance);
 		}
 
 		/// <summary>

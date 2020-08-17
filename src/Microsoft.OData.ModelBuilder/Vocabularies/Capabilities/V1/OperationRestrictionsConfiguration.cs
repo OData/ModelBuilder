@@ -46,8 +46,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
 		public OperationRestrictionsConfiguration HasPermissions(Func<PermissionTypeConfiguration, PermissionTypeConfiguration> permissionsConfiguration)
 		{
-			var permissions = permissionsConfiguration?.Invoke(new PermissionTypeConfiguration());
-			return HasPermissions(permissions);
+			var instance = new PermissionTypeConfiguration();
+			instance = permissionsConfiguration?.Invoke(instance);
+			return HasPermissions(instance);
 		}
 
 		/// <summary>
@@ -68,8 +69,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
 		public OperationRestrictionsConfiguration HasCustomHeaders(Func<CustomParameterConfiguration, CustomParameterConfiguration> customHeadersConfiguration)
 		{
-			var customHeaders = customHeadersConfiguration?.Invoke(new CustomParameterConfiguration());
-			return HasCustomHeaders(customHeaders);
+			var instance = new CustomParameterConfiguration();
+			instance = customHeadersConfiguration?.Invoke(instance);
+			return HasCustomHeaders(instance);
 		}
 
 		/// <summary>
@@ -90,8 +92,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
 		public OperationRestrictionsConfiguration HasCustomQueryOptions(Func<CustomParameterConfiguration, CustomParameterConfiguration> customQueryOptionsConfiguration)
 		{
-			var customQueryOptions = customQueryOptionsConfiguration?.Invoke(new CustomParameterConfiguration());
-			return HasCustomQueryOptions(customQueryOptions);
+			var instance = new CustomParameterConfiguration();
+			instance = customQueryOptionsConfiguration?.Invoke(instance);
+			return HasCustomQueryOptions(instance);
 		}
 
 		/// <summary>

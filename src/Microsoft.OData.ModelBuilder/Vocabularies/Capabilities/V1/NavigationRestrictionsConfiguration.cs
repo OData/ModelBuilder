@@ -45,8 +45,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="NavigationRestrictionsConfiguration"/></returns>
 		public NavigationRestrictionsConfiguration HasRestrictedProperties(Func<NavigationPropertyRestrictionConfiguration, NavigationPropertyRestrictionConfiguration> restrictedPropertiesConfiguration)
 		{
-			var restrictedProperties = restrictedPropertiesConfiguration?.Invoke(new NavigationPropertyRestrictionConfiguration());
-			return HasRestrictedProperties(restrictedProperties);
+			var instance = new NavigationPropertyRestrictionConfiguration();
+			instance = restrictedPropertiesConfiguration?.Invoke(instance);
+			return HasRestrictedProperties(instance);
 		}
 
 		/// <summary>

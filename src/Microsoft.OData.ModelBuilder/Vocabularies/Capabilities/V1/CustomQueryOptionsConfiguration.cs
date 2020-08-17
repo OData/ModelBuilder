@@ -34,8 +34,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CustomQueryOptionsConfiguration"/></returns>
 		public CustomQueryOptionsConfiguration HasCustomQueryOptions(Func<CustomParameterConfiguration, CustomParameterConfiguration> customQueryOptionsConfiguration)
 		{
-			var customQueryOptions = customQueryOptionsConfiguration?.Invoke(new CustomParameterConfiguration());
-			return HasCustomQueryOptions(customQueryOptions);
+			var instance = new CustomParameterConfiguration();
+			instance = customQueryOptionsConfiguration?.Invoke(instance);
+			return HasCustomQueryOptions(instance);
 		}
 
 		/// <summary>

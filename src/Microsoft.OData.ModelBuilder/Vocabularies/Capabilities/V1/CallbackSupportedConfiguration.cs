@@ -32,8 +32,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="CallbackSupportedConfiguration"/></returns>
 		public CallbackSupportedConfiguration HasCallbackProtocols(Func<CallbackProtocolConfiguration, CallbackProtocolConfiguration> callbackProtocolsConfiguration)
 		{
-			var callbackProtocols = callbackProtocolsConfiguration?.Invoke(new CallbackProtocolConfiguration());
-			return HasCallbackProtocols(callbackProtocols);
+			var instance = new CallbackProtocolConfiguration();
+			instance = callbackProtocolsConfiguration?.Invoke(instance);
+			return HasCallbackProtocols(instance);
 		}
 
 		/// <summary>

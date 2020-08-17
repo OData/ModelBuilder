@@ -121,8 +121,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
 		public UpdateRestrictionsConfiguration HasPermissions(Func<PermissionTypeConfiguration, PermissionTypeConfiguration> permissionsConfiguration)
 		{
-			var permissions = permissionsConfiguration?.Invoke(new PermissionTypeConfiguration());
-			return HasPermissions(permissions);
+			var instance = new PermissionTypeConfiguration();
+			instance = permissionsConfiguration?.Invoke(instance);
+			return HasPermissions(instance);
 		}
 
 		/// <summary>
@@ -143,8 +144,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
 		public UpdateRestrictionsConfiguration HasQueryOptions(Func<ModificationQueryOptionsConfiguration, ModificationQueryOptionsConfiguration> queryOptionsConfiguration)
 		{
-			var queryOptions = queryOptionsConfiguration?.Invoke(new ModificationQueryOptionsConfiguration());
-			return HasQueryOptions(queryOptions);
+			var instance = _queryOptions ?? new ModificationQueryOptionsConfiguration();
+			instance = queryOptionsConfiguration?.Invoke(instance);
+			return HasQueryOptions(instance);
 		}
 
 		/// <summary>
@@ -165,8 +167,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
 		public UpdateRestrictionsConfiguration HasCustomHeaders(Func<CustomParameterConfiguration, CustomParameterConfiguration> customHeadersConfiguration)
 		{
-			var customHeaders = customHeadersConfiguration?.Invoke(new CustomParameterConfiguration());
-			return HasCustomHeaders(customHeaders);
+			var instance = new CustomParameterConfiguration();
+			instance = customHeadersConfiguration?.Invoke(instance);
+			return HasCustomHeaders(instance);
 		}
 
 		/// <summary>
@@ -187,8 +190,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		/// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
 		public UpdateRestrictionsConfiguration HasCustomQueryOptions(Func<CustomParameterConfiguration, CustomParameterConfiguration> customQueryOptionsConfiguration)
 		{
-			var customQueryOptions = customQueryOptionsConfiguration?.Invoke(new CustomParameterConfiguration());
-			return HasCustomQueryOptions(customQueryOptions);
+			var instance = new CustomParameterConfiguration();
+			instance = customQueryOptionsConfiguration?.Invoke(instance);
+			return HasCustomQueryOptions(instance);
 		}
 
 		/// <summary>
