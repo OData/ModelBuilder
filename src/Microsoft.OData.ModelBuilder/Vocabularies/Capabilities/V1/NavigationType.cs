@@ -15,7 +15,6 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public enum NavigationType
 	{
-
         /// <summary>
 		/// Navigation properties can be recursively navigated
         /// </summary>

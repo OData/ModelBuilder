@@ -16,7 +16,6 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	[Flags]
 	public enum SearchExpressions
 	{
-
         /// <summary>
 		/// Single search term
         /// </summary>

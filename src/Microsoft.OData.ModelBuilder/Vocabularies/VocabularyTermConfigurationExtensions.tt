@@ -324,8 +324,8 @@ namespace <#= @namespace #>
 	}
 #>
 	public enum <#= enumType.Name #>
-	{
-<#+
+	{<#+
+
 		foreach (var member in enumType.Members)
 		{
 #>

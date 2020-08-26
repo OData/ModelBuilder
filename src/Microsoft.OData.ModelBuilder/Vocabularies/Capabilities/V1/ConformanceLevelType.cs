@@ -15,7 +15,6 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	/// </summary>
 	public enum ConformanceLevelType
 	{
-
         /// <summary>
 		/// Minimal conformance level
         /// </summary>

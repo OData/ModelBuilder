@@ -16,7 +16,6 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	[Flags]
 	public enum IsolationLevel
 	{
-
         /// <summary>
 		/// All data returned for a request, including multiple requests within a batch or results retrieved across multiple pages, will be consistent as of a single point in time
         /// </summary>
