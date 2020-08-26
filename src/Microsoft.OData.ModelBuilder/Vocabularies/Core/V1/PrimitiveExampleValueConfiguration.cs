@@ -59,7 +59,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
 
 			if (_value != null)
 			{
-				// properties.Add(new EdmPropertyConstructor("Value", new EdmPrimitiveConstant(_value.Value)));
+				properties.Add(new EdmPropertyConstructor("Value", new EdmStringConstant(_value.ToString())));
 			}
 
 			if (!properties.Any())

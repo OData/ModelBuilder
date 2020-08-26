@@ -608,7 +608,7 @@ using Microsoft.OData.Edm.Vocabularies;
 #>
 			if (_<#= camelName #> != null)
 			{
-				// properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmPrimitiveConstant(_<#= camelName #>.Value)));
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmStringConstant(_<#= camelName #>.ToString())));
 			}
 
 <#+			
