@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<CallbackProtocolConfiguration> _callbackProtocols = new HashSet<CallbackProtocolConfiguration>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="CallbackSupportedConfiguration"/>
-        /// </summary>
-		public CallbackSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.CallbackSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.CallbackSupported";
 
 		/// <summary>
 		/// List of supported callback protocols, e.g. `http` or `wss`

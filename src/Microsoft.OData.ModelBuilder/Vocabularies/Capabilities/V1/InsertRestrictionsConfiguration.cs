@@ -27,13 +27,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private string _description;
 		private string _longDescription;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="InsertRestrictionsConfiguration"/>
-        /// </summary>
-		public InsertRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.InsertRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.InsertRestrictions";
 
 		/// <summary>
 		/// Entities can be inserted

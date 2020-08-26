@@ -23,13 +23,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _requestDependencyConditionsSupported;
 		private readonly HashSet<string> _supportedFormats = new HashSet<string>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="BatchSupportConfiguration"/>
-        /// </summary>
-		public BatchSupportConfiguration()
-			: base("Org.OData.Capabilities.V1.BatchSupport")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.BatchSupport";
 
 		/// <summary>
 		/// Service supports requests to $batch

@@ -20,13 +20,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private readonly HashSet<EdmPropertyPathExpression> _descendingOnlyProperties = new HashSet<EdmPropertyPathExpression>();
 		private readonly HashSet<EdmPropertyPathExpression> _nonSortableProperties = new HashSet<EdmPropertyPathExpression>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="SortRestrictionsConfiguration"/>
-        /// </summary>
-		public SortRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.SortRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.SortRestrictions";
 
 		/// <summary>
 		/// $orderby is supported

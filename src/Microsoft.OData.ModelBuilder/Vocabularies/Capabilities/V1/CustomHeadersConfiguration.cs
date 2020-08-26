@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="CustomHeadersConfiguration"/>
-        /// </summary>
-		public CustomHeadersConfiguration()
-			: base("Org.OData.Capabilities.V1.CustomHeaders")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.CustomHeaders";
 
 		/// <summary>
 		/// Custom headers that are supported/required for the annotated resource

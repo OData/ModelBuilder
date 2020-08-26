@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _skipSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="SkipSupportedConfiguration"/>
-        /// </summary>
-		public SkipSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.SkipSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.SkipSupported";
 
 		/// <summary>
 		/// Supports $skip

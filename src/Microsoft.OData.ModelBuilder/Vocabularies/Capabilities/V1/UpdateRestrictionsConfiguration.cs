@@ -29,13 +29,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private string _description;
 		private string _longDescription;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="UpdateRestrictionsConfiguration"/>
-        /// </summary>
-		public UpdateRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.UpdateRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.UpdateRestrictions";
 
 		/// <summary>
 		/// Entities can be updated

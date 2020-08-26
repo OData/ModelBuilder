@@ -18,13 +18,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<string> _filterFunctions = new HashSet<string>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="FilterFunctionsConfiguration"/>
-        /// </summary>
-		public FilterFunctionsConfiguration()
-			: base("Org.OData.Capabilities.V1.FilterFunctions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.FilterFunctions";
 
 		/// <summary>
 		/// List of functions and operators supported in filter expressions.

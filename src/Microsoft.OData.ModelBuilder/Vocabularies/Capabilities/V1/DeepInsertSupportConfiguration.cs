@@ -18,13 +18,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _supported;
 		private bool? _contentIDSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="DeepInsertSupportConfiguration"/>
-        /// </summary>
-		public DeepInsertSupportConfiguration()
-			: base("Org.OData.Capabilities.V1.DeepInsertSupport")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.DeepInsertSupport";
 
 		/// <summary>
 		/// Annotation target supports deep inserts

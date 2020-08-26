@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<string> _acceptableEncodings = new HashSet<string>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="AcceptableEncodingsConfiguration"/>
-        /// </summary>
-		public AcceptableEncodingsConfiguration()
-			: base("Org.OData.Capabilities.V1.AcceptableEncodings")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.AcceptableEncodings";
 
 		/// <summary>
 		/// List of acceptable compression methods for ($batch) requests, e.g. gzip

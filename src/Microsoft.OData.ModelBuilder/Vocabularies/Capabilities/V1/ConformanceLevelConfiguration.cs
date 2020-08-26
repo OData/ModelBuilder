@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private ConformanceLevelType? _conformanceLevel;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ConformanceLevelConfiguration"/>
-        /// </summary>
-		public ConformanceLevelConfiguration()
-			: base("Org.OData.Capabilities.V1.ConformanceLevel")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.ConformanceLevel";
 
 		/// <summary>
 		/// The conformance level achieved by this service

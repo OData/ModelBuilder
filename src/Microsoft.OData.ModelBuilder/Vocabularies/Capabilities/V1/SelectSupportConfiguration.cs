@@ -26,13 +26,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _countable;
 		private bool? _sortable;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="SelectSupportConfiguration"/>
-        /// </summary>
-		public SelectSupportConfiguration()
-			: base("Org.OData.Capabilities.V1.SelectSupport")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.SelectSupport";
 
 		/// <summary>
 		/// Supports $select

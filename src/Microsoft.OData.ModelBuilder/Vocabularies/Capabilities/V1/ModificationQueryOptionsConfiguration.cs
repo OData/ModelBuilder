@@ -22,13 +22,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _searchSupported;
 		private bool? _sortSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ModificationQueryOptionsConfiguration"/>
-        /// </summary>
-		public ModificationQueryOptionsConfiguration()
-			: base("Org.OData.Capabilities.V1.ModificationQueryOptions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.ModificationQueryOptions";
 
 		/// <summary>
 		/// Supports $expand with modification requests

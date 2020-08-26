@@ -18,13 +18,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="CustomQueryOptionsConfiguration"/>
-        /// </summary>
-		public CustomQueryOptionsConfiguration()
-			: base("Org.OData.Capabilities.V1.CustomQueryOptions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.CustomQueryOptions";
 
 		/// <summary>
 		/// Custom query options that are supported/required for the annotated resource

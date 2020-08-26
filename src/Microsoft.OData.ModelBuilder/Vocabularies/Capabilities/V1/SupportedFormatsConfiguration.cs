@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<string> _supportedFormats = new HashSet<string>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="SupportedFormatsConfiguration"/>
-        /// </summary>
-		public SupportedFormatsConfiguration()
-			: base("Org.OData.Capabilities.V1.SupportedFormats")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.SupportedFormats";
 
 		/// <summary>
 		/// Media types of supported formats, including format parameters

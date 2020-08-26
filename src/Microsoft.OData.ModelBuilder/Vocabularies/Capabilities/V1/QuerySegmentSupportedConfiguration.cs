@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _querySegmentSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="QuerySegmentSupportedConfiguration"/>
-        /// </summary>
-		public QuerySegmentSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.QuerySegmentSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.QuerySegmentSupported";
 
 		/// <summary>
 		/// Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)

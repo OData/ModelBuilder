@@ -20,13 +20,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
 		private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="OperationRestrictionsConfiguration"/>
-        /// </summary>
-		public OperationRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.OperationRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.OperationRestrictions";
 
 		/// <summary>
 		/// Bound action or function can be invoked on a collection-valued binding parameter path with a `/$filter(...)` segment

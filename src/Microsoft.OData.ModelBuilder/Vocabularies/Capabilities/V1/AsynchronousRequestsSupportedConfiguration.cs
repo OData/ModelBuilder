@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _asynchronousRequestsSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="AsynchronousRequestsSupportedConfiguration"/>
-        /// </summary>
-		public AsynchronousRequestsSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.AsynchronousRequestsSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.AsynchronousRequestsSupported";
 
 		/// <summary>
 		/// Service supports the asynchronous request preference

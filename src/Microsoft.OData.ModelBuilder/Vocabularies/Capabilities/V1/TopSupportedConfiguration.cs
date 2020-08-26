@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _topSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="TopSupportedConfiguration"/>
-        /// </summary>
-		public TopSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.TopSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.TopSupported";
 
 		/// <summary>
 		/// Supports $top

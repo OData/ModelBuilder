@@ -22,13 +22,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private readonly HashSet<FilterExpressionRestrictionTypeConfiguration> _filterExpressionRestrictions = new HashSet<FilterExpressionRestrictionTypeConfiguration>();
 		private int? _maxLevels;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="FilterRestrictionsConfiguration"/>
-        /// </summary>
-		public FilterRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.FilterRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.FilterRestrictions";
 
 		/// <summary>
 		/// $filter is supported

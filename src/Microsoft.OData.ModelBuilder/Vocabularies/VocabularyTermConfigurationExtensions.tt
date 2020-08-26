@@ -232,13 +232,8 @@ namespace <#= @namespace #>
 	{
 <#+ ProcessPrivateProperties(term.Type.Definition, term.FullName(), @namespace); #>
 
-        /// <summary>
-        /// Creates a new instance of <see cref="<#= clrType #>"/>
-        /// </summary>
-		public <#= clrType #>()
-			: base("<#= term.FullName()#>")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "<#= term.FullName()#>";
 <#+ ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description, @namespace); #>
 
 		/// <inheritdoc/>

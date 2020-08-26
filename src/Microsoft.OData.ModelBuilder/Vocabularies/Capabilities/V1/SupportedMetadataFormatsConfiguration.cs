@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<string> _supportedMetadataFormats = new HashSet<string>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="SupportedMetadataFormatsConfiguration"/>
-        /// </summary>
-		public SupportedMetadataFormatsConfiguration()
-			: base("Org.OData.Capabilities.V1.SupportedMetadataFormats")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.SupportedMetadataFormats";
 
 		/// <summary>
 		/// Media types of supported formats for $metadata, including format parameters

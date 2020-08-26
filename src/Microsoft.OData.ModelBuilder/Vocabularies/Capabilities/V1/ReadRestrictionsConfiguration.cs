@@ -23,13 +23,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private string _longDescription;
 		private ReadByKeyRestrictionsTypeConfiguration _readByKeyRestrictions;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ReadRestrictionsConfiguration"/>
-        /// </summary>
-		public ReadRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.ReadRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.ReadRestrictions";
 
 		/// <summary>
 		/// Entities can be retrieved

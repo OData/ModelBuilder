@@ -19,13 +19,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private NavigationType? _navigability;
 		private readonly HashSet<NavigationPropertyRestrictionConfiguration> _restrictedProperties = new HashSet<NavigationPropertyRestrictionConfiguration>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="NavigationRestrictionsConfiguration"/>
-        /// </summary>
-		public NavigationRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.NavigationRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.NavigationRestrictions";
 
 		/// <summary>
 		/// Default navigability for all navigation properties of the annotation target. Individual navigation properties can override this value via `RestrictedProperties/Navigability`.

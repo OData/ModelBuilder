@@ -20,13 +20,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private readonly HashSet<EdmNavigationPropertyPathExpression> _nonExpandableProperties = new HashSet<EdmNavigationPropertyPathExpression>();
 		private int? _maxLevels;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ExpandRestrictionsConfiguration"/>
-        /// </summary>
-		public ExpandRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.ExpandRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.ExpandRestrictions";
 
 		/// <summary>
 		/// $expand is supported

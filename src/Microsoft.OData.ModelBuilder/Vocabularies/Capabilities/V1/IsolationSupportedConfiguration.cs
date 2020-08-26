@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private IsolationLevel? _isolationSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="IsolationSupportedConfiguration"/>
-        /// </summary>
-		public IsolationSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.IsolationSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.IsolationSupported";
 
 		/// <summary>
 		/// Supported odata.isolation levels

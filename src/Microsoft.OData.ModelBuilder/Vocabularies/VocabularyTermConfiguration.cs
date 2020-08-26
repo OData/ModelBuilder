@@ -12,13 +12,10 @@ namespace Microsoft.OData.ModelBuilder
     /// </summary>
     public abstract partial class VocabularyTermConfiguration : IRecord
     {
-        private readonly string _termName;
-
         /// <summary>
-        /// Creates a new instance of <see cref="VocabularyTermConfiguration"/>
+        /// The name of the <see cref="IEdmTerm"/> to build.
         /// </summary>
-        /// <param name="termName">The name of the <see cref="IEdmTerm"/> being built.</param>
-        public VocabularyTermConfiguration(string termName) => _termName = termName;
+        public abstract string TermName { get; }
 
         /// <inheritdoc/>
         public abstract IEdmExpression ToEdmExpression();
@@ -39,7 +36,7 @@ namespace Microsoft.OData.ModelBuilder
                 return;
             }
 
-            var term = model.FindTerm(_termName);
+            var term = model.FindTerm(TermName);
             if (term == null)
             {
                 return;

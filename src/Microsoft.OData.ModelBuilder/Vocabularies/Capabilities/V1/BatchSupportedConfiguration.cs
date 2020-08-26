@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _batchSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="BatchSupportedConfiguration"/>
-        /// </summary>
-		public BatchSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.BatchSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.BatchSupported";
 
 		/// <summary>
 		/// Supports $batch requests. Services that apply the BatchSupported term should also apply the more comprehensive BatchSupport term.

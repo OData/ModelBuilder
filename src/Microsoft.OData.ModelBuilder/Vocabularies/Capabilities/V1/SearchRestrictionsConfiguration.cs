@@ -18,13 +18,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private bool? _searchable;
 		private SearchExpressions? _unsupportedExpressions;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="SearchRestrictionsConfiguration"/>
-        /// </summary>
-		public SearchRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.SearchRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.SearchRestrictions";
 
 		/// <summary>
 		/// $search is supported

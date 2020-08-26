@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _keyAsSegmentSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="KeyAsSegmentSupportedConfiguration"/>
-        /// </summary>
-		public KeyAsSegmentSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.KeyAsSegmentSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.KeyAsSegmentSupported";
 
 		/// <summary>
 		/// Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection

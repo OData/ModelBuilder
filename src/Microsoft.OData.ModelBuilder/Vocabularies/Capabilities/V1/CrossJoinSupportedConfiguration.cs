@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _crossJoinSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="CrossJoinSupportedConfiguration"/>
-        /// </summary>
-		public CrossJoinSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.CrossJoinSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.CrossJoinSupported";
 
 		/// <summary>
 		/// Supports cross joins for the entity sets in this container

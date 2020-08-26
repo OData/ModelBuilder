@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _indexableByKey;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="IndexableByKeyConfiguration"/>
-        /// </summary>
-		public IndexableByKeyConfiguration()
-			: base("Org.OData.Capabilities.V1.IndexableByKey")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.IndexableByKey";
 
 		/// <summary>
 		/// Supports key values according to OData URL conventions

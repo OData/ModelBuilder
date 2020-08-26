@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private readonly HashSet<CollectionPropertyRestrictionsTypeConfiguration> _collectionPropertyRestrictions = new HashSet<CollectionPropertyRestrictionsTypeConfiguration>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="CollectionPropertyRestrictionsConfiguration"/>
-        /// </summary>
-		public CollectionPropertyRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.CollectionPropertyRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.CollectionPropertyRestrictions";
 
 		/// <summary>
 		/// Describes restrictions on operations applied to collection-valued structural properties

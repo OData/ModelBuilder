@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _computeSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="ComputeSupportedConfiguration"/>
-        /// </summary>
-		public ComputeSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.ComputeSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.ComputeSupported";
 
 		/// <summary>
 		/// Supports $compute

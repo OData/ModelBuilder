@@ -26,13 +26,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private string _description;
 		private string _longDescription;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="DeleteRestrictionsConfiguration"/>
-        /// </summary>
-		public DeleteRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.DeleteRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.DeleteRestrictions";
 
 		/// <summary>
 		/// Entities can be deleted

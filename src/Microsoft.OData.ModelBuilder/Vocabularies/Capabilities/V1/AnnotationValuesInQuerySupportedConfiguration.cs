@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _annotationValuesInQuerySupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="AnnotationValuesInQuerySupportedConfiguration"/>
-        /// </summary>
-		public AnnotationValuesInQuerySupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.AnnotationValuesInQuerySupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.AnnotationValuesInQuerySupported";
 
 		/// <summary>
 		/// Supports annotation values within system query options

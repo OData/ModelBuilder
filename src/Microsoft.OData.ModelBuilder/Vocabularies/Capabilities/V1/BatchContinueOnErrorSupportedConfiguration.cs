@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _batchContinueOnErrorSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="BatchContinueOnErrorSupportedConfiguration"/>
-        /// </summary>
-		public BatchContinueOnErrorSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.BatchContinueOnErrorSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.BatchContinueOnErrorSupported";
 
 		/// <summary>
 		/// Service supports the continue on error preference. Supports $batch requests. Services that apply the BatchContinueOnErrorSupported term should also specify the ContinueOnErrorSupported property from the BatchSupport term.

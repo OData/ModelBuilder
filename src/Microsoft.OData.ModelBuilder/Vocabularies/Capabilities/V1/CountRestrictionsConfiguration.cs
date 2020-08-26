@@ -19,13 +19,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 		private readonly HashSet<EdmPropertyPathExpression> _nonCountableProperties = new HashSet<EdmPropertyPathExpression>();
 		private readonly HashSet<EdmNavigationPropertyPathExpression> _nonCountableNavigationProperties = new HashSet<EdmNavigationPropertyPathExpression>();
 
-        /// <summary>
-        /// Creates a new instance of <see cref="CountRestrictionsConfiguration"/>
-        /// </summary>
-		public CountRestrictionsConfiguration()
-			: base("Org.OData.Capabilities.V1.CountRestrictions")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.CountRestrictions";
 
 		/// <summary>
 		/// Entities can be counted

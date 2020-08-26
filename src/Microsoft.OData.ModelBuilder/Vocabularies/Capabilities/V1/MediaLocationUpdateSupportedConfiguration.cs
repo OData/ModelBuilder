@@ -17,13 +17,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 	{
 		private bool? _mediaLocationUpdateSupported;
 
-        /// <summary>
-        /// Creates a new instance of <see cref="MediaLocationUpdateSupportedConfiguration"/>
-        /// </summary>
-		public MediaLocationUpdateSupportedConfiguration()
-			: base("Org.OData.Capabilities.V1.MediaLocationUpdateSupported")
-		{
-		}
+        /// <inheritdoc/>
+		public override string TermName => "Org.OData.Capabilities.V1.MediaLocationUpdateSupported";
 
 		/// <summary>
 		/// Stream property supports update of its media edit URL and/or media read URL
