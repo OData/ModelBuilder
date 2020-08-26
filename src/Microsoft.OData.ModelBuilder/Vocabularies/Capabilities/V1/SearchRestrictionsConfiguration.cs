@@ -55,7 +55,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 			if (_unsupportedExpressions.HasValue)
 			{
-				// properties.Add(new EdmPropertyConstructor("UnsupportedExpressions", new EdmEnumValue(_unsupportedExpressions.Value)));
+				var enumType = new EdmEnumType("Org.OData.Capabilities.V1", "SearchExpressions", true);
+                var enumMember = new EdmEnumMember(enumType, _unsupportedExpressions.ToString(), new EdmEnumMemberValue((long)_unsupportedExpressions.Value));
+				properties.Add(new EdmPropertyConstructor("UnsupportedExpressions", new EdmEnumMemberExpression(enumMember)));
 			}
 
 			if (!properties.Any())

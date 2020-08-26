@@ -38,7 +38,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 			if (_isolationSupported.HasValue)
 			{
-				// properties.Add(new EdmPropertyConstructor("IsolationSupported", new EdmEnumValue(_isolationSupported.Value)));
+				var enumType = new EdmEnumType("Org.OData.Capabilities.V1", "IsolationLevel", true);
+                var enumMember = new EdmEnumMember(enumType, _isolationSupported.ToString(), new EdmEnumMemberValue((long)_isolationSupported.Value));
+				properties.Add(new EdmPropertyConstructor("IsolationSupported", new EdmEnumMemberExpression(enumMember)));
 			}
 
 			if (!properties.Any())

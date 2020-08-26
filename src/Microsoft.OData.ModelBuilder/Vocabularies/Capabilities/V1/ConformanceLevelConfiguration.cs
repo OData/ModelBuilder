@@ -38,7 +38,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 			if (_conformanceLevel.HasValue)
 			{
-				// properties.Add(new EdmPropertyConstructor("ConformanceLevel", new EdmEnumValue(_conformanceLevel.Value)));
+				var enumType = new EdmEnumType("Org.OData.Capabilities.V1", "ConformanceLevelType", false);
+                var enumMember = new EdmEnumMember(enumType, _conformanceLevel.ToString(), new EdmEnumMemberValue((long)_conformanceLevel.Value));
+				properties.Add(new EdmPropertyConstructor("ConformanceLevel", new EdmEnumMemberExpression(enumMember)));
 			}
 
 			if (!properties.Any())

@@ -580,10 +580,13 @@ using Microsoft.OData.Edm.Vocabularies;
 		}
 		else if (actualType.TypeKind == EdmTypeKind.Enum)
 		{
+			var enumType = actualType as IEdmEnumType;
 #>
 			if (_<#= camelName #>.HasValue)
 			{
-				// properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmEnumValue(_<#= camelName #>.Value)));
+				var enumType = new EdmEnumType("<#= enumType.Namespace #>", "<#= enumType.Name #>", <#= enumType.IsFlags.ToString().ToLower() #>);
+                var enumMember = new EdmEnumMember(enumType, _<#= camelName #>.ToString(), new EdmEnumMemberValue((long)_<#= camelName #>.Value));
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmEnumMemberExpression(enumMember)));
 			}
 
 <#+			

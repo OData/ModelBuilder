@@ -360,7 +360,9 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
 			if (_navigability.HasValue)
 			{
-				// properties.Add(new EdmPropertyConstructor("Navigability", new EdmEnumValue(_navigability.Value)));
+				var enumType = new EdmEnumType("Org.OData.Capabilities.V1", "NavigationType", false);
+                var enumMember = new EdmEnumMember(enumType, _navigability.ToString(), new EdmEnumMemberValue((long)_navigability.Value));
+				properties.Add(new EdmPropertyConstructor("Navigability", new EdmEnumMemberExpression(enumMember)));
 			}
 
 			if (_filterFunctions.Any())
