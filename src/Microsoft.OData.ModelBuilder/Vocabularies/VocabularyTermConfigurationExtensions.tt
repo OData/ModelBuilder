@@ -1,0 +1,802 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Runtime" #>
+<#@ assembly name="$(NuGetPackageRoot)microsoft.odata.edm\7.7.0\lib\net45\Microsoft.OData.Edm.dll" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Microsoft.OData.Edm" #>
+<#@ import namespace="Microsoft.OData.Edm.Csdl" #>
+<#@ import namespace="Microsoft.OData.Edm.Vocabularies" #>
+<#@ output extension=".cs" #>
+<#
+	var model = new EdmModel().ReferencedModels.FirstOrDefault(m => m.GetNamespaceAlias("Org.OData.Capabilities.V1") != null);
+	if (model == null)
+	{
+		throw new InvalidOperationException("The Capabilities Model Cannot Be Found");
+	}
+
+	var manager = new Manager(this, model);
+	var namespaces = manager.Process();
+#>
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed under the MIT License.  See License.txt in the project root for license information.
+// This is an auto generated file. Please run the template to modify it.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Vocabularies;
+<#
+	foreach(var ns in namespaces)
+	{
+		WriteLine($"using {ns};");
+	}
+#>
+
+namespace Microsoft.OData.ModelBuilder
+{
+	/// <summary>
+	/// Extension methods for vocabulary builders configurations
+	/// </summary>
+	public static class VocabularyTermConfigurationExtensions
+	{
+		internal static IEdmExpression ToEdmExpression(this string text)
+			=> string.IsNullOrEmpty(text) ? null: new EdmStringConstant(text);
+<#
+		foreach (var term in model.SchemaElements.OfType<IEdmTerm>())
+		{
+			var targets = term.AppliesTo.Split(' ').ToHashSet();
+			var sourceConfig = default(string);
+			if (targets.IsSupersetOf(new[]{ "Singleton", "EntitySet" }))
+			{
+				sourceConfig = "NavigationSourceConfiguration";
+			}
+			else if (targets.Contains("Singleton"))
+			{
+				sourceConfig = "SingletonConfiguration";
+			}
+			else if (targets.Contains("EntitySet"))
+			{
+				sourceConfig = "EntitySetConfiguration";
+			}
+
+			if (!string.IsNullOrEmpty(sourceConfig))
+			{
+#>
+		/// <summary>
+		/// <see cref="<#= term.Name #>Configuration"/> configuration
+		/// </summary>
+		/// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+		/// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+		/// <returns><see cref="<#= term.Name #>Configuration"/></returns>
+		public static <#= term.Name #>Configuration Has<#= term.Name #><TEntity>(this <#= sourceConfig #><TEntity> navigationSource) where TEntity : class
+			=> navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<<#= term.Name #>Configuration>();
+
+<#
+			}
+
+			sourceConfig = default(string);
+			var actions = new[] { "Action", "ActionImport" };
+			var functions = new[] { "Function", "FunctionImport" };
+			if (targets.Intersect(actions).Any() && targets.Intersect(functions).Any())
+			{
+				sourceConfig = "OperationConfiguration";
+			}
+			else if (targets.Intersect(actions).Any())
+			{
+				sourceConfig = "ActionConfiguration";
+			}
+			else if (targets.Intersect(functions).Any())
+			{
+				sourceConfig = "FunctionConfiguration";
+			}
+
+			if (!string.IsNullOrEmpty(sourceConfig))
+			{
+#>
+		/// <summary>
+		/// <see cref="<#= term.Name #>Configuration"/> configuration
+		/// </summary>
+		/// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+		/// <returns><see cref="<#= term.Name #>Configuration"/></returns>
+		public static <#= term.Name #>Configuration Has<#= term.Name #>(this <#= sourceConfig #> operationSource)
+			=> operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<<#= term.Name #>Configuration>();
+
+<#
+			}
+
+		}
+#>
+		/// <summary>
+		/// Add vocabulary annotations to a model target.
+		/// </summary>
+		/// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+		/// <param name="target"><see cref="EdmNavigationSource"/> to annotate</param>
+		/// <param name="navigationSourceConfiguration"><see cref="NavigationSourceConfiguration"/> containing the collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+		public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmNavigationSource target, NavigationSourceConfiguration navigationSourceConfiguration)
+			=> model.SetVocabularyConfigurationAnnotations(target as IEdmVocabularyAnnotatable, navigationSourceConfiguration?.VocabularyTermConfigurations.Values);
+
+        /// <summary>
+        /// Add vocabulary annotations to a model target.
+        /// </summary>
+        /// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+        /// <param name="target"><see cref="EdmOperation"/> to annotate</param>
+        /// <param name="operationConfiguration"><see cref="OperationConfiguration"/> containing the collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, EdmOperation target, OperationConfiguration operationConfiguration)
+            => model.SetVocabularyConfigurationAnnotations(target as IEdmVocabularyAnnotatable, operationConfiguration?.VocabularyTermConfigurations.Values);
+
+        /// <summary>
+        /// Add vocabulary annotations to a model target.
+        /// </summary>
+        /// <param name="model"><see cref="EdmModel"/> to add annotations to</param>
+        /// <param name="target"><see cref="IEdmVocabularyAnnotatable"/> to annotate</param>
+        /// <param name="configurations">Collection of <see cref="VocabularyTermConfiguration"/> annotation configurations</param>
+        public static void SetVocabularyConfigurationAnnotations(this EdmModel model, IEdmVocabularyAnnotatable target, IEnumerable<VocabularyTermConfiguration> configurations)
+        {
+            _ = model ?? throw Error.ArgumentNull(nameof(model));
+            if (target == null || configurations == null)
+            {
+                return;
+            }
+
+            foreach (var configuration in configurations)
+            {
+                configuration.SetVocabularyAnnotations(model, target);
+            }
+        }
+
+        private static TConfiguration GetOrCreateConfiguration<TConfiguration>(this Dictionary<Type, VocabularyTermConfiguration> vocabularyConfigurations)
+            where TConfiguration : VocabularyTermConfiguration, new()
+        {
+            if (vocabularyConfigurations.TryGetValue(typeof(TConfiguration), out var configuration))
+            {
+                return (TConfiguration)configuration;
+            }
+
+            configuration = new TConfiguration();
+            vocabularyConfigurations.Add(typeof(TConfiguration), configuration);
+
+            return (TConfiguration)configuration;
+        }
+	}
+}
+
+<#+
+class Manager : GeneratedTextTransformation
+{
+	private readonly Dictionary<string, (string Namespace, string FilePath, string ClrType)> _namespaceMap = new Dictionary<string, (string, string, string)>();
+	private readonly string _templateDirectory;
+	private readonly IEdmModel _model;
+	private readonly Dictionary<IEdmType, bool> _typesToGenerateMap = new Dictionary<IEdmType, bool>();
+	private readonly Dictionary<IEdmType, string> _typesClrMap = new Dictionary<IEdmType, string>();
+
+	public Manager(GeneratedTextTransformation transformation, IEdmModel model)
+	{
+		_templateDirectory = Path.GetDirectoryName(transformation.Host.TemplateFile);
+		_model = model;
+	}
+
+	public IEnumerable<string> Process()
+	{
+		foreach (var term in _model.SchemaElements.OfType<IEdmTerm>())
+		{
+			WriteTerm(term);
+		}
+
+		while (true)
+		{
+			if (!_typesToGenerateMap.ContainsValue(false))
+			{
+				break;
+			}
+
+			var keyval = _typesToGenerateMap.FirstOrDefault(kv => kv.Value == false);			
+			var type = keyval.Key;
+			if (type.TypeKind == EdmTypeKind.Complex)
+			{
+				WriteClass(type as IEdmComplexType);				
+			}
+			else if (type.TypeKind == EdmTypeKind.Enum)
+			{
+				WriteEnum(type as IEdmEnumType);
+			}
+
+			_typesToGenerateMap[type] = true;
+		}
+
+		return _namespaceMap.Values.Select(v => v.Namespace).Distinct();
+	}
+
+	public void WriteTerm(IEdmTerm term)
+	{
+		var actualType = term.Type.Definition;
+		var description = GetDescription(term);
+		var clrType = GetClrType(term);
+		var @namespace = GetNamespace(term);
+		if (actualType.TypeKind == EdmTypeKind.Complex)
+		{
+			_typesToGenerateMap[actualType] = true;
+		}
+
+		WriteHeader();
+#>
+namespace <#= @namespace #>
+{
+	/// <summary>
+	<#+ ProcessSummary(description, "	"); #>
+	/// </summary>
+	public partial class <#= clrType #> : VocabularyTermConfiguration
+	{
+<#+ ProcessPrivateProperties(term.Type.Definition, term.FullName(), @namespace); #>
+
+        /// <inheritdoc/>
+		public override string TermName => "<#= term.FullName()#>";
+<#+ ProcessBuildMethods(term.Type.Definition, term.FullName(), clrType, description, @namespace); #>
+
+		/// <inheritdoc/>
+		public override IEdmExpression ToEdmExpression()
+		{
+			var properties = new List<IEdmPropertyConstructor>();
+
+<#+ ProcessEdmProperties(term.Type.Definition, term.FullName(), clrType, description, @namespace); #>
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
+		}
+	}
+}
+<#+
+		Dump(term);
+	}
+
+	public void WriteClass(IEdmComplexType complexType)
+	{
+		var description = GetDescription(complexType);
+		var clrType = GetClrType(complexType);
+		var @namespace = GetNamespace(complexType);
+		WriteHeader();
+#>
+namespace <#= @namespace #>
+{
+	/// <summary>
+	<#+ ProcessSummary(description ?? complexType.FullName(), "	"); #>
+	/// </summary>
+	public partial class <#= clrType #> : IRecord
+	{
+<#+ ProcessPrivateProperties(complexType, complexType.FullName(), @namespace); #>
+
+        /// <summary>
+        /// Creates a new instance of <see cref="<#= clrType #>"/>
+        /// </summary>
+		public <#= clrType #>()
+		{
+		}
+<#+ ProcessBuildMethods(complexType, complexType.FullName(), clrType, description, @namespace); #>
+
+		/// <inheritdoc/>
+		public IEdmExpression ToEdmExpression()
+		{
+			var properties = new List<IEdmPropertyConstructor>();
+
+<#+ ProcessEdmProperties(complexType, complexType.FullName(), clrType, description, @namespace); #>
+			if (!properties.Any())
+			{
+				return null;
+			}
+
+			return new EdmRecordExpression(properties);
+		}
+	}
+}
+<#+
+		Dump(complexType);
+	}
+
+	public void WriteEnum(IEdmEnumType enumType)
+	{
+		var description = GetDescription(enumType);
+		var @namespace = GetNamespace(enumType);
+
+		WriteHeader();
+#>
+namespace <#= @namespace #>
+{
+	/// <summary>
+	<#+ ProcessSummary(description, "	"); #>
+	/// </summary>
+<#+
+	if (enumType.IsFlags)
+	{
+#>
+	[Flags]
+<#+
+	}
+#>
+	public enum <#= enumType.Name #>
+	{<#+
+
+		foreach (var member in enumType.Members)
+		{
+#>
+
+        /// <summary>
+		<#+ ProcessSummary(member, "		"); #>
+        /// </summary>
+		<#= member.Name #>,
+<#+
+		}
+#>
+	}
+}
+<#+
+
+		Dump(enumType);
+	}
+
+	public void WriteHeader()
+	{
+#>
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed under the MIT License.  See License.txt in the project root for license information.
+// This is an auto generated file. Please run the template to modify it.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Vocabularies;
+
+<#+
+	}
+
+	private void ProcessPrivateProperties(IEdmType type, string fullName, string @namespace, bool allowRecurse = true)
+	{
+		var typeKind = type.TypeKind;
+		var actualType = type.AsElementType().AsActualType();
+		var clrType = GetClrType(actualType, true);
+		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
+		if (!_typesToGenerateMap.ContainsKey(actualType))
+		{
+			_typesToGenerateMap.Add(actualType, false);
+		}
+
+		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
+		{
+			var typeName = GetNamespace(element);
+			if (!typeName.StartsWith(@namespace))
+			{
+				clrType = typeName + "." + clrType;
+			}
+		}
+
+		if (typeKind == EdmTypeKind.Collection)
+		{
+#>
+		private readonly HashSet<<#= clrType #>> _<#= CamelCase(name) #> = new HashSet<<#= clrType #>>();
+<#+
+			return;
+		}
+		else if (typeKind == EdmTypeKind.Complex)
+		{
+			if (allowRecurse)
+			{
+				var complexType = type as IEdmComplexType;
+				foreach (var property in complexType.Properties())
+				{
+					ProcessPrivateProperties(property.Type.Definition, property.Name, @namespace, false);
+				}
+
+				return;
+			}
+		}
+#>
+		private <#= clrType #> _<#= CamelCase(name) #>;
+<#+
+	}
+
+	private void ProcessBuildMethods(IEdmType type, string fullName, string returnType, string description, string @namespace, bool allowRecurse = true)
+	{
+		var typeKind = type.TypeKind;
+		var actualType = type.AsElementType().AsActualType();
+		var clrType = GetClrType(actualType, false);
+		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
+		var camelName = CamelCase(name);
+		var isComplexElement = false;
+
+		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
+		{
+			var typeName = GetNamespace(element);
+			if (!typeName.StartsWith(@namespace))
+			{
+				clrType = typeName + "." + clrType;
+			}
+
+			isComplexElement = typeKind == EdmTypeKind.Collection || !allowRecurse;
+		}
+
+		if (isComplexElement)
+		{
+			var configurationInstance = $"new {clrType}()";
+			if (typeKind != EdmTypeKind.Collection)
+			{
+				configurationInstance = $"_{camelName} ?? {configurationInstance}";
+			}
+			
+#>
+
+		/// <summary>
+		<#+ ProcessSummary(description, "		"); #>
+		/// </summary>
+		/// <param name="<#= camelName #>Configuration">The configuration to set</param>
+		/// <returns><see cref="<#=returnType #>"/></returns>
+		public <#=returnType #> Has<#= name #>(Func<<#= clrType #>, <#= clrType #>> <#= camelName #>Configuration)
+		{
+			var instance = <#= configurationInstance #>;
+			instance = <#= camelName #>Configuration?.Invoke(instance);
+			return Has<#= name #>(instance);
+		}
+<#+
+		}
+
+		if (typeKind == EdmTypeKind.Collection)
+		{
+#>
+
+		/// <summary>
+		<#+ ProcessSummary(description, "		"); #>
+		/// </summary>
+		/// <param name="<#= camelName #>">The value(s) to set</param>
+		/// <returns><see cref="<#=returnType #>"/></returns>
+		public <#=returnType #> Has<#= name #>(params <#= clrType #>[] <#= camelName #>)
+		{
+			_<#= camelName #>.UnionWith(<#= camelName #>);
+			return this;
+		}
+<#+
+			return;
+		}
+		
+		if (typeKind == EdmTypeKind.Complex)
+		{
+			if (allowRecurse)
+			{
+				var complexType = type as IEdmComplexType;
+				foreach (var property in complexType.Properties())
+				{
+					description = GetDescription(property);
+					ProcessBuildMethods(property.Type.Definition, property.Name, returnType, description, @namespace, false);
+				}
+
+				return;
+			}
+		}
+
+		var methodPrefix = "Has";
+		if (clrType == "bool")
+		{
+			methodPrefix = "Is";
+		}
+#>
+
+		/// <summary>
+		<#+ ProcessSummary(description, "		"); #>
+		/// </summary>
+		/// <param name="<#= camelName #>">The value to set</param>
+		/// <returns><see cref="<#=returnType #>"/></returns>
+		public <#=returnType #> <#= methodPrefix #><#= name #>(<#= clrType #> <#= camelName #>)
+		{
+			_<#= camelName #> = <#= camelName #>;
+			return this;
+		}
+<#+
+	}
+	
+	private void ProcessEdmProperties(IEdmType type, string fullName, string returnType, string description, string @namespace, bool allowRecurse = true)
+	{
+		var typeKind = type.TypeKind;
+		var actualType = type.AsElementType().AsActualType();
+		var clrType = GetClrType(actualType, false);
+		var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
+		var camelName = CamelCase(name);
+		var fullTypeName = actualType.FullTypeName();
+
+		if (actualType.TypeKind == EdmTypeKind.Complex && actualType is IEdmSchemaElement element)
+		{
+			var typeName = GetNamespace(element);
+			if (!typeName.StartsWith(@namespace))
+			{
+				clrType = typeName + "." + clrType;
+			}
+		}
+
+		if (typeKind == EdmTypeKind.Collection)
+		{
+			if (actualType.TypeKind == EdmTypeKind.Path)
+			{
+#>
+			if (_<#= camelName #>.Any())
+			{
+				var collection = _<#= camelName #>.Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmCollectionExpression(collection)));
+				}
+			}
+
+<#+
+			}
+			else
+			{
+#>
+			if (_<#= camelName #>.Any())
+			{
+				var collection = _<#= camelName #>.Select(item => item.ToEdmExpression()).Where(item => item != null);
+				if (collection.Any())
+				{
+					properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmCollectionExpression(collection)));
+				}
+			}
+
+<#+
+			}
+		}
+		else if (typeKind == EdmTypeKind.Complex)
+		{
+			if (allowRecurse)
+			{
+				var complexType = type as IEdmComplexType;
+				foreach (var property in complexType.Properties())
+				{
+					description = GetDescription(property);
+					ProcessEdmProperties(property.Type.Definition, property.Name, returnType, description, @namespace, false);
+				}
+			}
+			else
+			{
+#>
+			if (_<#= camelName #> != null)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", _<#= camelName #>.ToEdmExpression()));
+			}
+
+<#+
+			}
+		}
+		else if (type.TypeKind == EdmTypeKind.Path)
+		{
+#>
+			if (_<#= camelName #> != null)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", _<#= camelName #>));
+			}
+
+<#+
+		}
+		else if (actualType.TypeKind == EdmTypeKind.Enum)
+		{
+			var enumType = actualType as IEdmEnumType;
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				var enumType = new EdmEnumType("<#= enumType.Namespace #>", "<#= enumType.Name #>", <#= enumType.IsFlags.ToString().ToLower() #>);
+                var enumMember = new EdmEnumMember(enumType, _<#= camelName #>.ToString(), new EdmEnumMemberValue((long)_<#= camelName #>.Value));
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmEnumMemberExpression(enumMember)));
+			}
+
+<#+			
+		}
+		else if (actualType.TypeKind == EdmTypeKind.Primitive)
+		{
+			if (fullTypeName == "Edm.String")
+			{
+#>
+			if (!string.IsNullOrEmpty(_<#= camelName #>))
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmStringConstant(_<#= camelName #>)));
+			}
+
+<#+
+			}
+			else if (fullTypeName == "Edm.PrimitiveType")
+			{
+#>
+			if (_<#= camelName #> != null)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmStringConstant(_<#= camelName #>.ToString())));
+			}
+
+<#+			
+			}
+			else if (fullTypeName == "Edm.Int32")
+			{
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmIntegerConstant(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+			else if (fullTypeName == "Edm.Boolean")
+			{
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmBooleanConstant(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+			else
+			{
+				var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new <#= edmTypeConstant#>(_<#= camelName #>.Value)));
+			}
+
+<#+			
+			}
+		}
+		else
+		{
+			var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
+#>
+			if (_<#= camelName #>.HasValue)
+			{
+				properties.Add(new EdmPropertyConstructor("<#= name #>", new <#= edmTypeConstant#>(_<#= camelName #>.Value)));
+			}
+
+<#+			
+		}
+	}
+	
+	private string GetClrType(IEdmTerm term) => GetFileDetails(term).ClrType;
+
+	private string GetClrType(IEdmType type, bool nullable = false)
+	{
+		if (_typesClrMap.TryGetValue(type, out var clrType))
+		{	
+			return AddSuffix(clrType);
+		}
+
+		var name = type.FullTypeName();
+		switch(name)
+		{
+			case "Edm.String":
+				clrType = "string";
+				break;
+			case "Edm.Boolean":
+				clrType = "bool";
+				break;
+			case "Edm.Int32":
+				clrType = "int";
+				break;
+			case "Edm.PrimitiveType":
+				clrType = "object";
+				break;
+			case "Edm.NavigationPropertyPath":
+				clrType = "EdmNavigationPropertyPathExpression";
+				break;
+			case "Edm.PropertyPath":
+				clrType = "EdmPropertyPathExpression";
+				break;
+			default:
+				clrType = name.Substring(name.LastIndexOf('.') + 1);
+				break;
+		}
+		
+		if (type.TypeKind == EdmTypeKind.Complex)
+		{
+			var term = _model.SchemaElements.OfType<IEdmTerm>().FirstOrDefault(t => t.Type.Definition.AsActualType() == type);
+			if (term != null)
+			{
+				clrType = GetClrType(term);
+			}
+			else
+			{
+				clrType = clrType + "Configuration";
+			}
+		}
+
+		_typesClrMap.Add(type, clrType);
+
+		return AddSuffix(clrType);
+
+		string AddSuffix(string clr)
+		{
+			if (!nullable)
+			{
+				return clr;
+			}
+
+			if (clr == "bool" || clr == "int" || type.TypeKind == EdmTypeKind.Enum)
+			{
+				return clr + "?";
+			}
+
+			return clr;
+		}
+	}
+
+	private string CamelCase(string input)
+		=> string.Concat(input[0].ToString().ToLower(), input.Substring(1));
+
+	private string GetDescription(IEdmVocabularyAnnotatable target)
+	{
+		var description = string.Concat(_model.GetDescriptionAnnotation(target), Environment.NewLine, _model.GetLongDescriptionAnnotation(target));
+		if (string.IsNullOrWhiteSpace(description))
+		{
+			return target.ToString();
+		}
+
+		return description.Trim();
+	}
+
+	private void ProcessSummary(IEdmVocabularyAnnotatable target, string indent)
+		=> ProcessSummary(GetDescription(target), indent);
+
+	private void ProcessSummary(string text, string indent)
+	{
+		if (string.IsNullOrEmpty(text))
+		{
+			WriteLine("/// Summary");
+			return;
+		}
+		var lines = text.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+		WriteLine($"/// {lines.FirstOrDefault() ?? "Summary" }");
+		foreach (var line in lines.Skip(1))
+		{
+			WriteLine($"{indent}/// {line}");
+		}
+	}
+
+	private string GetNamespace(IEdmSchemaElement element) => GetFileDetails(element).Namespace;	
+
+	private string GetFilePath(IEdmSchemaElement element) => GetFileDetails(element).FilePath;	
+
+	private (string Namespace, string FilePath, string ClrType) GetFileDetails(IEdmSchemaElement element)
+	{
+		var key = element.FullName();
+		if (_namespaceMap.TryGetValue(key, out var details))
+		{
+			return details;
+		}
+
+		var suffix = "Configuration";
+		if (element is IEdmEnumType)
+		{
+			suffix = string.Empty;
+		}
+
+		var clrType = element.Name + suffix;
+
+		var vocabulary = element.Namespace.Replace("Org.OData", string.Empty);
+		var @namespace = $"Microsoft.OData.ModelBuilder{vocabulary}";
+		var fileParts = vocabulary.Split(new char[]{'.'}, StringSplitOptions.RemoveEmptyEntries).ToList();
+		fileParts.Insert(0, _templateDirectory);
+		fileParts.Add($"{clrType}.cs");
+		var filePath = Path.Combine(fileParts.ToArray());
+
+		details = (@namespace, filePath, clrType);
+		_namespaceMap.Add(key, details);
+
+		return details;
+	}
+
+	private void Dump(IEdmSchemaElement element)
+	{
+		var filePath = GetFilePath(element);
+		Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+		File.WriteAllText(GetFilePath(element), this.GenerationEnvironment.ToString());
+		this.GenerationEnvironment.Remove(0, this.GenerationEnvironment.Length);
+	}
+}
+#>

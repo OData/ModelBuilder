@@ -97,6 +97,11 @@ namespace Microsoft.OData.ModelBuilder
         public IEnumerable<string> EntitySetPath { get; internal set; }
 
         /// <summary>
+        /// Vocabulary builders to annotate this <see cref="OperationConfiguration"/>
+        /// </summary> 
+        public Dictionary<Type, VocabularyTermConfiguration> VocabularyTermConfigurations { get; } = new Dictionary<Type, VocabularyTermConfiguration>();
+
+        /// <summary>
         /// Get the bindingParameter.
         /// <remarks>Null means the operation has no bindingParameter.</remarks>
         /// </summary>
