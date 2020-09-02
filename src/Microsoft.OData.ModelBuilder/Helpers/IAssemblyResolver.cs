@@ -7,7 +7,7 @@ using System.Reflection;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// 
+    /// The Assembly resolver interface.
     /// </summary>
     public interface IAssemblyResolver
     {
