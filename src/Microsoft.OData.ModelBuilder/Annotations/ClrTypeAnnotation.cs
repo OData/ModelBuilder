@@ -17,12 +17,12 @@ namespace Microsoft.OData.ModelBuilder
         /// <param name="clrType">The backing CLR type for the EDM type.</param>
         public ClrTypeAnnotation(Type clrType)
         {
-            ClrType = clrType;
+            ClrType = clrType ?? throw new ArgumentNullException(nameof(clrType));
         }
 
         /// <summary>
         /// Gets the backing CLR type for the EDM type.
         /// </summary>
-        public Type ClrType { get; private set; }
+        public Type ClrType { get; }
     }
 }

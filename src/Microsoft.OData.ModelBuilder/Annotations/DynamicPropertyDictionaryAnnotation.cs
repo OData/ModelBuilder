@@ -38,10 +38,6 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Gets the <see cref="PropertyInfo"/> which backs the dynamic properties of the open type.
         /// </summary>
-        public PropertyInfo PropertyInfo
-        {
-            get;
-            private set;
-        }
+        public PropertyInfo PropertyInfo { get; }
     }
 }

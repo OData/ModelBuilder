@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using System;
 using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder.Annotations
@@ -17,17 +18,12 @@ namespace Microsoft.OData.ModelBuilder.Annotations
         /// <param name="restrictions">The queryable restrictions for the EDM property.</param>
         public QueryableRestrictionsAnnotation(QueryableRestrictions restrictions)
         {
-            if (restrictions == null)
-            {
-                throw Error.ArgumentNull("restrictions");
-            }
-
-            Restrictions = restrictions;
+            Restrictions = restrictions ?? throw new ArgumentNullException(nameof(restrictions));
         }
 
         /// <summary>
         /// Gets the restrictions for the EDM property.
         /// </summary>
-        public QueryableRestrictions Restrictions { get; private set; }
+        public QueryableRestrictions Restrictions { get; }
     }
 }

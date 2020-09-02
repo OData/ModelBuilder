@@ -104,6 +104,22 @@
             <param name="model">The EDM model that this navigation source belongs to.</param>
             <remarks>This constructor creates a link builder that generates URL's that follow OData conventions for the given navigation source.</remarks>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.OperationTitleAnnotation">
+            <summary>
+            Represents a annotation for the Operation title.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.OperationTitleAnnotation.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.OperationTitleAnnotation"/> class.
+            </summary>
+            <param name="title">The operation title.</param>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.OperationTitleAnnotation.Title">
+            <summary>
+            Gets the operation title.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation">
             <summary>
             Represents an annotation to add the queryable restrictions on an EDM property, including not filterable, 
@@ -126,6 +142,17 @@
             This annotation indicates the mapping from an <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> to a <see cref="T:System.String"/>.
             The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> is a bound action/function and the <see cref="T:System.String"/> is the
             entity set name given by user to indicate the entity set returned from this action/function.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ReturnedEntitySetAnnotation.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.ReturnedEntitySetAnnotation"/> class.
+            </summary>
+            <param name="entitySetName">The return entity set or singleton name</param>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.ReturnedEntitySetAnnotation.EntitySetName">
+            <summary>
+            Gets the entity set name
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ActionOnDeleteAttribute">

@@ -821,6 +821,12 @@ public class Microsoft.OData.ModelBuilder.ODataModelBuilder {
 	public virtual void ValidateModel (Microsoft.OData.Edm.IEdmModel model)
 }
 
+public class Microsoft.OData.ModelBuilder.OperationTitleAnnotation {
+	public OperationTitleAnnotation (string title)
+
+	string Title  { public get; }
+}
+
 public class Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration : Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration {
 	public PrecisionPropertyConfiguration (System.Reflection.PropertyInfo property, Microsoft.OData.ModelBuilder.StructuralTypeConfiguration declaringType)
 
@@ -848,6 +854,12 @@ public class Microsoft.OData.ModelBuilder.PrimitiveTypeConfiguration : IEdmTypeC
 	Microsoft.OData.ModelBuilder.ODataModelBuilder ModelBuilder  { public virtual get; }
 	string Name  { public virtual get; }
 	string Namespace  { public virtual get; }
+}
+
+public class Microsoft.OData.ModelBuilder.ReturnedEntitySetAnnotation {
+	public ReturnedEntitySetAnnotation (string entitySetName)
+
+	string EntitySetName  { public get; }
 }
 
 public class Microsoft.OData.ModelBuilder.SingletonConfiguration : Microsoft.OData.ModelBuilder.NavigationSourceConfiguration {

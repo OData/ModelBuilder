@@ -11,11 +11,15 @@ namespace Microsoft.OData.ModelBuilder
     /// The <see cref="IEdmOperation"/> is a bound action/function and the <see cref="String"/> is the
     /// entity set name given by user to indicate the entity set returned from this action/function.
     /// </summary>
-    internal class ReturnedEntitySetAnnotation
+    public class ReturnedEntitySetAnnotation
     {
+        /// <summary>
+        /// Initializes a new instance of <see cref="ReturnedEntitySetAnnotation"/> class.
+        /// </summary>
+        /// <param name="entitySetName">The return entity set or singleton name</param>
         public ReturnedEntitySetAnnotation(string entitySetName)
         {
-            if (String.IsNullOrEmpty(entitySetName))
+            if (string.IsNullOrEmpty(entitySetName))
             {
                 throw Error.ArgumentNullOrEmpty("entitySetName");
             }
@@ -23,10 +27,9 @@ namespace Microsoft.OData.ModelBuilder
             EntitySetName = entitySetName;
         }
 
-        public string EntitySetName
-        {
-            get;
-            private set;
-        }
+        /// <summary>
+        /// Gets the entity set name
+        /// </summary>
+        public string EntitySetName { get; }
     }
 }
