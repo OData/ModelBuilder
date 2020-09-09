@@ -37,7 +37,6 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 throw Error.ArgumentNull("model");
             }
 
-            /*
             if (!enumTypeConfiguration.AddedExplicitly &&
                 model.ModelAliasingEnabled)
             {
@@ -55,6 +54,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                         enumTypeConfiguration.Namespace = dataContractAttribute.Namespace;
                     }
                 }
+
                 enumTypeConfiguration.AddedExplicitly = false;
             }
 
@@ -69,7 +69,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 {
                     if (model.ModelAliasingEnabled && enumMemberAttribute != null)
                     {
-                        if (!String.IsNullOrWhiteSpace(enumMemberAttribute.Value))
+                        if (!string.IsNullOrWhiteSpace(enumMemberAttribute.Value))
                         {
                             member.Name = enumMemberAttribute.Value;
                         }
@@ -80,7 +80,6 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                     }
                 }
             }
-            */
         }
     }
 }

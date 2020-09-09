@@ -1871,7 +1871,7 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Conventions.Attributes.PropertyAttributeConvention`1.#ctor">
             <summary>
-            
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Conventions.Attributes.PropertyAttributeConvention`1"/>.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.Conventions.Attributes.RequiredAttributeEdmPropertyConvention">
@@ -1903,7 +1903,7 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Conventions.Attributes.TypeAttributeConvention`1.#ctor">
             <summary>
-            
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Conventions.Attributes.TypeAttributeConvention`1"/>.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.Conventions.INavigationSourceConvention">
@@ -2069,7 +2069,7 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.IAssemblyResolver">
             <summary>
-            
+            The Assembly resolver interface.
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.IAssemblyResolver.Assemblies">
