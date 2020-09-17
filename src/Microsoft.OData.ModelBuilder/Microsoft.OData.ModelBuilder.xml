@@ -6,7 +6,7 @@
     <members>
         <member name="T:Microsoft.OData.ModelBuilder.ClrEnumMemberAnnotation">
             <summary>
-            Represents a mapping betwwen an <see cref="T:Microsoft.OData.Edm.IEdmEnumMember"/> and a CLR Enum member.
+            Represents a mapping between an <see cref="T:Microsoft.OData.Edm.IEdmEnumMember"/> and a CLR Enum member.
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.ClrEnumMemberAnnotation.#ctor(System.Collections.Generic.IDictionary{System.Enum,Microsoft.OData.Edm.IEdmEnumMember})">
@@ -84,6 +84,86 @@
             Gets the <see cref="P:Microsoft.OData.ModelBuilder.DynamicPropertyDictionaryAnnotation.PropertyInfo"/> which backs the dynamic properties of the open type.
             </summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions">
+            <summary>
+            The extensions for the <see cref="T:Microsoft.OData.Edm.IEdmModel"/> for the annotations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions.SetClrType``1(Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmStructuredType)">
+            <summary>
+            Sets the CLR Type for the Edm structural type.
+            </summary>
+            <typeparam name="T">The CLR type.</typeparam>
+            <param name="edmModel">The Edm model.</param>
+            <param name="structuredType">The Edm structured type.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions.SetClrType(Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmStructuredType,System.Type)">
+            <summary>
+            Sets the CLR Type for the Edm structural type.
+            </summary>
+            <param name="edmModel">The Edm model.</param>
+            <param name="structuredType">The Edm structured type.</param>
+            <param name="clrType">The clr Type.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions.GetClrPropertyName(Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmProperty)">
+            <summary>
+            Get the CLR property name.
+            </summary>
+            <param name="edmModel">The Edm model.</param>
+            <param name="edmProperty">The Edm property.</param>
+            <returns>The property name.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions.GetDynamicPropertyDictionary(Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmStructuredType)">
+            <summary>
+            Gets the dynamic property container name.
+            </summary>
+            <param name="edmModel">The Edm model.</param>
+            <param name="edmType">The Edm type.</param>
+            <returns>The dynamic property container property info.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions.GetClrEnumMemberAnnotation(Microsoft.OData.Edm.IEdmModel,Microsoft.OData.Edm.IEdmEnumType)">
+            <summary>
+            Gets the Enum member annotations.
+            </summary>
+            <param name="edmModel">The Edm model.</param>
+            <param name="enumType">The Enum Type.</param>
+            <returns>The Enum member annotation.</returns>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation">
+            <summary>
+            Represents an annotation to add the queryable restrictions on an EDM property, including not filterable, 
+            not sortable, not navigable, not expandable, not countable, automatically expand.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation.#ctor(Microsoft.OData.ModelBuilder.Config.QueryableRestrictions)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation"/> class.
+            </summary>
+            <param name="restrictions">The queryable restrictions for the EDM property.</param>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation.Restrictions">
+            <summary>
+            Gets the restrictions for the EDM property.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation">
+            <summary>
+            This annotation indicates the mapping from a <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> to a <see cref="P:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation.PropertyInfo"/>.
+            The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> is a type of IODataInstanceAnnotationContainer and the <see cref="P:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation.PropertyInfo"/> is the specific
+            property which is used to save/retrieve the instance annotations.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation.#ctor(System.Reflection.PropertyInfo)">
+            <summary>
+            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation"/> class.
+            </summary>
+            <param name="propertyInfo">The backing <see cref="P:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation.PropertyInfo"/>.</param>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation.PropertyInfo">
+            <summary>
+            Gets the <see cref="P:Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation.PropertyInfo"/> which backs the instance annotations of the clr type/resource etc.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.NavigationSourceLinkBuilderAnnotation">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.NavigationSourceLinkBuilderAnnotation" /> is a class used to annotate an <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource" /> inside an <see cref="T:Microsoft.OData.Edm.IEdmModel" />
@@ -118,23 +198,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.OperationTitleAnnotation.Title">
             <summary>
             Gets the operation title.
-            </summary>
-        </member>
-        <member name="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation">
-            <summary>
-            Represents an annotation to add the queryable restrictions on an EDM property, including not filterable, 
-            not sortable, not navigable, not expandable, not countable, automatically expand.
-            </summary>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation.#ctor(Microsoft.OData.ModelBuilder.Config.QueryableRestrictions)">
-            <summary>
-            Initializes a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation"/> class.
-            </summary>
-            <param name="restrictions">The queryable restrictions for the EDM property.</param>
-        </member>
-        <member name="P:Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation.Restrictions">
-            <summary>
-            Gets the restrictions for the EDM property.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ReturnedEntitySetAnnotation">
@@ -1142,6 +1205,56 @@
             <typeparam name="TEntityType">The element type of the entity set.</typeparam>
             </summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer">
+            <summary>
+            Interface to used as a Container for holding Instance Annotations, An default implementation is provided
+            Customer can implement the interface and can have their own implementation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer.InstanceAnnotations">
+            <summary>
+            Gets the instance annotation.
+            If the key is null, it's for the CLR type instance annotations.
+            If the key is not null, it's for the property instance annotations.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainerExtensions">
+            <summary>
+            Extensions method on <see cref="T:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainerExtensions.AddResourceAnnotation(Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer,System.String,System.Object)">
+            <summary>
+            Adds an instance annotation to the resource.
+            </summary>
+            <param name="container">The instance annotation container.</param>
+            <param name="annotationName">The annotation name.</param>
+            <param name="value">The annotation value.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainerExtensions.AddPropertyAnnotation(Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer,System.String,System.String,System.Object)">
+            <summary>
+            Adds an instance annotation to a property.
+            </summary>
+            <param name="container">The instance annotation container.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="annotationName">The annotation name.</param>
+            <param name="value">The annotation value.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainerExtensions.GetResourceAnnotations(Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer)">
+            <summary>
+            Gets all instance annotations of a resource.
+            </summary>
+            <param name="container">The instance annotation container.</param>
+            <returns>Dictionary of string(annotation name) and object value(annotation value)</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainerExtensions.GetPropertyAnnotations(Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer,System.String)">
+            <summary>
+            Gets all instance annotations of a property on the resource.
+            </summary>
+            <param name="container">The instance annotation container.</param>
+            <param name="propertyName">The property name.</param>
+            <returns>Dictionary of string(annotation name) and object value(annotation value)</returns>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.NavigationPropertyBindingConfiguration">
             <summary>
             Used to configure the binding for a navigation property for a navigation source.
@@ -1531,6 +1644,21 @@
             <param name="navigationConfiguration">The navigation property.</param>
             <param name="bindingPath">The navigation binding path.</param>
             <returns>The binding if found.</returns>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.ODataInstanceAnnotationContainer">
+            <summary>
+            Default implementation for <see cref="T:Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ODataInstanceAnnotationContainer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.ODataInstanceAnnotationContainer"/> class.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.ODataInstanceAnnotationContainer.InstanceAnnotations">
+            <summary>
+            Gets the instance annotations
+            </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.SingletonConfiguration">
             <summary>
@@ -2021,10 +2149,20 @@
             <param name="entityType">The EDM entity type.</param>
             <returns>A collection of operations bound to the feed.</returns>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.DefaultAssemblyResolver">
+            <summary>
+            Default implementation of <see cref="T:Microsoft.OData.ModelBuilder.IAssemblyResolver"/>
+            </summary>
+        </member>
         <member name="F:Microsoft.OData.ModelBuilder.DefaultAssemblyResolver.Default">
             <summary>
             This static instance is used in the shared code in places where the request container context
             is not known or does not contain an instance of IWebApiAssembliesResolver.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.DefaultAssemblyResolver.Assemblies">
+            <summary>
+            Gets the assemblies.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.EdmModelExtensions">
@@ -3516,6 +3654,11 @@
             Represents a dynamic property dictionary for an open type.
             </summary>
         </member>
+        <member name="F:Microsoft.OData.ModelBuilder.PropertyKind.InstanceAnnotations">
+            <summary>
+            Represents an instance annotation for a CLR type.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.StructuralPropertyConfiguration">
             <summary>
             Base class for all structural property configurations.
@@ -3674,6 +3817,11 @@
               Looks up a localized string similar to &apos;{0}&apos; is not a valid entity set name..
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.InvalidInstanceAnnotationName">
+            <summary>
+              Looks up a localized string similar to The input instance annotation name &apos;{0}&apos; is not invalid. An instance annotation should be simple identifier with &apos;.&apos; in it..
+            </summary>
+        </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.InvalidPropertyInfoForDynamicPropertyAnnotation">
             <summary>
               Looks up a localized string similar to Type &apos;{0}&apos; is not supported as dynamic property annotation. Referenced property must be of type &apos;{1}&apos;..
@@ -3717,6 +3865,11 @@
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MemberExpressionsMustBeProperties">
             <summary>
               Looks up a localized string similar to Member &apos;{0}.{1}&apos; is not a property..
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.MoreThanOneAnnotationPropertyContainerFound">
+            <summary>
+              Looks up a localized string similar to Found more than one Annotation property container in type &apos;{0}&apos;. Each open type must have at most one Annotation property container..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MoreThanOneDynamicPropertyContainerFound">
@@ -4571,6 +4724,16 @@
             Gets the CLR property info of the dynamic property dictionary on this structural type.
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.HasInstanceAnnotations">
+            <summary>
+            Gets a value indicating whether this type has instance annotations or not.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.InstanceAnnotationsContainer">
+            <summary>
+            Gets the CLR property info of the instance annotations dictionary on this structural type.
+            </summary>
+        </member>
         <member name="P:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.IsAbstract">
             <summary>
             Gets or sets a value indicating whether this type is abstract.
@@ -4653,6 +4816,12 @@
         <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.AddDynamicPropertyDictionary(System.Reflection.PropertyInfo)">
             <summary>
             Adds the property info of the dynamic properties to this structural type.
+            </summary>
+            <param name="propertyInfo">The property being added.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.AddInstanceAnnotationContainer(System.Reflection.PropertyInfo)">
+            <summary>
+            Adds the property info of the instance annotation to this structural type.
             </summary>
             <param name="propertyInfo">The property being added.</param>
         </member>
@@ -4872,6 +5041,13 @@
             </summary>
             <param name="propertyExpression">A lambda expression representing the dynamic property dictionary for the relationship.
             For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.HasInstanceAnnotations``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Adds the Instance annotation container property.
+            </summary>
+            <typeparam name="T">The instance annotation type.</typeparam>
+            <param name="propertyExpression">A lambda expression representing the instance annotation property container for the relationship.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.HasMany``1(System.Linq.Expressions.Expression{System.Func{`0,System.Collections.Generic.IEnumerable{``0}}})">
             <summary>

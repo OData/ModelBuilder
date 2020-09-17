@@ -36,6 +36,11 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Represents a dynamic property dictionary for an open type.
         /// </summary>
-        Dynamic = 5
+        Dynamic = 5,
+
+        /// <summary>
+        /// Represents an instance annotation for a CLR type.
+        /// </summary>
+        InstanceAnnotations = 6
     }
 }

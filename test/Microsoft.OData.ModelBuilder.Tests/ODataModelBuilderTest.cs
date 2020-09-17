@@ -1014,6 +1014,87 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal(3, binaryType.MaxLength.Value);
         }
 
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void GetEdmModel_WorksOnModelBuilder_ForEntityType_InstanceAnnotation(bool setInstanceAnnotationContainer)
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            var entity = builder.EntityType<EntityTypeWithAnnotation>().HasKey(p => p.Id);
+
+            if (setInstanceAnnotationContainer)
+            {
+                entity.HasInstanceAnnotations(p => p.InstanceAnnotations);
+            }
+
+            // Act
+            IEdmModel model = builder.GetEdmModel();
+
+            // Assert
+            Assert.NotNull(model);
+            IEdmEntityType entityType =
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "EntityTypeWithAnnotation"));
+            Assert.Single(entityType.Properties());
+
+            InstanceAnnotationContainerAnnotation instanceAnnoteDict =
+                model.GetAnnotationValue<InstanceAnnotationContainerAnnotation>(entityType);
+
+            if (setInstanceAnnotationContainer)
+            {
+                Assert.Equal("InstanceAnnotations", instanceAnnoteDict.PropertyInfo.Name);
+            }
+            else
+            {
+                Assert.Null(instanceAnnoteDict);
+            }
+        }
+
+        [Fact]
+        public void GetEdmModel_WorksOnModelBuilder_ForDerivedEntityType()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            builder.EntityType<EntityTypeWithAnnotation>()
+                .HasKey(p => p.Id)
+                .HasInstanceAnnotations(p => p.InstanceAnnotations);
+
+            builder.EntityType<DerivedEntityTypeWithAnnotation>().DerivesFrom<EntityTypeWithAnnotation>();
+
+            // Act
+            IEdmModel model = builder.GetEdmModel();
+
+            // Assert
+            Assert.NotNull(model);
+            IEdmEntityType baseEntityType =
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "EntityTypeWithAnnotation"));
+            Assert.Single(baseEntityType.Properties());
+
+            IEdmEntityType derivedEntityType =
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "DerivedEntityTypeWithAnnotation"));
+
+            InstanceAnnotationContainerAnnotation basePropertyAnnotation =
+                model.GetAnnotationValue<InstanceAnnotationContainerAnnotation>(baseEntityType);
+            Assert.Equal("InstanceAnnotations", basePropertyAnnotation.PropertyInfo.Name);
+
+            InstanceAnnotationContainerAnnotation derivedPropertyAnnotation =
+                model.GetAnnotationValue<InstanceAnnotationContainerAnnotation>(derivedEntityType);
+
+            Assert.Null(derivedPropertyAnnotation);
+        }
+
+        public class EntityTypeWithAnnotation
+        {
+            public int Id { get; set; }
+
+            public IODataInstanceAnnotationContainer InstanceAnnotations { get; set; }
+        }
+
+        public class DerivedEntityTypeWithAnnotation : EntityTypeWithAnnotation
+        {
+            public string DerivedProperty { get; set; }
+        }
+
         class BasePrincipal
         {
             public int PrincipalId { get; set; }

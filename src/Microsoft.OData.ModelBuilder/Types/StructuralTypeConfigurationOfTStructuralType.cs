@@ -321,6 +321,19 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
+        /// Adds the Instance annotation container property.
+        /// </summary>
+        /// <typeparam name="T">The instance annotation type.</typeparam>
+        /// <param name="propertyExpression">A lambda expression representing the instance annotation property container for the relationship.</param>
+        public void HasInstanceAnnotations<T>(Expression<Func<TStructuralType, T>> propertyExpression)
+            where T : IODataInstanceAnnotationContainer
+        {
+            PropertyInfo propertyInfo = PropertySelectorVisitor.GetSelectedProperty(propertyExpression);
+
+            Configuration.AddInstanceAnnotationContainer(propertyInfo);
+        }
+
+        /// <summary>
         /// Configures a many relationship from this structural type.
         /// </summary>
         /// <typeparam name="TTargetEntity">The type of the entity at the other end of the relationship.</typeparam>

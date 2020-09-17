@@ -314,4 +314,10 @@
   <data name="CannotInferEdmType" xml:space="preserve">
     <value>Cannot determine the Edm type for the CLR type '{0}' because the derived type '{1}' is configured as entity type and another derived type '{2}' is configured as complex type.</value>
   </data>
+  <data name="MoreThanOneAnnotationPropertyContainerFound" xml:space="preserve">
+    <value>Found more than one Annotation property container in type '{0}'. Each open type must have at most one Annotation property container.</value>
+  </data>
+  <data name="InvalidInstanceAnnotationName" xml:space="preserve">
+    <value>The input instance annotation name '{0}' is not invalid. An instance annotation should be simple identifier with '.' in it.</value>
+  </data>
 </root>

@@ -562,6 +562,10 @@ namespace Microsoft.OData.ModelBuilder
                 {
                     structuralType.AddDynamicPropertyDictionary(property);
                 }
+                else if (propertyKind == PropertyKind.InstanceAnnotations)
+                {
+                    structuralType.AddInstanceAnnotationContainer(property);
+                }
                 else
                 {
                     // don't add this property if the user has already added it.
@@ -710,6 +714,16 @@ namespace Microsoft.OData.ModelBuilder
             {
                 isCollection = false;
                 return propertyKind;
+            }
+
+            // IODataInstanceAnnotationContainer is used as a container to save/retrieve instance annotation properties for a CLR type.
+            // It is different from other collections (for example, IDictionary<string,IDictionary<string, int>>)
+            if (typeof(IODataInstanceAnnotationContainer).IsAssignableFrom(property.PropertyType))
+            {
+                mappedType = null;
+                isCollection = false;
+
+                return PropertyKind.InstanceAnnotations;
             }
 
             Type elementType;

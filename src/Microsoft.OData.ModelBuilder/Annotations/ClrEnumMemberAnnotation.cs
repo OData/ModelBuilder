@@ -8,7 +8,7 @@ using Microsoft.OData.Edm;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// Represents a mapping betwwen an <see cref="IEdmEnumMember"/> and a CLR Enum member.
+    /// Represents a mapping between an <see cref="IEdmEnumMember"/> and a CLR Enum member.
     /// </summary>
     public class ClrEnumMemberAnnotation
     {

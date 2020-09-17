@@ -277,6 +277,15 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The input instance annotation name &apos;{0}&apos; is not invalid. An instance annotation should be simple identifier with &apos;.&apos; in it..
+        /// </summary>
+        internal static string InvalidInstanceAnnotationName {
+            get {
+                return ResourceManager.GetString("InvalidInstanceAnnotationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type &apos;{0}&apos; is not supported as dynamic property annotation. Referenced property must be of type &apos;{1}&apos;..
         /// </summary>
         internal static string InvalidPropertyInfoForDynamicPropertyAnnotation {
@@ -354,6 +363,15 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string MemberExpressionsMustBeProperties {
             get {
                 return ResourceManager.GetString("MemberExpressionsMustBeProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found more than one Annotation property container in type &apos;{0}&apos;. Each open type must have at most one Annotation property container..
+        /// </summary>
+        internal static string MoreThanOneAnnotationPropertyContainerFound {
+            get {
+                return ResourceManager.GetString("MoreThanOneAnnotationPropertyContainerFound", resourceCulture);
             }
         }
         

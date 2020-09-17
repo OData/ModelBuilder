@@ -23,6 +23,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         private readonly Dictionary<IEdmStructuredType, ModelBoundQuerySettings> _structuredTypeQuerySettings = new Dictionary<IEdmStructuredType, ModelBoundQuerySettings>();
         private readonly Dictionary<Enum, IEdmEnumMember> _members = new Dictionary<Enum, IEdmEnumMember>();
         private readonly Dictionary<IEdmStructuredType, PropertyInfo> _openTypes = new Dictionary<IEdmStructuredType, PropertyInfo>();
+        private readonly Dictionary<IEdmStructuredType, PropertyInfo> _instanceAnnotableTypes = new Dictionary<IEdmStructuredType, PropertyInfo>();
 
         internal EdmTypeBuilder(IEnumerable<IEdmTypeConfiguration> configurations)
         {
@@ -52,6 +53,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             _properties.Clear();
             _members.Clear();
             _openTypes.Clear();
+            _instanceAnnotableTypes.Clear();
 
             // Create headers to allow CreateEdmTypeBody to blindly references other things.
             foreach (IEdmTypeConfiguration config in _configurations)
@@ -99,6 +101,13 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                         // add a mapping between the open complex type and its dynamic property dictionary.
                         _openTypes.Add(complexType, complex.DynamicPropertyDictionary);
                     }
+
+                    if (complex.HasInstanceAnnotations)
+                    {
+                        // add a mapping between the complex type and its instance annotation dictionary.
+                        _instanceAnnotableTypes.Add(complexType, complex.InstanceAnnotationsContainer);
+                    }
+
                     edmType = complexType;
                 }
                 else if (config.Kind == EdmTypeKind.Entity)
@@ -124,6 +133,13 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                         // add a mapping between the open entity type and its dynamic property dictionary.
                         _openTypes.Add(entityType, entity.DynamicPropertyDictionary);
                     }
+
+                    if (entity.HasInstanceAnnotations)
+                    {
+                        // add a mapping between the entity type and its instance annotation dictionary.
+                        _instanceAnnotableTypes.Add(entityType, entity.InstanceAnnotationsContainer);
+                    }
+
                     edmType = entityType;
                 }
                 else
@@ -545,7 +561,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 builder._propertiesQuerySettings,
                 builder._structuredTypeQuerySettings,
                 builder._members,
-                builder._openTypes);
+                builder._openTypes,
+                builder._instanceAnnotableTypes);
         }
 
         private IEdmType GetEdmType(Type clrType)

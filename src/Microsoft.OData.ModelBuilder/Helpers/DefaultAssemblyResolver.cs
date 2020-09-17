@@ -7,7 +7,10 @@ using System.Reflection;
 
 namespace Microsoft.OData.ModelBuilder
 {
-    internal class DefaultAssemblyResolver : IAssemblyResolver
+    /// <summary>
+    /// Default implementation of <see cref="IAssemblyResolver"/>
+    /// </summary>
+    public class DefaultAssemblyResolver : IAssemblyResolver
     {
         private Assembly[] _assemblies = GetAssembliesInteral();
 
@@ -15,8 +18,11 @@ namespace Microsoft.OData.ModelBuilder
         /// This static instance is used in the shared code in places where the request container context
         /// is not known or does not contain an instance of IWebApiAssembliesResolver.
         /// </summary>
-        public static IAssemblyResolver Default = new DefaultAssemblyResolver();
+        internal static IAssemblyResolver Default = new DefaultAssemblyResolver();
 
+        /// <summary>
+        /// Gets the assemblies.
+        /// </summary>
         public IEnumerable<Assembly> Assemblies => _assemblies;
 
         private static Assembly[] GetAssembliesInteral()

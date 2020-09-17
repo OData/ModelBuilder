@@ -18,7 +18,6 @@ namespace Microsoft.OData.ModelBuilder
     {
         private string _namespace;
         private string _name;
-        private PropertyInfo _dynamicPropertyDictionary;
         private StructuralTypeConfiguration _baseType;
         private bool _baseTypeConfigured;
 
@@ -112,18 +111,22 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Gets a value indicating whether this type is open or not.
         /// </summary>
-        public bool IsOpen
-        {
-            get { return _dynamicPropertyDictionary != null; }
-        }
+        public bool IsOpen => DynamicPropertyDictionary != null;
 
         /// <summary>
         /// Gets the CLR property info of the dynamic property dictionary on this structural type.
         /// </summary>
-        public PropertyInfo DynamicPropertyDictionary
-        {
-            get { return _dynamicPropertyDictionary; }
-        }
+        public PropertyInfo DynamicPropertyDictionary { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this type has instance annotations or not.
+        /// </summary>
+        public bool HasInstanceAnnotations => InstanceAnnotationsContainer != null;
+
+        /// <summary>
+        /// Gets the CLR property info of the instance annotations dictionary on this structural type.
+        /// </summary>
+        public PropertyInfo InstanceAnnotationsContainer { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this type is abstract.
@@ -459,12 +462,47 @@ namespace Microsoft.OData.ModelBuilder
                 RemovedProperties.Remove(propertyInfo);
             }
 
-            if (_dynamicPropertyDictionary != null)
+            if (DynamicPropertyDictionary != null)
             {
                 throw Error.Argument("propertyInfo", SRResources.MoreThanOneDynamicPropertyContainerFound, ClrType.Name);
             }
 
-            _dynamicPropertyDictionary = propertyInfo;
+            DynamicPropertyDictionary = propertyInfo;
+        }
+
+        /// <summary>
+        /// Adds the property info of the instance annotation to this structural type.
+        /// </summary>
+        /// <param name="propertyInfo">The property being added.</param>
+        public virtual void AddInstanceAnnotationContainer(PropertyInfo propertyInfo)
+        {
+            if (propertyInfo == null)
+            {
+                throw Error.ArgumentNull("propertyInfo");
+            }
+
+            if (!typeof(IODataInstanceAnnotationContainer).IsAssignableFrom(propertyInfo.PropertyType))
+            {
+                throw Error.Argument("propertyInfo", SRResources.ArgumentMustBeOfType, "IODataInstanceAnnotationContainer");
+            }
+
+            if (!propertyInfo.DeclaringType.IsAssignableFrom(ClrType))
+            {
+                throw Error.Argument("propertyInfo", SRResources.PropertyDoesNotBelongToType);
+            }
+
+            // Remove from the ignored properties
+            if (IgnoredProperties.Contains(propertyInfo))
+            {
+                RemovedProperties.Remove(propertyInfo);
+            }
+
+            if (InstanceAnnotationsContainer != null)
+            {
+                throw Error.Argument("propertyInfo", SRResources.MoreThanOneAnnotationPropertyContainerFound, ClrType.Name);
+            }
+
+            InstanceAnnotationsContainer = propertyInfo;
         }
 
         /// <summary>
@@ -493,9 +531,9 @@ namespace Microsoft.OData.ModelBuilder
                 RemovedProperties.Add(propertyInfo);
             }
 
-            if (_dynamicPropertyDictionary == propertyInfo)
+            if (DynamicPropertyDictionary == propertyInfo)
             {
-                _dynamicPropertyDictionary = null;
+                DynamicPropertyDictionary = null;
             }
         }
 

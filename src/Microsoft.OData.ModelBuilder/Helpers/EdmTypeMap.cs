@@ -18,7 +18,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             Dictionary<IEdmProperty, ModelBoundQuerySettings> edmPropertiesQuerySettings,
             Dictionary<IEdmStructuredType, ModelBoundQuerySettings> edmStructuredTypeQuerySettings,
             Dictionary<Enum, IEdmEnumMember> enumMembers,
-            Dictionary<IEdmStructuredType, PropertyInfo> openTypes)
+            Dictionary<IEdmStructuredType, PropertyInfo> openTypes,
+            Dictionary<IEdmStructuredType, PropertyInfo> instanceAnnotatableTypes)
         {
             EdmTypes = edmTypes;
             EdmProperties = edmProperties;
@@ -27,20 +28,23 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             EdmStructuredTypeQuerySettings = edmStructuredTypeQuerySettings;
             EnumMembers = enumMembers;
             OpenTypes = openTypes;
+            InstanceAnnotatableTypes = instanceAnnotatableTypes;
         }
 
-        public Dictionary<Type, IEdmType> EdmTypes { get; private set; }
+        public Dictionary<Type, IEdmType> EdmTypes { get; }
 
-        public Dictionary<PropertyInfo, IEdmProperty> EdmProperties { get; private set; }
+        public Dictionary<PropertyInfo, IEdmProperty> EdmProperties { get; }
 
-        public Dictionary<IEdmProperty, QueryableRestrictions> EdmPropertiesRestrictions { get; private set; }
+        public Dictionary<IEdmProperty, QueryableRestrictions> EdmPropertiesRestrictions { get; }
 
-        public Dictionary<IEdmProperty, ModelBoundQuerySettings> EdmPropertiesQuerySettings { get; private set; }
+        public Dictionary<IEdmProperty, ModelBoundQuerySettings> EdmPropertiesQuerySettings { get; }
 
-        public Dictionary<IEdmStructuredType, ModelBoundQuerySettings> EdmStructuredTypeQuerySettings { get; private set; }
+        public Dictionary<IEdmStructuredType, ModelBoundQuerySettings> EdmStructuredTypeQuerySettings { get; }
 
-        public Dictionary<Enum, IEdmEnumMember> EnumMembers { get; private set; }
+        public Dictionary<Enum, IEdmEnumMember> EnumMembers { get; }
 
-        public Dictionary<IEdmStructuredType, PropertyInfo> OpenTypes { get; private set; }
+        public Dictionary<IEdmStructuredType, PropertyInfo> OpenTypes { get; }
+
+        public Dictionary<IEdmStructuredType, PropertyInfo> InstanceAnnotatableTypes { get; }
     }
 }

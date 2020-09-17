@@ -22,6 +22,7 @@ public enum Microsoft.OData.ModelBuilder.PropertyKind : int {
 	Complex = 1
 	Dynamic = 5
 	Enum = 4
+	InstanceAnnotations = 6
 	Navigation = 3
 	Primitive = 0
 }
@@ -43,6 +44,10 @@ public interface Microsoft.OData.ModelBuilder.IEdmTypeConfiguration {
 	Microsoft.OData.ModelBuilder.ODataModelBuilder ModelBuilder  { public abstract get; }
 	string Name  { public abstract get; }
 	string Namespace  { public abstract get; }
+}
+
+public interface Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer {
+	System.Collections.Generic.IDictionary`2[[System.String],[System.Collections.Generic.IDictionary`2[[System.String],[System.Object]]]] InstanceAnnotations  { public abstract get; }
 }
 
 public interface Microsoft.OData.ModelBuilder.IODataModelConvention {
@@ -192,7 +197,9 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration :
 	System.Reflection.PropertyInfo DynamicPropertyDictionary  { public get; }
 	System.Collections.Generic.IDictionary`2[[System.Reflection.PropertyInfo],[Microsoft.OData.ModelBuilder.PropertyConfiguration]] ExplicitProperties  { protected get; }
 	string FullName  { public virtual get; }
+	bool HasInstanceAnnotations  { public get; }
 	System.Collections.ObjectModel.ReadOnlyCollection`1[[System.Reflection.PropertyInfo]] IgnoredProperties  { public get; }
+	System.Reflection.PropertyInfo InstanceAnnotationsContainer  { public get; }
 	System.Nullable`1[[System.Boolean]] IsAbstract  { public virtual get; public virtual set; }
 	bool IsOpen  { public get; }
 	Microsoft.OData.Edm.EdmTypeKind Kind  { public abstract get; }
@@ -209,6 +216,7 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration :
 	public virtual Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration AddContainedNavigationProperty (System.Reflection.PropertyInfo navigationProperty, Microsoft.OData.Edm.EdmMultiplicity multiplicity)
 	public virtual void AddDynamicPropertyDictionary (System.Reflection.PropertyInfo propertyInfo)
 	public virtual Microsoft.OData.ModelBuilder.EnumPropertyConfiguration AddEnumProperty (System.Reflection.PropertyInfo propertyInfo)
+	public virtual void AddInstanceAnnotationContainer (System.Reflection.PropertyInfo propertyInfo)
 	public virtual Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration AddNavigationProperty (System.Reflection.PropertyInfo navigationProperty, Microsoft.OData.Edm.EdmMultiplicity multiplicity)
 	public virtual Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration AddProperty (System.Reflection.PropertyInfo propertyInfo)
 	internal virtual void DerivesFromImpl (Microsoft.OData.ModelBuilder.StructuralTypeConfiguration baseType)
@@ -233,6 +241,7 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1
 	public Microsoft.OData.ModelBuilder.EnumPropertyConfiguration EnumProperty (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.EnumPropertyConfiguration EnumProperty (Expression`1 propertyExpression)
 	public void HasDynamicProperties (Expression`1 propertyExpression)
+	public void HasInstanceAnnotations (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration HasMany (Expression`1 navigationPropertyExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration HasOptional (Expression`1 navigationPropertyExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration HasOptional (Expression`1 navigationPropertyExpression, Expression`1 referentialConstraintExpression)
@@ -280,6 +289,31 @@ public sealed class Microsoft.OData.ModelBuilder.EdmModelExtensions {
 	ExtensionAttribute(),
 	]
 	public static void SetNavigationSourceLinkBuilder (Microsoft.OData.Edm.IEdmModel model, Microsoft.OData.Edm.IEdmNavigationSource navigationSource, Microsoft.OData.ModelBuilder.NavigationSourceLinkBuilderAnnotation navigationSourceLinkBuilder)
+}
+
+[
+ExtensionAttribute(),
+]
+public sealed class Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainerExtensions {
+	[
+	ExtensionAttribute(),
+	]
+	public static void AddPropertyAnnotation (Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer container, string propertyName, string annotationName, object value)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static void AddResourceAnnotation (Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer container, string annotationName, object value)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static System.Collections.Generic.IDictionary`2[[System.String],[System.Object]] GetPropertyAnnotations (Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer container, string propertyName)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static System.Collections.Generic.IDictionary`2[[System.String],[System.Object]] GetResourceAnnotations (Microsoft.OData.ModelBuilder.IODataInstanceAnnotationContainer container)
 }
 
 [
@@ -581,6 +615,12 @@ public class Microsoft.OData.ModelBuilder.DecimalPropertyConfiguration : Microso
 	System.Nullable`1[[System.Int32]] Scale  { public get; public set; }
 }
 
+public class Microsoft.OData.ModelBuilder.DefaultAssemblyResolver : IAssemblyResolver {
+	public DefaultAssemblyResolver ()
+
+	System.Collections.Generic.IEnumerable`1[[System.Reflection.Assembly]] Assemblies  { public virtual get; }
+}
+
 public class Microsoft.OData.ModelBuilder.DynamicPropertyDictionaryAnnotation {
 	public DynamicPropertyDictionaryAnnotation (System.Reflection.PropertyInfo propertyInfo)
 
@@ -707,6 +747,12 @@ public class Microsoft.OData.ModelBuilder.FunctionConfiguration : Microsoft.ODat
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration SetBindingParameter (string name, Microsoft.OData.ModelBuilder.IEdmTypeConfiguration bindingParameterType)
 }
 
+public class Microsoft.OData.ModelBuilder.InstanceAnnotationContainerAnnotation {
+	public InstanceAnnotationContainerAnnotation (System.Reflection.PropertyInfo propertyInfo)
+
+	System.Reflection.PropertyInfo PropertyInfo  { public get; }
+}
+
 public class Microsoft.OData.ModelBuilder.LengthPropertyConfiguration : Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration {
 	public LengthPropertyConfiguration (System.Reflection.PropertyInfo property, Microsoft.OData.ModelBuilder.StructuralTypeConfiguration declaringType)
 
@@ -780,6 +826,12 @@ public class Microsoft.OData.ModelBuilder.ODataConventionModelBuilder : Microsof
 	public Microsoft.OData.ModelBuilder.ODataConventionModelBuilder Ignore ()
 	public Microsoft.OData.ModelBuilder.ODataConventionModelBuilder Ignore (System.Type[] types)
 	public virtual void ValidateModel (Microsoft.OData.Edm.IEdmModel model)
+}
+
+public class Microsoft.OData.ModelBuilder.ODataInstanceAnnotationContainer : IODataInstanceAnnotationContainer {
+	public ODataInstanceAnnotationContainer ()
+
+	System.Collections.Generic.IDictionary`2[[System.String],[System.Collections.Generic.IDictionary`2[[System.String],[System.Object]]]] InstanceAnnotations  { public virtual get; }
 }
 
 public class Microsoft.OData.ModelBuilder.ODataModelBuilder {
@@ -1016,6 +1068,36 @@ AttributeUsageAttribute(),
 ]
 public sealed class Microsoft.OData.ModelBuilder.UnsortableAttribute : System.Attribute {
 	public UnsortableAttribute ()
+}
+
+[
+ExtensionAttribute(),
+]
+public sealed class Microsoft.OData.ModelBuilder.Annotations.EdmAnnotationExtensions {
+	[
+	ExtensionAttribute(),
+	]
+	public static Microsoft.OData.ModelBuilder.ClrEnumMemberAnnotation GetClrEnumMemberAnnotation (Microsoft.OData.Edm.IEdmModel edmModel, Microsoft.OData.Edm.IEdmEnumType enumType)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static string GetClrPropertyName (Microsoft.OData.Edm.IEdmModel edmModel, Microsoft.OData.Edm.IEdmProperty edmProperty)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static System.Reflection.PropertyInfo GetDynamicPropertyDictionary (Microsoft.OData.Edm.IEdmModel edmModel, Microsoft.OData.Edm.IEdmStructuredType edmType)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static void SetClrType (Microsoft.OData.Edm.IEdmModel edmModel, Microsoft.OData.Edm.IEdmStructuredType structuredType)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static void SetClrType (Microsoft.OData.Edm.IEdmModel edmModel, Microsoft.OData.Edm.IEdmStructuredType structuredType, System.Type clrType)
 }
 
 public class Microsoft.OData.ModelBuilder.Annotations.QueryableRestrictionsAnnotation {
