@@ -8,5 +8,6 @@ namespace Microsoft.OData.ModelBuilder
     /// </summary>
     internal class ODataContext
     {
+        // TODO: it's not finished yet or (not started yet).
     }
 }
