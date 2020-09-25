@@ -14,10 +14,10 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Initializes a new instance of <see cref="ClrTypeAnnotation"/> class.
         /// </summary>
-        /// <param name="clrType">The backing CLR type for the EDM type.</param>
+        /// <param name="clrType">The backing CLR type for the EDM type. It could be null.</param>
         public ClrTypeAnnotation(Type clrType)
         {
-            ClrType = clrType ?? throw new ArgumentNullException(nameof(clrType));
+            ClrType = clrType;
         }
 
         /// <summary>
