@@ -554,7 +554,7 @@ namespace Microsoft.OData.ModelBuilder
 
                 PropertyKind propertyKind = GetPropertyType(property, out isCollection, out mappedType);
 
-                if (propertyKind == PropertyKind.Primitive || propertyKind == PropertyKind.Complex || propertyKind == PropertyKind.Enum)
+                if (propertyKind == PropertyKind.Primitive || propertyKind == PropertyKind.Complex || propertyKind == PropertyKind.Enum || propertyKind == PropertyKind.Untyped)
                 {
                     MapStructuralProperty(structuralType, property, propertyKind, isCollection);
                 }
@@ -636,7 +636,7 @@ namespace Microsoft.OData.ModelBuilder
         {
             Contract.Assert(type != null);
             Contract.Assert(property != null);
-            Contract.Assert(propertyKind == PropertyKind.Complex || propertyKind == PropertyKind.Primitive || propertyKind == PropertyKind.Enum);
+            Contract.Assert(propertyKind == PropertyKind.Complex || propertyKind == PropertyKind.Primitive || propertyKind == PropertyKind.Enum || propertyKind == PropertyKind.Untyped);
 
             bool addedExplicitly = type.Properties.Any(p => p.PropertyInfo.Name == property.Name);
 
@@ -651,6 +651,10 @@ namespace Microsoft.OData.ModelBuilder
                 {
                     AddEnumType(TypeHelper.GetUnderlyingTypeOrSelf(property.PropertyType));
                     addedEdmProperty = type.AddEnumProperty(property);
+                }
+                else if (propertyKind == PropertyKind.Untyped)
+                {
+                    addedEdmProperty = type.AddUntypedProperty(property);
                 }
                 else
                 {
@@ -773,6 +777,13 @@ namespace Microsoft.OData.ModelBuilder
                     propertyKind = PropertyKind.Navigation;
                 }
 
+                return true;
+            }
+
+            // If the property type is System.Object, let's consider it as Edm.Untyped.
+            if (propertyType == typeof(object))
+            {
+                propertyKind = PropertyKind.Untyped;
                 return true;
             }
 
@@ -935,13 +946,19 @@ namespace Microsoft.OData.ModelBuilder
                 StructuralTypeConfiguration currentType = reachableTypes.Dequeue();
 
                 // go visit other end of each of this node's edges.
-                foreach (PropertyConfiguration property in currentType.Properties.Where(property => property.Kind != PropertyKind.Primitive))
+                foreach (PropertyConfiguration property in currentType.Properties.Where(property => property.Kind != PropertyKind.Primitive && property.Kind != PropertyKind.Untyped))
                 {
                     if (property.Kind == PropertyKind.Collection)
                     {
                         // if the elementType is primitive we don't need to do anything.
                         CollectionPropertyConfiguration colProperty = property as CollectionPropertyConfiguration;
                         if (EdmLibHelpers.GetEdmPrimitiveTypeOrNull(colProperty.ElementType) != null)
+                        {
+                            continue;
+                        }
+
+                        // if the elementType is untyped we don't need to do anything.
+                        if (colProperty.ElementType == typeof(object))
                         {
                             continue;
                         }

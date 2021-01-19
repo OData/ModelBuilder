@@ -25,6 +25,7 @@ public enum Microsoft.OData.ModelBuilder.PropertyKind : int {
 	InstanceAnnotations = 6
 	Navigation = 3
 	Primitive = 0
+	Untyped = 7
 }
 
 public enum Microsoft.OData.ModelBuilder.SelectExpandType : int {
@@ -219,6 +220,7 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration :
 	public virtual void AddInstanceAnnotationContainer (System.Reflection.PropertyInfo propertyInfo)
 	public virtual Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration AddNavigationProperty (System.Reflection.PropertyInfo navigationProperty, Microsoft.OData.Edm.EdmMultiplicity multiplicity)
 	public virtual Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration AddProperty (System.Reflection.PropertyInfo propertyInfo)
+	public virtual Microsoft.OData.ModelBuilder.UntypedPropertyConfiguration AddUntypedProperty (System.Reflection.PropertyInfo propertyInfo)
 	internal virtual void DerivesFromImpl (Microsoft.OData.ModelBuilder.StructuralTypeConfiguration baseType)
 	internal virtual void DerivesFromNothingImpl ()
 	public virtual void RemoveProperty (System.Reflection.PropertyInfo propertyInfo)
@@ -262,6 +264,7 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1
 	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.UntypedPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration Property (Expression`1 propertyExpression)
@@ -921,6 +924,17 @@ public class Microsoft.OData.ModelBuilder.SingletonConfiguration : Microsoft.ODa
 }
 
 public class Microsoft.OData.ModelBuilder.SingletonConfiguration`1 : NavigationSourceConfiguration`1 {
+}
+
+public class Microsoft.OData.ModelBuilder.UntypedPropertyConfiguration : Microsoft.OData.ModelBuilder.StructuralPropertyConfiguration {
+	public UntypedPropertyConfiguration (System.Reflection.PropertyInfo property, Microsoft.OData.ModelBuilder.StructuralTypeConfiguration declaringType)
+
+	string DefaultValueString  { public get; public set; }
+	Microsoft.OData.ModelBuilder.PropertyKind Kind  { public virtual get; }
+	System.Type RelatedClrType  { public virtual get; }
+
+	public Microsoft.OData.ModelBuilder.UntypedPropertyConfiguration IsNullable ()
+	public Microsoft.OData.ModelBuilder.UntypedPropertyConfiguration IsRequired ()
 }
 
 [

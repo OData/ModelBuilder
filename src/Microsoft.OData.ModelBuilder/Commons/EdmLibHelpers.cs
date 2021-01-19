@@ -18,7 +18,7 @@ using Microsoft.Spatial;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// 
+    /// Helper methods related to Edm model.
     /// </summary>
     internal static class EdmLibHelpers
     {
@@ -133,6 +133,11 @@ namespace Microsoft.OData.ModelBuilder
                 throw new ArgumentNullException(nameof(edmTypeReference));
             }
 
+            if (edmTypeReference.Definition.IsEquivalentTo(_coreModel.GetUntypedType()))
+            {
+                return typeof(object);
+            }
+
             Type primitiveClrType = _builtInTypesMapping
                 .Where(kvp => edmTypeReference.Definition.IsEquivalentTo(kvp.Value) && (!edmTypeReference.IsNullable || IsNullable(kvp.Key)))
                 .Select(kvp => kvp.Key)
@@ -212,6 +217,11 @@ namespace Microsoft.OData.ModelBuilder
             Contract.Assert(edmModel != null);
             Contract.Assert(clrType != null);
 
+            if (clrType == typeof(object))
+            {
+                return _coreModel.GetUntypedType();
+            }
+
             IEdmPrimitiveType primitiveType = GetEdmPrimitiveTypeOrNull(clrType);
             if (primitiveType != null)
             {
@@ -289,6 +299,8 @@ namespace Microsoft.OData.ModelBuilder
                     return new EdmEnumTypeReference(edmType as IEdmEnumType, isNullable);
                 case EdmTypeKind.Primitive:
                     return _coreModel.GetPrimitive((edmType as IEdmPrimitiveType).PrimitiveKind, isNullable);
+                case EdmTypeKind.Untyped:
+                    return _coreModel.GetUntyped(); // ignore isNullable, it's always "true"?
                 default:
                     throw Error.NotSupported(SRResources.EdmTypeNotSupported, edmType.ToTraceString());
             }

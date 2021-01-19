@@ -2374,7 +2374,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
         }
 
         [Fact]
-        public void CanMapObjectArrayAsAComplexProperty()
+        public void CanMapObjectArrayAsACollectionUntypedProperty()
         {
             MockType type =
                 new MockType("entity")
@@ -2387,9 +2387,11 @@ namespace Microsoft.OData.ModelBuilder.Tests
             builder.AddEntitySet("entityset", entityType);
 
             IEdmModel model = builder.GetEdmModel();
-            Assert.Equal(3, model.SchemaElements.Count());
+            Assert.Equal(2, model.SchemaElements.Count());
             var entityEdmType = model.AssertHasEntitySet("entityset", type);
-            model.AssertHasComplexType(typeof(object));
+
+            var complexType = model.SchemaElements.OfType<IEdmComplexType>().Where(t => model.GetEdmType(typeof(object)).IsEquivalentTo(t)).SingleOrDefault();
+            Assert.Null(complexType);
             entityEdmType.AssertHasCollectionProperty(model, "Collection", typeof(object), isNullable: true);
         }
 

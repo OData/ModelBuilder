@@ -26,7 +26,6 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull(nameof(property));
             }
 
-
             if (!TypeHelper.IsCollection(property.PropertyType, out _elementType))
             {
                 throw Error.Argument("property", SRResources.CollectionPropertiesMustReturnIEnumerable, property.Name, property.DeclaringType.FullName);

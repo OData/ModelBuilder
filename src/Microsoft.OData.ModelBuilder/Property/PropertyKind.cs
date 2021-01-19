@@ -41,6 +41,11 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Represents an instance annotation for a CLR type.
         /// </summary>
-        InstanceAnnotations = 6
+        InstanceAnnotations = 6,
+
+        /// <summary>
+        /// Represents an EDM untyped property
+        /// </summary>
+        Untyped = 7,
     }
 }
