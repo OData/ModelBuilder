@@ -242,6 +242,9 @@
   <data name="MustBeEnumProperty" xml:space="preserve">
     <value>The property '{0}' on type '{1}' must be an Enum property.</value>
   </data>
+  <data name="MustBeUntypedProperty" xml:space="preserve">
+    <value>The property '{0}' on type '{1}' must be a System.Object property.</value>
+  </data>
   <data name="MustBeDateTimeProperty" xml:space="preserve">
     <value>The property '{0}' on type '{1}' must be a System.DateTime property.</value>
   </data>

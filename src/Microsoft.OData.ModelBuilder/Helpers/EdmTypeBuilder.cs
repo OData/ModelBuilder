@@ -411,6 +411,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                         edmProperty = CreateStructuralTypeEnumPropertyBody(type, (EnumPropertyConfiguration)property);
                         break;
 
+                    case PropertyKind.Untyped:
+                        UntypedPropertyConfiguration untypedProperty = (UntypedPropertyConfiguration)property;
+                        IEdmUntypedTypeReference untypedReference = EdmCoreModel.Instance.GetUntyped();
+                        edmProperty = type.AddStructuralProperty(untypedProperty.Name, untypedReference, defaultValue: untypedProperty.DefaultValueString);
+                        break;
+
                     default:
                         break;
                 }
@@ -437,10 +443,14 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
         private IEdmProperty CreateStructuralTypeCollectionPropertyBody(EdmStructuredType type, CollectionPropertyConfiguration collectionProperty)
         {
-            IEdmTypeReference elementTypeReference = null;
+            IEdmTypeReference elementTypeReference;
             Type clrType = TypeHelper.GetUnderlyingTypeOrSelf(collectionProperty.ElementType);
 
-            if (TypeHelper.IsEnum(clrType))
+            if (clrType == typeof(object))
+            {
+                elementTypeReference = EdmCoreModel.Instance.GetUntyped();
+            }
+            else if (TypeHelper.IsEnum(clrType))
             {
                 IEdmType edmType = GetEdmType(clrType);
 

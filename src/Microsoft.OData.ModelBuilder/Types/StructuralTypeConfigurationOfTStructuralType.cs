@@ -221,6 +221,20 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
+        /// Adds an untyped (object) property to the EDM type.
+        /// </summary>
+        /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.</param>
+        /// <returns>A configuration object that can be used to further configure the property.</returns>
+        public UntypedPropertyConfiguration Property(Expression<Func<TStructuralType, object>> propertyExpression)
+        {
+            PropertyInfo propertyInfo = PropertySelectorVisitor.GetSelectedProperty(propertyExpression);
+
+            UntypedPropertyConfiguration property = Configuration.AddUntypedProperty(propertyInfo);
+            property.IsNullable(); // by default always nullable?
+            return property;
+        }
+
+        /// <summary>
         /// Adds an optional primitive property to the EDM type.
         /// </summary>
         /// <typeparam name="T">The primitive property type.</typeparam>

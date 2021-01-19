@@ -386,6 +386,49 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
+        /// Adds an untyped property to this edm type.
+        /// </summary>
+        /// <param name="propertyInfo">The property being added.</param>
+        /// <returns>The <see cref="EnumPropertyConfiguration"/> so that the property can be configured further.</returns>
+        public virtual UntypedPropertyConfiguration AddUntypedProperty(PropertyInfo propertyInfo)
+        {
+            if (propertyInfo == null)
+            {
+                throw Error.ArgumentNull(nameof(propertyInfo));
+            }
+
+            if (!TypeHelper.GetReflectedType(propertyInfo).IsAssignableFrom(ClrType))
+            {
+                throw Error.Argument(nameof(propertyInfo), SRResources.PropertyDoesNotBelongToType, propertyInfo.Name, ClrType.FullName);
+            }
+
+            if (propertyInfo.PropertyType != typeof(object))
+            {
+                throw Error.Argument(nameof(propertyInfo), SRResources.MustBeUntypedProperty, propertyInfo.Name, ClrType.FullName);
+            }
+
+            ValidatePropertyNotAlreadyDefinedInBaseTypes(propertyInfo);
+            ValidatePropertyNotAlreadyDefinedInDerivedTypes(propertyInfo);
+
+            // Remove from the ignored properties
+            if (RemovedProperties.Any(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)))
+            {
+                RemovedProperties.Remove(RemovedProperties.First(prop => prop.Name.Equals(propertyInfo.Name, StringComparison.Ordinal)));
+            }
+
+            UntypedPropertyConfiguration propertyConfiguration =
+                ValidatePropertyNotAlreadyDefinedOtherTypes<UntypedPropertyConfiguration>(propertyInfo,
+                    SRResources.MustBeUntypedProperty);
+            if (propertyConfiguration == null)
+            {
+                propertyConfiguration = new UntypedPropertyConfiguration(propertyInfo, this);
+                ExplicitProperties[propertyInfo] = propertyConfiguration;
+            }
+
+            return propertyConfiguration;
+        }
+
+        /// <summary>
         /// Adds a collection property to this edm type.
         /// </summary>
         /// <param name="propertyInfo">The property being added.</param>
@@ -424,7 +467,7 @@ namespace Microsoft.OData.ModelBuilder
                     EdmLibHelpers.GetEdmPrimitiveTypeReferenceOrNull(propertyConfiguration.ElementType);
                 if (edmType == null)
                 {
-                    if (!TypeHelper.IsEnum(propertyConfiguration.ElementType))
+                    if (!TypeHelper.IsEnum(propertyConfiguration.ElementType) && propertyConfiguration.ElementType != typeof(object))
                     {
                         ModelBuilder.AddComplexType(propertyConfiguration.ElementType);
                     }

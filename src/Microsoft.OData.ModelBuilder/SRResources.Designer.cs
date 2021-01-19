@@ -502,6 +502,15 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.Object property..
+        /// </summary>
+        internal static string MustBeUntypedProperty {
+            get {
+                return ResourceManager.GetString("MustBeUntypedProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The multiplicity of the &apos;{0}&apos; property must be &apos;{1}&apos;..
         /// </summary>
         internal static string MustHaveMatchingMultiplicity {

@@ -169,12 +169,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull("type");
             }
 
-            Type elementType;
-
-            return !(TypeHelper.IsGenericTypeDefinition(type)
-                     || type.IsPointer
-                     || type == typeof(object)
-                     || (TypeHelper.IsCollection(type, out elementType) && elementType == typeof(object)));
+            return !(TypeHelper.IsGenericTypeDefinition(type) || type.IsPointer);
         }
 
         // gets the primitive odata uri representation.

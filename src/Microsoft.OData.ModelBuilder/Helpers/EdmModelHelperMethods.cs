@@ -906,6 +906,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                     EdmPrimitiveTypeKind typeKind = EdmTypeBuilder.GetTypeKind(primitiveTypeConfiguration.ClrType);
                     return EdmCoreModel.Instance.GetPrimitive(typeKind, nullable);
                 }
+                else if (configuration.Kind == EdmTypeKind.Untyped)
+                {
+                    return EdmCoreModel.Instance.GetUntyped();
+                }
                 else
                 {
                     throw Error.InvalidOperation(SRResources.NoMatchingIEdmTypeFound, configuration.FullName);
