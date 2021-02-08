@@ -1976,6 +1976,35 @@
             Ignores properties with the NotMappedAttribute from <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/>.
             </summary>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Conventions.Attributes.NullableAttributeEdmPropertyConvention">
+            <summary>
+            Configures properties that have the NullableAttribute.
+            </summary>
+            <remarks>This MUST come after RequiredAttribute</remarks>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Conventions.Attributes.NullableAttributeEdmPropertyConvention.Apply(Microsoft.OData.ModelBuilder.PropertyConfiguration,Microsoft.OData.ModelBuilder.StructuralTypeConfiguration,System.Attribute,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)">
+            <summary>
+            Configures property's NonNullablity.
+            </summary>
+            <param name="edmProperty">The key property.</param>
+            <param name="structuralTypeConfiguration">The edm type being configured.</param>
+            <param name="attribute">The <see cref="T:System.Attribute"/> found on the property.</param>
+            <param name="model">The ODataConventionModelBuilder used to build the model.</param>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Conventions.Attributes.NullableContextAttributeEdmTypeConvention">
+            <summary>
+            Configures properties of a Type that has the NullableContextAttribute.
+            </summary>
+            <remarks>This MUST come after NullableAttribute</remarks>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Conventions.Attributes.NullableContextAttributeEdmTypeConvention.Apply(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder,System.Attribute)">
+            <summary>
+            Configures the NonNullablity of a type's properties based on the NullableContext.
+            </summary>
+            <param name="edmTypeConfiguration">The edm type being configured.</param>
+            <param name="attribute">The <see cref="T:System.Attribute"/> found on the property.</param>
+            <param name="model">The ODataConventionModelBuilder used to build the model.</param>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Conventions.Attributes.OrderByAttributeEdmTypeConvention.Apply(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration,Microsoft.OData.ModelBuilder.ODataConventionModelBuilder,System.Attribute)">
             <summary>
             Set whether the $orderby can be applied on those properties of this structural type.
@@ -3618,6 +3647,31 @@
             <summary>
             Sets the property as countable.
             </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.PropertyConfigurationExtensions">
+            <summary>
+            Extensions method for <see cref="T:Microsoft.OData.ModelBuilder.PropertyConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfigurationExtensions.NonNullable(Microsoft.OData.ModelBuilder.PropertyConfiguration)">
+            <summary>
+            Determine if the EDM PropertyConfiguration is already set to be NonNullable
+            </summary>
+            <param name="edmProperty">The <see cref="T:Microsoft.OData.ModelBuilder.PropertyConfiguration"/> being extended.</param>
+            <returns><c>true</c> if NonNullable</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfigurationExtensions.ReturnMaybeNull(Microsoft.OData.ModelBuilder.PropertyConfiguration)">
+            <summary>
+            Determine if the EDM PropertyConfiguration has [MaybeNull] on return value
+            </summary>
+            <param name="edmProperty">The <see cref="T:Microsoft.OData.ModelBuilder.PropertyConfiguration"/> being extended.</param>
+            <returns><c>true</c> if MaybeNull set</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfigurationExtensions.SetNonNullable(Microsoft.OData.ModelBuilder.PropertyConfiguration)">
+            <summary>
+            Set the EDM PropertyConfiguration to be NonNullable
+            </summary>
+            <param name="edmProperty">The <see cref="T:Microsoft.OData.ModelBuilder.PropertyConfiguration"/> being extended.</param>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.PropertyKind">
             <summary>
