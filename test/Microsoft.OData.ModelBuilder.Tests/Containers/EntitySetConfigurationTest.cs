@@ -2,7 +2,6 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
-using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Xunit;
 
@@ -38,7 +37,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         [Fact]
         public void CtorThatTakesClrType_Throws_ArgumentNull_For_Name()
         {
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1 || NET5_0
             ExceptionAssert.Throws<ArgumentException>(
                 () => new EntitySetConfiguration(modelBuilder: new ODataModelBuilder(), entityClrType: typeof(EntitySetConfigurationTest), name: null),
                 "The argument 'name' is null or empty. (Parameter 'name')");
@@ -74,7 +73,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         [Fact]
         public void CtorThatTakesEntityTypeConfiguration_Throws_ArgumentNull_For_Name()
         {
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1 || NET5_0
             ExceptionAssert.Throws<ArgumentException>(
                 () => new EntitySetConfiguration(
                     modelBuilder: new ODataModelBuilder(),

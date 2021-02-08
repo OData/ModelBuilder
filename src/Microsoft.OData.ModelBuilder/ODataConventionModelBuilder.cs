@@ -26,6 +26,8 @@ namespace Microsoft.OData.ModelBuilder
             new NotMappedAttributeConvention(), // NotMappedAttributeConvention has to run before EntityKeyConvention
             new DataMemberAttributeEdmPropertyConvention(),
             new RequiredAttributeEdmPropertyConvention(),
+            new NullableAttributeEdmPropertyConvention(), // NullableAttributeConvention has to run after RequiredAttributeConvention
+            new NullableContextAttributeEdmTypeConvention(), // NullableContextAttributeConvention has to run after NullableAttributeConvention
             new DefaultValueAttributeEdmPropertyConvention(),
             new ConcurrencyCheckAttributeEdmPropertyConvention(),
             new TimestampAttributeEdmPropertyConvention(),
@@ -476,15 +478,23 @@ namespace Microsoft.OData.ModelBuilder
 
                             structuralToBePatched.RemoveProperty(propertyToBeRemoved.PropertyInfo);
 
-                            if (propertyToBeRemoved.Multiplicity == EdmMultiplicity.Many)
+                            switch (propertyToBeRemoved.Multiplicity)
                             {
-                                propertyConfiguration =
-                                    structuralToBePatched.AddCollectionProperty(propertyToBeRemoved.PropertyInfo);
-                            }
-                            else
-                            {
-                                propertyConfiguration =
-                                    structuralToBePatched.AddComplexProperty(propertyToBeRemoved.PropertyInfo);
+                                case EdmMultiplicity.Many:
+                                    propertyConfiguration =
+                                        structuralToBePatched.AddCollectionProperty(propertyToBeRemoved.PropertyInfo);
+                                    break;
+                                case EdmMultiplicity.One:
+                                    propertyConfiguration =
+                                         structuralToBePatched.AddComplexProperty(propertyToBeRemoved.PropertyInfo);
+                                    (propertyConfiguration as ComplexPropertyConfiguration).NullableProperty = false;
+                                    break;
+                                case EdmMultiplicity.ZeroOrOne:
+                                case EdmMultiplicity.Unknown:
+                                default:
+                                    propertyConfiguration =
+                                        structuralToBePatched.AddComplexProperty(propertyToBeRemoved.PropertyInfo);
+                                    break;
                             }
 
                             Contract.Assert(propertyToBeRemoved.AddedExplicitly == false);
