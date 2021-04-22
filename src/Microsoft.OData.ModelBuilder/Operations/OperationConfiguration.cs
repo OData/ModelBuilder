@@ -4,13 +4,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an Operation (Edm Function or Edm Action) that is exposed in the Edm model
     /// </summary>
-    public abstract class OperationConfiguration
+    public abstract class OperationConfiguration : VocabularyConfigurationsBase
     {
         private List<ParameterConfiguration> _parameters = new List<ParameterConfiguration>();
         private BindingParameterConfiguration _bindingParameter;
@@ -87,11 +88,6 @@ namespace Microsoft.OData.ModelBuilder
         /// The EntitySetPathExpression that entities are returned from.
         /// </summary>
         public IEnumerable<string> EntitySetPath { get; internal set; }
-
-        /// <summary>
-        /// Vocabulary builders to annotate this <see cref="OperationConfiguration"/>
-        /// </summary> 
-        public Dictionary<Type, VocabularyTermConfiguration> VocabularyTermConfigurations { get; } = new Dictionary<Type, VocabularyTermConfiguration>();
 
         /// <summary>
         /// Get the bindingParameter.

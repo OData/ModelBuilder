@@ -16,12 +16,16 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class UpdateRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _updatable;
         private bool? _upsertable;
         private bool? _deltaUpdateSupported;
+        private HttpMethod? _updateMethod;
         private bool? _filterSegmentSupported;
         private bool? _typecastSegmentSupported;
+        private readonly HashSet<EdmPropertyPathExpression> _nonUpdatableProperties = new HashSet<EdmPropertyPathExpression>();
         private readonly HashSet<EdmNavigationPropertyPathExpression> _nonUpdatableNavigationProperties = new HashSet<EdmNavigationPropertyPathExpression>();
+        private readonly HashSet<EdmPropertyPathExpression> _requiredProperties = new HashSet<EdmPropertyPathExpression>();
         private int? _maxLevels;
         private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
         private ModificationQueryOptionsConfiguration _queryOptions;
@@ -32,6 +36,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.UpdateRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
+        public UpdateRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Entities can be updated
@@ -67,6 +83,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
+        /// Supported HTTP Methods (PUT or PATCH) for updating an entity.  If null, PATCH SHOULD be supported and PUT MAY be supported.
+        /// </summary>
+        /// <param name="updateMethod">The value to set</param>
+        /// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
+        public UpdateRestrictionsConfiguration HasUpdateMethod(HttpMethod updateMethod)
+        {
+            _updateMethod = updateMethod;
+            return this;
+        }
+
+        /// <summary>
         /// Members of collections can be updated via a PATCH request with a `/$filter(...)/$each` segment
         /// </summary>
         /// <param name="filterSegmentSupported">The value to set</param>
@@ -89,6 +116,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
+        /// These structural properties cannot be specified on update
+        /// </summary>
+        /// <param name="nonUpdatableProperties">The value(s) to set</param>
+        /// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
+        public UpdateRestrictionsConfiguration HasNonUpdatableProperties(params EdmPropertyPathExpression[] nonUpdatableProperties)
+        {
+            _nonUpdatableProperties.UnionWith(nonUpdatableProperties);
+            return this;
+        }
+
+        /// <summary>
         /// These navigation properties do not allow rebinding
         /// </summary>
         /// <param name="nonUpdatableNavigationProperties">The value(s) to set</param>
@@ -96,6 +134,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         public UpdateRestrictionsConfiguration HasNonUpdatableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonUpdatableNavigationProperties)
         {
             _nonUpdatableNavigationProperties.UnionWith(nonUpdatableNavigationProperties);
+            return this;
+        }
+
+        /// <summary>
+        /// These structural properties must be specified on update
+        /// </summary>
+        /// <param name="requiredProperties">The value(s) to set</param>
+        /// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
+        public UpdateRestrictionsConfiguration HasRequiredProperties(params EdmPropertyPathExpression[] requiredProperties)
+        {
+            _requiredProperties.UnionWith(requiredProperties);
             return this;
         }
 
@@ -244,6 +293,13 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 properties.Add(new EdmPropertyConstructor("DeltaUpdateSupported", new EdmBooleanConstant(_deltaUpdateSupported.Value)));
             }
 
+            if (_updateMethod.HasValue)
+            {
+                var enumType = new EdmEnumType("Org.OData.Capabilities.V1", "HttpMethod", true);
+                var enumMember = new EdmEnumMember(enumType, _updateMethod.ToString(), new EdmEnumMemberValue((long)_updateMethod.Value));
+                properties.Add(new EdmPropertyConstructor("UpdateMethod", new EdmEnumMemberExpression(enumMember)));
+            }
+
             if (_filterSegmentSupported.HasValue)
             {
                 properties.Add(new EdmPropertyConstructor("FilterSegmentSupported", new EdmBooleanConstant(_filterSegmentSupported.Value)));
@@ -254,12 +310,30 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 properties.Add(new EdmPropertyConstructor("TypecastSegmentSupported", new EdmBooleanConstant(_typecastSegmentSupported.Value)));
             }
 
+            if (_nonUpdatableProperties.Any())
+            {
+                var collection = _nonUpdatableProperties.Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("NonUpdatableProperties", new EdmCollectionExpression(collection)));
+                }
+            }
+
             if (_nonUpdatableNavigationProperties.Any())
             {
                 var collection = _nonUpdatableNavigationProperties.Where(item => item != null);
                 if (collection.Any())
                 {
                     properties.Add(new EdmPropertyConstructor("NonUpdatableNavigationProperties", new EdmCollectionExpression(collection)));
+                }
+            }
+
+            if (_requiredProperties.Any())
+            {
+                var collection = _requiredProperties.Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("RequiredProperties", new EdmCollectionExpression(collection)));
                 }
             }
 
@@ -309,6 +383,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

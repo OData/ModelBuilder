@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class IsolationSupportedConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private IsolationLevel? _isolationSupported;
 
         /// <inheritdoc/>
@@ -43,6 +44,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 var enumMember = new EdmEnumMember(enumType, _isolationSupported.ToString(), new EdmEnumMemberValue((long)_isolationSupported.Value));
                 properties.Add(new EdmPropertyConstructor("IsolationSupported", new EdmEnumMemberExpression(enumMember)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

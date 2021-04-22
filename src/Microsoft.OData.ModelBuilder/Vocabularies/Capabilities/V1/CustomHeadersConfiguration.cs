@@ -47,23 +47,13 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_customHeaders.Any())
-            {
-                var collection = _customHeaders.Select(item => item.ToEdmExpression()).Where(item => item != null);
-                if (collection.Any())
-                {
-                    properties.Add(new EdmPropertyConstructor("CustomHeaders", new EdmCollectionExpression(collection)));
-                }
-            }
-
-            if (!properties.Any())
+            if (!_customHeaders.Any())
             {
                 return null;
             }
 
-            return new EdmRecordExpression(properties);
+            var records = _customHeaders.Select(item => item.ToEdmExpression());
+            return new EdmCollectionExpression(records);
         }
     }
 }

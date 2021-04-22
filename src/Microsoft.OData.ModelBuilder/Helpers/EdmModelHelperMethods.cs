@@ -13,6 +13,7 @@ using Microsoft.OData.Edm.Validation;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.ModelBuilder.Annotations;
 using Microsoft.OData.ModelBuilder.Config;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder.Helpers
 {
@@ -68,12 +69,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             return model;
         }
 
-        private static void AddTypes(this EdmModel model, Dictionary<Type, IEdmType> types)
+        private static void AddTypes(this EdmModel model, Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> types)
         {
             Contract.Assert(model != null);
             Contract.Assert(types != null);
 
-            foreach (IEdmType type in types.Values)
+            foreach ((IEdmType type, _) in types.Values)
             {
                 model.AddType(type);
             }
@@ -146,7 +147,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 NavigationPropertyConfiguration navigationProperty = binding.NavigationProperty;
                 bool isContained = navigationProperty.ContainsTarget;
 
-                IEdmType edmType = edmMap.EdmTypes[navigationProperty.DeclaringType.ClrType];
+                (IEdmType edmType, _) = edmMap.EdmTypes[navigationProperty.DeclaringType.ClrType];
                 IEdmStructuredType structuraType = edmType as IEdmStructuredType;
                 IEdmNavigationProperty edmNavigationProperty = structuraType.NavigationProperties()
                     .Single(np => np.Name == navigationProperty.Name);
@@ -179,12 +180,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
                 if (typeCast != null)
                 {
-                    IEdmType edmType = edmMap.EdmTypes[typeCast];
+                    (IEdmType edmType, _) = edmMap.EdmTypes[typeCast];
                     bindings.Add(edmType.FullTypeName());
                 }
                 else if (propertyInfo != null)
                 {
-                    bindings.Add(edmMap.EdmProperties[propertyInfo].Name);
+                    bindings.Add(edmMap.EdmProperties[propertyInfo].Item1.Name);
                 }
             }
 
@@ -274,8 +275,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
         [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling",
             Justification = "The majority of types referenced by this method are EdmLib types this method needs to know about to operate correctly")]
-        private static void AddOperations(this EdmModel model, IEnumerable<OperationConfiguration> configurations, EdmEntityContainer container,
-            Dictionary<Type, IEdmType> edmTypeMap, IDictionary<string, EdmNavigationSource> edmNavigationSourceMap)
+        private static void AddOperations(
+            this EdmModel model,
+            IEnumerable<OperationConfiguration> configurations,
+            EdmEntityContainer container,
+            Dictionary<Type, IEdmType> edmTypeMap,
+            IDictionary<string, EdmNavigationSource> edmNavigationSourceMap)
         {
             Contract.Assert(model != null, "Model can't be null");
 
@@ -430,16 +435,18 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         private static Dictionary<Type, IEdmType> AddTypes(this EdmModel model, EdmTypeMap edmTypeMap)
         {
             // build types
-            Dictionary<Type, IEdmType> edmTypes = edmTypeMap.EdmTypes;
+            Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> edmTypes = edmTypeMap.EdmTypes;
 
             // Add an annotate types
             model.AddTypes(edmTypes);
             model.AddClrTypeAnnotations(edmTypes);
+            model.AddTypesVocabularyTermAnnotations(edmTypes);
 
             // add annotation for properties
-            Dictionary<PropertyInfo, IEdmProperty> edmProperties = edmTypeMap.EdmProperties;
+            Dictionary<PropertyInfo, (IEdmProperty, PropertyConfiguration)> edmProperties = edmTypeMap.EdmProperties;
             model.AddClrPropertyInfoAnnotations(edmProperties);
             model.AddClrEnumMemberInfoAnnotations(edmTypeMap);
+            model.AddEnumMembersVocabularyAnnotations(edmTypeMap);
             model.AddPropertyRestrictionsAnnotations(edmTypeMap.EdmPropertiesRestrictions);
             model.AddPropertiesQuerySettings(edmTypeMap.EdmPropertiesQuerySettings);
             model.AddStructuredTypeQuerySettings(edmTypeMap.EdmStructuredTypeQuerySettings);
@@ -450,7 +457,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             // add instance annotation dictionary property annotations
             model.AddInstanceAnnotationsContainer(edmTypeMap.InstanceAnnotatableTypes);
 
-            return edmTypes;
+            return edmTypes.ToDictionary(t => t.Key, t => t.Value.Item1);
         }
 
         private static void AddType(this EdmModel model, IEdmType type)
@@ -493,28 +500,48 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             return singletons.Select(sg => Tuple.Create(container.AddSingleton(sg, edmTypeMap), sg));
         }
 
-        private static void AddClrTypeAnnotations(this EdmModel model, Dictionary<Type, IEdmType> edmTypes)
+        private static void AddClrTypeAnnotations(this EdmModel model, Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> edmTypes)
         {
-            foreach (KeyValuePair<Type, IEdmType> map in edmTypes)
+            foreach (KeyValuePair<Type, (IEdmType, IEdmTypeConfiguration)> map in edmTypes)
             {
                 // pre-populate the model with clr-type annotations so that we don't have to scan 
                 // all loaded assemblies to find the clr type for an edm type that we build.
-                IEdmType edmType = map.Value;
+                IEdmType edmType = map.Value.Item1;
                 Type clrType = map.Key;
                 model.SetAnnotationValue<ClrTypeAnnotation>(edmType, new ClrTypeAnnotation(clrType));
             }
         }
 
-        private static void AddClrPropertyInfoAnnotations(this EdmModel model, Dictionary<PropertyInfo, IEdmProperty> edmProperties)
+        private static void AddTypesVocabularyTermAnnotations(this EdmModel model, Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> edmTypes)
         {
-            foreach (KeyValuePair<PropertyInfo, IEdmProperty> edmPropertyMap in edmProperties)
+            foreach (KeyValuePair<Type, (IEdmType, IEdmTypeConfiguration)> map in edmTypes)
             {
-                IEdmProperty edmProperty = edmPropertyMap.Value;
+                if (!(map.Value.Item2 is VocabularyConfigurationsBase config))
+                {
+                    continue;
+                }
+
+                if (!(map.Value.Item1 is IEdmVocabularyAnnotatable target))
+                {
+                    continue;
+                }
+
+                model.SetVocabularyConfigurationAnnotations(target, config.VocabularyTermConfigurations?.Values);
+            }
+        }
+
+        private static void AddClrPropertyInfoAnnotations(this EdmModel model, Dictionary<PropertyInfo, (IEdmProperty, PropertyConfiguration)> edmProperties)
+        {
+            foreach (KeyValuePair<PropertyInfo, (IEdmProperty, PropertyConfiguration)> edmPropertyMap in edmProperties)
+            {
+                IEdmProperty edmProperty = edmPropertyMap.Value.Item1;
                 PropertyInfo clrProperty = edmPropertyMap.Key;
                 if (edmProperty.Name != clrProperty.Name)
                 {
                     model.SetAnnotationValue(edmProperty, new ClrPropertyInfoAnnotation(clrProperty));
                 }
+
+                model.SetVocabularyConfigurationAnnotations(edmProperty, edmPropertyMap.Value.Item2.VocabularyTermConfigurations?.Values);
             }
         }
 
@@ -528,8 +555,20 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             var enumGroupBy = edmTypeMap.EnumMembers.GroupBy(e => e.Key.GetType(), e => e);
             foreach (var enumGroup in enumGroupBy)
             {
-                IEdmType edmType = edmTypeMap.EdmTypes[enumGroup.Key];
-                model.SetAnnotationValue(edmType, new ClrEnumMemberAnnotation(enumGroup.ToDictionary(e => e.Key, e => e.Value)));
+                (IEdmType edmType, _) = edmTypeMap.EdmTypes[enumGroup.Key];
+                model.SetAnnotationValue(edmType, new ClrEnumMemberAnnotation(enumGroup.ToDictionary(e => e.Key, e => e.Value.Item1)));
+            }
+        }
+
+        private static void AddEnumMembersVocabularyAnnotations(this EdmModel model, EdmTypeMap edmTypeMap)
+        {
+            if (edmTypeMap.EnumMembers == null || !edmTypeMap.EnumMembers.Any())
+            {
+                return;
+            }
+            foreach (var enumMember in edmTypeMap.EnumMembers)
+            {
+                model.SetVocabularyConfigurationAnnotations(enumMember.Value.Item1, enumMember.Value.Item2.VocabularyTermConfigurations.Values);
             }
         }
 
@@ -637,10 +676,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
             foreach (StructuralPropertyConfiguration property in concurrencyProperties)
             {
-                IEdmProperty value;
+                (IEdmProperty, PropertyConfiguration) value;
                 if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out value))
                 {
-                    var item = value as IEdmStructuralProperty;
+                    var item = value.Item1 as IEdmStructuralProperty;
                     if (item != null)
                     {
                         edmProperties.Add(item);
@@ -702,9 +741,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             IList<IEdmNavigationProperty> nonCountableNavigationProperties = new List<IEdmNavigationProperty>();
             foreach (PropertyConfiguration property in notCountableProperties)
             {
-                IEdmProperty value;
-                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out value))
+                (IEdmProperty, PropertyConfiguration) entry;
+                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out entry))
                 {
+                    IEdmProperty value = entry.Item1;
                     if (value != null && value.Type.TypeKind() == EdmTypeKind.Collection)
                     {
                         if (value.PropertyKind == EdmPropertyKind.Navigation)
@@ -736,9 +776,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 new List<Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>>();
             foreach (PropertyConfiguration property in notNavigableProperties)
             {
-                IEdmProperty value;
-                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out value))
+                (IEdmProperty, PropertyConfiguration) entry;
+                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out entry))
                 {
+                    IEdmProperty value = entry.Item1;
                     if (value != null && value.PropertyKind == EdmPropertyKind.Navigation)
                     {
                         properties.Add(new Tuple<IEdmNavigationProperty, CapabilitiesNavigationType>(
@@ -763,9 +804,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             IList<IEdmProperty> properties = new List<IEdmProperty>();
             foreach (PropertyConfiguration property in notFilterProperties)
             {
-                IEdmProperty value;
-                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out value))
+                (IEdmProperty, PropertyConfiguration) entry;
+                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out entry))
                 {
+                    IEdmProperty value = entry.Item1;
                     if (value != null)
                     {
                         properties.Add(value);
@@ -787,9 +829,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             IList<IEdmProperty> properties = new List<IEdmProperty>();
             foreach (PropertyConfiguration property in nonSortableProperties)
             {
-                IEdmProperty value;
-                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out value))
+                (IEdmProperty, PropertyConfiguration) entry;
+                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out entry))
                 {
+                    IEdmProperty value = entry.Item1;
                     if (value != null)
                     {
                         properties.Add(value);
@@ -811,9 +854,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             IList<IEdmNavigationProperty> properties = new List<IEdmNavigationProperty>();
             foreach (PropertyConfiguration property in nonExpandableProperties)
             {
-                IEdmProperty value;
-                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out value))
+                (IEdmProperty, PropertyConfiguration) entry;
+                if (edmTypeMap.EdmProperties.TryGetValue(property.PropertyInfo, out entry))
                 {
+                    IEdmProperty value = entry.Item1;
                     if (value != null && value.PropertyKind == EdmPropertyKind.Navigation)
                     {
                         properties.Add((IEdmNavigationProperty)value);

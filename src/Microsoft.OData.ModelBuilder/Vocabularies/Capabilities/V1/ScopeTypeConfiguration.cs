@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class ScopeTypeConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private string _scope;
         private string _restrictedProperties;
 
@@ -24,6 +25,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// </summary>
         public ScopeTypeConfiguration()
         {
+        }
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="ScopeTypeConfiguration"/></returns>
+        public ScopeTypeConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
         }
 
         /// <summary>
@@ -39,7 +52,11 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <summary>
         /// Comma-separated string value of all properties that will be included or excluded when using the scope.
-        /// Possible string value identifiers when specifying properties are '*', _PropertyName_, '-'_PropertyName_. Where, '*' denotes all properties are accessible,'-'_PropertyName_ excludes that specific property and _PropertyName_ explicitly provides access to the specific property. The absence of 'RestrictedProperties' denotes all properties are accessible using that scope.
+        /// Possible string value identifiers when specifying properties are `*`, _PropertyName_, `-`_PropertyName_.
+        /// `*` denotes all properties are accessible.
+        /// `-`_PropertyName_ excludes that specific property.
+        /// _PropertyName_ explicitly provides access to the specific property.
+        /// The absence of `RestrictedProperties` denotes all properties are accessible using that scope.
         /// </summary>
         /// <param name="restrictedProperties">The value to set</param>
         /// <returns><see cref="ScopeTypeConfiguration"/></returns>
@@ -63,6 +80,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("RestrictedProperties", new EdmStringConstant(_restrictedProperties)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

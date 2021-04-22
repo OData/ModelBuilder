@@ -16,10 +16,23 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class MediaLocationUpdateSupportedConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _mediaLocationUpdateSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.MediaLocationUpdateSupported";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="MediaLocationUpdateSupportedConfiguration"/></returns>
+        public MediaLocationUpdateSupportedConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Stream property supports update of its media edit URL and/or media read URL
@@ -41,6 +54,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("MediaLocationUpdateSupported", new EdmBooleanConstant(_mediaLocationUpdateSupported.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

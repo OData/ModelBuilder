@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class PrimitiveExampleValueConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private string _description;
         private object _value;
 
@@ -24,6 +25,18 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// </summary>
         public PrimitiveExampleValueConfiguration()
         {
+        }
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="PrimitiveExampleValueConfiguration"/></returns>
+        public PrimitiveExampleValueConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
         }
 
         /// <summary>
@@ -62,6 +75,8 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
             {
                 properties.Add(new EdmPropertyConstructor("Value", new EdmStringConstant(_value.ToString())));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

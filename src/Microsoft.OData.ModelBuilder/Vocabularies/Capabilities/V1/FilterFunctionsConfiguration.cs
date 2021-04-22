@@ -12,7 +12,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
     /// <summary>
-    /// List of functions and operators supported in filter expressions.
+    /// List of functions and operators supported in filter expressions
     /// If not specified, null, or empty, all functions and operators may be attempted.
     /// </summary>
     public partial class FilterFunctionsConfiguration : VocabularyTermConfiguration
@@ -23,7 +23,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         public override string TermName => "Org.OData.Capabilities.V1.FilterFunctions";
 
         /// <summary>
-        /// List of functions and operators supported in filter expressions.
+        /// List of functions and operators supported in filter expressions
         /// If not specified, null, or empty, all functions and operators may be attempted.
         /// </summary>
         /// <param name="filterFunctions">The value(s) to set</param>
@@ -37,23 +37,13 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_filterFunctions.Any())
-            {
-                var collection = _filterFunctions.Select(item => item.ToEdmExpression()).Where(item => item != null);
-                if (collection.Any())
-                {
-                    properties.Add(new EdmPropertyConstructor("FilterFunctions", new EdmCollectionExpression(collection)));
-                }
-            }
-
-            if (!properties.Any())
+            if (!_filterFunctions.Any())
             {
                 return null;
             }
 
-            return new EdmRecordExpression(properties);
+            var records = _filterFunctions.Select(item => item.ToEdmExpression());
+            return new EdmCollectionExpression(records);
         }
     }
 }

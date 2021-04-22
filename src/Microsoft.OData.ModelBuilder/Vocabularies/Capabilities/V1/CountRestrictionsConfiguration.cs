@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class CountRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _countable;
         private readonly HashSet<EdmPropertyPathExpression> _nonCountableProperties = new HashSet<EdmPropertyPathExpression>();
         private readonly HashSet<EdmNavigationPropertyPathExpression> _nonCountableNavigationProperties = new HashSet<EdmNavigationPropertyPathExpression>();
@@ -24,7 +25,19 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         public override string TermName => "Org.OData.Capabilities.V1.CountRestrictions";
 
         /// <summary>
-        /// Entities can be counted
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="CountRestrictionsConfiguration"/></returns>
+        public CountRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
+
+        /// <summary>
+        /// Entities can be counted (only valid if targeting an entity set)
         /// </summary>
         /// <param name="countable">The value to set</param>
         /// <returns><see cref="CountRestrictionsConfiguration"/></returns>
@@ -35,7 +48,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// These collection properties do not allow /$count segments
+        /// Members of these collection properties cannot be counted
         /// </summary>
         /// <param name="nonCountableProperties">The value(s) to set</param>
         /// <returns><see cref="CountRestrictionsConfiguration"/></returns>
@@ -46,7 +59,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// These navigation properties do not allow /$count segments
+        /// Members of these navigation properties cannot be counted
         /// </summary>
         /// <param name="nonCountableNavigationProperties">The value(s) to set</param>
         /// <returns><see cref="CountRestrictionsConfiguration"/></returns>
@@ -83,6 +96,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                     properties.Add(new EdmPropertyConstructor("NonCountableNavigationProperties", new EdmCollectionExpression(collection)));
                 }
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

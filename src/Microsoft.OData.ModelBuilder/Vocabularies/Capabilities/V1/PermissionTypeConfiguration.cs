@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class PermissionTypeConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private string _schemeName;
         private readonly HashSet<ScopeTypeConfiguration> _scopes = new HashSet<ScopeTypeConfiguration>();
 
@@ -24,6 +25,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// </summary>
         public PermissionTypeConfiguration()
         {
+        }
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="PermissionTypeConfiguration"/></returns>
+        public PermissionTypeConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
         }
 
         /// <summary>
@@ -78,6 +91,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                     properties.Add(new EdmPropertyConstructor("Scopes", new EdmCollectionExpression(collection)));
                 }
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

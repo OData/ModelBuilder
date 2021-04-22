@@ -16,12 +16,25 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class ChangeTrackingConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _supported;
         private readonly HashSet<EdmPropertyPathExpression> _filterableProperties = new HashSet<EdmPropertyPathExpression>();
         private readonly HashSet<EdmNavigationPropertyPathExpression> _expandableProperties = new HashSet<EdmNavigationPropertyPathExpression>();
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.ChangeTracking";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="ChangeTrackingConfiguration"/></returns>
+        public ChangeTrackingConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// This entity set supports the odata.track-changes preference
@@ -85,6 +98,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                     properties.Add(new EdmPropertyConstructor("ExpandableProperties", new EdmCollectionExpression(collection)));
                 }
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

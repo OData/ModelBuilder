@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Csdl;
@@ -246,6 +247,62 @@ namespace Microsoft.OData.ModelBuilder
             };
 
             model.SetVocabularyAnnotation(target, properties, CapabilitiesVocabularyConstants.ExpandRestrictions);
+        }
+
+        /// <summary>
+        /// Convert dynamic properties to edm properties.
+        /// </summary>
+        /// <param name="dynamicProperties">The dynamic properties to be processed</param>
+        /// <returns>List of <see cref="IEdmPropertyConstructor"/>.</returns>
+        public static List<IEdmPropertyConstructor> ToEdmProperties(this Dictionary<string, object> dynamicProperties)
+        {
+            var results = new List<IEdmPropertyConstructor>(dynamicProperties.Count);
+            foreach (var (key, value) in dynamicProperties)
+            {
+                if (value != null)
+                {
+                    IEdmExpression expression;
+                    switch (value)
+                    {
+                        case bool boolVal:
+                            expression = new EdmBooleanConstant(boolVal);
+                            break;
+                        case Date date:
+                            expression = new EdmDateConstant(date);
+                            break;
+                        case TimeOfDay date:
+                            expression = new EdmTimeOfDayConstant(date);
+                            break;
+                        case DateTime datetime:
+                            expression = new EdmDateTimeOffsetConstant(datetime);
+                            break;
+                        case DateTimeOffset offset:
+                            expression = new EdmDateTimeOffsetConstant(offset.UtcDateTime);
+                            break;
+                        case string text:
+                            expression = new EdmStringConstant(text);
+                            break;
+                        case short _:
+                        case int _:
+                        case long _:
+                            expression = new EdmIntegerConstant(Convert.ToInt64(value, CultureInfo.InvariantCulture));
+                            break;
+                        default:
+                            expression = new EdmStringConstant(value.ToString());
+                            break;
+                    }
+
+                    results.Add(new EdmPropertyConstructor(key, expression));
+                }
+            }
+
+            return results;
+        }
+
+        private static void Deconstruct<T1, T2>(this KeyValuePair<T1, T2> tuple, out T1 key, out T2 value)
+        {
+            key = tuple.Key;
+            value = tuple.Value;
         }
 
         private static void SetVocabularyAnnotation(this EdmModel model, IEdmVocabularyAnnotatable target,

@@ -17,11 +17,24 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class NavigationRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private NavigationType? _navigability;
         private readonly HashSet<NavigationPropertyRestrictionConfiguration> _restrictedProperties = new HashSet<NavigationPropertyRestrictionConfiguration>();
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.NavigationRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="NavigationRestrictionsConfiguration"/></returns>
+        public NavigationRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Default navigability for all navigation properties of the annotation target. Individual navigation properties can override this value via `RestrictedProperties/Navigability`.
@@ -77,6 +90,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                     properties.Add(new EdmPropertyConstructor("RestrictedProperties", new EdmCollectionExpression(collection)));
                 }
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

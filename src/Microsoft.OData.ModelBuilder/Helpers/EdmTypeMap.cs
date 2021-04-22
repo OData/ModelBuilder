@@ -12,12 +12,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
     internal class EdmTypeMap
     {
         public EdmTypeMap(
-            Dictionary<Type, IEdmType> edmTypes,
-            Dictionary<PropertyInfo, IEdmProperty> edmProperties,
+            Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> edmTypes,
+            Dictionary<PropertyInfo, (IEdmProperty, PropertyConfiguration)> edmProperties,
             Dictionary<IEdmProperty, QueryableRestrictions> edmPropertiesRestrictions,
             Dictionary<IEdmProperty, ModelBoundQuerySettings> edmPropertiesQuerySettings,
             Dictionary<IEdmStructuredType, ModelBoundQuerySettings> edmStructuredTypeQuerySettings,
-            Dictionary<Enum, IEdmEnumMember> enumMembers,
+            Dictionary<Enum, (IEdmEnumMember, EnumMemberConfiguration)> enumMembers,
             Dictionary<IEdmStructuredType, PropertyInfo> openTypes,
             Dictionary<IEdmStructuredType, PropertyInfo> instanceAnnotatableTypes)
         {
@@ -31,9 +31,9 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             InstanceAnnotatableTypes = instanceAnnotatableTypes;
         }
 
-        public Dictionary<Type, IEdmType> EdmTypes { get; }
+        public Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> EdmTypes { get; }
 
-        public Dictionary<PropertyInfo, IEdmProperty> EdmProperties { get; }
+        public Dictionary<PropertyInfo, (IEdmProperty, PropertyConfiguration)> EdmProperties { get; }
 
         public Dictionary<IEdmProperty, QueryableRestrictions> EdmPropertiesRestrictions { get; }
 
@@ -41,7 +41,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
         public Dictionary<IEdmStructuredType, ModelBoundQuerySettings> EdmStructuredTypeQuerySettings { get; }
 
-        public Dictionary<Enum, IEdmEnumMember> EnumMembers { get; }
+        public Dictionary<Enum, (IEdmEnumMember, EnumMemberConfiguration)> EnumMembers { get; }
 
         public Dictionary<IEdmStructuredType, PropertyInfo> OpenTypes { get; }
 

@@ -6,13 +6,14 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an <see cref="IEdmEnumType"/> that can be built using <see cref="ODataModelBuilder"/>.
     /// </summary>
-    public class EnumTypeConfiguration : IEdmTypeConfiguration
+    public class EnumTypeConfiguration : VocabularyConfigurationsBase, IEdmTypeConfiguration
     {
         private string _namespace;
         private string _name;

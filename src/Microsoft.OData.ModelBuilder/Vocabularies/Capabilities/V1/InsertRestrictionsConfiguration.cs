@@ -16,9 +16,11 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class InsertRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _insertable;
         private readonly HashSet<EdmPropertyPathExpression> _nonInsertableProperties = new HashSet<EdmPropertyPathExpression>();
         private readonly HashSet<EdmNavigationPropertyPathExpression> _nonInsertableNavigationProperties = new HashSet<EdmNavigationPropertyPathExpression>();
+        private readonly HashSet<EdmPropertyPathExpression> _requiredProperties = new HashSet<EdmPropertyPathExpression>();
         private int? _maxLevels;
         private bool? _typecastSegmentSupported;
         private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
@@ -30,6 +32,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.InsertRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+        public InsertRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Entities can be inserted
@@ -61,6 +75,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         public InsertRestrictionsConfiguration HasNonInsertableNavigationProperties(params EdmNavigationPropertyPathExpression[] nonInsertableNavigationProperties)
         {
             _nonInsertableNavigationProperties.UnionWith(nonInsertableNavigationProperties);
+            return this;
+        }
+
+        /// <summary>
+        /// These structural properties must be specified on insert
+        /// </summary>
+        /// <param name="requiredProperties">The value(s) to set</param>
+        /// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+        public InsertRestrictionsConfiguration HasRequiredProperties(params EdmPropertyPathExpression[] requiredProperties)
+        {
+            _requiredProperties.UnionWith(requiredProperties);
             return this;
         }
 
@@ -228,6 +253,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 }
             }
 
+            if (_requiredProperties.Any())
+            {
+                var collection = _requiredProperties.Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("RequiredProperties", new EdmCollectionExpression(collection)));
+                }
+            }
+
             if (_maxLevels.HasValue)
             {
                 properties.Add(new EdmPropertyConstructor("MaxLevels", new EdmIntegerConstant(_maxLevels.Value)));
@@ -279,6 +313,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class CollectionPropertyRestrictionsTypeConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private EdmPropertyPathExpression _collectionProperty;
         private readonly HashSet<string> _filterFunctions = new HashSet<string>();
         private FilterRestrictionsConfiguration _filterRestrictions;
@@ -36,6 +37,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+        public CollectionPropertyRestrictionsTypeConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
+
+        /// <summary>
         /// Restricted Collection-valued property
         /// </summary>
         /// <param name="collectionProperty">The value to set</param>
@@ -47,7 +60,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// List of functions and operators supported in filter expressions.
+        /// List of functions and operators supported in filter expressions
         /// If not specified, null, or empty, all functions and operators may be attempted.
         /// </summary>
         /// <param name="filterFunctions">The value(s) to set</param>
@@ -269,6 +282,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("Deletable", new EdmBooleanConstant(_deletable.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

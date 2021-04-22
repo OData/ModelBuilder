@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Vocabularies;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 using Microsoft.OData.ModelBuilder.Capabilities.V1;
 using Microsoft.OData.ModelBuilder.Core.V1;
 
@@ -19,7 +20,7 @@ namespace Microsoft.OData.ModelBuilder
     public static class VocabularyTermConfigurationExtensions
     {
         internal static IEdmExpression ToEdmExpression(this string text)
-            => string.IsNullOrEmpty(text) ? null: new EdmStringConstant(text);
+            => string.IsNullOrEmpty(text) ? null : new EdmStringConstant(text);
         /// <summary>
         /// <see cref="CallbackSupportedConfiguration"/> configuration
         /// </summary>
@@ -41,10 +42,10 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// <see cref="ChangeTrackingConfiguration"/> configuration
         /// </summary>
-        /// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
         /// <returns><see cref="ChangeTrackingConfiguration"/></returns>
-        public static ChangeTrackingConfiguration HasChangeTracking(this FunctionConfiguration operationSource)
-            => operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<ChangeTrackingConfiguration>();
+        public static ChangeTrackingConfiguration HasChangeTracking(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ChangeTrackingConfiguration>();
 
         /// <summary>
         /// <see cref="CountRestrictionsConfiguration"/> configuration
@@ -52,7 +53,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
         /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
         /// <returns><see cref="CountRestrictionsConfiguration"/></returns>
-        public static CountRestrictionsConfiguration HasCountRestrictions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
+        public static CountRestrictionsConfiguration HasCountRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
             => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<CountRestrictionsConfiguration>();
 
         /// <summary>
@@ -164,6 +165,15 @@ namespace Microsoft.OData.ModelBuilder
             => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<InsertRestrictionsConfiguration>();
 
         /// <summary>
+        /// <see cref="InsertRestrictionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+        public static InsertRestrictionsConfiguration HasInsertRestrictions<T>(this EntityTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<InsertRestrictionsConfiguration>();
+
+        /// <summary>
         /// <see cref="DeepInsertSupportConfiguration"/> configuration
         /// </summary>
         /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
@@ -180,6 +190,15 @@ namespace Microsoft.OData.ModelBuilder
         /// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
         public static UpdateRestrictionsConfiguration HasUpdateRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
             => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<UpdateRestrictionsConfiguration>();
+
+        /// <summary>
+        /// <see cref="UpdateRestrictionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="UpdateRestrictionsConfiguration"/></returns>
+        public static UpdateRestrictionsConfiguration HasUpdateRestrictions<T>(this EntityTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<UpdateRestrictionsConfiguration>();
 
         /// <summary>
         /// <see cref="DeepUpdateSupportConfiguration"/> configuration
@@ -200,29 +219,47 @@ namespace Microsoft.OData.ModelBuilder
             => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DeleteRestrictionsConfiguration>();
 
         /// <summary>
+        /// <see cref="DeleteRestrictionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
+        public static DeleteRestrictionsConfiguration HasDeleteRestrictions<T>(this EntityTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DeleteRestrictionsConfiguration>();
+
+        /// <summary>
         /// <see cref="CollectionPropertyRestrictionsConfiguration"/> configuration
         /// </summary>
         /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
         /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
         /// <returns><see cref="CollectionPropertyRestrictionsConfiguration"/></returns>
-        public static CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
-            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<CollectionPropertyRestrictionsConfiguration>();
+        public static CollectionPropertyRestrictionsConfiguration HasCollectionPropertyRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource, Func<CollectionPropertyRestrictionsTypeConfiguration, CollectionPropertyRestrictionsTypeConfiguration> sourceConfigurations) where TEntity : class
+        {
+            var instance = new CollectionPropertyRestrictionsTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<CollectionPropertyRestrictionsConfiguration>();
+            configuration.HasCollectionPropertyRestrictions(instance);
+
+            return configuration;
+        }
 
         /// <summary>
         /// <see cref="OperationRestrictionsConfiguration"/> configuration
         /// </summary>
-        /// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
         /// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
-        public static OperationRestrictionsConfiguration HasOperationRestrictions(this OperationConfiguration operationSource)
-            => operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<OperationRestrictionsConfiguration>();
+        public static OperationRestrictionsConfiguration HasOperationRestrictions(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<OperationRestrictionsConfiguration>();
 
         /// <summary>
         /// <see cref="ModificationQueryOptionsConfiguration"/> configuration
         /// </summary>
-        /// <param name="operationSource">The <see cref="IEdmOperation"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
         /// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
-        public static ModificationQueryOptionsConfiguration HasModificationQueryOptions(this ActionConfiguration operationSource)
-            => operationSource?.VocabularyTermConfigurations.GetOrCreateConfiguration<ModificationQueryOptionsConfiguration>();
+        public static ModificationQueryOptionsConfiguration HasModificationQueryOptions(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ModificationQueryOptionsConfiguration>();
 
         /// <summary>
         /// <see cref="ReadRestrictionsConfiguration"/> configuration
@@ -232,6 +269,617 @@ namespace Microsoft.OData.ModelBuilder
         /// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
         public static ReadRestrictionsConfiguration HasReadRestrictions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
             => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ReadRestrictionsConfiguration>();
+
+        /// <summary>
+        /// <see cref="MediaLocationUpdateSupportedConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="MediaLocationUpdateSupportedConfiguration"/></returns>
+        public static MediaLocationUpdateSupportedConfiguration HasMediaLocationUpdateSupported(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<MediaLocationUpdateSupportedConfiguration>();
+
+        /// <summary>
+        /// <see cref="RevisionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="RevisionsConfiguration"/></returns>
+        public static RevisionsConfiguration HasRevisions<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource, Func<RevisionTypeConfiguration, RevisionTypeConfiguration> sourceConfigurations) where TEntity : class
+        {
+            var instance = new RevisionTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<RevisionsConfiguration>();
+            configuration.HasRevisions(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="RevisionsConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="RevisionsConfiguration"/></returns>
+        public static RevisionsConfiguration HasRevisions(this VocabularyConfigurationsBase vocabularyConfigurationsBase, Func<RevisionTypeConfiguration, RevisionTypeConfiguration> sourceConfigurations)
+        {
+            var instance = new RevisionTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<RevisionsConfiguration>();
+            configuration.HasRevisions(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="RevisionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="RevisionsConfiguration"/></returns>
+        public static RevisionsConfiguration HasRevisions<T>(this StructuralTypeConfiguration<T> structuredType, Func<RevisionTypeConfiguration, RevisionTypeConfiguration> sourceConfigurations) where T : class
+        {
+            var instance = new RevisionTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<RevisionsConfiguration>();
+            configuration.HasRevisions(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="DescriptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DescriptionConfiguration"/></returns>
+        public static DescriptionConfiguration HasDescription<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DescriptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="DescriptionConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DescriptionConfiguration"/></returns>
+        public static DescriptionConfiguration HasDescription(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<DescriptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="DescriptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DescriptionConfiguration"/></returns>
+        public static DescriptionConfiguration HasDescription<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DescriptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="LongDescriptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="LongDescriptionConfiguration"/></returns>
+        public static LongDescriptionConfiguration HasLongDescription<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<LongDescriptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="LongDescriptionConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="LongDescriptionConfiguration"/></returns>
+        public static LongDescriptionConfiguration HasLongDescription(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<LongDescriptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="LongDescriptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="LongDescriptionConfiguration"/></returns>
+        public static LongDescriptionConfiguration HasLongDescription<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<LongDescriptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="LinksConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="LinksConfiguration"/></returns>
+        public static LinksConfiguration HasLinks<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource, Func<LinkConfiguration, LinkConfiguration> sourceConfigurations) where TEntity : class
+        {
+            var instance = new LinkConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<LinksConfiguration>();
+            configuration.HasLinks(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="LinksConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="LinksConfiguration"/></returns>
+        public static LinksConfiguration HasLinks(this VocabularyConfigurationsBase vocabularyConfigurationsBase, Func<LinkConfiguration, LinkConfiguration> sourceConfigurations)
+        {
+            var instance = new LinkConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<LinksConfiguration>();
+            configuration.HasLinks(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="LinksConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="LinksConfiguration"/></returns>
+        public static LinksConfiguration HasLinks<T>(this StructuralTypeConfiguration<T> structuredType, Func<LinkConfiguration, LinkConfiguration> sourceConfigurations) where T : class
+        {
+            var instance = new LinkConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<LinksConfiguration>();
+            configuration.HasLinks(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="ExampleConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ExampleConfiguration"/></returns>
+        public static ExampleConfiguration HasExample(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ExampleConfiguration>();
+
+        /// <summary>
+        /// <see cref="ExampleConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ExampleConfiguration"/></returns>
+        public static ExampleConfiguration HasExample<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ExampleConfiguration>();
+
+        /// <summary>
+        /// <see cref="MessagesConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="MessagesConfiguration"/></returns>
+        public static MessagesConfiguration HasMessages<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource, Func<MessageTypeConfiguration, MessageTypeConfiguration> sourceConfigurations) where TEntity : class
+        {
+            var instance = new MessageTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<MessagesConfiguration>();
+            configuration.HasMessages(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="MessagesConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="MessagesConfiguration"/></returns>
+        public static MessagesConfiguration HasMessages(this VocabularyConfigurationsBase vocabularyConfigurationsBase, Func<MessageTypeConfiguration, MessageTypeConfiguration> sourceConfigurations)
+        {
+            var instance = new MessageTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<MessagesConfiguration>();
+            configuration.HasMessages(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="MessagesConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="MessagesConfiguration"/></returns>
+        public static MessagesConfiguration HasMessages<T>(this StructuralTypeConfiguration<T> structuredType, Func<MessageTypeConfiguration, MessageTypeConfiguration> sourceConfigurations) where T : class
+        {
+            var instance = new MessageTypeConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<MessagesConfiguration>();
+            configuration.HasMessages(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="ValueExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ValueExceptionConfiguration"/></returns>
+        public static ValueExceptionConfiguration HasValueException<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ValueExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="ValueExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ValueExceptionConfiguration"/></returns>
+        public static ValueExceptionConfiguration HasValueException(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ValueExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="ValueExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ValueExceptionConfiguration"/></returns>
+        public static ValueExceptionConfiguration HasValueException<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ValueExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="ResourceExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ResourceExceptionConfiguration"/></returns>
+        public static ResourceExceptionConfiguration HasResourceException<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ResourceExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="ResourceExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ResourceExceptionConfiguration"/></returns>
+        public static ResourceExceptionConfiguration HasResourceException(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ResourceExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="ResourceExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ResourceExceptionConfiguration"/></returns>
+        public static ResourceExceptionConfiguration HasResourceException<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ResourceExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="DataModificationExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DataModificationExceptionConfiguration"/></returns>
+        public static DataModificationExceptionConfiguration HasDataModificationException<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DataModificationExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="DataModificationExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DataModificationExceptionConfiguration"/></returns>
+        public static DataModificationExceptionConfiguration HasDataModificationException(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<DataModificationExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="DataModificationExceptionConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="DataModificationExceptionConfiguration"/></returns>
+        public static DataModificationExceptionConfiguration HasDataModificationException<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<DataModificationExceptionConfiguration>();
+
+        /// <summary>
+        /// <see cref="IsLanguageDependentConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="IsLanguageDependentConfiguration"/></returns>
+        public static IsLanguageDependentConfiguration HasIsLanguageDependent(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<IsLanguageDependentConfiguration>();
+
+        /// <summary>
+        /// <see cref="ResourcePathConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ResourcePathConfiguration"/></returns>
+        public static ResourcePathConfiguration HasResourcePath<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ResourcePathConfiguration>();
+
+        /// <summary>
+        /// <see cref="ResourcePathConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ResourcePathConfiguration"/></returns>
+        public static ResourcePathConfiguration HasResourcePath(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ResourcePathConfiguration>();
+
+        /// <summary>
+        /// <see cref="PermissionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="PermissionsConfiguration"/></returns>
+        public static PermissionsConfiguration HasPermissions<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<PermissionsConfiguration>();
+
+        /// <summary>
+        /// <see cref="PermissionsConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="PermissionsConfiguration"/></returns>
+        public static PermissionsConfiguration HasPermissions(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<PermissionsConfiguration>();
+
+        /// <summary>
+        /// <see cref="PermissionsConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="PermissionsConfiguration"/></returns>
+        public static PermissionsConfiguration HasPermissions<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<PermissionsConfiguration>();
+
+        /// <summary>
+        /// <see cref="ContentIDConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ContentIDConfiguration"/></returns>
+        public static ContentIDConfiguration HasContentID<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ContentIDConfiguration>();
+
+        /// <summary>
+        /// <see cref="ContentIDConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ContentIDConfiguration"/></returns>
+        public static ContentIDConfiguration HasContentID(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ContentIDConfiguration>();
+
+        /// <summary>
+        /// <see cref="ContentIDConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ContentIDConfiguration"/></returns>
+        public static ContentIDConfiguration HasContentID<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<ContentIDConfiguration>();
+
+        /// <summary>
+        /// <see cref="ImmutableConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ImmutableConfiguration"/></returns>
+        public static ImmutableConfiguration HasImmutable(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ImmutableConfiguration>();
+
+        /// <summary>
+        /// <see cref="ComputedConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ComputedConfiguration"/></returns>
+        public static ComputedConfiguration HasComputed(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ComputedConfiguration>();
+
+        /// <summary>
+        /// <see cref="ComputedDefaultValueConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="ComputedDefaultValueConfiguration"/></returns>
+        public static ComputedDefaultValueConfiguration HasComputedDefaultValue(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<ComputedDefaultValueConfiguration>();
+
+        /// <summary>
+        /// <see cref="IsURLConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="IsURLConfiguration"/></returns>
+        public static IsURLConfiguration HasIsURL(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<IsURLConfiguration>();
+
+        /// <summary>
+        /// <see cref="AcceptableMediaTypesConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="AcceptableMediaTypesConfiguration"/></returns>
+        public static AcceptableMediaTypesConfiguration HasAcceptableMediaTypes(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<AcceptableMediaTypesConfiguration>();
+
+        /// <summary>
+        /// <see cref="AcceptableMediaTypesConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="AcceptableMediaTypesConfiguration"/></returns>
+        public static AcceptableMediaTypesConfiguration HasAcceptableMediaTypes<T>(this EntityTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<AcceptableMediaTypesConfiguration>();
+
+        /// <summary>
+        /// <see cref="MediaTypeConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="MediaTypeConfiguration"/></returns>
+        public static MediaTypeConfiguration HasMediaType(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<MediaTypeConfiguration>();
+
+        /// <summary>
+        /// <see cref="IsMediaTypeConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="IsMediaTypeConfiguration"/></returns>
+        public static IsMediaTypeConfiguration HasIsMediaType(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<IsMediaTypeConfiguration>();
+
+        /// <summary>
+        /// <see cref="OptimisticConcurrencyConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="OptimisticConcurrencyConfiguration"/></returns>
+        public static OptimisticConcurrencyConfiguration HasOptimisticConcurrency<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<OptimisticConcurrencyConfiguration>();
+
+        /// <summary>
+        /// <see cref="AdditionalPropertiesConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="AdditionalPropertiesConfiguration"/></returns>
+        public static AdditionalPropertiesConfiguration HasAdditionalProperties<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<AdditionalPropertiesConfiguration>();
+
+        /// <summary>
+        /// <see cref="AutoExpandConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="AutoExpandConfiguration"/></returns>
+        public static AutoExpandConfiguration HasAutoExpand(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<AutoExpandConfiguration>();
+
+        /// <summary>
+        /// <see cref="AutoExpandReferencesConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="AutoExpandReferencesConfiguration"/></returns>
+        public static AutoExpandReferencesConfiguration HasAutoExpandReferences(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<AutoExpandReferencesConfiguration>();
+
+        /// <summary>
+        /// <see cref="MayImplementConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="MayImplementConfiguration"/></returns>
+        public static MayImplementConfiguration HasMayImplement<TEntity>(this NavigationSourceConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<MayImplementConfiguration>();
+
+        /// <summary>
+        /// <see cref="MayImplementConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="MayImplementConfiguration"/></returns>
+        public static MayImplementConfiguration HasMayImplement(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<MayImplementConfiguration>();
+
+        /// <summary>
+        /// <see cref="MayImplementConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="MayImplementConfiguration"/></returns>
+        public static MayImplementConfiguration HasMayImplement<T>(this StructuralTypeConfiguration<T> structuredType) where T : class
+            => structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<MayImplementConfiguration>();
+
+        /// <summary>
+        /// <see cref="OrderedConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="OrderedConfiguration"/></returns>
+        public static OrderedConfiguration HasOrdered<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<OrderedConfiguration>();
+
+        /// <summary>
+        /// <see cref="OrderedConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="OrderedConfiguration"/></returns>
+        public static OrderedConfiguration HasOrdered(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<OrderedConfiguration>();
+
+        /// <summary>
+        /// <see cref="PositionalInsertConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="PositionalInsertConfiguration"/></returns>
+        public static PositionalInsertConfiguration HasPositionalInsert<TEntity>(this EntitySetConfiguration<TEntity> navigationSource) where TEntity : class
+            => navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<PositionalInsertConfiguration>();
+
+        /// <summary>
+        /// <see cref="PositionalInsertConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="PositionalInsertConfiguration"/></returns>
+        public static PositionalInsertConfiguration HasPositionalInsert(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<PositionalInsertConfiguration>();
+
+        /// <summary>
+        /// <see cref="AlternateKeysConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+        /// <param name="navigationSource">The <see cref="IEdmNavigationSource"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="AlternateKeysConfiguration"/></returns>
+        public static AlternateKeysConfiguration HasAlternateKeys<TEntity>(this EntitySetConfiguration<TEntity> navigationSource, Func<AlternateKeyConfiguration, AlternateKeyConfiguration> sourceConfigurations) where TEntity : class
+        {
+            var instance = new AlternateKeyConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = navigationSource?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<AlternateKeysConfiguration>();
+            configuration.HasAlternateKeys(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="AlternateKeysConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="AlternateKeysConfiguration"/></returns>
+        public static AlternateKeysConfiguration HasAlternateKeys(this VocabularyConfigurationsBase vocabularyConfigurationsBase, Func<AlternateKeyConfiguration, AlternateKeyConfiguration> sourceConfigurations)
+        {
+            var instance = new AlternateKeyConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<AlternateKeysConfiguration>();
+            configuration.HasAlternateKeys(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="AlternateKeysConfiguration"/> configuration
+        /// </summary>
+        /// <typeparam name="T">The type of the structured type.</typeparam>
+        /// <param name="structuredType">The <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <param name="sourceConfigurations">The configuration to set</param>
+        /// <returns><see cref="AlternateKeysConfiguration"/></returns>
+        public static AlternateKeysConfiguration HasAlternateKeys<T>(this EntityTypeConfiguration<T> structuredType, Func<AlternateKeyConfiguration, AlternateKeyConfiguration> sourceConfigurations) where T : class
+        {
+            var instance = new AlternateKeyConfiguration();
+            sourceConfigurations(instance);
+
+            var configuration = structuredType?.Configuration.VocabularyTermConfigurations.GetOrCreateConfiguration<AlternateKeysConfiguration>();
+            configuration.HasAlternateKeys(instance);
+
+            return configuration;
+        }
+
+        /// <summary>
+        /// <see cref="OperationAvailableConfiguration"/> configuration
+        /// </summary>
+        /// <param name="vocabularyConfigurationsBase">The <see cref="IEdmVocabularyAnnotatable"/> that can be built using <see cref="ODataModelBuilder"/>.</param>
+        /// <returns><see cref="OperationAvailableConfiguration"/></returns>
+        public static OperationAvailableConfiguration HasOperationAvailable(this VocabularyConfigurationsBase vocabularyConfigurationsBase)
+            => vocabularyConfigurationsBase?.VocabularyTermConfigurations.GetOrCreateConfiguration<OperationAvailableConfiguration>();
 
         /// <summary>
         /// Add vocabulary annotations to a model target.
@@ -284,6 +932,8 @@ namespace Microsoft.OData.ModelBuilder
 
             return (TConfiguration)configuration;
         }
+
+
     }
 }
 

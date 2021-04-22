@@ -3,14 +3,16 @@
 
 using Microsoft.OData.ModelBuilder.Config;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Base class for all property configurations.
     /// </summary>
-    public abstract class PropertyConfiguration
+    public abstract class PropertyConfiguration : VocabularyConfigurationsBase
     {
         private string _name;
 
