@@ -18,7 +18,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
     public class CsdlMetadataTest
     {
         [Fact]
-        [Trait("Description", "Partner relationhips are emitted correctly")]
+        [Trait("Description", "Partner relationships are emitted correctly")]
         public void CanEmitPartnerRelationship()
         {
             var builder = new ODataModelBuilder()

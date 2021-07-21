@@ -17,7 +17,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
         }
 
         /// <summary>
-        /// Configures string or binary propertie's maxLength.
+        /// Configures string or binary property's maxLength.
         /// </summary>
         /// <param name="edmProperty">The key property.</param>
         /// <param name="structuralTypeConfiguration">The edm type being configured.</param>

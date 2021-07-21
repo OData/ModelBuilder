@@ -249,7 +249,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 }
                 else
                 {
-                    // Do not add this if we have have a partner relationship configured, as this
+                    // Do not add this if we have a partner relationship configured, as this
                     // property will be added automatically through the AddBidirectionalNavigation
                     var targetConfig = config.ModelBuilder.GetTypeConfigurationOrNull(navProp.RelatedClrType) as StructuralTypeConfiguration;
                     if (!targetConfig.NavigationProperties.Any(p => p.Partner != null && p.Partner.Name == navInfo.Name))

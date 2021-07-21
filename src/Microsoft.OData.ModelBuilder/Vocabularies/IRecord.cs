@@ -10,11 +10,11 @@ namespace Microsoft.OData.ModelBuilder
     /// Interface for clr types that can be converted into <see cref="EdmRecordExpression" />
     /// </summary>
     public interface IRecord
-	{
-		/// <summary>
-		/// Convert a clr type to an <see cref="IEdmExpression" />
-		/// </summary>
-		/// <returns><see cref="IEdmExpression" /></returns>
-		IEdmExpression ToEdmExpression();
-	}
+    {
+        /// <summary>
+        /// Convert a clr type to an <see cref="IEdmExpression" />
+        /// </summary>
+        /// <returns><see cref="IEdmExpression" /></returns>
+        IEdmExpression ToEdmExpression();
+    }
 }

@@ -25,7 +25,7 @@ namespace Microsoft.OData.ModelBuilder
         /// Set Org.OData.Capabilities.V1.CountRestrictions to target.
         /// </summary>
         /// <param name="model">The model referenced to.</param>
-        /// <param name="target">The target entity set to set the inline annotation.</param>
+        /// <param name="target">The target entity set to set the in-line annotation.</param>
         /// <param name="isCountable">This entity set can be counted.</param>
         /// <param name="nonCountableProperties">These collection properties do not allow /$count segments.</param>
         /// <param name="nonCountableNavigationProperties">These navigation properties do not allow /$count segments.</param>
@@ -67,7 +67,7 @@ namespace Microsoft.OData.ModelBuilder
         /// Set Org.OData.Capabilities.V1.NavigationRestrictions to target.
         /// </summary>
         /// <param name="model">The model referenced to.</param>
-        /// <param name="target">The target entity set to set the inline annotation.</param>
+        /// <param name="target">The target entity set to set the in-line annotation.</param>
         /// <param name="navigability">This entity set supports navigability.</param>
         /// <param name="restrictedProperties">These properties have navigation restrictions on.</param>
         public static void SetNavigationRestrictionsAnnotation(this EdmModel model, IEdmEntitySet target,
@@ -123,7 +123,7 @@ namespace Microsoft.OData.ModelBuilder
         /// Set Org.OData.Capabilities.V1.FilterRestrictions to target.
         /// </summary>
         /// <param name="model">The model referenced to.</param>
-        /// <param name="target">The target entity set to set the inline annotation.</param>
+        /// <param name="target">The target entity set to set the in-line annotation.</param>
         /// <param name="isFilterable">This entity set supports the $filter expressions.</param>
         /// <param name="isRequiresFilter">This entity set requires $filter expressions.</param>
         /// <param name="requiredProperties">These properties must be specified in the $filter clause.</param>
@@ -169,7 +169,7 @@ namespace Microsoft.OData.ModelBuilder
         /// Set Org.OData.Capabilities.V1.SortRestrictions to target.
         /// </summary>
         /// <param name="model">The model referenced to.</param>
-        /// <param name="target">The target entity set to set the inline annotation.</param>
+        /// <param name="target">The target entity set to set the in-line annotation.</param>
         /// <param name="isSortable">This entity set supports the $orderby expressions.</param>
         /// <param name="ascendingOnlyProperties">These properties can only be used for sorting in ascending order.</param>
         /// <param name="descendingOnlyProperties">These properties can only be used for sorting in descending order.</param>
@@ -217,7 +217,7 @@ namespace Microsoft.OData.ModelBuilder
         /// Set Org.OData.Capabilities.V1.ExpandRestrictions to target.
         /// </summary>
         /// <param name="model">The model referenced to.</param>
-        /// <param name="target">The target entity set to set the inline annotation.</param>
+        /// <param name="target">The target entity set to set the in-line annotation.</param>
         /// <param name="isExpandable">This entity set supports the expand expressions.</param>
         /// <param name="nonExpandableProperties">These properties cannot be used in $expand expressions.</param>
         public static void SetExpandRestrictionsAnnotation(this EdmModel model, IEdmEntitySet target, bool isExpandable,

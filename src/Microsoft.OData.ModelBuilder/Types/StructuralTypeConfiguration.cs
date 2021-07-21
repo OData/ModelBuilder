@@ -46,7 +46,7 @@ namespace Microsoft.OData.ModelBuilder
 
             // Use the namespace if one was provided in builder by the user, otherwise fallback to CLR Namespace.
             // If CLR Namespace is null we fallback to "Default"
-            // This can still be overriden by using DataContract attribute.
+            // This can still be overridden by using DataContract attribute.
             _namespace = modelBuilder.HasAssignedNamespace ? modelBuilder.Namespace : clrType.Namespace ?? modelBuilder.Namespace;
         }
 

@@ -117,7 +117,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
-        /// Adds an deciaml primitive property to the EDM type.
+        /// Adds an decimal primitive property to the EDM type.
         /// </summary>
         /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
         /// For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
@@ -130,7 +130,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
-        /// Adds an deciaml primitive property to the EDM type.
+        /// Adds an decimal primitive property to the EDM type.
         /// </summary>
         /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
         /// For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>

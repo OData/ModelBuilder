@@ -1413,7 +1413,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal("com.contoso", entityType.Namespace);
             Assert.Equal("com.contoso.ModelAlias2", entityType.FullName());
 
-            // make sure we find the correct IEdmType, by verifing members
+            // make sure we find the correct IEdmType, by verifying members
             entityType.AssertHasKey(model, "Id", EdmPrimitiveTypeKind.Int32);
             entityType.AssertHasPrimitiveProperty(model, "FirstName", EdmPrimitiveTypeKind.String, true);
         }
@@ -1434,7 +1434,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal("com.contoso", entityType.Namespace);
             Assert.Equal("com.contoso.PropertyAlias2", entityType.FullName());
 
-            // make sure we find the correct IEdmType, by verifing members
+            // make sure we find the correct IEdmType, by verifying members
             entityType.AssertHasKey(model, "Id", EdmPrimitiveTypeKind.Int32);
             entityType.AssertHasPrimitiveProperty(model, "FirstNameAlias", EdmPrimitiveTypeKind.String, true);
         }
@@ -1455,7 +1455,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal("com.contoso", entityType.Namespace);
             Assert.Equal("com.contoso.PropertyAliasDerived2", entityType.FullName());
 
-            // make sure we find the correct IEdmType, by verifing members
+            // make sure we find the correct IEdmType, by verifying members
             entityType.AssertHasKey(model, "Id", EdmPrimitiveTypeKind.Int32);
             entityType.AssertHasPrimitiveProperty(model, "FirstNameAlias", EdmPrimitiveTypeKind.String, true);
             entityType.AssertHasPrimitiveProperty(model, "LastNameAlias", EdmPrimitiveTypeKind.String, true);

@@ -497,7 +497,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         {
             foreach (KeyValuePair<Type, IEdmType> map in edmTypes)
             {
-                // pre-populate the model with clr-type annotations so that we dont have to scan 
+                // pre-populate the model with clr-type annotations so that we don't have to scan 
                 // all loaded assemblies to find the clr type for an edm type that we build.
                 IEdmType edmType = map.Value;
                 Type clrType = map.Key;

@@ -16,7 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
         /// Initializes a new instance of the <see cref="AttributeConvention"/> class.
         /// </summary>
         /// <param name="attributeFilter">A function to test whether this convention applies to an attribute or not.</param>
-        /// <param name="allowMultiple"><c>true</c> if the convention allows multiple attribues; otherwise, <c>false</c>.</param>
+        /// <param name="allowMultiple"><c>true</c> if the convention allows multiple attributes; otherwise, <c>false</c>.</param>
         protected AttributeConvention(Func<Attribute, bool> attributeFilter, bool allowMultiple)
         {
             if (attributeFilter == null)

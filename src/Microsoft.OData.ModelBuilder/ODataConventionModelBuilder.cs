@@ -70,7 +70,7 @@ namespace Microsoft.OData.ModelBuilder
             new FunctionLinkGenerationConvention(),
         };
 
-        // These hashset's keep track of edmtypes/navigation sources for which conventions
+        // These hashset's keep track of edm types/navigation sources for which conventions
         // have been applied or being applied so that we don't run a convention twice on the
         // same type/set.
         private HashSet<StructuralTypeConfiguration> _mappedTypes;
@@ -942,7 +942,7 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         // the convention model builder MapTypes() method might have went through deep object graphs and added a bunch of types
-        // only to realise after applying the conventions that the user has ignored some of the properties. So, prune the unreachable stuff.
+        // only to realize after applying the conventions that the user has ignored some of the properties. So, prune the unreachable stuff.
         private void PruneUnreachableTypes()
         {
             Contract.Assert(_explicitlyAddedTypes != null);
