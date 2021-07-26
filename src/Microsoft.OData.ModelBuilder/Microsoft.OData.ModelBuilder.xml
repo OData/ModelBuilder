@@ -2648,9 +2648,9 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ActionConfiguration">
             <summary>
-            ActionConfiguration represents an OData action that you wish to expose via your service.
+            The <see cref="T:Microsoft.OData.ModelBuilder.ActionConfiguration"/> represents an OData action that you wish to expose via your service.
             <remarks>
-            ActionConfigurations are exposed via $metadata as a <Action/> element for bound action and <ActionImport/> element for unbound action.
+            The <see cref="T:Microsoft.OData.ModelBuilder.ActionConfiguration"/> is exposed via $metadata as a <Action/> element for bound action and <ActionImport/> element for unbound action.
             </remarks> 
             </summary>
         </member>
@@ -2673,6 +2673,15 @@
             </summary>
             <typeparam name="TEntityType">The type that is an EntityType</typeparam>
             <param name="entitySetName">The name of the entity set which contains the returned entity.</param>
+            <returns>A <see cref="T:Microsoft.OData.ModelBuilder.ActionConfiguration"/> object that can be used to further configure.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsFromEntitySet(System.Type,System.String)">
+            <summary>
+            Sets the return type to a single EntityType instance.
+            </summary>
+            <param name="entityType">The entity type.</param>
+            <param name="entitySetName">The name of the entity set which contains the returned entity.</param>
+            <returns>A <see cref="T:Microsoft.OData.ModelBuilder.ActionConfiguration"/> object that can be used to further configure.</returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsFromEntitySet``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
@@ -2688,6 +2697,13 @@
             <typeparam name="TElementEntityType">The entity type.</typeparam>
             <param name="entitySetName">The name of the entity set which contains the returned entities.</param>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsCollectionFromEntitySet(System.Type,System.String)">
+            <summary>
+            Sets the return type to a collection of entities.
+            </summary>
+            <param name="elementEntityType">The element entity type.</param>
+            <param name="entitySetName">The name of the entity set which contains the returned entities.</param>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsCollectionFromEntitySet``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             Sets the return type to a collection of entities.
@@ -2695,19 +2711,25 @@
             <typeparam name="TElementEntityType">The entity type.</typeparam>
             <param name="entitySetConfiguration">The entity set which contains the returned entities.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.Returns(System.Type)">
-            <summary>
-            Established the return type of the Action.
-            <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
-            </summary>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.Returns``1">
             <summary>
             Established the return type of the Action.
             <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.Returns(System.Type)">
+            <summary>
+            Established the return type of the Action.
+            <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
+            </summary>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsCollection``1">
+            <summary>
+            Establishes the return type of the Action
+            <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsCollection(System.Type)">
             <summary>
             Establishes the return type of the Action
             <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
@@ -2725,6 +2747,13 @@
             <typeparam name="TEntityType">The type that is an EntityType</typeparam>
             <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsEntityViaEntitySetPath(System.Type,System.String)">
+            <summary>
+            Sets the return type to a single EntityType instance.
+            </summary>
+            <param name="entityType">The entity type.</param>
+            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsEntityViaEntitySetPath``1(System.String[])">
             <summary>
             Sets the return type to a single EntityType instance.
@@ -2736,15 +2765,22 @@
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+            <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsCollectionViaEntitySetPath(System.Type,System.String)">
+            <summary>
+            Sets the return type to a collection of EntityType instances.
+            </summary>
+            <param name="clrElementEntityType">The element entity type.</param>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.ActionConfiguration.ReturnsCollectionViaEntitySetPath``1(System.String[])">
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+            <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.BindingParameterConfiguration">
             <summary>
@@ -2777,9 +2813,9 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.FunctionConfiguration">
             <summary>
-            FunctionConfiguration represents an OData function that you wish to expose via your service.
+            The <see cref="T:Microsoft.OData.ModelBuilder.FunctionConfiguration"/> represents an OData function that you wish to expose via your service.
             <remarks>
-            FunctionConfigurations are exposed via $metadata as a <Function/> element for bound function and <FunctionImport/> element for unbound function.
+            The <see cref="T:Microsoft.OData.ModelBuilder.FunctionConfiguration"/> is exposed via $metadata as a <Function/> element for bound function and <FunctionImport/> element for unbound function.
             </remarks>
             </summary>
         </member>
@@ -2793,11 +2829,16 @@
         <member name="P:Microsoft.OData.ModelBuilder.FunctionConfiguration.Kind">
             <inheritdoc />
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.FunctionConfiguration.IsComposable">
-            <inheritdoc />
-        </member>
         <member name="P:Microsoft.OData.ModelBuilder.FunctionConfiguration.IsSideEffecting">
             <inheritdoc />
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.FunctionConfiguration.IsComposable">
+            <summary>
+            Can the function be composed upon.
+            
+            For example can a URL that invokes the operation be used as the base URL for 
+            a request that invokes the operation and does something else with the results
+            </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.FunctionConfiguration.SupportedInFilter">
             <summary>
@@ -2820,20 +2861,30 @@
             Sets the return type to a single EntityType instance.
             </summary>
             <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetName">The entitySetName which contains the return EntityType instance</param>
+            <param name="entitySetName">The entitySetName which contains the return EntityType instance.</param>
+            <returns>A <see cref="T:Microsoft.OData.ModelBuilder.FunctionConfiguration"/> object that can be used to further configure.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsFromEntitySet(System.Type,System.String)">
+            <summary>
+            Sets the return type to a single EntityType instance.
+            </summary>
+            <param name="entityType">The entity type.</param>
+            <param name="entitySetName">The entitySetName which contains the return EntityType instance.</param>
+            <returns>A <see cref="T:Microsoft.OData.ModelBuilder.FunctionConfiguration"/> object that can be used to further configure.</returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollectionFromEntitySet``1(System.String)">
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetName">The entitySetName which contains the returned EntityType instances</param>
+            <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetName">The entitySetName which contains the returned EntityType instances.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.Returns(System.Type)">
+        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollectionFromEntitySet(System.Type,System.String)">
             <summary>
-            Established the return type of the Function.
-            <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
+            Sets the return type to a collection of EntityType instances.
             </summary>
+            <param name="elementEntityType">The element entity type.</param>
+            <param name="entitySetName">The entitySetName which contains the returned EntityType instances.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.Returns``1">
             <summary>
@@ -2841,7 +2892,19 @@
             <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.Returns(System.Type)">
+            <summary>
+            Established the return type of the Function.
+            <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
+            </summary>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollection``1">
+            <summary>
+            Establishes the return type of the Function
+            <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollection(System.Type)">
             <summary>
             Establishes the return type of the Function
             <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
@@ -2856,29 +2919,43 @@
             <summary>
             Sets the return type to a single EntityType instance.
             </summary>
-            <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
+            <typeparam name="TEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsEntityViaEntitySetPath(System.Type,System.String)">
+            <summary>
+            Sets the return type to a single EntityType instance.
+            </summary>
+            <param name="entityType">The entity type.</param>
+            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsEntityViaEntitySetPath``1(System.String[])">
             <summary>
             Sets the return type to a single EntityType instance.
             </summary>
-            <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
+            <typeparam name="TEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollectionViaEntitySetPath``1(System.String)">
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+            <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollectionViaEntitySetPath(System.Type,System.String)">
+            <summary>
+            Sets the return type to a collection of EntityType instances.
+            </summary>
+            <param name="clrElementEntityType">The element entity type.</param>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.FunctionConfiguration.ReturnsCollectionViaEntitySetPath``1(System.String[])">
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+            <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.NonbindingParameterConfiguration">
             <summary>
@@ -2931,14 +3008,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.Kind">
             <summary>
             The Kind of operation, which can be either Action or Function
-            </summary>
-        </member>
-        <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.IsComposable">
-            <summary>
-            Can the operation be composed upon.
-            
-            For example can a URL that invokes the operation be used as the base URL for 
-            a request that invokes the operation and does something else with the results
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.IsSideEffecting">
@@ -2997,33 +3066,33 @@
             Can the operation be bound to a URL representing the BindingParameter.
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsFromEntitySetImplementation``1(System.String)">
+        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsFromEntitySetImplementation(System.Type,System.String)">
             <summary>
             Sets the return type to a single EntityType instance.
             </summary>
-            <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetName">The entitySetName which contains the return EntityType instance</param>
+            <param name="entityType">The entity type.</param>
+            <param name="entitySetName">The entitySetName which contains the return EntityType instance.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsCollectionFromEntitySetImplementation``1(System.String)">
+        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsCollectionFromEntitySetImplementation(System.Type,System.String)">
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetName">The entitySetName which contains the returned EntityType instances</param>
+            <param name="elementEntityType">The element entity type.</param>
+            <param name="entitySetName">The entitySetName which contains the returned EntityType instances.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsEntityViaEntitySetPathImplementation``1(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsEntityViaEntitySetPathImplementation(System.Type,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Sets the return type to a single EntityType instance.
             </summary>
-            <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
+            <param name="entityType">The entity type.</param>
+            <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsCollectionViaEntitySetPathImplementation``1(System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsCollectionViaEntitySetPathImplementation(System.Type,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             Sets the return type to a collection of EntityType instances.
             </summary>
-            <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+            <param name="clrElementEntityType">The element entity type.</param>
+            <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsImplementation(System.Type)">
             <summary>
@@ -3031,7 +3100,7 @@
             <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
             </summary>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsCollectionImplementation``1">
+        <member name="M:Microsoft.OData.ModelBuilder.OperationConfiguration.ReturnsCollectionImplementation(System.Type)">
             <summary>
             Establishes the return type of the operation
             <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>

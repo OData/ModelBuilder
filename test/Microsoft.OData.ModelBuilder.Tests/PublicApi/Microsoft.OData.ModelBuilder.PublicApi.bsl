@@ -110,7 +110,6 @@ public abstract class Microsoft.OData.ModelBuilder.OperationConfiguration {
 	bool FollowsConventions  { public get; protected set; }
 	string FullyQualifiedName  { public get; }
 	bool IsBindable  { public virtual get; }
-	bool IsComposable  { public virtual get; }
 	bool IsSideEffecting  { public abstract get; }
 	Microsoft.OData.ModelBuilder.OperationKind Kind  { public abstract get; }
 	Microsoft.OData.ModelBuilder.ODataModelBuilder ModelBuilder  { protected get; protected set; }
@@ -496,14 +495,19 @@ public class Microsoft.OData.ModelBuilder.ActionConfiguration : Microsoft.OData.
 	public Microsoft.OData.ModelBuilder.ActionConfiguration Returns ()
 	public Microsoft.OData.ModelBuilder.ActionConfiguration Returns (System.Type clrReturnType)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollection ()
+	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollection (System.Type clrElementType)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollectionFromEntitySet (EntitySetConfiguration`1 entitySetConfiguration)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollectionFromEntitySet (string entitySetName)
+	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollectionFromEntitySet (System.Type elementEntityType, string entitySetName)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollectionViaEntitySetPath (string entitySetPath)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollectionViaEntitySetPath (string[] entitySetPath)
+	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsCollectionViaEntitySetPath (System.Type clrElementEntityType, string entitySetPath)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsEntityViaEntitySetPath (string entitySetPath)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsEntityViaEntitySetPath (string[] entitySetPath)
+	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsEntityViaEntitySetPath (System.Type entityType, string entitySetPath)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsFromEntitySet (EntitySetConfiguration`1 entitySetConfiguration)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsFromEntitySet (string entitySetName)
+	public Microsoft.OData.ModelBuilder.ActionConfiguration ReturnsFromEntitySet (System.Type entityType, string entitySetName)
 	public Microsoft.OData.ModelBuilder.ActionConfiguration SetBindingParameter (string name, Microsoft.OData.ModelBuilder.IEdmTypeConfiguration bindingParameterType)
 }
 
@@ -741,12 +745,17 @@ public class Microsoft.OData.ModelBuilder.FunctionConfiguration : Microsoft.ODat
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration Returns ()
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration Returns (System.Type clrReturnType)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollection ()
+	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollection (System.Type clrElementType)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollectionFromEntitySet (string entitySetName)
+	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollectionFromEntitySet (System.Type elementEntityType, string entitySetName)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollectionViaEntitySetPath (string entitySetPath)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollectionViaEntitySetPath (string[] entitySetPath)
+	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsCollectionViaEntitySetPath (System.Type clrElementEntityType, string entitySetPath)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsEntityViaEntitySetPath (string entitySetPath)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsEntityViaEntitySetPath (string[] entitySetPath)
+	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsEntityViaEntitySetPath (System.Type entityType, string entitySetPath)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsFromEntitySet (string entitySetName)
+	public Microsoft.OData.ModelBuilder.FunctionConfiguration ReturnsFromEntitySet (System.Type entityType, string entitySetName)
 	public Microsoft.OData.ModelBuilder.FunctionConfiguration SetBindingParameter (string name, Microsoft.OData.ModelBuilder.IEdmTypeConfiguration bindingParameterType)
 }
 

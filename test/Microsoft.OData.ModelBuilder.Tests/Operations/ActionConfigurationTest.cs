@@ -29,7 +29,6 @@ namespace Microsoft.OData.ModelBuilder.Tests.Operations
             Assert.Empty(action.Parameters);
             Assert.Null(action.ReturnType);
             Assert.True(action.IsSideEffecting);
-            Assert.False(action.IsComposable);
             Assert.False(action.IsBindable);
             Assert.Equal("MyNamespace", action.Namespace);
             Assert.Equal("MyNamespace.Format", action.FullyQualifiedName);

@@ -50,14 +50,6 @@ namespace Microsoft.OData.ModelBuilder
         public abstract OperationKind Kind { get; }
 
         /// <summary>
-        /// Can the operation be composed upon.
-        /// 
-        /// For example can a URL that invokes the operation be used as the base URL for 
-        /// a request that invokes the operation and does something else with the results
-        /// </summary>
-        public virtual bool IsComposable { get; internal set; }
-
-        /// <summary>
         /// Does the operation have side-effects.
         /// </summary>
         public abstract bool IsSideEffecting { get; }
@@ -136,28 +128,27 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Sets the return type to a single EntityType instance.
         /// </summary>
-        /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-        /// <param name="entitySetName">The entitySetName which contains the return EntityType instance</param>
-        internal void ReturnsFromEntitySetImplementation<TEntityType>(string entitySetName) where TEntityType : class
+        /// <param name="entityType">The entity type.</param>
+        /// <param name="entitySetName">The entitySetName which contains the return EntityType instance.</param>
+        internal void ReturnsFromEntitySetImplementation(Type entityType, string entitySetName)
         {
-            ModelBuilder.EntitySet<TEntityType>(entitySetName);
-            NavigationSource = ModelBuilder.EntitySets.Single(s => s.Name == entitySetName);
-            ReturnType = ModelBuilder.GetTypeConfigurationOrNull(typeof(TEntityType));
+            EntityTypeConfiguration entity = ModelBuilder.AddEntityType(entityType);
+            NavigationSource = ModelBuilder.AddEntitySet(entitySetName, entity);
+            ReturnType = ModelBuilder.GetTypeConfigurationOrNull(entityType);
             ReturnNullable = true;
         }
 
         /// <summary>
         /// Sets the return type to a collection of EntityType instances.
         /// </summary>
-        /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-        /// <param name="entitySetName">The entitySetName which contains the returned EntityType instances</param>
-        internal void ReturnsCollectionFromEntitySetImplementation<TElementEntityType>(string entitySetName)
-            where TElementEntityType : class
+        /// <param name="elementEntityType">The element entity type.</param>
+        /// <param name="entitySetName">The entitySetName which contains the returned EntityType instances.</param>
+        internal void ReturnsCollectionFromEntitySetImplementation(Type elementEntityType, string entitySetName)
         {
-            Type clrCollectionType = typeof(IEnumerable<TElementEntityType>);
-            ModelBuilder.EntitySet<TElementEntityType>(entitySetName);
-            NavigationSource = ModelBuilder.EntitySets.Single(s => s.Name == entitySetName);
-            IEdmTypeConfiguration elementType = ModelBuilder.GetTypeConfigurationOrNull(typeof(TElementEntityType));
+            EntityTypeConfiguration entity = ModelBuilder.AddEntityType(elementEntityType);
+            NavigationSource = ModelBuilder.AddEntitySet(entitySetName, entity);
+            IEdmTypeConfiguration elementType = ModelBuilder.GetTypeConfigurationOrNull(elementEntityType);
+            Type clrCollectionType = typeof(IEnumerable<>).MakeGenericType(elementEntityType);
             ReturnType = new CollectionTypeConfiguration(elementType, clrCollectionType);
             ReturnNullable = true;
         }
@@ -165,12 +156,11 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Sets the return type to a single EntityType instance.
         /// </summary>
-        /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
-        /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
-        internal void ReturnsEntityViaEntitySetPathImplementation<TEntityType>(IEnumerable<string> entitySetPath)
-            where TEntityType : class
+        /// <param name="entityType">The entity type.</param>
+        /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
+        internal void ReturnsEntityViaEntitySetPathImplementation(Type entityType, IEnumerable<string> entitySetPath)
         {
-            ReturnType = ModelBuilder.GetTypeConfigurationOrNull(typeof(TEntityType));
+            ReturnType = ModelBuilder.GetTypeConfigurationOrNull(entityType);
             EntitySetPath = entitySetPath;
             ReturnNullable = true;
         }
@@ -178,13 +168,12 @@ namespace Microsoft.OData.ModelBuilder
         /// <summary>
         /// Sets the return type to a collection of EntityType instances.
         /// </summary>
-        /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
-        internal void ReturnsCollectionViaEntitySetPathImplementation<TElementEntityType>(IEnumerable<string> entitySetPath)
-            where TElementEntityType : class
+        /// <param name="clrElementEntityType">The element entity type.</param>
+        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
+        internal void ReturnsCollectionViaEntitySetPathImplementation(Type clrElementEntityType, IEnumerable<string> entitySetPath)
         {
-            Type clrCollectionType = typeof(IEnumerable<TElementEntityType>);
-            IEdmTypeConfiguration elementType = ModelBuilder.GetTypeConfigurationOrNull(typeof(TElementEntityType));
+            IEdmTypeConfiguration elementType = ModelBuilder.GetTypeConfigurationOrNull(clrElementEntityType);
+            Type clrCollectionType = typeof(IEnumerable<>).MakeGenericType(clrElementEntityType);
             ReturnType = new CollectionTypeConfiguration(elementType, clrCollectionType);
             EntitySetPath = entitySetPath;
             ReturnNullable = true;
@@ -205,14 +194,13 @@ namespace Microsoft.OData.ModelBuilder
         /// Establishes the return type of the operation
         /// <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
         /// </summary>
-        internal void ReturnsCollectionImplementation<TReturnElementType>()
+        internal void ReturnsCollectionImplementation(Type clrElementType)
         {
             // TODO: I don't like this temporary solution that says the CLR type of the collection is IEnumerable<T>.
             // It basically has no meaning. That said the CLR type is meaningful for IEdmTypeConfiguration
             // because I still think it is useful for IEdmPrimitiveTypes too.
             // You can imagine the override of this that takes a delegate using the correct CLR type for the return type.
-            Type clrCollectionType = typeof(IEnumerable<TReturnElementType>);
-            Type clrElementType = typeof(TReturnElementType);
+            Type clrCollectionType = typeof(IEnumerable<>).MakeGenericType(clrElementType);
             IEdmTypeConfiguration edmElementType = GetOperationTypeConfiguration(clrElementType);
             ReturnType = new CollectionTypeConfiguration(edmElementType, clrCollectionType);
             ReturnNullable = TypeHelper.IsNullable(clrElementType);

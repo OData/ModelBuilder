@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
-    /// ActionConfiguration represents an OData action that you wish to expose via your service.
+    /// The <see cref="ActionConfiguration"/> represents an OData action that you wish to expose via your service.
     /// <remarks>
-    /// ActionConfigurations are exposed via $metadata as a <Action/> element for bound action and <ActionImport/> element for unbound action.
+    /// The <see cref="ActionConfiguration"/> is exposed via $metadata as a <Action/> element for bound action and <ActionImport/> element for unbound action.
     /// </remarks> 
     /// </summary>
     public class ActionConfiguration : OperationConfiguration
@@ -35,10 +35,25 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetName">The name of the entity set which contains the returned entity.</param>
+        /// <returns>A <see cref="ActionConfiguration"/> object that can be used to further configure.</returns>
         public ActionConfiguration ReturnsFromEntitySet<TEntityType>(string entitySetName)
             where TEntityType : class
+            => ReturnsFromEntitySet(typeof(TEntityType), entitySetName);
+
+        /// <summary>
+        /// Sets the return type to a single EntityType instance.
+        /// </summary>
+        /// <param name="entityType">The entity type.</param>
+        /// <param name="entitySetName">The name of the entity set which contains the returned entity.</param>
+        /// <returns>A <see cref="ActionConfiguration"/> object that can be used to further configure.</returns>
+        public ActionConfiguration ReturnsFromEntitySet(Type entityType, string entitySetName)
         {
-            ReturnsFromEntitySetImplementation<TEntityType>(entitySetName);
+            if (entityType == null)
+            {
+                throw Error.ArgumentNull("entityType");
+            }
+
+            ReturnsFromEntitySetImplementation(entityType, entitySetName);
             return this;
         }
 
@@ -67,8 +82,16 @@ namespace Microsoft.OData.ModelBuilder
         /// <param name="entitySetName">The name of the entity set which contains the returned entities.</param>
         public ActionConfiguration ReturnsCollectionFromEntitySet<TElementEntityType>(string entitySetName)
             where TElementEntityType : class
+            => ReturnsCollectionFromEntitySet(typeof(TElementEntityType), entitySetName);
+
+        /// <summary>
+        /// Sets the return type to a collection of entities.
+        /// </summary>
+        /// <param name="elementEntityType">The element entity type.</param>
+        /// <param name="entitySetName">The name of the entity set which contains the returned entities.</param>
+        public ActionConfiguration ReturnsCollectionFromEntitySet(Type elementEntityType, string entitySetName)
         {
-            ReturnsCollectionFromEntitySetImplementation<TElementEntityType>(entitySetName);
+            ReturnsCollectionFromEntitySetImplementation(elementEntityType, entitySetName);
             return this;
         }
 
@@ -97,6 +120,13 @@ namespace Microsoft.OData.ModelBuilder
         /// Established the return type of the Action.
         /// <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
         /// </summary>
+        public ActionConfiguration Returns<TReturnType>()
+            => Returns(typeof(TReturnType));
+
+        /// <summary>
+        /// Established the return type of the Action.
+        /// <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
+        /// </summary>
         public ActionConfiguration Returns(Type clrReturnType)
         {
             if (clrReturnType == null)
@@ -116,30 +146,30 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
-        /// Established the return type of the Action.
-        /// <remarks>Used when the return type is a single Primitive or ComplexType.</remarks>
+        /// Establishes the return type of the Action
+        /// <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
         /// </summary>
-        public ActionConfiguration Returns<TReturnType>()
-        {
-            Type returnType = typeof(TReturnType);
-            return this.Returns(returnType);
-        }
+        public ActionConfiguration ReturnsCollection<TReturnElementType>()
+            => ReturnsCollection(typeof(TReturnElementType));
 
         /// <summary>
         /// Establishes the return type of the Action
         /// <remarks>Used when the return type is a collection of either Primitive or ComplexTypes.</remarks>
         /// </summary>
-        public ActionConfiguration ReturnsCollection<TReturnElementType>()
+        public ActionConfiguration ReturnsCollection(Type clrElementType)
         {
-            Type clrElementType = typeof(TReturnElementType);
-            IEdmTypeConfiguration edmElementType = ModelBuilder.GetTypeConfigurationOrNull(clrElementType);
+            if (clrElementType == null)
+            {
+                throw Error.ArgumentNull("clrElementType");
+            }
 
+            IEdmTypeConfiguration edmElementType = ModelBuilder.GetTypeConfigurationOrNull(clrElementType);
             if (edmElementType is EntityTypeConfiguration)
             {
                 throw Error.InvalidOperation(SRResources.ReturnEntityCollectionWithoutEntitySet, edmElementType.FullName);
             }
 
-            ReturnsCollectionImplementation<TReturnElementType>();
+            ReturnsCollectionImplementation(clrElementType);
             return this;
         }
 
@@ -158,12 +188,26 @@ namespace Microsoft.OData.ModelBuilder
         /// <typeparam name="TEntityType">The type that is an EntityType</typeparam>
         /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance</param>
         public ActionConfiguration ReturnsEntityViaEntitySetPath<TEntityType>(string entitySetPath) where TEntityType : class
+            => ReturnsEntityViaEntitySetPath(typeof(TEntityType), entitySetPath);
+
+        /// <summary>
+        /// Sets the return type to a single EntityType instance.
+        /// </summary>
+        /// <param name="entityType">The entity type.</param>
+        /// <param name="entitySetPath">The entitySetPath which contains the return EntityType instance.</param>
+        public ActionConfiguration ReturnsEntityViaEntitySetPath(Type entityType, string entitySetPath)
         {
-            if (String.IsNullOrEmpty(entitySetPath))
+            if (entityType == null)
+            {
+                throw Error.ArgumentNull("entityType");
+            }
+
+            if (string.IsNullOrEmpty(entitySetPath))
             {
                 throw Error.ArgumentNull("entitySetPath");
             }
-            ReturnsEntityViaEntitySetPathImplementation<TEntityType>(entitySetPath.Split('/'));
+
+            ReturnsEntityViaEntitySetPathImplementation(entityType, entitySetPath.Split('/'));
             return this;
         }
 
@@ -175,35 +219,49 @@ namespace Microsoft.OData.ModelBuilder
         public ActionConfiguration ReturnsEntityViaEntitySetPath<TEntityType>(params string[] entitySetPath)
             where TEntityType : class
         {
-            ReturnsEntityViaEntitySetPathImplementation<TEntityType>(entitySetPath);
+            ReturnsEntityViaEntitySetPathImplementation(typeof(TEntityType), entitySetPath);
             return this;
         }
 
         /// <summary>
         /// Sets the return type to a collection of EntityType instances.
         /// </summary>
-        /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+        /// <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         public ActionConfiguration ReturnsCollectionViaEntitySetPath<TElementEntityType>(string entitySetPath)
             where TElementEntityType : class
+            => ReturnsCollectionViaEntitySetPath(typeof(TElementEntityType), entitySetPath);
+
+        /// <summary>
+        /// Sets the return type to a collection of EntityType instances.
+        /// </summary>
+        /// <param name="clrElementEntityType">The element entity type.</param>
+        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
+        public ActionConfiguration ReturnsCollectionViaEntitySetPath(Type clrElementEntityType, string entitySetPath)
         {
-            if (String.IsNullOrEmpty(entitySetPath))
+            if (clrElementEntityType == null)
+            {
+                throw Error.ArgumentNull("clrElementEntityType");
+            }
+
+            if (string.IsNullOrEmpty(entitySetPath))
             {
                 throw Error.ArgumentNull("entitySetPath");
             }
-            ReturnsCollectionViaEntitySetPathImplementation<TElementEntityType>(entitySetPath.Split('/'));
+
+            ReturnsCollectionViaEntitySetPathImplementation(clrElementEntityType, entitySetPath.Split('/'));
             return this;
         }
 
         /// <summary>
         /// Sets the return type to a collection of EntityType instances.
         /// </summary>
-        /// <typeparam name="TElementEntityType">The type that is an EntityType</typeparam>
-        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances</param>
+        /// <typeparam name="TElementEntityType">The type that is an EntityType.</typeparam>
+        /// <param name="entitySetPath">The entitySetPath which contains the returned EntityType instances.</param>
         public ActionConfiguration ReturnsCollectionViaEntitySetPath<TElementEntityType>(params string[] entitySetPath)
             where TElementEntityType : class
         {
-            ReturnsCollectionViaEntitySetPathImplementation<TElementEntityType>(entitySetPath);
+            ReturnsCollectionViaEntitySetPathImplementation(typeof(TElementEntityType), entitySetPath);
             return this;
         }
     }
