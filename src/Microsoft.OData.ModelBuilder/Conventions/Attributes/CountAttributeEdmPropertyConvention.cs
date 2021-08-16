@@ -21,7 +21,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             {
                 throw Error.ArgumentNull("edmProperty");
             }
-            /*
+
             if (!edmProperty.AddedExplicitly)
             {
                 CountAttribute countAttribute = attribute as CountAttribute;
@@ -33,7 +33,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 {
                     edmProperty.QueryConfiguration.GetModelBoundQuerySettingsOrDefault().Countable = true;
                 }
-            }*/
+            }
         }
     }
 }

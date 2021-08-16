@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
@@ -25,7 +26,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             if (!edmProperty.AddedExplicitly)
             {
                 SelectAttribute selectAttribute = attribute as SelectAttribute;
-                /*
+
                 ModelBoundQuerySettings querySettings =
                     edmProperty.QueryConfiguration.GetModelBoundQuerySettingsOrDefault();
                 if (querySettings.SelectConfigurations.Count == 0)
@@ -45,7 +46,6 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 {
                     querySettings.DefaultSelectType = selectAttribute.DefaultSelectType;
                 }
-                */
             }
         }
     }

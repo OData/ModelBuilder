@@ -162,9 +162,24 @@ public abstract class Microsoft.OData.ModelBuilder.PropertyConfiguration {
 	bool NotSortable  { public get; public set; }
 	int Order  { public get; public set; }
 	System.Reflection.PropertyInfo PropertyInfo  { public get; }
+	Microsoft.OData.ModelBuilder.Config.QueryConfiguration QueryConfiguration  { public get; public set; }
 	System.Type RelatedClrType  { public abstract get; }
 	bool Unsortable  { public get; public set; }
 
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Count ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Count (bool enabled)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (Microsoft.OData.ModelBuilder.SelectExpandType expandType)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (int maxDepth)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (Microsoft.OData.ModelBuilder.SelectExpandType expandType, int maxDepth)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (Microsoft.OData.ModelBuilder.SelectExpandType expandType, string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (int maxDepth, string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Expand (int maxDepth, Microsoft.OData.ModelBuilder.SelectExpandType expandType, string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Filter ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Filter (bool enabled)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Filter (string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Filter (bool enabled, string[] properties)
 	public Microsoft.OData.ModelBuilder.PropertyConfiguration IsCountable ()
 	public Microsoft.OData.ModelBuilder.PropertyConfiguration IsExpandable ()
 	public Microsoft.OData.ModelBuilder.PropertyConfiguration IsFilterable ()
@@ -177,6 +192,16 @@ public abstract class Microsoft.OData.ModelBuilder.PropertyConfiguration {
 	public Microsoft.OData.ModelBuilder.PropertyConfiguration IsNotSortable ()
 	public Microsoft.OData.ModelBuilder.PropertyConfiguration IsSortable ()
 	public Microsoft.OData.ModelBuilder.PropertyConfiguration IsUnsortable ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration OrderBy ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration OrderBy (bool enabled)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration OrderBy (string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration OrderBy (bool enabled, string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Page ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Page (System.Nullable`1[[System.Int32]] maxTopValue, System.Nullable`1[[System.Int32]] pageSizeValue)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Select ()
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Select (Microsoft.OData.ModelBuilder.SelectExpandType selectType)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Select (string[] properties)
+	public Microsoft.OData.ModelBuilder.PropertyConfiguration Select (Microsoft.OData.ModelBuilder.SelectExpandType selectType, string[] properties)
 }
 
 public abstract class Microsoft.OData.ModelBuilder.StructuralPropertyConfiguration : Microsoft.OData.ModelBuilder.PropertyConfiguration {
@@ -208,6 +233,7 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration :
 	string Namespace  { public virtual get; public virtual set; }
 	System.Collections.Generic.IEnumerable`1[[Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration]] NavigationProperties  { public virtual get; }
 	System.Collections.Generic.IEnumerable`1[[Microsoft.OData.ModelBuilder.PropertyConfiguration]] Properties  { public get; }
+	Microsoft.OData.ModelBuilder.Config.QueryConfiguration QueryConfiguration  { public get; public set; }
 	System.Collections.Generic.IList`1[[System.Reflection.PropertyInfo]] RemovedProperties  { protected get; }
 
 	internal virtual void AbstractImpl ()
@@ -239,8 +265,22 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration ContainsMany (Expression`1 navigationPropertyExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration ContainsOptional (Expression`1 navigationPropertyExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration ContainsRequired (Expression`1 navigationPropertyExpression)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Count ()
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Count (bool enabled)
 	public Microsoft.OData.ModelBuilder.EnumPropertyConfiguration EnumProperty (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.EnumPropertyConfiguration EnumProperty (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand ()
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (Microsoft.OData.ModelBuilder.SelectExpandType expandType)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (int maxDepth)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (Microsoft.OData.ModelBuilder.SelectExpandType expandType, int maxDepth)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (Microsoft.OData.ModelBuilder.SelectExpandType expandType, string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (int maxDepth, string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Expand (int maxDepth, Microsoft.OData.ModelBuilder.SelectExpandType expandType, string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Filter ()
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Filter (bool enabled)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Filter (string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Filter (bool enabled, string[] properties)
 	public void HasDynamicProperties (Expression`1 propertyExpression)
 	public void HasInstanceAnnotations (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration HasMany (Expression`1 navigationPropertyExpression)
@@ -253,20 +293,30 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration HasRequired (Expression`1 navigationPropertyExpression, Expression`1 referentialConstraintExpression, Expression`1 partnerExpression)
 	public Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration HasRequired (Expression`1 navigationPropertyExpression, Expression`1 referentialConstraintExpression, Expression`1 partnerExpression)
 	public virtual void Ignore (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.LengthPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.LengthPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 OrderBy ()
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 OrderBy (bool enabled)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 OrderBy (string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 OrderBy (bool enabled, string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Page ()
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Page (System.Nullable`1[[System.Int32]] maxTopValue, System.Nullable`1[[System.Int32]] pageSizeValue)
+	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.DecimalPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.DecimalPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
-	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.UntypedPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.LengthPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.LengthPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.PrecisionPropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.DecimalPropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration Property (Expression`1 propertyExpression)
 	public Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration Property (Expression`1 propertyExpression)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Select ()
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Select (Microsoft.OData.ModelBuilder.SelectExpandType selectType)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Select (string[] properties)
+	public Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1 Select (Microsoft.OData.ModelBuilder.SelectExpandType selectType, string[] properties)
 }
 
 public abstract class Microsoft.OData.ModelBuilder.VocabularyTermConfiguration : IRecord {
@@ -985,6 +1035,11 @@ AttributeUsageAttribute(),
 ]
 public sealed class Microsoft.OData.ModelBuilder.ExpandAttribute : System.Attribute {
 	public ExpandAttribute ()
+	public ExpandAttribute (string[] properties)
+
+	System.Collections.Generic.Dictionary`2[[System.String],[Microsoft.OData.ModelBuilder.Config.ExpandConfiguration]] ExpandConfigurations  { public get; }
+	Microsoft.OData.ModelBuilder.SelectExpandType ExpandType  { public get; public set; }
+	int MaxDepth  { public get; public set; }
 }
 
 [
@@ -1179,6 +1234,20 @@ public class Microsoft.OData.ModelBuilder.Config.QueryableRestrictions {
 	bool NotNavigable  { public get; public set; }
 	bool NotSortable  { public get; public set; }
 	bool Unsortable  { public get; public set; }
+}
+
+public class Microsoft.OData.ModelBuilder.Config.QueryConfiguration {
+	public QueryConfiguration ()
+
+	Microsoft.OData.ModelBuilder.Config.ModelBoundQuerySettings ModelBoundQuerySettings  { public get; public set; }
+
+	public virtual void SetCount (bool enableCount)
+	public virtual void SetExpand (System.Collections.Generic.IEnumerable`1[[System.String]] properties, System.Nullable`1[[System.Int32]] maxDepth, Microsoft.OData.ModelBuilder.SelectExpandType expandType)
+	public virtual void SetFilter (System.Collections.Generic.IEnumerable`1[[System.String]] properties, bool enableFilter)
+	public virtual void SetMaxTop (System.Nullable`1[[System.Int32]] maxTop)
+	public virtual void SetOrderBy (System.Collections.Generic.IEnumerable`1[[System.String]] properties, bool enableOrderBy)
+	public virtual void SetPageSize (System.Nullable`1[[System.Int32]] pageSize)
+	public virtual void SetSelect (System.Collections.Generic.IEnumerable`1[[System.String]] properties, Microsoft.OData.ModelBuilder.SelectExpandType selectType)
 }
 
 public interface Microsoft.OData.ModelBuilder.Conventions.IODataModelConventionSetBuilder {

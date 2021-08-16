@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Microsoft.OData.ModelBuilder
@@ -13,8 +12,6 @@ namespace Microsoft.OData.ModelBuilder
     /// correlate to OData's $orderby query option settings.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = true)]
-    [SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments",
-        Justification = "Don't want those argument to be retrievable")]
     public sealed class OrderByAttribute : Attribute
     {
         private bool? _defaultEnableOrderBy;

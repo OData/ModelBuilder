@@ -160,13 +160,13 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             if (structuredType != null && structuralTypeConfiguration != null &&
                 !_structuredTypeQuerySettings.ContainsKey(structuredType))
             {
-                //ModelBoundQuerySettings querySettings =
-                //    structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings;
-                //if (querySettings != null)
-                //{
-                //    _structuredTypeQuerySettings.Add(structuredType,
-                //        structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings);
-                //}
+                ModelBoundQuerySettings querySettings =
+                    structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings;
+                if (querySettings != null)
+                {
+                    _structuredTypeQuerySettings.Add(structuredType,
+                        structuralTypeConfiguration.QueryConfiguration.ModelBoundQuerySettings);
+                }
             }
         }
 
@@ -273,11 +273,11 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                     {
                         _propertiesRestrictions[edmProperty] = new QueryableRestrictions(prop);
                     }
- /*
+
                     if (prop.QueryConfiguration.ModelBoundQuerySettings != null)
                     {
                         _propertiesQuerySettings.Add(edmProperty, prop.QueryConfiguration.ModelBoundQuerySettings);
-                    }*/
+                    }
                 }
             }
         }
@@ -342,7 +342,6 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             return primitiveTypeReference;
         }
 
-        [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Class coupling acceptable")]
         private void CreateStructuralTypeBody(EdmStructuredType type, StructuralTypeConfiguration config)
         {
             foreach (PropertyConfiguration property in config.Properties)
@@ -433,10 +432,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                         _propertiesRestrictions[edmProperty] = new QueryableRestrictions(property);
                     }
 
-                    //if (property.QueryConfiguration.ModelBoundQuerySettings != null)
-                    //{
-                    //    _propertiesQuerySettings.Add(edmProperty, property.QueryConfiguration.ModelBoundQuerySettings);
-                    //}
+                    if (property.QueryConfiguration.ModelBoundQuerySettings != null)
+                    {
+                        _propertiesQuerySettings.Add(edmProperty, property.QueryConfiguration.ModelBoundQuerySettings);
+                    }
                 }
             }
         }

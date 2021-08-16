@@ -44,7 +44,7 @@ namespace Microsoft.OData.ModelBuilder.Config
         public bool NotFilterable { get; set; }
 
         /// <summary>
-        /// Gets or sets whether the property is nonfilterable. default is false.
+        /// Gets or sets whether the property is non-filterable. default is false.
         /// </summary>
         public bool NonFilterable
         {

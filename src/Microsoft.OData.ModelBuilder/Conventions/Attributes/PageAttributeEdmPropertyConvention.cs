@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
@@ -25,7 +26,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             if (!edmProperty.AddedExplicitly)
             {
                 PageAttribute pageAttribute = attribute as PageAttribute;
-                /*
+
                 ModelBoundQuerySettings querySettings = edmProperty.QueryConfiguration.GetModelBoundQuerySettingsOrDefault();
                 if (pageAttribute.MaxTop < 0)
                 {
@@ -40,7 +41,6 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 {
                     querySettings.PageSize = pageAttribute.PageSize;
                 }
-                */
             }
         }
     }

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
@@ -34,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             if (!edmTypeConfiguration.AddedExplicitly)
             {
                 OrderByAttribute orderByAttribute = attribute as OrderByAttribute;
-                /*
+
                 ModelBoundQuerySettings querySettings =
                     edmTypeConfiguration.QueryConfiguration.GetModelBoundQuerySettingsOrDefault();
                 if (querySettings.OrderByConfigurations.Count == 0)
@@ -56,7 +57,6 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                     querySettings.DefaultEnableOrderBy =
                         orderByAttribute.DefaultEnableOrderBy;
                 }
-                */
             }
         }
     }

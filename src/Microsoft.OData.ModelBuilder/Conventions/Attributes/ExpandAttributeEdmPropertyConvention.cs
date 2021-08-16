@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
@@ -25,7 +26,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             if (!edmProperty.AddedExplicitly)
             {
                 ExpandAttribute expandAttribute = attribute as ExpandAttribute;
-                /*
+
                 ModelBoundQuerySettings querySettings = edmProperty.QueryConfiguration.GetModelBoundQuerySettingsOrDefault();
                 if (querySettings.ExpandConfigurations.Count == 0)
                 {
@@ -43,9 +44,8 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 if (expandAttribute.ExpandConfigurations.Count == 0)
                 {
                     querySettings.DefaultExpandType = expandAttribute.DefaultExpandType;
-                    querySettings.DefaultMaxDepth = expandAttribute.DefaultMaxDepth ?? ODataValidationSettings.DefaultMaxExpansionDepth;
+                    querySettings.DefaultMaxDepth = expandAttribute.DefaultMaxDepth ?? QueryConfiguration.DefaultMaxExpansionDepth;
                 }
-                */
             }
         }
     }

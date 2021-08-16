@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.OData.ModelBuilder.Config;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -12,11 +12,8 @@ namespace Microsoft.OData.ModelBuilder
     /// correlate to OData's $expand query option settings.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class, AllowMultiple = true)]
-    [SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments",
-        Justification = "Don't want those argument to be retrievable")]
     public sealed class ExpandAttribute : Attribute
     {
-#if false
         private readonly Dictionary<string, ExpandConfiguration> _expandConfigurations = new Dictionary<string, ExpandConfiguration>();
         private SelectExpandType _expandType;
         private SelectExpandType? _defaultExpandType;
@@ -29,7 +26,7 @@ namespace Microsoft.OData.ModelBuilder
         public ExpandAttribute()
         {
             _defaultExpandType = SelectExpandType.Allowed;
-           // _defaultMaxDepth = ODataValidationSettings.DefaultMaxExpansionDepth;
+            _defaultMaxDepth = QueryConfiguration.DefaultMaxExpansionDepth;
         }
 
         /// <summary>
@@ -45,7 +42,7 @@ namespace Microsoft.OData.ModelBuilder
                     _expandConfigurations.Add(property, new ExpandConfiguration
                     {
                         ExpandType = SelectExpandType.Allowed,
-                        MaxDepth = ODataValidationSettings.DefaultMaxExpansionDepth
+                        MaxDepth = QueryConfiguration.DefaultMaxExpansionDepth
                     });
                 }
             }
@@ -133,6 +130,5 @@ namespace Microsoft.OData.ModelBuilder
                 _defaultMaxDepth = value;
             }
         }
-#endif
     }
 }

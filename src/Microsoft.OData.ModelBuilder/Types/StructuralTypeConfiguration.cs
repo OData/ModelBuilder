@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -29,6 +30,7 @@ namespace Microsoft.OData.ModelBuilder
         {
             ExplicitProperties = new Dictionary<PropertyInfo, PropertyConfiguration>();
             RemovedProperties = new List<PropertyInfo>();
+            QueryConfiguration = new QueryConfiguration();
         }
 
         /// <summary>
@@ -176,6 +178,11 @@ namespace Microsoft.OData.ModelBuilder
                 return ExplicitProperties.Values.OfType<NavigationPropertyConfiguration>();
             }
         }
+
+        /// <summary>
+        /// Gets or sets the <see cref="QueryConfiguration"/>.
+        /// </summary>
+        public QueryConfiguration QueryConfiguration { get; set; }
 
         /// <summary>
         /// Gets or sets a value that is <c>true</c> if the type's name or namespace was set by the user; <c>false</c> if it was inferred through conventions.

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using Microsoft.OData.ModelBuilder.Config;
 
 namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
 {
@@ -25,7 +26,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             if (!edmProperty.AddedExplicitly)
             {
                 FilterAttribute filterAttribute = attribute as FilterAttribute;
-                /*
+
                 ModelBoundQuerySettings querySettings = edmProperty.QueryConfiguration.GetModelBoundQuerySettingsOrDefault();
                 if (querySettings.FilterConfigurations.Count == 0)
                 {
@@ -43,7 +44,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
                 if (filterAttribute.FilterConfigurations.Count == 0)
                 {
                     querySettings.DefaultEnableFilter = filterAttribute.DefaultEnableFilter;
-                }*/
+                }
             }
         }
     }

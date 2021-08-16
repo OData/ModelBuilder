@@ -254,32 +254,32 @@ namespace Microsoft.OData.ModelBuilder.Tests.Property
             Assert.True(property.NotSortable);
         }
 
-        //[Fact]
-        //public void Property_QuerySettings()
-        //{
-        //    // Arrange
-        //    StructuralTypeConfiguration structuralType = Mock.Of<StructuralTypeConfiguration>();
-        //    Mock<PropertyInfo> propertyInfo = new Mock<PropertyInfo>();
-        //    propertyInfo.SetupGet(p => p.PropertyType).Returns(typeof(int));
-        //    PropertyConfiguration property = new PrimitivePropertyConfiguration(propertyInfo.Object, structuralType);
+        [Fact]
+        public void Property_QuerySettings()
+        {
+            // Arrange
+            StructuralTypeConfiguration structuralType = Mock.Of<StructuralTypeConfiguration>();
+            Mock<PropertyInfo> propertyInfo = new Mock<PropertyInfo>();
+            propertyInfo.SetupGet(p => p.PropertyType).Returns(typeof(int));
+            PropertyConfiguration property = new PrimitivePropertyConfiguration(propertyInfo.Object, structuralType);
 
-        //    // Act
-        //    property.Count();
-        //    property.OrderBy("A", "B");
-        //    property.Filter(QueryOptionSetting.Disabled);
-        //    property.Page(10, 20);
-        //    property.Expand(5, SelectExpandType.Automatic, "a");
+            // Act
+            property.Count();
+            property.OrderBy("A", "B");
+            property.Filter(false);
+            property.Page(10, 20);
+            property.Expand(5, SelectExpandType.Automatic, "a");
 
-        //    // Assert
-        //    Assert.Equal(SelectExpandType.Automatic,
-        //        property.QueryConfiguration.ModelBoundQuerySettings.ExpandConfigurations["a"].ExpandType);
-        //    Assert.Equal(5, property.QueryConfiguration.ModelBoundQuerySettings.ExpandConfigurations["a"].MaxDepth);
-        //    Assert.Equal(10, property.QueryConfiguration.ModelBoundQuerySettings.MaxTop);
-        //    Assert.Equal(20, property.QueryConfiguration.ModelBoundQuerySettings.PageSize);
-        //    Assert.True(property.QueryConfiguration.ModelBoundQuerySettings.Countable);
-        //    Assert.True(property.QueryConfiguration.ModelBoundQuerySettings.OrderByConfigurations["A"]);
-        //    Assert.True(property.QueryConfiguration.ModelBoundQuerySettings.OrderByConfigurations["B"]);
-        //    Assert.False(property.QueryConfiguration.ModelBoundQuerySettings.DefaultEnableFilter);
-        //}
+            // Assert
+            Assert.Equal(SelectExpandType.Automatic,
+                property.QueryConfiguration.ModelBoundQuerySettings.ExpandConfigurations["a"].ExpandType);
+            Assert.Equal(5, property.QueryConfiguration.ModelBoundQuerySettings.ExpandConfigurations["a"].MaxDepth);
+            Assert.Equal(10, property.QueryConfiguration.ModelBoundQuerySettings.MaxTop);
+            Assert.Equal(20, property.QueryConfiguration.ModelBoundQuerySettings.PageSize);
+            Assert.True(property.QueryConfiguration.ModelBoundQuerySettings.Countable);
+            Assert.True(property.QueryConfiguration.ModelBoundQuerySettings.OrderByConfigurations["A"]);
+            Assert.True(property.QueryConfiguration.ModelBoundQuerySettings.OrderByConfigurations["B"]);
+            Assert.False(property.QueryConfiguration.ModelBoundQuerySettings.DefaultEnableFilter);
+        }
     }
 }

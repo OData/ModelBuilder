@@ -617,6 +617,253 @@ namespace Microsoft.OData.ModelBuilder
             return GetOrCreateContainedNavigationProperty(navigationPropertyExpression, EdmMultiplicity.One);
         }
 
+
+        /// <summary>
+        /// Sets this property is countable of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Count()
+        {
+            Configuration.QueryConfiguration.SetCount(true);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets whether this property is countable of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Count(bool enabled)
+        {
+            Configuration.QueryConfiguration.SetCount(enabled);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets sortable properties depends on boolean value of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> OrderBy(bool enabled, params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetOrderBy(properties, enabled);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets sortable properties of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> OrderBy(params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetOrderBy(properties, true);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets whether all properties of this structural type is sortable.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> OrderBy(bool enabled)
+        {
+            Configuration.QueryConfiguration.SetOrderBy(null, enabled);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets all properties of this structural type is sortable.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> OrderBy()
+        {
+            Configuration.QueryConfiguration.SetOrderBy(null, true);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets filterable properties depends on boolean value of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Filter(bool enabled, params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetFilter(properties, enabled);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets filterable properties of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Filter(params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetFilter(properties, true);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets whether all properties of this structural type is filterable.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Filter(bool enabled)
+        {
+            Configuration.QueryConfiguration.SetFilter(null, enabled);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets all properties of this structural type is filterable.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Filter()
+        {
+            Configuration.QueryConfiguration.SetFilter(null, true);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets selectable properties depends on <see cref="SelectExpandType"/> of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Select(SelectExpandType selectType,
+            params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetSelect(properties, selectType);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets selectable properties of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Select(params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetSelect(properties, SelectExpandType.Allowed);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets <see cref="SelectExpandType"/> of all properties of this structural type is selectable.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Select(SelectExpandType selectType)
+        {
+            Configuration.QueryConfiguration.SetSelect(null, selectType);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets all properties of this structural type is selectable.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Select()
+        {
+            Configuration.QueryConfiguration.SetSelect(null, SelectExpandType.Allowed);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the max value of $top of this structural type that a client can request
+        /// and the maximum number of query results of this entity type to return.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Page(int? maxTopValue, int? pageSizeValue)
+        {
+            Configuration.QueryConfiguration.SetMaxTop(maxTopValue);
+            Configuration.QueryConfiguration.SetPageSize(pageSizeValue);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the properties of this structural type enable paging.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Page()
+        {
+            Configuration.QueryConfiguration.SetMaxTop(null);
+            Configuration.QueryConfiguration.SetPageSize(null);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the maximum depth of expand result,
+        /// expandable properties and their <see cref="SelectExpandType"/> of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(int maxDepth, SelectExpandType expandType, params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetExpand(properties, maxDepth, expandType);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the expandable properties of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetExpand(properties, null, SelectExpandType.Allowed);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the maximum depth of expand result,
+        /// expandable properties of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(int maxDepth, params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetExpand(properties, maxDepth, SelectExpandType.Allowed);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets the expandable properties and their <see cref="SelectExpandType"/> of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(SelectExpandType expandType, params string[] properties)
+        {
+            Configuration.QueryConfiguration.SetExpand(properties, null, expandType);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets <see cref="SelectExpandType"/> of all properties with maximum depth of expand result of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(SelectExpandType expandType, int maxDepth)
+        {
+            Configuration.QueryConfiguration.SetExpand(null, maxDepth, expandType);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets all properties expandable with maximum depth of expand result of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(int maxDepth)
+        {
+            Configuration.QueryConfiguration.SetExpand(null, maxDepth, SelectExpandType.Allowed);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets <see cref="SelectExpandType"/> of all properties of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand(SelectExpandType expandType)
+        {
+            Configuration.QueryConfiguration.SetExpand(null, null, expandType);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
+        /// <summary>
+        /// Sets all properties expandable of this structural type.
+        /// </summary>
+        public StructuralTypeConfiguration<TStructuralType> Expand()
+        {
+            Configuration.QueryConfiguration.SetExpand(null, null, SelectExpandType.Allowed);
+            Configuration.AddedExplicitly = true;
+            return this;
+        }
+
         internal NavigationPropertyConfiguration GetOrCreateNavigationProperty(Expression navigationPropertyExpression, EdmMultiplicity multiplicity)
         {
             PropertyInfo navigationProperty = PropertySelectorVisitor.GetSelectedProperty(navigationPropertyExpression);

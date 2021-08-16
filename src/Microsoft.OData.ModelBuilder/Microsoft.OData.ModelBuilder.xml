@@ -268,6 +268,32 @@
             correlate to OData's $expand query option settings.
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ExpandAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.ExpandAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.ExpandAttribute.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.ExpandAttribute"/> class
+            with the name of allowed expand properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.ExpandAttribute.ExpandConfigurations">
+            <summary>
+            Gets or sets the <see cref="T:Microsoft.OData.ModelBuilder.Config.ExpandConfiguration"/> of navigation properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.ExpandAttribute.ExpandType">
+            <summary>
+            Gets or sets the <see cref="P:Microsoft.OData.ModelBuilder.ExpandAttribute.ExpandType"/> of navigation properties.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.ExpandAttribute.MaxDepth">
+            <summary>
+            Gets or sets the maximum expand depth of navigation properties.
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.FilterAttribute">
             <summary>
             Represents an <see cref="T:System.Attribute"/> that can be placed on a class or property
@@ -928,7 +954,7 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NonFilterable">
             <summary>
-            Gets or sets whether the property is nonfilterable. default is false.
+            Gets or sets whether the property is non-filterable. default is false.
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.NotSortable">
@@ -964,6 +990,56 @@
         <member name="P:Microsoft.OData.ModelBuilder.Config.QueryableRestrictions.DisableAutoExpandWhenSelectIsPresent">
             <summary>
             If set to <c>true</c> then automatic expand will be disabled if there is a $select specify by client.
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Config.QueryConfiguration">
+            <summary>
+            Query configuration which contains <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings">
+            <summary>
+            Gets or sets the <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetCount(System.Boolean)">
+            <summary>
+            Sets the Countable in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetMaxTop(System.Nullable{System.Int32})">
+            <summary>
+            Sets the MaxTop in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetPageSize(System.Nullable{System.Int32})">
+            <summary>
+            Sets the PageSize in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetExpand(System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Int32},Microsoft.OData.ModelBuilder.SelectExpandType)">
+            <summary>
+            Sets the ExpandConfigurations in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetSelect(System.Collections.Generic.IEnumerable{System.String},Microsoft.OData.ModelBuilder.SelectExpandType)">
+            <summary>
+            Sets the SelectConfigurations in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetOrderBy(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Sets the OrderByConfigurations in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.SetFilter(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Sets the FilterConfigurations in <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.GetModelBoundQuerySettingsOrDefault">
+            <summary>
+            Gets the <see cref="P:Microsoft.OData.ModelBuilder.Config.QueryConfiguration.ModelBoundQuerySettings"/> or create it depends on the default settings.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.BindingPathConfiguration`1">
@@ -3567,7 +3643,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:Microsoft.OData.ModelBuilder.PropertyConfiguration"/> class.
             </summary>
-            <param name="property">The name of the property.</param>
+            <param name="property">The property info.</param>
             <param name="declaringType">The declaring EDM type of the property.</param>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.PropertyConfiguration.Name">
@@ -3657,6 +3733,11 @@
             Get or sets order in "order by"  expression.
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.PropertyConfiguration.QueryConfiguration">
+            <summary>
+            Gets or sets the <see cref="P:Microsoft.OData.ModelBuilder.PropertyConfiguration.QueryConfiguration"/>.
+            </summary>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.IsNotFilterable">
             <summary>
             Sets the property as not filterable.
@@ -3715,6 +3796,129 @@
         <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.IsCountable">
             <summary>
             Sets the property as countable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Count">
+            <summary>
+            Sets this property is countable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Count(System.Boolean)">
+            <summary>
+            Sets whether this property is countable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.OrderBy">
+            <summary>
+            Sets all properties of this property is sortable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.OrderBy(System.String[])">
+            <summary>
+            Sets sortable properties of this property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.OrderBy(System.Boolean)">
+            <summary>
+            Sets whether all properties of this property is sortable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.OrderBy(System.Boolean,System.String[])">
+            <summary>
+            Sets sortable properties depends on boolean of this property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Filter">
+            <summary>
+            Sets all properties of this property is filterable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Filter(System.String[])">
+            <summary>
+            Sets filterable properties of this property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Filter(System.Boolean)">
+            <summary>
+            Sets whether all properties of this property is filterable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Filter(System.Boolean,System.String[])">
+            <summary>
+            Sets filterable properties depends on boolean of this property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Select(Microsoft.OData.ModelBuilder.SelectExpandType,System.String[])">
+            <summary>
+            Sets selectable properties depends on <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of this property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Select(System.String[])">
+            <summary>
+            Sets selectable properties of this property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Select(Microsoft.OData.ModelBuilder.SelectExpandType)">
+            <summary>
+            Sets <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of all properties of this property is selectable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Select">
+            <summary>
+            Sets all properties of this property is selectable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Page(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Sets the max value of $top of this property that a client can request
+            and the maximum number of query results of this property to return.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Page">
+            <summary>
+            Sets this property enable paging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(System.Int32,Microsoft.OData.ModelBuilder.SelectExpandType,System.String[])">
+            <summary>
+            Sets the maximum depth of expand result,
+            expandable properties and their <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of this navigation property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(System.String[])">
+            <summary>
+            Sets the expandable properties of this navigation property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(System.Int32,System.String[])">
+            <summary>
+            Sets the maximum depth of expand result,
+            expandable properties of this navigation property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(Microsoft.OData.ModelBuilder.SelectExpandType,System.String[])">
+            <summary>
+            Sets the expandable properties and their <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of this navigation property.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(Microsoft.OData.ModelBuilder.SelectExpandType,System.Int32)">
+            <summary>
+            Sets <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of all properties with maximum depth of expand result.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(System.Int32)">
+            <summary>
+            Sets all properties expandable with maximum depth of expand result.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand(Microsoft.OData.ModelBuilder.SelectExpandType)">
+            <summary>
+            Sets <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of all properties.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PropertyConfiguration.Expand">
+            <summary>
+            Sets all properties expandable.
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.PropertyConfigurationExtensions">
@@ -4932,6 +5136,11 @@
             Gets the collection of <see cref="T:Microsoft.OData.ModelBuilder.NavigationPropertyConfiguration"/> of this entity type.
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.QueryConfiguration">
+            <summary>
+            Gets or sets the <see cref="P:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.QueryConfiguration"/>.
+            </summary>
+        </member>
         <member name="P:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration.AddedExplicitly">
             <summary>
             Gets or sets a value that is <c>true</c> if the type's name or namespace was set by the user; <c>false</c> if it was inferred through conventions.
@@ -5359,6 +5568,129 @@
              the relationship. For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET
              <c>Function(t) t.MyProperty</c>.</param>
             <returns>A configuration object that can be used to further configure the relationship.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Count">
+            <summary>
+            Sets this property is countable of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Count(System.Boolean)">
+            <summary>
+            Sets whether this property is countable of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.OrderBy(System.Boolean,System.String[])">
+            <summary>
+            Sets sortable properties depends on boolean value of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.OrderBy(System.String[])">
+            <summary>
+            Sets sortable properties of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.OrderBy(System.Boolean)">
+            <summary>
+            Sets whether all properties of this structural type is sortable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.OrderBy">
+            <summary>
+            Sets all properties of this structural type is sortable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Filter(System.Boolean,System.String[])">
+            <summary>
+            Sets filterable properties depends on boolean value of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Filter(System.String[])">
+            <summary>
+            Sets filterable properties of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Filter(System.Boolean)">
+            <summary>
+            Sets whether all properties of this structural type is filterable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Filter">
+            <summary>
+            Sets all properties of this structural type is filterable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Select(Microsoft.OData.ModelBuilder.SelectExpandType,System.String[])">
+            <summary>
+            Sets selectable properties depends on <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Select(System.String[])">
+            <summary>
+            Sets selectable properties of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Select(Microsoft.OData.ModelBuilder.SelectExpandType)">
+            <summary>
+            Sets <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of all properties of this structural type is selectable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Select">
+            <summary>
+            Sets all properties of this structural type is selectable.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Page(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Sets the max value of $top of this structural type that a client can request
+            and the maximum number of query results of this entity type to return.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Page">
+            <summary>
+            Sets the properties of this structural type enable paging.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(System.Int32,Microsoft.OData.ModelBuilder.SelectExpandType,System.String[])">
+            <summary>
+            Sets the maximum depth of expand result,
+            expandable properties and their <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(System.String[])">
+            <summary>
+            Sets the expandable properties of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(System.Int32,System.String[])">
+            <summary>
+            Sets the maximum depth of expand result,
+            expandable properties of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(Microsoft.OData.ModelBuilder.SelectExpandType,System.String[])">
+            <summary>
+            Sets the expandable properties and their <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(Microsoft.OData.ModelBuilder.SelectExpandType,System.Int32)">
+            <summary>
+            Sets <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of all properties with maximum depth of expand result of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(System.Int32)">
+            <summary>
+            Sets all properties expandable with maximum depth of expand result of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand(Microsoft.OData.ModelBuilder.SelectExpandType)">
+            <summary>
+            Sets <see cref="T:Microsoft.OData.ModelBuilder.SelectExpandType"/> of all properties of this structural type.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Expand">
+            <summary>
+            Sets all properties expandable of this structural type.
+            </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.CapabilitiesNavigationType">
             <summary>
