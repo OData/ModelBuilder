@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Microsoft.OData.ModelBuilder.Vocabularies
 {
     /// <summary>
-    /// Base for all vocabulary configuration classes
+    /// Base for all vocabulary configuration classes.
     /// </summary>
     public class VocabularyConfigurationsBase : IVocabularyTermConfiguration
     {
