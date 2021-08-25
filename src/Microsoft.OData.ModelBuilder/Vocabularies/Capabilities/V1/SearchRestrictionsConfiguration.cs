@@ -16,11 +16,24 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class SearchRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _searchable;
         private SearchExpressions? _unsupportedExpressions;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.SearchRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="SearchRestrictionsConfiguration"/></returns>
+        public SearchRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// $search is supported
@@ -60,6 +73,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 var enumMember = new EdmEnumMember(enumType, _unsupportedExpressions.ToString(), new EdmEnumMemberValue((long)_unsupportedExpressions.Value));
                 properties.Add(new EdmPropertyConstructor("UnsupportedExpressions", new EdmEnumMemberExpression(enumMember)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

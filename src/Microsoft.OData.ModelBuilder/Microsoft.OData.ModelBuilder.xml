@@ -3121,11 +3121,6 @@
             The EntitySetPathExpression that entities are returned from.
             </summary>
         </member>
-        <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.VocabularyTermConfigurations">
-            <summary>
-            Vocabulary builders to annotate this <see cref="T:Microsoft.OData.ModelBuilder.OperationConfiguration"/>
-            </summary> 
-        </member>
         <member name="P:Microsoft.OData.ModelBuilder.OperationConfiguration.BindingParameter">
             <summary>
             Get the bindingParameter.
@@ -5838,6 +5833,13 @@
             <param name="isExpandable">This entity set supports the expand expressions.</param>
             <param name="nonExpandableProperties">These properties cannot be used in $expand expressions.</param>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.CapabilitiesVocabularyExtensionMethods.ToEdmProperties(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Convert dynamic properties to edm properties.
+            </summary>
+            <param name="dynamicProperties">The dynamic properties to be processed</param>
+            <returns>List of <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmPropertyConstructor"/>.</returns>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AcceptableEncodingsConfiguration">
             <summary>
             List of acceptable compression methods for ($batch) requests, e.g. gzip
@@ -5864,6 +5866,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.IsAnnotationValuesInQuerySupported(System.Boolean)">
             <summary>
             Supports annotation values within system query options
@@ -5881,6 +5891,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.IsAsynchronousRequestsSupported(System.Boolean)">
             <summary>
@@ -5900,6 +5918,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.IsBatchContinueOnErrorSupported(System.Boolean)">
             <summary>
             Service supports the continue on error preference. Supports $batch requests. Services that apply the BatchContinueOnErrorSupported term should also specify the ContinueOnErrorSupported property from the BatchSupport term.
@@ -5917,6 +5943,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
@@ -5978,6 +6012,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.IsBatchSupported(System.Boolean)">
             <summary>
             Supports $batch requests. Services that apply the BatchSupported term should also apply the more comprehensive BatchSupport term.
@@ -5997,6 +6039,14 @@
             <summary>
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration"/>
             </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration.HasId(System.String)">
             <summary>
@@ -6030,6 +6080,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackSupportedConfiguration.HasCallbackProtocols(System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CallbackProtocolConfiguration})">
             <summary>
             List of supported callback protocols, e.g. `http` or `wss`
@@ -6054,6 +6112,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration.IsSupported(System.Boolean)">
             <summary>
@@ -6116,6 +6182,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasCollectionProperty(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression)">
             <summary>
             Restricted Collection-valued property
@@ -6125,7 +6199,7 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration.HasFilterFunctions(System.String[])">
             <summary>
-            List of functions and operators supported in filter expressions.
+            List of functions and operators supported in filter expressions
             If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
             <param name="filterFunctions">The value(s) to set</param>
@@ -6234,6 +6308,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.IsComputeSupported(System.Boolean)">
             <summary>
             Supports $compute
@@ -6290,23 +6372,31 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.IsCountable(System.Boolean)">
             <summary>
-            Entities can be counted
+            Entities can be counted (only valid if targeting an entity set)
             </summary>
             <param name="countable">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.HasNonCountableProperties(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
             <summary>
-            These collection properties do not allow /$count segments
+            Members of these collection properties cannot be counted
             </summary>
             <param name="nonCountableProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration.HasNonCountableNavigationProperties(Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[])">
             <summary>
-            These navigation properties do not allow /$count segments
+            Members of these navigation properties cannot be counted
             </summary>
             <param name="nonCountableNavigationProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/></returns>
@@ -6321,6 +6411,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.IsCrossJoinSupported(System.Boolean)">
             <summary>
@@ -6367,6 +6465,14 @@
             <summary>
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration"/>
             </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CustomParameterConfiguration.HasName(System.String)">
             <summary>
@@ -6449,6 +6555,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
             Annotation target supports deep inserts
@@ -6474,6 +6588,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepUpdateSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
             Annotation target supports deep updates
@@ -6498,6 +6620,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration.IsDeletable(System.Boolean)">
             <summary>
@@ -6601,6 +6731,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.IsExpandable(System.Boolean)">
             <summary>
             $expand is supported
@@ -6620,6 +6758,13 @@
             These properties cannot be used in expand expressions
             </summary>
             <param name="nonExpandableProperties">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.HasNonExpandableStreamProperties(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
+            <summary>
+            These stream properties cannot be used in expand expressions
+            </summary>
+            <param name="nonExpandableStreamProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ExpandRestrictionsConfiguration.HasMaxLevels(System.Int32)">
@@ -6642,6 +6787,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterExpressionRestrictionTypeConfiguration.HasProperty(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression)">
             <summary>
             Path to the restricted property
@@ -6661,7 +6814,7 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration">
             <summary>
-            List of functions and operators supported in filter expressions.
+            List of functions and operators supported in filter expressions
             If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
         </member>
@@ -6670,7 +6823,7 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterFunctionsConfiguration.HasFilterFunctions(System.String[])">
             <summary>
-            List of functions and operators supported in filter expressions.
+            List of functions and operators supported in filter expressions
             If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
             <param name="filterFunctions">The value(s) to set</param>
@@ -6686,6 +6839,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.IsFilterable(System.Boolean)">
             <summary>
@@ -6739,6 +6900,46 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.FilterRestrictionsConfiguration.ToEdmExpression">
             <inheritdoc/>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod">
+            <summary>
+            Org.OData.Capabilities.V1.HttpMethod
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.GET">
+            <summary>
+            The HTTP GET Method
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.PATCH">
+            <summary>
+            The HTTP PATCH Method
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.PUT">
+            <summary>
+            The HTTP PUT Method
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.POST">
+            <summary>
+            The HTTP POST Method
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.DELETE">
+            <summary>
+            The HTTP DELETE Method
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.OPTIONS">
+            <summary>
+            The HTTP OPTIONS Method
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod.HEAD">
+            <summary>
+            The HTTP HEAD Method
+            </summary>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration">
             <summary>
             Supports key values according to OData URL conventions
@@ -6746,6 +6947,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.IsIndexableByKey(System.Boolean)">
             <summary>
@@ -6764,6 +6973,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.IsInsertable(System.Boolean)">
             <summary>
@@ -6784,6 +7001,13 @@
             These navigation properties do not allow deep inserts
             </summary>
             <param name="nonInsertableNavigationProperties">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasRequiredProperties(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
+            <summary>
+            These structural properties must be specified on insert
+            </summary>
+            <param name="requiredProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration.HasMaxLevels(System.Int32)">
@@ -6909,6 +7133,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.IsKeyAsSegmentSupported(System.Boolean)">
             <summary>
             Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection
@@ -6927,6 +7159,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.IsMediaLocationUpdateSupported(System.Boolean)">
             <summary>
             Stream property supports update of its media edit URL and/or media read URL
@@ -6944,6 +7184,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration.IsExpandSupported(System.Boolean)">
             <summary>
@@ -7000,6 +7248,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasNavigationProperty(Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression)">
             <summary>
             Navigation properties can be navigated
@@ -7009,14 +7265,14 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasNavigability(Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationType)">
             <summary>
-            Supported navigability of this navigation property.
+            Supported navigability of this navigation property
             </summary>
             <param name="navigability">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationPropertyRestrictionConfiguration.HasFilterFunctions(System.String[])">
             <summary>
-            List of functions and operators supported in filter expressions.
+            List of functions and operators supported in filter expressions
             If not specified, null, or empty, all functions and operators may be attempted.
             </summary>
             <param name="filterFunctions">The value(s) to set</param>
@@ -7202,6 +7458,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationRestrictionsConfiguration.HasNavigability(Microsoft.OData.ModelBuilder.Capabilities.V1.NavigationType)">
             <summary>
             Default navigability for all navigation properties of the annotation target. Individual navigation properties can override this value via `RestrictedProperties/Navigability`.
@@ -7253,6 +7517,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration.IsFilterSegmentSupported(System.Boolean)">
             <summary>
@@ -7316,6 +7588,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration.HasSchemeName(System.String)">
             <summary>
             Authorization flow scheme name
@@ -7348,6 +7628,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.IsQuerySegmentSupported(System.Boolean)">
             <summary>
             Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)
@@ -7367,6 +7655,14 @@
             <summary>
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/>
             </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadByKeyRestrictionsTypeConfiguration.IsReadable(System.Boolean)">
             <summary>
@@ -7441,6 +7737,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration.IsReadable(System.Boolean)">
             <summary>
@@ -7534,6 +7838,14 @@
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration"/>
             </summary>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration.HasScope(System.String)">
             <summary>
             Name of the scope.
@@ -7544,7 +7856,11 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration.HasRestrictedProperties(System.String)">
             <summary>
             Comma-separated string value of all properties that will be included or excluded when using the scope.
-            Possible string value identifiers when specifying properties are '*', _PropertyName_, '-'_PropertyName_. Where, '*' denotes all properties are accessible,'-'_PropertyName_ excludes that specific property and _PropertyName_ explicitly provides access to the specific property. The absence of 'RestrictedProperties' denotes all properties are accessible using that scope.
+            Possible string value identifiers when specifying properties are `*`, _PropertyName_, `-`_PropertyName_.
+            `*` denotes all properties are accessible.
+            `-`_PropertyName_ excludes that specific property.
+            _PropertyName_ explicitly provides access to the specific property.
+            The absence of `RestrictedProperties` denotes all properties are accessible using that scope.
             </summary>
             <param name="restrictedProperties">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ScopeTypeConfiguration"/></returns>
@@ -7595,6 +7911,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SearchRestrictionsConfiguration.IsSearchable(System.Boolean)">
             <summary>
             $search is supported
@@ -7619,6 +7943,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SelectSupportConfiguration.IsSupported(System.Boolean)">
             <summary>
@@ -7701,6 +8033,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.IsSkipSupported(System.Boolean)">
             <summary>
             Supports $skip
@@ -7718,6 +8058,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SortRestrictionsConfiguration.IsSortable(System.Boolean)">
             <summary>
@@ -7794,6 +8142,14 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.IsTopSupported(System.Boolean)">
             <summary>
             Supports $top
@@ -7811,6 +8167,14 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.TermName">
             <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsUpdatable(System.Boolean)">
             <summary>
@@ -7833,6 +8197,13 @@
             <param name="deltaUpdateSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasUpdateMethod(Microsoft.OData.ModelBuilder.Capabilities.V1.HttpMethod)">
+            <summary>
+            Supported HTTP Methods (PUT or PATCH) for updating an entity.  If null, PATCH SHOULD be supported and PUT MAY be supported.
+            </summary>
+            <param name="updateMethod">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.IsFilterSegmentSupported(System.Boolean)">
             <summary>
             Members of collections can be updated via a PATCH request with a `/$filter(...)/$each` segment
@@ -7847,11 +8218,25 @@
             <param name="typecastSegmentSupported">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasNonUpdatableProperties(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
+            <summary>
+            These structural properties cannot be specified on update
+            </summary>
+            <param name="nonUpdatableProperties">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasNonUpdatableNavigationProperties(Microsoft.OData.Edm.Vocabularies.EdmNavigationPropertyPathExpression[])">
             <summary>
             These navigation properties do not allow rebinding
             </summary>
             <param name="nonUpdatableNavigationProperties">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasRequiredProperties(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
+            <summary>
+            These structural properties must be specified on update
+            </summary>
+            <param name="requiredProperties">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasMaxLevels(System.Int32)">
@@ -7934,6 +8319,983 @@
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.ToEdmExpression">
             <inheritdoc/>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration">
+            <summary>
+            Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated stream property
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration.HasAcceptableMediaTypes(System.String[])">
+            <summary>
+            Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated stream property
+            </summary>
+            <param name="acceptableMediaTypes">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration">
+            <summary>
+            Instances of this type may contain properties in addition to those declared in $metadata
+            If specified as false clients can assume that instances will not contain dynamic properties, irrespective of the value of the OpenType attribute.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.IsAdditionalProperties(System.Boolean)">
+            <summary>
+            Instances of this type may contain properties in addition to those declared in $metadata
+            If specified as false clients can assume that instances will not contain dynamic properties, irrespective of the value of the OpenType attribute.
+            </summary>
+            <param name="additionalProperties">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration">
+            <summary>
+            Org.OData.Core.V1.AlternateKey
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasKey(System.Func{Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration,Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration})">
+            <summary>
+            The set of properties that make up this key
+            </summary>
+            <param name="keyConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasKey(Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration[])">
+            <summary>
+            The set of properties that make up this key
+            </summary>
+            <param name="key">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration">
+            <summary>
+            Communicates available alternate keys
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration.HasAlternateKeys(System.Func{Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration,Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration})">
+            <summary>
+            Communicates available alternate keys
+            </summary>
+            <param name="alternateKeysConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration.HasAlternateKeys(Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration[])">
+            <summary>
+            Communicates available alternate keys
+            </summary>
+            <param name="alternateKeys">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration">
+            <summary>
+            The service will automatically expand this stream or navigation property even if not requested with $expand
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.IsAutoExpand(System.Boolean)">
+            <summary>
+            The service will automatically expand this stream or navigation property even if not requested with $expand
+            </summary>
+            <param name="autoExpand">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration">
+            <summary>
+            The service will automatically expand this navigation property as entity references even if not requested with $expand=.../$ref
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.IsAutoExpandReferences(System.Boolean)">
+            <summary>
+            The service will automatically expand this navigation property as entity references even if not requested with $expand=.../$ref
+            </summary>
+            <param name="autoExpandReferences">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration">
+            <summary>
+            A value for this property is generated on both insert and update
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.IsComputed(System.Boolean)">
+            <summary>
+            A value for this property is generated on both insert and update
+            </summary>
+            <param name="computed">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration">
+            <summary>
+            A value for this property can be provided by the client on insert and update. If no value is provided on insert, a non-static default value is generated
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.IsComputedDefaultValue(System.Boolean)">
+            <summary>
+            A value for this property can be provided by the client on insert and update. If no value is provided on insert, a non-static default value is generated
+            </summary>
+            <param name="computedDefaultValue">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration">
+            <summary>
+            A unique identifier for nested entities within a request.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.HasContentID(System.String)">
+            <summary>
+            A unique identifier for nested entities within a request.
+            </summary>
+            <param name="contentID">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration">
+            <summary>
+            Entity-ids follow OData URL conventions
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.IsConventionalIDs(System.Boolean)">
+            <summary>
+            Entity-ids follow OData URL conventions
+            </summary>
+            <param name="conventionalIDs">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration">
+            <summary>
+            A modification operation failed on the annotated instance or collection within a success payload
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.Hasinfo(System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            Information about the exception
+            </summary>
+            <param name="infoConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.Hasinfo(Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration)">
+            <summary>
+            Information about the exception
+            </summary>
+            <param name="info">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.HasfailedOperation(Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind)">
+            <summary>
+            The kind of modification operation that failed
+            </summary>
+            <param name="failedOperation">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.HasresponseCode(System.Int32)">
+            <summary>
+            Response code of the failed operation, e.g. 424 for a failed dependency
+            </summary>
+            <param name="responseCode">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind">
+            <summary>
+            Org.OData.Core.V1.DataModificationOperationKind
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.insert">
+            <summary>
+            Insert new instance
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.update">
+            <summary>
+            Update existing instance
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.upsert">
+            <summary>
+            Insert new instance or update it if it already exists
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.delete">
+            <summary>
+            Delete existing instance
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.invoke">
+            <summary>
+            Invoke action or function
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.link">
+            <summary>
+            Add link between entities
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.DataModificationOperationKind.unlink">
+            <summary>
+            Remove link between entities
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration">
+            <summary>
+            Functions, actions and types in this namespace can be referenced in URLs with or without namespace- or alias- qualification.
+            Data Modelers should ensure uniqueness of schema children across all default namespaces, and should avoid naming bound functions, actions, or derived types with the same name as a structural or navigational property of the type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.IsDefaultNamespace(System.Boolean)">
+            <summary>
+            Functions, actions and types in this namespace can be referenced in URLs with or without namespace- or alias- qualification.
+            Data Modelers should ensure uniqueness of schema children across all default namespaces, and should avoid naming bound functions, actions, or derived types with the same name as a structural or navigational property of the type.
+            </summary>
+            <param name="defaultNamespace">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration">
+            <summary>
+            Entity-ids are URLs that locate the identified entity
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.IsDereferenceableIDs(System.Boolean)">
+            <summary>
+            Entity-ids are URLs that locate the identified entity
+            </summary>
+            <param name="dereferenceableIDs">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration">
+            <summary>
+            A brief description of a model element
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.HasDescription(System.String)">
+            <summary>
+            A brief description of a model element
+            </summary>
+            <param name="description">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration">
+            <summary>
+            Example for an instance of the annotated model element
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration.HasDescription(System.String)">
+            <summary>
+            Description of the example value
+            </summary>
+            <param name="description">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration">
+            <summary>
+            A value for this non-key property can be provided by the client on insert and remains unchanged on update
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.IsImmutable(System.Boolean)">
+            <summary>
+            A value for this non-key property can be provided by the client on insert and remains unchanged on update
+            </summary>
+            <param name="immutable">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration">
+            <summary>
+            Properties and terms annotated with this term are language-dependent
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.IsIsLanguageDependent(System.Boolean)">
+            <summary>
+            Properties and terms annotated with this term are language-dependent
+            </summary>
+            <param name="isLanguageDependent">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration">
+            <summary>
+            Properties and terms annotated with this term MUST contain a valid MIME type
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.IsIsMediaType(System.Boolean)">
+            <summary>
+            Properties and terms annotated with this term MUST contain a valid MIME type
+            </summary>
+            <param name="isMediaType">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration">
+            <summary>
+            Properties and terms annotated with this term MUST contain a valid URL
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.IsIsURL(System.Boolean)">
+            <summary>
+            Properties and terms annotated with this term MUST contain a valid URL
+            </summary>
+            <param name="isURL">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration">
+            <summary>
+            The Link term is inspired by the `atom:link` element, see [RFC4287](https://tools.ietf.org/html/rfc4287#section-4.2.7), and the `Link` HTTP header, see [RFC5988](https://tools.ietf.org/html/rfc5988)
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration.Hasrel(System.String)">
+            <summary>
+            Link relation type, see [IANA Link Relations](http://www.iana.org/assignments/link-relations/link-relations.xhtml)
+            </summary>
+            <param name="rel">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration.Hashref(System.String)">
+            <summary>
+            URL of related information
+            </summary>
+            <param name="href">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration">
+            <summary>
+            Link to related information
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration.HasLinks(System.Func{Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration,Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration})">
+            <summary>
+            Link to related information
+            </summary>
+            <param name="linksConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration.HasLinks(Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration[])">
+            <summary>
+            Link to related information
+            </summary>
+            <param name="links">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration">
+            <summary>
+            A lengthy description of a model element
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.HasLongDescription(System.String)">
+            <summary>
+            A lengthy description of a model element
+            </summary>
+            <param name="longDescription">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration">
+            <summary>
+            A collection of qualified type names outside of the type hierarchy that instances of this type might be addressable as by using a type-cast segment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration.HasMayImplement(System.String[])">
+            <summary>
+            A collection of qualified type names outside of the type hierarchy that instances of this type might be addressable as by using a type-cast segment.
+            </summary>
+            <param name="mayImplement">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration">
+            <summary>
+            The media type of a binary resource
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.HasMediaType(System.String)">
+            <summary>
+            The media type of a binary resource
+            </summary>
+            <param name="mediaType">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration">
+            <summary>
+            Instance annotation for warning and info messages
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration.HasMessages(System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            Instance annotation for warning and info messages
+            </summary>
+            <param name="messagesConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration.HasMessages(Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration[])">
+            <summary>
+            Instance annotation for warning and info messages
+            </summary>
+            <param name="messages">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration">
+            <summary>
+            Org.OData.Core.V1.MessageType
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.Hascode(System.String)">
+            <summary>
+            Machine-readable, language-independent message code
+            </summary>
+            <param name="code">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.Hasmessage(System.String)">
+            <summary>
+            Human-readable, language-dependent message text
+            </summary>
+            <param name="message">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.Hasseverity(System.String)">
+            <summary>
+            Severity of the message
+            </summary>
+            <param name="severity">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.Hastarget(System.String)">
+            <summary>
+            A path to the target of the message detail, relative to the annotated instance
+            </summary>
+            <param name="target">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.Hasdetails(System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            List of detail messages
+            </summary>
+            <param name="detailsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.Hasdetails(Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration[])">
+            <summary>
+            List of detail messages
+            </summary>
+            <param name="details">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration">
+            <summary>
+            A space-separated list of supported versions of the OData Protocol. Note that 4.0 is implied by 4.01 and does not need to be separately listed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.HasODataVersions(System.String)">
+            <summary>
+            A space-separated list of supported versions of the OData Protocol. Note that 4.0 is implied by 4.01 and does not need to be separately listed.
+            </summary>
+            <param name="oDataVersions">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration">
+            <summary>
+            Action or function is available
+            The annotation value will usually be an expression, e.g. using properties of the binding parameter type for instance-dependent availability, or using properties of a singleton for global availability. The static value `null` means that availability cannot be determined upfront and is instead expressed as an operation advertisement.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.IsOperationAvailable(System.Boolean)">
+            <summary>
+            Action or function is available
+            The annotation value will usually be an expression, e.g. using properties of the binding parameter type for instance-dependent availability, or using properties of a singleton for global availability. The static value `null` means that availability cannot be determined upfront and is instead expressed as an operation advertisement.
+            </summary>
+            <param name="operationAvailable">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration">
+            <summary>
+            Data modification requires the use of ETags. A non-empty collection contains the set of properties that are used to compute the ETag. An empty collection means that the service won't tell how it computes the ETag.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration.HasOptimisticConcurrency(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression[])">
+            <summary>
+            Data modification requires the use of ETags. A non-empty collection contains the set of properties that are used to compute the ETag. An empty collection means that the service won't tell how it computes the ETag.
+            </summary>
+            <param name="optimisticConcurrency">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration">
+            <summary>
+            Supplying a value for the action or function parameter is optional.
+            All parameters marked as optional must come after any parameters not marked as optional. The binding parameter must not be marked as optional.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration.HasDefaultValue(System.String)">
+            <summary>
+            Default value for an optional parameter of primitive or enumeration type, using the same rules as the `cast` function in URLs.
+            If no explicit DefaultValue is specified, the service is free on how to interpret omitting the parameter from the request. For example, a service might interpret an omitted optional parameter `KeyDate` as having the current date.
+            </summary>
+            <param name="defaultValue">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OptionalParameterConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration">
+            <summary>
+            Collection has a stable order. Ordered collections of primitive or complex types can be indexed by ordinal.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.IsOrdered(System.Boolean)">
+            <summary>
+            Collection has a stable order. Ordered collections of primitive or complex types can be indexed by ordinal.
+            </summary>
+            <param name="ordered">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.Permission">
+            <summary>
+            Org.OData.Core.V1.Permission
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.Permission.None">
+            <summary>
+            No permissions
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.Permission.Read">
+            <summary>
+            Read permission
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.Permission.Write">
+            <summary>
+            Write permission
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.Permission.ReadWrite">
+            <summary>
+            Read and write permission
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.Permission.Invoke">
+            <summary>
+            Permission to invoke actions
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration">
+            <summary>
+            Permissions for accessing a resource
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration.HasPermissions(Microsoft.OData.ModelBuilder.Core.V1.Permission)">
+            <summary>
+            Permissions for accessing a resource
+            </summary>
+            <param name="permissions">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration">
+            <summary>
+            Items can be inserted at a given ordinal index.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.IsPositionalInsert(System.Boolean)">
+            <summary>
+            Items can be inserted at a given ordinal index.
+            </summary>
+            <param name="positionalInsert">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration">
             <summary>
             Org.OData.Core.V1.PrimitiveExampleValue
@@ -7943,6 +9305,14 @@
             <summary>
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration"/>
             </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration.HasDescription(System.String)">
             <summary>
@@ -7961,6 +9331,286 @@
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration.ToEdmExpression">
             <inheritdoc/>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration">
+            <summary>
+            Org.OData.Core.V1.PropertyRef
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration.HasName(Microsoft.OData.Edm.Vocabularies.EdmPropertyPathExpression)">
+            <summary>
+            A path expression resolving to a primitive property of the entity type itself or to a primitive property of a complex or navigation property (recursively) of the entity type. The names of the properties in the path are joined together by forward slashes.
+            </summary>
+            <param name="name">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration.HasAlias(System.String)">
+            <summary>
+            A SimpleIdentifier that MUST be unique within the set of aliases, structural and navigation properties of the containing entity type that MUST be used in the key predicate of URLs
+            </summary>
+            <param name="alias">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration">
+            <summary>
+            Terms annotated with this term can only be applied to elements that have a type that is identical to or derived from the given type name
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.HasRequiresType(System.String)">
+            <summary>
+            Terms annotated with this term can only be applied to elements that have a type that is identical to or derived from the given type name
+            </summary>
+            <param name="requiresType">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration">
+            <summary>
+            The annotated instance within a success payload is problematic
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration.Hasinfo(System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            Information about the exception
+            </summary>
+            <param name="infoConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration.Hasinfo(Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration)">
+            <summary>
+            Information about the exception
+            </summary>
+            <param name="info">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration.HasretryLink(System.String)">
+            <summary>
+            A GET request to this URL retries retrieving the problematic instance
+            </summary>
+            <param name="retryLink">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration">
+            <summary>
+            Resource path for entity container child, can be relative to xml:base and the request URL
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.HasResourcePath(System.String)">
+            <summary>
+            Resource path for entity container child, can be relative to xml:base and the request URL
+            </summary>
+            <param name="resourcePath">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionKind">
+            <summary>
+            Org.OData.Core.V1.RevisionKind
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.RevisionKind.Added">
+            <summary>
+            Model element was added
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.RevisionKind.Modified">
+            <summary>
+            Model element was modified
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.Core.V1.RevisionKind.Deprecated">
+            <summary>
+            Model element was deprecated
+            </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration">
+            <summary>
+            List of revisions of a model element
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration.HasRevisions(System.Func{Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration})">
+            <summary>
+            List of revisions of a model element
+            </summary>
+            <param name="revisionsConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration.HasRevisions(Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration[])">
+            <summary>
+            List of revisions of a model element
+            </summary>
+            <param name="revisions">The value(s) to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration">
+            <summary>
+            Org.OData.Core.V1.RevisionType
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration"/>
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration.HasVersion(System.String)">
+            <summary>
+            The schema version with which this revision was first published
+            </summary>
+            <param name="version">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration.HasKind(Microsoft.OData.ModelBuilder.Core.V1.RevisionKind)">
+            <summary>
+            The kind of revision
+            </summary>
+            <param name="kind">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration.HasDescription(System.String)">
+            <summary>
+            Text describing the reason for the revision
+            </summary>
+            <param name="description">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration">
+            <summary>
+            Service-defined value representing the version of the schema. Services MAY use semantic versioning, but clients MUST NOT assume this is the case.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.HasSchemaVersion(System.String)">
+            <summary>
+            Service-defined value representing the version of the schema. Services MAY use semantic versioning, but clients MUST NOT assume this is the case.
+            </summary>
+            <param name="schemaVersion">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration">
+            <summary>
+            The annotated value is problematic
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration.HasDynamicProperty(System.String,System.Object)">
+            <summary>
+            Dynamic properties.
+            </summary>
+            <param name="name">The name to set</param>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration.Hasinfo(System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            Information about the exception
+            </summary>
+            <param name="infoConfiguration">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration.Hasinfo(Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration)">
+            <summary>
+            Information about the exception
+            </summary>
+            <param name="info">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration.Hasvalue(System.String)">
+            <summary>
+            String representation of the exact value
+            </summary>
+            <param name="value">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.IRecord">
             <summary>
             Interface for clr types that can be converted into <see cref="T:Microsoft.OData.Edm.Vocabularies.EdmRecordExpression" />
@@ -7971,6 +9621,39 @@
             Convert a clr type to an <see cref="T:Microsoft.OData.Edm.IEdmExpression" />
             </summary>
             <returns><see cref="T:Microsoft.OData.Edm.IEdmExpression" /></returns>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.IVocabularyTermConfiguration">
+            <summary>
+            interface for all vocabulary configuration classes
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.IVocabularyTermConfiguration.VocabularyTermConfigurations">
+            <summary>
+            Vocabulary builders to annotate this <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/>
+            </summary> 
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase">
+            <summary>
+            Base for all vocabulary configuration classes
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase.VocabularyTermConfigurations">
+            <summary>
+            Vocabulary builders to annotate this <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/>
+            </summary> 
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions">
+            <summary>
+            Shortcuts for common configurations to be extended in here.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions.HasScopes(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,System.String[])">
+            <summary>
+            List of scopes that can provide access to the resource
+            </summary>
+            <param name="permissionTypeConfiguration"><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/></param>
+            <param name="scopeNames">The value(s) to set</param>
+            <returns></returns>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration">
             <summary>
@@ -8013,14 +9696,14 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasChangeTracking(Microsoft.OData.ModelBuilder.FunctionConfiguration)">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasChangeTracking(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/> configuration
             </summary>
-            <param name="operationSource">The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ChangeTrackingConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCountRestrictions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCountRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CountRestrictionsConfiguration"/> configuration
             </summary>
@@ -8124,6 +9807,14 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasInsertRestrictions``1(Microsoft.OData.ModelBuilder.EntityTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.InsertRestrictionsConfiguration"/></returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDeepInsertSupport``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeepInsertSupportConfiguration"/> configuration
@@ -8138,6 +9829,14 @@
             </summary>
             <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasUpdateRestrictions``1(Microsoft.OData.ModelBuilder.EntityTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDeepUpdateSupport``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
@@ -8156,26 +9855,35 @@
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCollectionPropertyRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDeleteRestrictions``1(Microsoft.OData.ModelBuilder.EntityTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.DeleteRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasCollectionPropertyRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration,Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsTypeConfiguration})">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/> configuration
             </summary>
             <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CollectionPropertyRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOperationRestrictions(Microsoft.OData.ModelBuilder.OperationConfiguration)">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOperationRestrictions(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/> configuration
             </summary>
-            <param name="operationSource">The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.OperationRestrictionsConfiguration"/></returns>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasModificationQueryOptions(Microsoft.OData.ModelBuilder.ActionConfiguration)">
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasModificationQueryOptions(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
             <summary>
             <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/> configuration
             </summary>
-            <param name="operationSource">The <see cref="T:Microsoft.OData.Edm.IEdmOperation"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ModificationQueryOptionsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasReadRestrictions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
@@ -8185,6 +9893,462 @@
             <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
             <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ReadRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMediaLocationUpdateSupported(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasRevisions``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasRevisions(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase,System.Func{Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasRevisions``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.RevisionTypeConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RevisionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDescription``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDescription(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDescription``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLongDescription``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLongDescription(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLongDescription``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLinks``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration,Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLinks(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase,System.Func{Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration,Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLinks``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration,Microsoft.OData.ModelBuilder.Core.V1.LinkConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LinksConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasExample(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasExample``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ExampleConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMessages``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMessages(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase,System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMessages``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration,Microsoft.OData.ModelBuilder.Core.V1.MessageTypeConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MessagesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasValueException``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasValueException(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasValueException``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ValueExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasResourceException``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasResourceException(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasResourceException``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourceExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDataModificationException``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDataModificationException(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDataModificationException``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DataModificationExceptionConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasIsLanguageDependent(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasResourcePath``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasResourcePath(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasPermissions``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasPermissions(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasPermissions``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PermissionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasContentID``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasContentID(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasContentID``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasImmutable(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasComputed(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasComputedDefaultValue(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasIsURL(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAcceptableMediaTypes(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAcceptableMediaTypes``1(Microsoft.OData.ModelBuilder.EntityTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMediaType(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasIsMediaType(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOptimisticConcurrency``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OptimisticConcurrencyConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAdditionalProperties``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAutoExpand(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAutoExpandReferences(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMayImplement``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMayImplement(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasMayImplement``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MayImplementConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOrdered``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOrdered(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasPositionalInsert``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasPositionalInsert(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAlternateKeys``1(Microsoft.OData.ModelBuilder.EntitySetConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration,Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/> configuration
+            </summary>
+            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
+            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAlternateKeys(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase,System.Func{Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration,Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasAlternateKeys``1(Microsoft.OData.ModelBuilder.EntityTypeConfiguration{``0},System.Func{Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration,Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration})">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/> configuration
+            </summary>
+            <typeparam name="T">The type of the structured type.</typeparam>
+            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <param name="sourceConfigurations">The configuration to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeysConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasOperationAvailable(Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase)">
+            <summary>
+            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration"/> configuration
+            </summary>
+            <param name="vocabularyConfigurationsBase">The <see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.SetVocabularyConfigurationAnnotations(Microsoft.OData.Edm.EdmModel,Microsoft.OData.Edm.EdmNavigationSource,Microsoft.OData.ModelBuilder.NavigationSourceConfiguration)">
             <summary>
@@ -8209,19 +10373,6 @@
             <param name="model"><see cref="T:Microsoft.OData.Edm.EdmModel"/> to add annotations to</param>
             <param name="target"><see cref="T:Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable"/> to annotate</param>
             <param name="configurations">Collection of <see cref="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration"/> annotation configurations</param>
-        </member>
-        <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions">
-            <summary>
-            Shortcuts for common configurations to be extended in here.
-            </summary>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyTermConfigurationShortcutsExtensions.HasScopes(Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration,System.String[])">
-            <summary>
-            List of scopes that can provide access to the resource
-            </summary>
-            <param name="permissionTypeConfiguration"><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.PermissionTypeConfiguration"/></param>
-            <param name="scopeNames">The value(s) to set</param>
-            <returns></returns>
         </member>
     </members>
 </doc>

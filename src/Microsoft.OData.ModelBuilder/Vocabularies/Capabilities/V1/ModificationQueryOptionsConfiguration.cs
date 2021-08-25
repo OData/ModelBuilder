@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class ModificationQueryOptionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _expandSupported;
         private bool? _selectSupported;
         private bool? _computeSupported;
@@ -25,6 +26,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.ModificationQueryOptions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="ModificationQueryOptionsConfiguration"/></returns>
+        public ModificationQueryOptionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Supports $expand with modification requests
@@ -126,6 +139,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("SortSupported", new EdmBooleanConstant(_sortSupported.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

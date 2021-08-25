@@ -16,12 +16,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
     internal class EdmTypeBuilder
     {
         private readonly List<IEdmTypeConfiguration> _configurations;
-        private readonly Dictionary<Type, IEdmType> _types = new Dictionary<Type, IEdmType>();
-        private readonly Dictionary<PropertyInfo, IEdmProperty> _properties = new Dictionary<PropertyInfo, IEdmProperty>();
+        private readonly Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> _types = new Dictionary<Type, (IEdmType, IEdmTypeConfiguration)>();
+        private readonly Dictionary<PropertyInfo, (IEdmProperty, PropertyConfiguration)> _properties = new Dictionary<PropertyInfo, (IEdmProperty, PropertyConfiguration)>();
         private readonly Dictionary<IEdmProperty, QueryableRestrictions> _propertiesRestrictions = new Dictionary<IEdmProperty, QueryableRestrictions>();
         private readonly Dictionary<IEdmProperty, ModelBoundQuerySettings> _propertiesQuerySettings = new Dictionary<IEdmProperty, ModelBoundQuerySettings>();
         private readonly Dictionary<IEdmStructuredType, ModelBoundQuerySettings> _structuredTypeQuerySettings = new Dictionary<IEdmStructuredType, ModelBoundQuerySettings>();
-        private readonly Dictionary<Enum, IEdmEnumMember> _members = new Dictionary<Enum, IEdmEnumMember>();
+        private readonly Dictionary<Enum, (IEdmEnumMember, EnumMemberConfiguration)> _members = new Dictionary<Enum, (IEdmEnumMember, EnumMemberConfiguration)>();
         private readonly Dictionary<IEdmStructuredType, PropertyInfo> _openTypes = new Dictionary<IEdmStructuredType, PropertyInfo>();
         private readonly Dictionary<IEdmStructuredType, PropertyInfo> _instanceAnnotableTypes = new Dictionary<IEdmStructuredType, PropertyInfo>();
 
@@ -46,7 +46,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             return primitiveType.PrimitiveKind;
         }
 
-        private Dictionary<Type, IEdmType> GetEdmTypes()
+        private Dictionary<Type, (IEdmType, IEdmTypeConfiguration)> GetEdmTypes()
         {
             // Reset
             _types.Clear();
@@ -94,7 +94,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                     EdmComplexType complexType = new EdmComplexType(config.Namespace, config.Name,
                         baseType, complex.IsAbstract ?? false, complex.IsOpen);
 
-                    _types.Add(config.ClrType, complexType);
+                    _types.Add(config.ClrType, (complexType, config));
 
                     if (complex.IsOpen)
                     {
@@ -126,7 +126,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
                     EdmEntityType entityType = new EdmEntityType(config.Namespace, config.Name, baseType,
                         entity.IsAbstract ?? false, entity.IsOpen, entity.HasStream);
-                    _types.Add(config.ClrType, entityType);
+                    _types.Add(config.ClrType, (entityType, config));
 
                     if (entity.IsOpen)
                     {
@@ -148,10 +148,12 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
                     // The config has to be enum.
                     Contract.Assert(enumTypeConfiguration != null);
-
-                    _types.Add(enumTypeConfiguration.ClrType,
-                        new EdmEnumType(enumTypeConfiguration.Namespace, enumTypeConfiguration.Name,
-                            GetTypeKind(enumTypeConfiguration.UnderlyingType), enumTypeConfiguration.IsFlags));
+                    EdmEnumType edmEnumType = new EdmEnumType(
+                        enumTypeConfiguration.Namespace,
+                        enumTypeConfiguration.Name,
+                        GetTypeKind(enumTypeConfiguration.UnderlyingType),
+                        enumTypeConfiguration.IsFlags);
+                    _types.Add(enumTypeConfiguration.ClrType, (edmEnumType, config));
                 }
             }
 
@@ -175,10 +177,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             IList<IEdmProperty> edmProperties = new List<IEdmProperty>();
             foreach (PropertyInfo propInfo in propertyInfos)
             {
-                IEdmProperty edmProperty;
+                (IEdmProperty, PropertyConfiguration) edmProperty;
                 if (_properties.TryGetValue(propInfo, out edmProperty))
                 {
-                    edmProperties.Add(edmProperty);
+                    edmProperties.Add(edmProperty.Item1);
                 }
                 else
                 {
@@ -189,7 +191,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                         PropertyInfo basePropInfo = baseType.GetProperty(propInfo.Name);
                         if (_properties.TryGetValue(basePropInfo, out edmProperty))
                         {
-                            edmProperties.Add(edmProperty);
+                            edmProperties.Add(edmProperty.Item1);
                             break;
                         }
 
@@ -265,10 +267,9 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                     var prop = item.Value;
                     if (prop.PropertyInfo != null)
                     {
-                        _properties[prop.PropertyInfo] = edmProperty;
+                        _properties[prop.PropertyInfo] = (edmProperty, prop);
                     }
 
-                   
                     if (prop.IsRestricted)
                     {
                         _propertiesRestrictions[edmProperty] = new QueryableRestrictions(prop);
@@ -424,7 +425,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 {
                     if (property.PropertyInfo != null)
                     {
-                        _properties[property.PropertyInfo] = edmProperty;
+                        _properties[property.PropertyInfo] = (edmProperty, property);
                     }
 
                     if (property.IsRestricted)
@@ -546,7 +547,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                 EdmEnumMember edmMember = new EdmEnumMember(type, member.Name,
                     new EdmEnumMemberValue(value));
                 type.AddMember(edmMember);
-                _members[member.MemberInfo] = edmMember;
+                _members[member.MemberInfo] = (edmMember, member);
             }
         }
 
@@ -564,7 +565,9 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             }
 
             EdmTypeBuilder builder = new EdmTypeBuilder(configurations);
-            return new EdmTypeMap(builder.GetEdmTypes(),
+
+            return new EdmTypeMap(
+                builder.GetEdmTypes(),
                 builder._properties,
                 builder._propertiesRestrictions,
                 builder._propertiesQuerySettings,
@@ -578,10 +581,10 @@ namespace Microsoft.OData.ModelBuilder.Helpers
         {
             Contract.Assert(clrType != null);
 
-            IEdmType edmType;
+            (IEdmType, IEdmTypeConfiguration) edmType;
             _types.TryGetValue(clrType, out edmType);
 
-            return edmType;
+            return edmType.Item1;
         }
     }
 }

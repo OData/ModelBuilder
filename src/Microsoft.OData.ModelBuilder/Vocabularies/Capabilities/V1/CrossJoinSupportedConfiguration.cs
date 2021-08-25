@@ -16,10 +16,23 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class CrossJoinSupportedConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _crossJoinSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.CrossJoinSupported";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="CrossJoinSupportedConfiguration"/></returns>
+        public CrossJoinSupportedConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Supports cross joins for the entity sets in this container
@@ -41,6 +54,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("CrossJoinSupported", new EdmBooleanConstant(_crossJoinSupported.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

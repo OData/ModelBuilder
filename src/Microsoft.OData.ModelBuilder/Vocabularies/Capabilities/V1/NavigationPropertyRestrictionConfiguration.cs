@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class NavigationPropertyRestrictionConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private EdmNavigationPropertyPathExpression _navigationProperty;
         private NavigationType? _navigability;
         private readonly HashSet<string> _filterFunctions = new HashSet<string>();
@@ -42,6 +43,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
+        public NavigationPropertyRestrictionConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
+
+        /// <summary>
         /// Navigation properties can be navigated
         /// </summary>
         /// <param name="navigationProperty">The value to set</param>
@@ -53,7 +66,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// Supported navigability of this navigation property.
+        /// Supported navigability of this navigation property
         /// </summary>
         /// <param name="navigability">The value to set</param>
         /// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>
@@ -64,7 +77,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// List of functions and operators supported in filter expressions.
+        /// List of functions and operators supported in filter expressions
         /// If not specified, null, or empty, all functions and operators may be attempted.
         /// </summary>
         /// <param name="filterFunctions">The value(s) to set</param>
@@ -444,6 +457,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("ReadRestrictions", _readRestrictions.ToEdmExpression()));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

@@ -16,10 +16,23 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class ComputeSupportedConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _computeSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.ComputeSupported";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="ComputeSupportedConfiguration"/></returns>
+        public ComputeSupportedConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Supports $compute
@@ -41,6 +54,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("ComputeSupported", new EdmBooleanConstant(_computeSupported.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

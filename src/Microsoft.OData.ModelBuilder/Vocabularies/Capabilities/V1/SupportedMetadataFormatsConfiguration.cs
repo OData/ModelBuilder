@@ -35,23 +35,13 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_supportedMetadataFormats.Any())
-            {
-                var collection = _supportedMetadataFormats.Select(item => item.ToEdmExpression()).Where(item => item != null);
-                if (collection.Any())
-                {
-                    properties.Add(new EdmPropertyConstructor("SupportedMetadataFormats", new EdmCollectionExpression(collection)));
-                }
-            }
-
-            if (!properties.Any())
+            if (!_supportedMetadataFormats.Any())
             {
                 return null;
             }
 
-            return new EdmRecordExpression(properties);
+            var records = _supportedMetadataFormats.Select(item => item.ToEdmExpression());
+            return new EdmCollectionExpression(records);
         }
     }
 }

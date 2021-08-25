@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class SelectSupportConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _supported;
         private bool? _instanceAnnotationsSupported;
         private bool? _expandable;
@@ -29,6 +30,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.SelectSupport";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="SelectSupportConfiguration"/></returns>
+        public SelectSupportConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Supports $select
@@ -194,6 +207,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("Sortable", new EdmBooleanConstant(_sortable.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

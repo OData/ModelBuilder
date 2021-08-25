@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class ConformanceLevelConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private ConformanceLevelType? _conformanceLevel;
 
         /// <inheritdoc/>
@@ -43,6 +44,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 var enumMember = new EdmEnumMember(enumType, _conformanceLevel.ToString(), new EdmEnumMemberValue((long)_conformanceLevel.Value));
                 properties.Add(new EdmPropertyConstructor("ConformanceLevel", new EdmEnumMemberExpression(enumMember)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

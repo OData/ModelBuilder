@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class OperationRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _filterSegmentSupported;
         private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
         private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
@@ -23,6 +24,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.OperationRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
+        public OperationRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Bound action or function can be invoked on a collection-valued binding parameter path with a `/$filter(...)` segment
@@ -140,6 +153,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                     properties.Add(new EdmPropertyConstructor("CustomQueryOptions", new EdmCollectionExpression(collection)));
                 }
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

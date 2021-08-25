@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class FilterExpressionRestrictionTypeConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private EdmPropertyPathExpression _property;
         private string _allowedExpressions;
 
@@ -24,6 +25,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// </summary>
         public FilterExpressionRestrictionTypeConfiguration()
         {
+        }
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="FilterExpressionRestrictionTypeConfiguration"/></returns>
+        public FilterExpressionRestrictionTypeConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
         }
 
         /// <summary>
@@ -62,6 +75,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("AllowedExpressions", new EdmStringConstant(_allowedExpressions)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

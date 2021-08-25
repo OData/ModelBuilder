@@ -1,8 +1,8 @@
-﻿using Microsoft.OData.ModelBuilder.Capabilities.V1;
-using System;
-using System.Collections.Generic;
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed under the MIT License.  See License.txt in the project root for license information.
+
 using System.Linq;
-using System.Text;
+using Microsoft.OData.ModelBuilder.Capabilities.V1;
 
 namespace Microsoft.OData.ModelBuilder.Vocabularies
 {
@@ -19,5 +19,6 @@ namespace Microsoft.OData.ModelBuilder.Vocabularies
         /// <returns></returns>
         public static PermissionTypeConfiguration HasScopes(this PermissionTypeConfiguration permissionTypeConfiguration, params string[] scopeNames)
             => permissionTypeConfiguration?.HasScopes(scopeNames.Select(scope => new ScopeTypeConfiguration().HasScope(scope)).ToArray());
+
     }
 }

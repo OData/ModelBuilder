@@ -16,13 +16,27 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class ExpandRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _expandable;
         private bool? _streamsExpandable;
         private readonly HashSet<EdmNavigationPropertyPathExpression> _nonExpandableProperties = new HashSet<EdmNavigationPropertyPathExpression>();
+        private readonly HashSet<EdmPropertyPathExpression> _nonExpandableStreamProperties = new HashSet<EdmPropertyPathExpression>();
         private int? _maxLevels;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.ExpandRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>
+        public ExpandRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// $expand is supported
@@ -54,6 +68,17 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         public ExpandRestrictionsConfiguration HasNonExpandableProperties(params EdmNavigationPropertyPathExpression[] nonExpandableProperties)
         {
             _nonExpandableProperties.UnionWith(nonExpandableProperties);
+            return this;
+        }
+
+        /// <summary>
+        /// These stream properties cannot be used in expand expressions
+        /// </summary>
+        /// <param name="nonExpandableStreamProperties">The value(s) to set</param>
+        /// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>
+        public ExpandRestrictionsConfiguration HasNonExpandableStreamProperties(params EdmPropertyPathExpression[] nonExpandableStreamProperties)
+        {
+            _nonExpandableStreamProperties.UnionWith(nonExpandableStreamProperties);
             return this;
         }
 
@@ -92,10 +117,21 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 }
             }
 
+            if (_nonExpandableStreamProperties.Any())
+            {
+                var collection = _nonExpandableStreamProperties.Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("NonExpandableStreamProperties", new EdmCollectionExpression(collection)));
+                }
+            }
+
             if (_maxLevels.HasValue)
             {
                 properties.Add(new EdmPropertyConstructor("MaxLevels", new EdmIntegerConstant(_maxLevels.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

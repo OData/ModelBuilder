@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class CallbackProtocolConfiguration : IRecord
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private string _id;
         private string _urlTemplate;
         private string _documentationUrl;
@@ -25,6 +26,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// </summary>
         public CallbackProtocolConfiguration()
         {
+        }
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="CallbackProtocolConfiguration"/></returns>
+        public CallbackProtocolConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
         }
 
         /// <summary>
@@ -79,6 +92,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("DocumentationUrl", new EdmStringConstant(_documentationUrl)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

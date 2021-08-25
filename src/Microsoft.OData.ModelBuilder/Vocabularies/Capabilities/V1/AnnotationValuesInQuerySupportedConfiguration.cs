@@ -16,10 +16,23 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class AnnotationValuesInQuerySupportedConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _annotationValuesInQuerySupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.AnnotationValuesInQuerySupported";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="AnnotationValuesInQuerySupportedConfiguration"/></returns>
+        public AnnotationValuesInQuerySupportedConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Supports annotation values within system query options
@@ -41,6 +54,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("AnnotationValuesInQuerySupported", new EdmBooleanConstant(_annotationValuesInQuerySupported.Value)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

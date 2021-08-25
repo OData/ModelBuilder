@@ -16,6 +16,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class DeleteRestrictionsConfiguration : VocabularyTermConfiguration
     {
+        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _deletable;
         private readonly HashSet<EdmNavigationPropertyPathExpression> _nonDeletableNavigationProperties = new HashSet<EdmNavigationPropertyPathExpression>();
         private int? _maxLevels;
@@ -29,6 +30,18 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.DeleteRestrictions";
+
+        /// <summary>
+        /// Dynamic properties.
+        /// </summary>
+        /// <param name="name">The name to set</param>
+        /// <param name="value">The value to set</param>
+        /// <returns><see cref="DeleteRestrictionsConfiguration"/></returns>
+        public DeleteRestrictionsConfiguration HasDynamicProperty(string name, object value)
+        {
+            _dynamicProperties[name] = value;
+            return this;
+        }
 
         /// <summary>
         /// Entities can be deleted
@@ -246,6 +259,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             {
                 properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
             }
+
+            properties.AddRange(_dynamicProperties.ToEdmProperties());
 
             if (!properties.Any())
             {

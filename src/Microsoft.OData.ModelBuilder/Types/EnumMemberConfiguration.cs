@@ -3,13 +3,14 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents the configuration for an enum member of an enum type.
     /// </summary>
-    public class EnumMemberConfiguration
+    public class EnumMemberConfiguration : VocabularyConfigurationsBase
     {
         private string _name;
 

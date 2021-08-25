@@ -9,13 +9,14 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Config;
+using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
     /// Represents an <see cref="IEdmStructuredType"/> that can be built using <see cref="ODataModelBuilder"/>.
     /// </summary>
-    public abstract class StructuralTypeConfiguration : IEdmTypeConfiguration
+    public abstract class StructuralTypeConfiguration : VocabularyConfigurationsBase, IEdmTypeConfiguration
     {
         private string _namespace;
         private string _name;
