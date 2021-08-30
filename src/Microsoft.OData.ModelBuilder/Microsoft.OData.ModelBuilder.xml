@@ -9634,7 +9634,7 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase">
             <summary>
-            Base for all vocabulary configuration classes
+            Base for all vocabulary configuration classes.
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Vocabularies.VocabularyConfigurationsBase.VocabularyTermConfigurations">
