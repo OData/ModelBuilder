@@ -93,6 +93,50 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.Equal("Edm.Date", publishDayProperty.Type.FullName());
         }
 
+#if NET6_0_OR_GREATER
+        [Fact]
+        public void CreateDatePrimitiveProperty_FromDateOnly()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
+            file.Property(f => f.EditedDay).AsDate();
+            file.Property(f => f.RevisionDay).AsDate();
+
+            // Act
+            IEdmModel model = builder.GetServiceModel();
+
+            // Assert
+            IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
+
+            IEdmProperty editedDayProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "EditedDay"));
+            Assert.NotNull(editedDayProperty);
+            Assert.False(editedDayProperty.Type.IsNullable);
+            Assert.Equal("Edm.Date", editedDayProperty.Type.FullName());
+
+            IEdmProperty revisionDayProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "RevisionDay"));
+            Assert.NotNull(revisionDayProperty);
+            Assert.True(revisionDayProperty.Type.IsNullable);
+            Assert.Equal("Edm.Date", revisionDayProperty.Type.FullName());
+        }
+#endif
+
+        [Fact]
+        public void CreateDatePrimitiveProperty_FromBadDate()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
+
+            // Act & Assert   
+            ExceptionAssert.Throws<ArgumentException>(() => file.Property(f => f.StreamData).AsDate(),
+#if NET6_0_OR_GREATER
+                "The property 'StreamData' on type 'Microsoft.OData.ModelBuilder.Tests.Types.PrimitiveFile' must be a System.DateTime or System.DateOnly property. (Parameter 'property')");
+#else
+                "The property 'StreamData' on type 'Microsoft.OData.ModelBuilder.Tests.Types.PrimitiveFile' must be a System.DateTime property. (Parameter 'property')");
+#endif
+        }
+
         [Fact]
         public void CreateTimeOfDayPrimitiveProperty()
         {
@@ -139,6 +183,50 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.True(endProperty.Type.IsNullable);
             Assert.Equal("Edm.TimeOfDay", endProperty.Type.FullName());
         }
+
+#if NET6_0_OR_GREATER
+        [Fact]
+        public void CreateTimeOfDayPrimitiveProperty_FromTimeOnly()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
+            file.Property(f => f.ModifiedTime).AsTimeOfDay();
+            file.Property(f => f.LastTime).AsTimeOfDay();
+
+            // Act
+            IEdmModel model = builder.GetServiceModel();
+
+            // Assert
+            IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
+
+            IEdmProperty modifiedTimeProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "ModifiedTime"));
+            Assert.NotNull(modifiedTimeProperty);
+            Assert.False(modifiedTimeProperty.Type.IsNullable);
+            Assert.Equal("Edm.TimeOfDay", modifiedTimeProperty.Type.FullName());
+
+            IEdmProperty lastTimeProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "LastTime"));
+            Assert.NotNull(lastTimeProperty);
+            Assert.True(lastTimeProperty.Type.IsNullable);
+            Assert.Equal("Edm.TimeOfDay", lastTimeProperty.Type.FullName());
+        }
+#endif
+
+        [Fact]
+        public void CreateTimeOfDayPrimitiveProperty_FromBadTime()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
+
+            // Act & Assert   
+            ExceptionAssert.Throws<ArgumentException>(() => file.Property(f => f.StreamData).AsTimeOfDay(),
+#if NET6_0_OR_GREATER
+                "The property 'StreamData' on type 'Microsoft.OData.ModelBuilder.Tests.Types.PrimitiveFile' must be a System.TimeSpan or System.TimeOnly property. (Parameter 'property')");
+#else
+                "The property 'StreamData' on type 'Microsoft.OData.ModelBuilder.Tests.Types.PrimitiveFile' must be a System.TimeSpan property. (Parameter 'property')");
+#endif
+        }
     }
 
     public class PrimitiveFile
@@ -156,5 +244,13 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
         public TimeSpan CreatedTime { get; set; }
         public TimeSpan? EndTime { get; set; }
+
+#if NET6_0_OR_GREATER
+        public DateOnly EditedDay { get; set; }
+        public DateOnly? RevisionDay { get; set; }
+
+        public TimeOnly ModifiedTime { get; set; }
+        public TimeOnly? LastTime { get; set; }
+#endif
     }
 }

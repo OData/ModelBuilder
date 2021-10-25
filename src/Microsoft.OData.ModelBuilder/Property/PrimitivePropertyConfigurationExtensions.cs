@@ -25,8 +25,16 @@ namespace Microsoft.OData.ModelBuilder
 
             if (!TypeHelper.IsDateTime(property.RelatedClrType))
             {
+#if NET6_0_OR_GREATER
+                if (!TypeHelper.IsDateOnly(property.RelatedClrType))
+                {
+                    throw Error.Argument("property", SRResources.MustBeDateTimeOrDateOnlyProperty, property.PropertyInfo.Name,
+                        property.DeclaringType.FullName);
+                }
+#else
                 throw Error.Argument("property", SRResources.MustBeDateTimeProperty, property.PropertyInfo.Name,
                     property.DeclaringType.FullName);
+#endif
             }
 
             property.TargetEdmTypeKind = EdmPrimitiveTypeKind.Date;
@@ -48,8 +56,16 @@ namespace Microsoft.OData.ModelBuilder
 
             if (!TypeHelper.IsTimeSpan(property.RelatedClrType))
             {
+#if NET6_0_OR_GREATER
+                if (!TypeHelper.IsTimeOnly(property.RelatedClrType))
+                {
+                    throw Error.Argument("property", SRResources.MustBeTimeSpanOrTimeOnlyProperty, property.PropertyInfo.Name,
+                        property.DeclaringType.FullName);
+                }
+#else
                 throw Error.Argument("property", SRResources.MustBeTimeSpanProperty, property.PropertyInfo.Name,
                     property.DeclaringType.FullName);
+#endif
             }
 
             property.TargetEdmTypeKind = EdmPrimitiveTypeKind.TimeOfDay;

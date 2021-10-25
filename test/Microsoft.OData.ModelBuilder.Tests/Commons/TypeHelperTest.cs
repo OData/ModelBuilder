@@ -221,6 +221,28 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             Assert.Equal(expected, TypeHelper.IsTimeSpan(type));
         }
 
+#if NET6_0_OR_GREATER
+        [Theory]
+        [InlineData(typeof(object), false)]
+        [InlineData(typeof(ICollection), false)]
+        [InlineData(typeof(DateOnly), true)]
+        [InlineData(typeof(string), false)]
+        public void IsDateOnly(Type type, bool expected)
+        {
+            Assert.Equal(expected, TypeHelper.IsDateOnly(type));
+        }
+
+        [Theory]
+        [InlineData(typeof(object), false)]
+        [InlineData(typeof(ICollection), false)]
+        [InlineData(typeof(TimeOnly), true)]
+        [InlineData(typeof(string), false)]
+        public void IsTimeOnly(Type type, bool expected)
+        {
+            Assert.Equal(expected, TypeHelper.IsTimeOnly(type));
+        }
+#endif
+
         [Theory]
         [InlineData(typeof(IEnumerable), false)]
         [InlineData(typeof(IQueryable), true)]

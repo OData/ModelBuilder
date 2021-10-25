@@ -30,7 +30,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
         {
             // Arrange
             MockType type = new MockType("Customer")
-                .Property(typeof(DateTime), "Birthday", new[] {new ColumnAttribute {TypeName = typeName}});
+                .Property(typeof(DateTime), "Birthday", new[] { new ColumnAttribute { TypeName = typeName } });
 
             Mock<StructuralTypeConfiguration> structuralType = new Mock<StructuralTypeConfiguration>();
             structuralType.Setup(t => t.ClrType).Returns(type);
@@ -66,7 +66,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
         {
             // Arrange
             MockType type = new MockType("Customer")
-                .Property(typeof(TimeSpan), "CreatedTime", new[] {new ColumnAttribute {TypeName = typeName}});
+                .Property(typeof(TimeSpan), "CreatedTime", new[] { new ColumnAttribute { TypeName = typeName } });
 
             Mock<StructuralTypeConfiguration> structuralType = new Mock<StructuralTypeConfiguration>();
             structuralType.Setup(t => t.ClrType).Returns(type);
@@ -91,5 +91,80 @@ namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
                 Assert.Null(primitiveProperty.Object.TargetEdmTypeKind);
             }
         }
+
+#if NET6_0_OR_GREATER
+        [Theory]
+        [InlineData("date", true)]
+        [InlineData("DaTe", true)]
+        [InlineData("edm.date", false)]
+        [InlineData("eDm.daTe", false)]
+        [InlineData("any", false)]
+        public void Apply_SetsDateOnlyProperty_AsEdmDate(string typeName, bool expect)
+        {
+            // Arrange
+            MockType type = new MockType("Customer")
+                .Property(typeof(DateOnly), "Birthday", new[] { new ColumnAttribute { TypeName = typeName } });
+
+            Mock<StructuralTypeConfiguration> structuralType = new Mock<StructuralTypeConfiguration>();
+            structuralType.Setup(t => t.ClrType).Returns(type);
+
+            PropertyInfo property = type.GetProperty("Birthday");
+            Mock<PrimitivePropertyConfiguration> primitiveProperty = new Mock<PrimitivePropertyConfiguration>(property,
+                structuralType.Object);
+            primitiveProperty.Setup(p => p.RelatedClrType).Returns(typeof(DateOnly));
+            primitiveProperty.Object.AddedExplicitly = false;
+
+            // Act
+            new ColumnAttributeEdmPropertyConvention().Apply(primitiveProperty.Object, structuralType.Object, ODataConventionModelBuilderFactory.Create());
+
+            // Assert
+            if (expect)
+            {
+                Assert.NotNull(primitiveProperty.Object.TargetEdmTypeKind);
+                Assert.Equal(EdmPrimitiveTypeKind.Date, primitiveProperty.Object.TargetEdmTypeKind);
+            }
+            else
+            {
+                Assert.Null(primitiveProperty.Object.TargetEdmTypeKind);
+            }
+        }
+
+        [Theory]
+        [InlineData("time", true)]
+        [InlineData("tIme", true)]
+        [InlineData("edm.timeofday", false)]
+        [InlineData("eDm.TimeOfDay", false)]
+        [InlineData("any", false)]
+        public void Apply_SetsTimeOnlyProperty_AsEdmTimeOfDay(string typeName, bool expect)
+        {
+            // Arrange
+            MockType type = new MockType("Customer")
+                .Property(typeof(TimeOnly), "CreatedTime", new[] { new ColumnAttribute { TypeName = typeName } });
+
+            Mock<StructuralTypeConfiguration> structuralType = new Mock<StructuralTypeConfiguration>();
+            structuralType.Setup(t => t.ClrType).Returns(type);
+
+            PropertyInfo property = type.GetProperty("CreatedTime");
+            Mock<PrimitivePropertyConfiguration> primitiveProperty = new Mock<PrimitivePropertyConfiguration>(property, structuralType.Object);
+            primitiveProperty.Setup(p => p.RelatedClrType).Returns(typeof(TimeOnly));
+            primitiveProperty.Object.AddedExplicitly = false;
+
+            // Act
+            new ColumnAttributeEdmPropertyConvention().Apply(primitiveProperty.Object, structuralType.Object,
+                ODataConventionModelBuilderFactory.Create());
+
+            // Assert
+            if (expect)
+            {
+                Assert.NotNull(primitiveProperty.Object.TargetEdmTypeKind);
+                Assert.Equal(EdmPrimitiveTypeKind.TimeOfDay, primitiveProperty.Object.TargetEdmTypeKind);
+            }
+            else
+            {
+                Assert.Null(primitiveProperty.Object.TargetEdmTypeKind);
+            }
+        }
+#endif
+
     }
 }

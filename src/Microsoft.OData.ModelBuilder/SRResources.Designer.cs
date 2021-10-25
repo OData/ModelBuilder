@@ -19,7 +19,7 @@ namespace Microsoft.OData.ModelBuilder {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class SRResources {
@@ -448,6 +448,15 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime or System.DateOnly property..
+        /// </summary>
+        internal static string MustBeDateTimeOrDateOnlyProperty {
+            get {
+                return ResourceManager.GetString("MustBeDateTimeOrDateOnlyProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime property..
         /// </summary>
         internal static string MustBeDateTimeProperty {
@@ -489,6 +498,15 @@ namespace Microsoft.OData.ModelBuilder {
         internal static string MustBePrimitiveType {
             get {
                 return ResourceManager.GetString("MustBePrimitiveType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.TimeSpan or System.TimeOnly property..
+        /// </summary>
+        internal static string MustBeTimeSpanOrTimeOnlyProperty {
+            get {
+                return ResourceManager.GetString("MustBeTimeSpanOrTimeOnlyProperty", resourceCulture);
             }
         }
         

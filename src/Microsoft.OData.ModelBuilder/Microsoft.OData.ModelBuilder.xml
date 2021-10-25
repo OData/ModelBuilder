@@ -679,6 +679,20 @@
             <param name="clrType">The type to test.</param>
             <returns>True if the type is a TimeSpan; false otherwise.</returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsDateOnly(System.Type)">
+            <summary>
+            Determine if a type is a DateOnly.
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <returns>True if the type is a DateOnly; false otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsTimeOnly(System.Type)">
+            <summary>
+            Determine if a type is a TimeOnly
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <returns>True if the type is a TimeOnly; false otherwise.</returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsEnum(System.Type)">
             <summary>
             Determine if a type is an enumeration.
@@ -4279,6 +4293,11 @@
               Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a Complex property..
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeDateTimeOrDateOnlyProperty">
+            <summary>
+              Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime or System.DateOnly property..
+            </summary>
+        </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeDateTimeProperty">
             <summary>
               Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime property..
@@ -4302,6 +4321,11 @@
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBePrimitiveType">
             <summary>
               Looks up a localized string similar to The type &apos;{0}&apos; must be a primitive type..
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeTimeSpanOrTimeOnlyProperty">
+            <summary>
+              Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.TimeSpan or System.TimeOnly property..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeTimeSpanProperty">
@@ -5328,6 +5352,22 @@
         <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Property(System.Linq.Expressions.Expression{System.Func{`0,Microsoft.OData.Edm.TimeOfDay}})">
             <summary>
             Adds an time-of-day primitive property to the EDM type.
+            </summary>
+            <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
+            For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+            <returns>A configuration object that can be used to further configure the property.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.TimeOnly}}})">
+            <summary>
+            Adds an time-only primitive property to the EDM type.
+            </summary>
+            <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
+            For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+            <returns>A configuration object that can be used to further configure the property.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.TimeOnly}})">
+            <summary>
+            Adds an time-only primitive property to the EDM type.
             </summary>
             <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
             For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>

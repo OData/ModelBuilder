@@ -37,15 +37,9 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         [Fact]
         public void CtorThatTakesClrType_Throws_ArgumentNull_For_Name()
         {
-#if NETCOREAPP3_1 || NET5_0
             ExceptionAssert.Throws<ArgumentException>(
                 () => new EntitySetConfiguration(modelBuilder: new ODataModelBuilder(), entityClrType: typeof(EntitySetConfigurationTest), name: null),
                 "The argument 'name' is null or empty. (Parameter 'name')");
-#else
-            ExceptionAssert.Throws<ArgumentException>(
-                () => new EntitySetConfiguration(modelBuilder: new ODataModelBuilder(), entityClrType: typeof(EntitySetConfigurationTest), name: null),
-                "The argument 'name' is null or empty.\r\nParameter name: name");
-#endif
         }
 
         [Fact]
@@ -73,21 +67,12 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         [Fact]
         public void CtorThatTakesEntityTypeConfiguration_Throws_ArgumentNull_For_Name()
         {
-#if NETCOREAPP3_1 || NET5_0
             ExceptionAssert.Throws<ArgumentException>(
                 () => new EntitySetConfiguration(
                     modelBuilder: new ODataModelBuilder(),
                     entityType: new EntityTypeConfiguration(new ODataModelBuilder(), typeof(EntitySetConfigurationTest)),
                     name: null),
                     "The argument 'name' is null or empty. (Parameter 'name')");
-#else
-            ExceptionAssert.Throws<ArgumentException>(
-                () => new EntitySetConfiguration(
-                    modelBuilder: new ODataModelBuilder(),
-                    entityType: new EntityTypeConfiguration(new ODataModelBuilder(), typeof(EntitySetConfigurationTest)),
-                    name: null),
-                    "The argument 'name' is null or empty.\r\nParameter name: name");
-#endif
         }
 
         [Fact]

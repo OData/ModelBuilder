@@ -79,8 +79,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             ActionConfiguration action2 = builder.Action("Format");
             action2.Parameter<int>("SegmentSize");
 
-            ExceptionAssert.Throws<InvalidOperationException>(() =>
-            {
+            ExceptionAssert.Throws<InvalidOperationException>(() => {
                 builder.RemoveOperation("Format");
             });
         }
@@ -955,6 +954,9 @@ namespace Microsoft.OData.ModelBuilder.Tests
             entity.Property(p => p.DurationProperty).Precision = 5;
             entity.Property(p => p.TimeOfDayProperty).Precision = 6;
             entity.Property(p => p.DateTimeOffsetProperty).Precision = 7;
+#if NET6_0_OR_GREATER
+            entity.Property(p => p.TimeOnlyProperty).Precision = 8;
+#endif
 
             // Act
             IEdmModel model = builder.GetEdmModel();
@@ -965,11 +967,18 @@ namespace Microsoft.OData.ModelBuilder.Tests
                 (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("TimeOfDayProperty")).Type;
             IEdmTemporalTypeReference dateTimeOffsetType =
                 (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("DateTimeOffsetProperty")).Type;
+#if NET6_0_OR_GREATER
+            IEdmTemporalTypeReference timeOnlyType =
+                (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("TimeOnlyProperty")).Type;
+#endif
 
             // Assert
             Assert.Equal(5, durationType.Precision.Value);
             Assert.Equal(6, timeOfDayType.Precision.Value);
             Assert.Equal(7, dateTimeOffsetType.Precision.Value);
+#if NET6_0_OR_GREATER
+            Assert.Equal(8, timeOnlyType.Precision.Value);
+#endif
         }
 
         [Fact]
@@ -1125,6 +1134,10 @@ namespace Microsoft.OData.ModelBuilder.Tests
             public TimeOfDay TimeOfDayProperty { get; set; }
 
             public DateTimeOffset DateTimeOffsetProperty { get; set; }
+
+#if NET6_0_OR_GREATER
+            public TimeOnly TimeOnlyProperty { get; set; }
+#endif
 
             public string StringProperty { get; set; }
 

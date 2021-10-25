@@ -168,6 +168,30 @@ namespace Microsoft.OData.ModelBuilder
             return GetPrimitivePropertyConfiguration(propertyExpression, nullable: false) as PrecisionPropertyConfiguration;
         }
 
+#if NET6_0_OR_GREATER
+        /// <summary>
+        /// Adds an time-only primitive property to the EDM type.
+        /// </summary>
+        /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
+        /// For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+        /// <returns>A configuration object that can be used to further configure the property.</returns>
+        public PrecisionPropertyConfiguration Property(Expression<Func<TStructuralType, TimeOnly?>> propertyExpression)
+        {
+            return GetPrimitivePropertyConfiguration(propertyExpression, nullable: true) as PrecisionPropertyConfiguration;
+        }
+
+        /// <summary>
+        /// Adds an time-only primitive property to the EDM type.
+        /// </summary>
+        /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
+        /// For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+        /// <returns>A configuration object that can be used to further configure the property.</returns>
+        public PrecisionPropertyConfiguration Property(Expression<Func<TStructuralType, TimeOnly>> propertyExpression)
+        {
+            return GetPrimitivePropertyConfiguration(propertyExpression, nullable: false) as PrecisionPropertyConfiguration;
+        }
+#endif
+
         /// <summary>
         /// Adds an duration primitive property to the EDM type.
         /// </summary>

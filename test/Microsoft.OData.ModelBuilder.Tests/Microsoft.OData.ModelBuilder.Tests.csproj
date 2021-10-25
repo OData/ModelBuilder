@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
     <AssemblyName>Microsoft.OData.ModelBuilder.Tests</AssemblyName>
     <RootNamespace>Microsoft.OData.ModelBuilder.Tests</RootNamespace>
 
@@ -16,14 +16,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="PublicApi\Microsoft.OData.ModelBuilder.PublicApi.bsl" />
+    <EmbeddedResource Include="PublicApi\Microsoft.OData.ModelBuilder.PublicApi.NetCore31.bsl" />
+	<EmbeddedResource Include="PublicApi\Microsoft.OData.ModelBuilder.PublicApi.Net6.bsl" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="Moq" Version="4.13.1" />
-    <PackageReference Include="xunit" Version="2.3.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

@@ -106,7 +106,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.True(complexType.Property(t => t.NullableTimeSpanProperty).NullableProperty);
             Assert.True(complexType.Property(t => t.NullableDateProperty).NullableProperty);
             Assert.True(complexType.Property(t => t.NullableTimeOfDayProperty).NullableProperty);
-
+#if NET6_0_OR_GREATER
+            Assert.True(complexType.Property(t => t.NullableDateOnlyProperty).NullableProperty);
+            Assert.True(complexType.Property(t => t.NullableTimeOnlyProperty).NullableProperty);
+#endif
             // Assert.True(complexType.Property(t => t.StreamProperty).OptionalProperty);
             Assert.True(complexType.Property(t => t.StringProperty).NullableProperty);
             Assert.True(complexType.Property(t => t.ByteArrayProperty).NullableProperty);
@@ -132,6 +135,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.False(complexType.Property(t => t.DateTimeProperty).NullableProperty);
             Assert.False(complexType.Property(t => t.DateProperty).NullableProperty);
             Assert.False(complexType.Property(t => t.TimeOfDayProperty).NullableProperty);
+#if NET6_0_OR_GREATER
+            Assert.False(complexType.Property(t => t.DateOnlyProperty).NullableProperty);
+            Assert.False(complexType.Property(t => t.TimeOnlyProperty).NullableProperty);
+#endif
         }
 
         [Fact]
@@ -157,18 +164,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             builder.ComplexType<BadOpenComplexType>();
 
             // Act & Assert
-#if NETCOREAPP3_1 || NET5_0
             ExceptionAssert.ThrowsArgument(() => builder.GetEdmModel(),
                 "propertyInfo",
                 "Found more than one dynamic property container in type 'BadOpenComplexType'. " +
                 "Each open type must have at most one dynamic property container. (Parameter 'propertyInfo')");
-#else
-            ExceptionAssert.ThrowsArgument(() => builder.GetEdmModel(),
-                "propertyInfo",
-                "Found more than one dynamic property container in type 'BadOpenComplexType'. " +
-                "Each open type must have at most one dynamic property container.\r\n" +
-                "Parameter name: propertyInfo");
-#endif
         }
 
         [Fact]
@@ -577,6 +576,14 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
         public TimeOfDay TimeOfDayProperty { get; set; }
         public TimeOfDay? NullableTimeOfDayProperty { get; set; }
+
+#if NET6_0_OR_GREATER
+        public DateOnly DateOnlyProperty { get; set; }
+        public DateOnly? NullableDateOnlyProperty { get; set; }
+
+        public TimeOnly TimeOnlyProperty { get; set; }
+        public TimeOnly? NullableTimeOnlyProperty { get; set; }
+#endif
 
         public string StringProperty { get; set; }
         public Stream StreamProperty { get; set; }

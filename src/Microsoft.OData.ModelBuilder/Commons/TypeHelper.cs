@@ -217,6 +217,30 @@ namespace Microsoft.OData.ModelBuilder
             return underlyingTypeOrSelf == typeof(TimeSpan);
         }
 
+#if NET6_0_OR_GREATER
+        /// <summary>
+        /// Determine if a type is a DateOnly.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is a DateOnly; false otherwise.</returns>
+        public static bool IsDateOnly(Type clrType)
+        {
+            Type underlyingTypeOrSelf = GetUnderlyingTypeOrSelf(clrType);
+            return underlyingTypeOrSelf == typeof(DateOnly);
+        }
+
+        /// <summary>
+        /// Determine if a type is a TimeOnly
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is a TimeOnly; false otherwise.</returns>
+        public static bool IsTimeOnly(Type clrType)
+        {
+            Type underlyingTypeOrSelf = GetUnderlyingTypeOrSelf(clrType);
+            return underlyingTypeOrSelf == typeof(TimeOnly);
+        }
+#endif
+
         /// <summary>
         /// Determine if a type is an enumeration.
         /// </summary>

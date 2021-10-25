@@ -13,7 +13,9 @@ pr:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+#  vmImage: 'windows-latest'
+# Temporary until 6.0 becomes the latest
+  vmImage: 'windows-2022
   
 variables:
   BuildPlatform: 'Any CPU'

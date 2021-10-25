@@ -144,6 +144,11 @@ namespace Microsoft.OData.ModelBuilder.Tests
             var modelBuilder = ODataConventionModelBuilderFactory.Create();
             modelBuilder.EntitySet<Product>("Products");
             modelBuilder.Singleton<Product>("Book"); // singleton
+#if NET6_0_OR_GREATER
+            const int structuralPropertiesCount = 8;
+#else
+            const int structuralPropertiesCount = 6;
+#endif
 
             // Act
             var model = modelBuilder.GetEdmModel();
@@ -152,7 +157,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal(3, model.SchemaElements.OfType<IEdmSchemaType>().Count());
 
             var product = model.AssertHasEntitySet(entitySetName: "Products", mappedEntityClrType: typeof(Product));
-            Assert.Equal(6, product.StructuralProperties().Count());
+            Assert.Equal(structuralPropertiesCount, product.StructuralProperties().Count());
             Assert.Single(product.NavigationProperties());
             product.AssertHasKey(model, "ID", EdmPrimitiveTypeKind.Int32);
             product.AssertHasPrimitiveProperty(model, "ID", EdmPrimitiveTypeKind.Int32, isNullable: false);
@@ -160,6 +165,10 @@ namespace Microsoft.OData.ModelBuilder.Tests
             product.AssertHasPrimitiveProperty(model, "ReleaseDate", EdmPrimitiveTypeKind.DateTimeOffset, isNullable: true);
             product.AssertHasPrimitiveProperty(model, "PublishDate", EdmPrimitiveTypeKind.Date, isNullable: false);
             product.AssertHasPrimitiveProperty(model, "ShowTime", EdmPrimitiveTypeKind.TimeOfDay, isNullable: true);
+#if NET6_0_OR_GREATER
+            product.AssertHasPrimitiveProperty(model, "CreationDate", EdmPrimitiveTypeKind.Date, isNullable: false);
+            product.AssertHasPrimitiveProperty(model, "EndTime", EdmPrimitiveTypeKind.TimeOfDay, isNullable: true);
+#endif
             product.AssertHasComplexProperty(model, "Version", typeof(ProductVersion), isNullable: true);
             product.AssertHasNavigationProperty(model, "Category", typeof(Category), isNullable: true, multiplicity: EdmMultiplicity.ZeroOrOne);
 
@@ -192,7 +201,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal(2, model.SchemaElements.OfType<IEdmSchemaType>().Count());
 
             // Assert
-            IEdmComplexType category = model.AssertHasComplexType(typeof(CategoryWithComplexTypeAttribute));
+            IEdmComplexType _ = model.AssertHasComplexType(typeof(CategoryWithComplexTypeAttribute));
         }
 
         [Fact]
@@ -2334,8 +2343,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
         [Fact]
         public void CanBuildModelForAnonymousTypes()
         {
-            Type entityType = new
-            {
+            Type entityType = new {
                 ID = default(int),
                 NavigationCollection = new[]
                 {
@@ -2466,8 +2474,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             ODataConventionModelBuilder builder = ODataConventionModelBuilderFactory.Create();
             builder.AddEntitySet("entities", builder.AddEntityType(entity));
-            builder.OnModelCreating = (modelBuilder) =>
-            {
+            builder.OnModelCreating = (modelBuilder) => {
                 var entityConfiguration = modelBuilder.StructuralTypes.OfType<EntityTypeConfiguration>().Single();
                 Assert.Single(entityConfiguration.Keys);
                 var key = entityConfiguration.Keys.Single();
@@ -2567,8 +2574,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             entity.AddNavigationProperty(type.GetProperty("ExplicitlyAddedNavigation"), EdmMultiplicity.ZeroOrOne);
             entity.AddNavigationProperty(type.GetProperty("ExplicitlyAddedNavigationCollection"), EdmMultiplicity.Many);
 
-            builder.OnModelCreating = (b) =>
-            {
+            builder.OnModelCreating = (b) => {
                 var explicitlyAddedProperties = entity.Properties.Where(p => p.Name.Contains("ExplicitlyAdded"));
                 var inferredProperties = entity.Properties.Where(p => p.Name.Contains("Inferred"));
 
@@ -3408,6 +3414,12 @@ namespace Microsoft.OData.ModelBuilder.Tests
         public Date PublishDate { get; set; }
 
         public TimeOfDay? ShowTime { get; set; }
+
+#if NET6_0_OR_GREATER
+        public DateOnly CreationDate { get; set; }
+
+        public TimeOnly? EndTime { get; set; }
+#endif
 
         public ProductVersion Version { get; set; }
 
