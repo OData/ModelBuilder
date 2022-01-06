@@ -67,6 +67,12 @@ steps:
     projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
     arguments: '--configuration $(BuildConfiguration) --no-incremental'
 
+- task: UseDotNet@2
+  displayName: Use .NET 3.x
+  inputs:
+    packageType: 'sdk'
+    version: '3.x'
+
 # Run the Unit test
 - task: DotNetCoreCLI@2
   displayName: 'Unit Tests (Microsoft.OData.ModelBuilder.Tests.csproj) '
