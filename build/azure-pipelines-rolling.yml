@@ -13,7 +13,7 @@ pr:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2022'
   
 variables:
   BuildPlatform: 'Any CPU'
@@ -45,6 +45,13 @@ steps:
   inputs:
     versionSpec: '>=5.2.0'
     checkLatest: true
+    
+# Add this Command to Include the .NET 6 SDK
+- task: UseDotNet@2
+  displayName: Use .NET 6.0
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
 
 # Build the Product project
 - task: DotNetCoreCLI@2
