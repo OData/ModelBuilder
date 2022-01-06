@@ -15,7 +15,7 @@ schedules:
     - main
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2022'
 
 variables:
   BuildPlatform: 'Any CPU'
@@ -30,6 +30,13 @@ steps:
   inputs:
     versionSpec: '>=5.2.0'
 
+# Add this Command to Include the .NET 6 SDK
+- task: UseDotNet@2
+  displayName: Use .NET 6.0
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+    
 # because the assemblies are delay-signed, we need to disable
 # strong name validation so that the tests may run,
 # otherwise our assemblies will fail to load
