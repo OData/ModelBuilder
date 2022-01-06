@@ -362,6 +362,7 @@ namespace Microsoft.OData.ModelBuilder
             _operations.Add(operation);
         }
 
+
         /// <summary>
         /// Registers an entity set as a part of the model and returns an object that can be used to configure the entity set.
         /// This method can be called multiple times for the same type to perform multiple lines of configuration.
@@ -369,6 +370,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <param name="name">The name of the entity set.</param>
         /// <param name="entityType">The type to be registered or configured.</param>
         /// <returns>The configuration object for the specified entity set.</returns>
+        [SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>")]
         public virtual EntitySetConfiguration AddEntitySet(string name, EntityTypeConfiguration entityType)
         {
             if (String.IsNullOrWhiteSpace(name))
@@ -381,7 +383,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull("entityType");
             }
 
-            if (name.Contains("."))
+            if (name.Contains('.'))
             {
                 throw Error.NotSupported(SRResources.InvalidEntitySetName, name);
             }
@@ -410,6 +412,7 @@ namespace Microsoft.OData.ModelBuilder
             return entitySet;
         }
 
+
         /// <summary>
         /// Registers a singleton as a part of the model and returns an object that can be used to configure the singleton.
         /// This method can be called multiple times for the same type to perform multiple lines of configuration.
@@ -417,6 +420,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <param name="name">The name of the singleton.</param>
         /// <param name="entityType">The type to be registered or configured.</param>
         /// <returns>The configuration object for the specified singleton.</returns>
+        [SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>")]
         public virtual SingletonConfiguration AddSingleton(string name, EntityTypeConfiguration entityType)
         {
             if (String.IsNullOrWhiteSpace(name))
@@ -429,7 +433,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw new ArgumentNullException(nameof(entityType));
             }
 
-            if (name.Contains("."))
+            if (name.Contains('.'))
             {
                 throw Error.NotSupported(SRResources.InvalidSingletonName, name);
             }

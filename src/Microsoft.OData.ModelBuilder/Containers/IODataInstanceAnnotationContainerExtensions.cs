@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 
 namespace Microsoft.OData.ModelBuilder
@@ -75,6 +76,7 @@ namespace Microsoft.OData.ModelBuilder
                 null;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>")]
         private static void VerifyInstanceAnnotationName(string annotationName)
         {
             if (string.IsNullOrEmpty(annotationName) || !annotationName.Contains("."))

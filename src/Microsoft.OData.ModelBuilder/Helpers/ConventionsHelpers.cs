@@ -218,6 +218,7 @@ namespace Microsoft.OData.ModelBuilder
                 return x.Name == y.Name;
             }
 
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "<Pending>")]
             public int GetHashCode(PropertyInfo obj)
             {
                 Contract.Assert(obj != null);

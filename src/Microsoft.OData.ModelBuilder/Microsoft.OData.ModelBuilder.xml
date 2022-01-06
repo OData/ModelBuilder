@@ -5333,6 +5333,22 @@
             For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
             <returns>A configuration object that can be used to further configure the property.</returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.TimeOnly}}})">
+            <summary>
+            Adds a <see cref="T:System.TimeOnly"/> primitive property to the EDM type.
+            </summary>
+            <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
+            For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+            <returns>A configuration object that can be used to further configure the property.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.TimeOnly}})">
+            <summary>
+            Adds a <see cref="T:System.TimeOnly"/> primitive property to the EDM type.
+            </summary>
+            <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
+            For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
+            <returns>A configuration object that can be used to further configure the property.</returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1.Property(System.Linq.Expressions.Expression{System.Func{`0,System.Nullable{System.TimeSpan}}})">
             <summary>
             Adds an duration primitive property to the EDM type.

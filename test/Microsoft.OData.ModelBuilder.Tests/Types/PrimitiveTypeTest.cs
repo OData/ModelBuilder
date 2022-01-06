@@ -67,6 +67,35 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.Equal("Edm.Date", dateProperty.Type.FullName());
         }
 
+#if NET6_0
+        [Fact]
+        public void Create_DateOnly_TimeOnly_PrimitiveProperty()
+        {
+            // Arrange
+            ODataModelBuilder builder = new ODataModelBuilder();
+            EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
+            PrimitivePropertyConfiguration date = file.Property(f => f.OnlyDate);
+            PrimitivePropertyConfiguration time = file.Property(f => f.OnlyTime);
+
+            // Act
+            IEdmModel model = builder.GetServiceModel();
+
+            // Assert
+            Assert.Equal(PropertyKind.Primitive, date.Kind);
+            Assert.Equal(PropertyKind.Primitive, time.Kind);
+
+            IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
+
+            IEdmProperty dateProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "OnlyDate"));
+            Assert.NotNull(dateProperty);
+            Assert.Equal("Edm.Date", dateProperty.Type.FullName());
+
+            IEdmProperty timeProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "OnlyTime"));
+            Assert.NotNull(timeProperty);
+            Assert.Equal("Edm.TimeOfDay", timeProperty.Type.FullName());
+        }
+#endif
+
         [Fact]
         public void CreateDatePrimitiveProperty_FromDateTime()
         {
@@ -156,5 +185,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
         public TimeSpan CreatedTime { get; set; }
         public TimeSpan? EndTime { get; set; }
+
+#if NET6_0
+        public DateOnly OnlyDate { get; set; }
+        public TimeOnly OnlyTime { get; set; }
+#endif
     }
 }

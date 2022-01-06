@@ -11,8 +11,14 @@ namespace Microsoft.OData.ModelBuilder.Tests.PublicApi
     public class PublicApiTest
     {
         private const string AssemblyName = "Microsoft.OData.ModelBuilder.dll";
-        private const string OutputFileName = "Microsoft.OData.ModelBuilder.PublicApi.out";
+
+#if NET6_0
+        private const string BaseLineFileName = "Microsoft.OData.ModelBuilder.PublicApi.net60.bsl";
+        private const string OutputFileName = "Microsoft.OData.ModelBuilder.PublicApi.net60.out";
+#else
         private const string BaseLineFileName = "Microsoft.OData.ModelBuilder.PublicApi.bsl";
+        private const string OutputFileName = "Microsoft.OData.ModelBuilder.PublicApi.out";
+#endif
         private const string BaseLineFileFolder = @"test\Microsoft.OData.ModelBuilder.Tests\PublicApi\";
 
         [Fact]

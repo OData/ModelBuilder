@@ -3369,6 +3369,40 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal(3, nameType.MaxLength);
             Assert.Null(nonLengthType.MaxLength);
         }
+
+#if NET6_0
+
+        [Fact]
+        public void CanConfig_DateOnly_TimeOnly_Correctly()
+        {
+            // Arrange
+            ODataModelBuilder modelBuidler = new ODataConventionModelBuilder();
+            modelBuidler.ComplexType<Net6Customer>();
+
+            // Act
+            IEdmModel model = modelBuidler.GetEdmModel();
+            IEdmComplexType complexType = model.SchemaElements.OfType<IEdmComplexType>().First();
+
+            complexType.AssertHasPrimitiveProperty(model, "StartDate", EdmPrimitiveTypeKind.Date, isNullable: false);
+
+            complexType.AssertHasPrimitiveProperty(model, "StartTime", EdmPrimitiveTypeKind.TimeOfDay, isNullable: false);
+
+            complexType.AssertHasPrimitiveProperty(model, "EndDate", EdmPrimitiveTypeKind.Date, isNullable: true);
+
+            complexType.AssertHasPrimitiveProperty(model, "EndTime", EdmPrimitiveTypeKind.TimeOfDay, isNullable: true);
+        }
+
+        public class Net6Customer
+        {
+            public DateOnly StartDate { get; set; }
+
+            public TimeOnly StartTime { get; set; }
+
+            public DateOnly? EndDate { get; set; }
+
+            public TimeOnly? EndTime { get; set; }
+        }
+#endif
     }
 
     public enum UserType

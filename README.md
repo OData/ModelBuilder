@@ -2,23 +2,23 @@ OData Model Builder
  ============= 
  Component | Build  | Status 
 --------|--------- |---------
-Model Builder|Rolling | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Rolling?branchName=master"/> 
-Model Builder|Nightly | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Nightly?branchName=master"/> 
+Model Builder|Rolling | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Rolling?branchName=main"/>
+Model Builder|Nightly | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Nightly?branchName=main"/>
 
 ## 1. Introduction
 This is the official OData Model Builder repository.
 
 ## 2. Project structure
 
-* [Product Codes](https://github.com/OData/ModelBuilder/tree/master/src/Microsoft.OData.ModelBuilder)
+* [Product Codes](https://github.com/OData/ModelBuilder/tree/main/src/Microsoft.OData.ModelBuilder)
 
-* [Test Codes](https://github.com/OData/ModelBuilder/tree/master/test/Microsoft.OData.ModelBuilder.Tests)
+* [Test Codes](https://github.com/OData/ModelBuilder/tree/main/test/Microsoft.OData.ModelBuilder.Tests)
 
 ## 3. Building, Testing, Debugging and Release
 
 ### 3.1 Building and Testing in Visual Studio
 
-Simply open the shortcut [OData.ModelBuilder.sln](https://github.com/OData/ModelBuilder/blob/master/sln/) at `sln` folder to launch a solution that contains the product source and relevant unit tests.
+Simply open the shortcut [OData.ModelBuilder.sln](https://github.com/OData/ModelBuilder/blob/main/sln/) at `sln` folder to launch a solution that contains the product source and relevant unit tests.
 
 The solution contains the corresponding test project. Please open it, build it and run all the tests in the test explorer.
 
