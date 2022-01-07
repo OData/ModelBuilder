@@ -288,7 +288,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
         {
             if (exceptionMessage != null)
             {
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1_OR_GREATER
                 exceptionMessage = exceptionMessage + " (Parameter '" + paramName + "')";
 #else
                 exceptionMessage = exceptionMessage + "\r\nParameter name: " + paramName;
@@ -392,7 +392,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
         /// <exception cref="ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
         public static InvalidEnumArgumentException ThrowsInvalidEnumArgument(Action testCode, string paramName, int invalidValue, Type enumType, bool allowDerivedExceptions = false)
         {
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1_OR_GREATER
             string message = String.Format(CultureReplacer.DefaultCulture,
                                            "The value of argument '{0}' ({1}) is invalid for Enum type '{2}'. (Parameter '{0}')",
                                            paramName, invalidValue, enumType.Name);

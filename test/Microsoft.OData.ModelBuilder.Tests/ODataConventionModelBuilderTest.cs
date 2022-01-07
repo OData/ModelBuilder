@@ -3370,7 +3370,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Null(nonLengthType.MaxLength);
         }
 
-#if NET6_0
+#if NET6_0_OR_GREATER
 
         [Fact]
         public void CanConfig_DateOnly_TimeOnly_Correctly()

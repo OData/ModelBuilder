@@ -955,7 +955,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             entity.Property(p => p.DurationProperty).Precision = 5;
             entity.Property(p => p.TimeOfDayProperty).Precision = 6;
             entity.Property(p => p.DateTimeOffsetProperty).Precision = 7;
-#if NET6_0
+#if NET6_0_OR_GREATER
             entity.Property(p => p.OnlyTime).Precision = 8;
 #endif
 
@@ -974,7 +974,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Equal(6, timeOfDayType.Precision.Value);
             Assert.Equal(7, dateTimeOffsetType.Precision.Value);
 
-#if NET6_0
+#if NET6_0_OR_GREATER
             IEdmTemporalTypeReference timeOnlyType =
                 (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("OnlyTime")).Type;
             Assert.Equal(8, timeOnlyType.Precision.Value);
@@ -1139,7 +1139,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             public byte[] BinaryProperty { get; set; }
 
-#if NET6_0
+#if NET6_0_OR_GREATER
             public TimeOnly OnlyTime { get; set; }
 #endif
         }

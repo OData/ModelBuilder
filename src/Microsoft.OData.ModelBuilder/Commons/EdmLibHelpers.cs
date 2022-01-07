@@ -75,7 +75,7 @@ namespace Microsoft.OData.ModelBuilder
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOfDay), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOfDay?), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
 
-#if NET6_0
+#if NET6_0_OR_GREATER
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(DateOnly), GetPrimitiveType(EdmPrimitiveTypeKind.Date)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(DateOnly?), GetPrimitiveType(EdmPrimitiveTypeKind.Date)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOnly), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
