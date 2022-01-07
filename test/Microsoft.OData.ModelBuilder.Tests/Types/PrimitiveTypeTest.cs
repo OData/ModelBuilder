@@ -67,7 +67,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.Equal("Edm.Date", dateProperty.Type.FullName());
         }
 
-#if NET6_0
+#if NET6_0_OR_GREATER
         [Fact]
         public void Create_DateOnly_TimeOnly_PrimitiveProperty()
         {
@@ -186,7 +186,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         public TimeSpan CreatedTime { get; set; }
         public TimeSpan? EndTime { get; set; }
 
-#if NET6_0
+#if NET6_0_OR_GREATER
         public DateOnly OnlyDate { get; set; }
         public TimeOnly OnlyTime { get; set; }
 #endif

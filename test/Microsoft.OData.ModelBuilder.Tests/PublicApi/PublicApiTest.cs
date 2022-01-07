@@ -12,7 +12,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.PublicApi
     {
         private const string AssemblyName = "Microsoft.OData.ModelBuilder.dll";
 
-#if NET6_0
+#if NET6_0_OR_GREATER
         private const string BaseLineFileName = "Microsoft.OData.ModelBuilder.PublicApi.net60.bsl";
         private const string OutputFileName = "Microsoft.OData.ModelBuilder.PublicApi.net60.out";
 #else
