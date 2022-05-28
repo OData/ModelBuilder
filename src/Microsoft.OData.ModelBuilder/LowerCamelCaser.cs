@@ -60,6 +60,29 @@ namespace Microsoft.OData.ModelBuilder
                     }
                 }
             }
+
+            if(_options.HasFlag(NameResolverOptions.ProcessEnumMemberNames))
+                ApplyEnumLowerCamelCase(builder);
+        }
+
+        /// <summary>
+        /// Applies lower camel case to Enum Members
+        /// </summary>
+        /// <param name="builder">The <see cref="ODataConventionModelBuilder"/> to be applied on.</param>
+        public void ApplyEnumLowerCamelCase(ODataConventionModelBuilder builder)
+        {
+            if (builder == null)
+            {
+                throw Error.ArgumentNull(nameof(builder));
+            }
+
+            foreach (EnumTypeConfiguration typeConfiguration in builder.EnumTypes)
+            {
+                foreach (EnumMemberConfiguration property in typeConfiguration.Members)
+                {
+                    property.Name = this.ToLowerCamelCase(property.Name);
+                }
+            }
         }
 
         /// <summary>

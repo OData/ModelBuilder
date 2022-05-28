@@ -2353,6 +2353,12 @@
             </summary>
             <param name="builder">The <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/> to be applied on.</param>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.LowerCamelCaser.ApplyEnumLowerCamelCase(Microsoft.OData.ModelBuilder.ODataConventionModelBuilder)">
+            <summary>
+            Applies lower camel case to Enum Members
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.OData.ModelBuilder.ODataConventionModelBuilder"/> to be applied on.</param>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.LowerCamelCaser.ToLowerCamelCase(System.String)">
             <summary>
             Converts a <see cref="T:System.String"/> to lower camel case.
@@ -2380,6 +2386,11 @@
             <summary>
             Process explicit property names
             such as entityTypeConfiguration.Property(e => e.Key).Name="Id".
+            </summary>
+        </member>
+        <member name="F:Microsoft.OData.ModelBuilder.NameResolverOptions.ProcessEnumValues">
+            <summary>
+            Process Enum values
             </summary>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ODataContext">

@@ -26,6 +26,11 @@ namespace Microsoft.OData.ModelBuilder
         /// Process explicit property names
         /// such as entityTypeConfiguration.Property(e => e.Key).Name="Id".
         /// </summary>
-        ProcessExplicitPropertyNames = 4
+        ProcessExplicitPropertyNames = 4,
+
+        /// <summary>
+        /// Process Member Name in Enum
+        /// </summary>
+        ProcessEnumMemberNames = 8
     }
 }
