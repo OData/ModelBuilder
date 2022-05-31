@@ -3,6 +3,7 @@ FlagsAttribute(),
 ]
 public enum Microsoft.OData.ModelBuilder.NameResolverOptions : int {
 	ProcessDataMemberAttributePropertyNames = 2
+	ProcessEnumMemberNames = 8
 	ProcessExplicitPropertyNames = 4
 	ProcessReflectedPropertyNames = 1
 }
