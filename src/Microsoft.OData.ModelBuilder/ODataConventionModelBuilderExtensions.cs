@@ -26,7 +26,9 @@ namespace Microsoft.OData.ModelBuilder
             return builder.EnableLowerCamelCase(
                 NameResolverOptions.ProcessReflectedPropertyNames |
                 NameResolverOptions.ProcessDataMemberAttributePropertyNames |
-                NameResolverOptions.ProcessExplicitPropertyNames);
+                NameResolverOptions.ProcessExplicitPropertyNames | 
+                NameResolverOptions.ProcessEnumMemberNames
+                );
         }
 
         /// <summary>
