@@ -3,6 +3,7 @@ FlagsAttribute(),
 ]
 public enum Microsoft.OData.ModelBuilder.NameResolverOptions : int {
 	ProcessDataMemberAttributePropertyNames = 2
+	ProcessEnumMemberNames = 8
 	ProcessExplicitPropertyNames = 4
 	ProcessReflectedPropertyNames = 1
 }
@@ -380,6 +381,11 @@ public sealed class Microsoft.OData.ModelBuilder.ODataConventionModelBuilderExte
 	ExtensionAttribute(),
 	]
 	public static Microsoft.OData.ModelBuilder.ODataConventionModelBuilder EnableLowerCamelCase (Microsoft.OData.ModelBuilder.ODataConventionModelBuilder builder, Microsoft.OData.ModelBuilder.NameResolverOptions options)
+
+	[
+	ExtensionAttribute(),
+	]
+	public static Microsoft.OData.ModelBuilder.ODataConventionModelBuilder EnableLowerCamelCaseForPropertiesAndEnums (Microsoft.OData.ModelBuilder.ODataConventionModelBuilder builder)
 }
 
 [

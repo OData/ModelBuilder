@@ -135,6 +135,25 @@ namespace Microsoft.OData.ModelBuilder.Tests
             Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "color"));
             Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "Price"));
         }
+
+        [Fact]
+        public void LowerCamelCaser_ProcessEnumMemberNames()
+        {
+            // Arrange
+            var builder = ODataConventionModelBuilderFactory.Create().EnableLowerCamelCase(NameResolverOptions.ProcessEnumMemberNames);
+            EntityTypeConfiguration<LowerCamelCaserEnumEntity> entity = builder.EntitySet<LowerCamelCaserEnumEntity>("Entities").EntityType;
+
+            // Act
+            IEdmModel model = builder.GetEdmModel();
+
+            // Assert
+            IEdmEnumType lowerCamelCaserEnum =
+                Assert.Single(model.SchemaElements.OfType<IEdmEnumType>().Where(e => e.Name == "LowerCamelCaserEnum"));
+            Assert.Equal(EdmTypeKind.Enum, lowerCamelCaserEnum.TypeKind);
+            Assert.Equal(2, lowerCamelCaserEnum.Members.Count());
+            Assert.Single(lowerCamelCaserEnum.Members.Where(p => p.Name == "enumMember1"));
+            Assert.Single(lowerCamelCaserEnum.Members.Where(p => p.Name == "enumMember2"));
+        }
     }
 
     public class LowerCamelCaserEntity
@@ -169,5 +188,23 @@ namespace Microsoft.OData.ModelBuilder.Tests
         public Color Color { get; set; }
 
         public double Price { get; set; }
+    }
+
+    public class LowerCamelCaserEnumEntity
+    {
+        public enum LowerCamelCaserEnum
+        {
+            [EnumMember]
+            EnumMember1,
+
+            [EnumMember]
+            EnumMember2,
+        }
+
+        [DataMember]
+        public int Id { get; set; }
+
+        [DataMember]
+        public LowerCamelCaserEnum EnumProperty { get; set; }
     }
 }

@@ -60,6 +60,17 @@ namespace Microsoft.OData.ModelBuilder
                     }
                 }
             }
+
+            if (_options.HasFlag(NameResolverOptions.ProcessEnumMemberNames))
+            {
+                foreach (EnumTypeConfiguration typeConfiguration in builder.EnumTypes)
+                {
+                    foreach (EnumMemberConfiguration property in typeConfiguration.Members)
+                    {
+                        property.Name = this.ToLowerCamelCase(property.Name);
+                    }
+                }
+            }
         }
 
         /// <summary>

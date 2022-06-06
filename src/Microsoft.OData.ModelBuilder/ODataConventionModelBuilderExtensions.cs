@@ -26,7 +26,32 @@ namespace Microsoft.OData.ModelBuilder
             return builder.EnableLowerCamelCase(
                 NameResolverOptions.ProcessReflectedPropertyNames |
                 NameResolverOptions.ProcessDataMemberAttributePropertyNames |
-                NameResolverOptions.ProcessExplicitPropertyNames);
+                NameResolverOptions.ProcessExplicitPropertyNames
+                );
+        }
+
+        /// <summary>
+        /// Enable lower camel case with default <see cref="NameResolverOptions"/>
+        /// NameResolverOptions.ProcessReflectedPropertyNames |
+        /// NameResolverOptions.ProcessDataMemberAttributePropertyNames |
+        /// NameResolverOptions.ProcessExplicitPropertyNames |
+        /// NameResolverOptions.ProcessEnumMemberNames
+        /// </summary>
+        /// <param name="builder">The <see cref="ODataConventionModelBuilder"/> to be enabled with lower camel case.</param>
+        /// <returns>Returns itself so that multiple calls can be chained.</returns>
+        public static ODataConventionModelBuilder EnableLowerCamelCaseForPropertiesAndEnums(this ODataConventionModelBuilder builder)
+        {
+            if (builder == null)
+            {
+                throw Error.ArgumentNull("builder");
+            }
+
+            return builder.EnableLowerCamelCase(
+                NameResolverOptions.ProcessReflectedPropertyNames |
+                NameResolverOptions.ProcessDataMemberAttributePropertyNames |
+                NameResolverOptions.ProcessExplicitPropertyNames |
+                NameResolverOptions.ProcessEnumMemberNames
+                );
         }
 
         /// <summary>
