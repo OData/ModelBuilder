@@ -179,7 +179,7 @@ namespace Microsoft.OData.ModelBuilder
                 {
                     if (navigationPropertyBinding.TargetNavigationSource != targetNavigationSource)
                     {
-                        throw Error.NotSupported(SRResources.RebindingNotSupported);
+                        throw Error.NotSupported(SRResources.RebindingNotSupported, path, Name, targetNavigationSource.Name, navigationPropertyBinding.TargetNavigationSource.Name);
                     }
                 }
                 else

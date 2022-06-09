@@ -4377,7 +4377,7 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.RebindingNotSupported">
             <summary>
-              Looks up a localized string similar to Rebinding is not supported..
+              Looks up a localized string similar to Cannot bind the navigation property&apos;{0}&apos; from navigation source &apos;{1}&apos; to navigation source &apos;{2}&apos; because it has already been binded to navigation source &apos;{3}&apos;..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.ReferentialConstraintAlreadyConfigured">
