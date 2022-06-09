@@ -141,7 +141,7 @@
     <value>Invalid bindingParameter type '{0}'. A bindingParameter must be either an EntityType or a Collection of EntityTypes.</value>
   </data>
   <data name="RebindingNotSupported" xml:space="preserve">
-    <value>Rebinding is not supported.</value>
+    <value>Cannot bind the navigation property'{0}' from navigation source '{1}' to navigation source '{2}' because it has already been binded to navigation source '{3}'.</value>
   </data>
   <data name="TypeCannotBeEntityWasComplex" xml:space="preserve">
     <value>The type '{0}' cannot be configured as an EntityType. It was previously configured as a ComplexType.</value>

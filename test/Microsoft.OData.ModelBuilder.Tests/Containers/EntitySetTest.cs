@@ -50,6 +50,26 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
         }
 
         [Fact]
+        public void RebindSameNavigationPropertyOnSameNavigationSourceToDifferentNavigationSource_ThrowsNotSupportedException()
+        {
+            // Arrange
+            ODataModelBuilder builder = ODataModelBuilderMocks.GetModelBuilderMock();
+
+            var customer = builder.AddEntityType(typeof(Customer));
+            var order = builder.AddEntityType(typeof(Order));
+            var customers = builder.AddEntitySet("Customers", customer);
+            var navProperty = customer.AddNavigationProperty(typeof(Customer).GetProperty("Orders"), EdmMultiplicity.Many);
+
+            var orders1 = builder.AddEntitySet("Orders1", order);
+            var orders2 = builder.AddEntitySet("Orders2", order);
+            customers.AddBinding(navProperty, orders1);
+
+            // Act & Assert
+            ExceptionAssert.Throws<NotSupportedException>(() => customers.AddBinding(navProperty, orders2),
+                "Cannot bind the navigation property'Orders' from navigation source 'Customers' to navigation source 'Orders2' because it has already been binded to navigation source 'Orders1'.");
+        }
+
+        [Fact]
         public void CanAddBinding_For_NavigationProperty()
         {
             // Arrange
