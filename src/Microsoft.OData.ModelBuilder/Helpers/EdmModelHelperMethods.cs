@@ -27,6 +27,8 @@ namespace Microsoft.OData.ModelBuilder.Helpers
             }
 
             EdmModel model = new EdmModel();
+            model.CaseInsensitive = builder.Options != null;
+
             EdmEntityContainer container = new EdmEntityContainer(builder.Namespace, builder.ContainerName);
 
             // add types and sets, building an index on the way.

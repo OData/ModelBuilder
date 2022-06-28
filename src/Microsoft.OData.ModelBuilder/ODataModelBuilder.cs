@@ -43,6 +43,8 @@ namespace Microsoft.OData.ModelBuilder
             HasAssignedNamespace = false;
         }
 
+        public NameResolverOptions? Options { get; internal set; } = null;
+
         /// <summary>
         /// Gets or sets the namespace that will be used for the resulting model
         /// </summary>

@@ -50,6 +50,8 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull(nameof(builder));
             }
 
+            builder.Options = this._options;
+
             foreach (StructuralTypeConfiguration typeConfiguration in builder.StructuralTypes)
             {
                 foreach (PropertyConfiguration property in typeConfiguration.Properties)
