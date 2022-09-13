@@ -23,7 +23,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull("property");
             }
 
-            if (!TypeHelper.IsDateTime(property.RelatedClrType))
+            if (!TypeHelper.IsDateTime(property.RelatedClrType) && !TypeHelper.IsDateOnly(property.RelatedClrType))
             {
                 throw Error.Argument("property", SRResources.MustBeDateTimeProperty, property.PropertyInfo.Name,
                     property.DeclaringType.FullName);
