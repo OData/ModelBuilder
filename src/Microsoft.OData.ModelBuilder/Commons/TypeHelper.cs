@@ -207,6 +207,17 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
+        /// Determine if a type is a DateOnly.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is a DateOnly; false otherwise.</returns>
+        public static bool IsDateOnly(Type clrType)
+        {
+            Type underlyingTypeOrSelf = GetUnderlyingTypeOrSelf(clrType);
+            return underlyingTypeOrSelf.FullName == "System.DateOnly";
+        }
+
+        /// <summary>
         /// Determine if a type is a TimeSpan.
         /// </summary>
         /// <param name="clrType">The type to test.</param>
