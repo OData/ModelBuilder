@@ -4304,7 +4304,7 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeDateTimeProperty">
             <summary>
-              Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime property..
+              Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime or System.DateOnly property..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeEnumProperty">
@@ -8251,7 +8251,28 @@
             </summary>
             <param name="description">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
-        </membererty
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.HasLongDescription(System.String)">
+            <summary>
+            A lengthy description of the request
+            </summary>
+            <param name="longDescription">The value to set</param>
+            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration"/></returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.UpdateRestrictionsConfiguration.ToEdmExpression">
+            <inheritdoc/>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration">
+            <summary>
+            Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated stream property
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration.TermName">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration.HasAcceptableMediaTypes(System.String[])">
+            <summary>
+            Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated stream property
             </summary>
             <param name="acceptableMediaTypes">The value(s) to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AcceptableMediaTypesConfiguration"/></returns>
@@ -8288,28 +8309,6 @@
             <summary>
             Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/>
             </summary>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/></returns>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasKey(System.Func{Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration,Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration})">
-            <summary>
-            The set of properties that make up this key
-            </summary>
-            <param name="keyConfiguration">The configuration to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration"/></returns>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasKey(Microsoft.OData.ModelBuilder.Core.V1.PropertyRefConfiguration[])">
-            <summary>
-            The set of properties that make up this key
-            </summary>
-            <param name="key">The value(s) to set</param>
-       y>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AlternateKeyConfiguration.HasDynamicProperty(System.String,System.Object)">
             <summary>
@@ -9096,30 +9095,6 @@
             </summary>
             <param name="name">The name to set</param>
             <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration"/></returns>ex.
-            </summary>
-            <param name="positionalInsert">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/></returns>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.ToEdmExpression">
-            <inheritdoc/>
-        </member>
-        <member name="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration">
-            <summary>
-            Org.OData.Core.V1.PrimitiveExampleValue
-            </summary>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration.#ctor">
-            <summary>
-            Creates a new instance of <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration"/>
-            </summary>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
             <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PrimitiveExampleValueConfiguration.HasDescription(System.String)">
@@ -9733,21 +9708,6 @@
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasDescription``1(Microsoft.OData.ModelBuilder.StructuralTypeConfiguration{``0})">
             <summary>
-            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/> configuration
-            </summary>
-            <typeparam name="T">The type of the structured type.</typeparam>
-            <param name="structuredType">The <see cref="T:Microsoft.OData.Edm.IEdmStructuredType"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.VocabularyTermConfigurationExtensions.HasLongDescription``1(Microsoft.OData.ModelBuilder.NavigationSourceConfiguration{``0})">
-            <summary>
-            <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/> configuration
-            </summary>
-            <typeparam name="TEntity">The entity type of the navigation source.</typeparam>
-            <param name="navigationSource">The <see cref="T:Microsoft.OData.Edm.IEdmNavigationSource"/> that can be built using <see cref="T:Microsoft.OData.ModelBuilder.ODataModelBuilder"/>.</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Vocabulary>
             <see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/> configuration
             </summary>
             <typeparam name="T">The type of the structured type.</typeparam>
