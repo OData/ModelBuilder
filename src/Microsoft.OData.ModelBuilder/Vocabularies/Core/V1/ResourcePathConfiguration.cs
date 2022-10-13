@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class ResourcePathConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private string _resourcePath;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Core.V1.ResourcePath";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="ResourcePathConfiguration"/></returns>
-        public ResourcePathConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Resource path for entity container child, can be relative to xml:base and the request URL
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (!string.IsNullOrEmpty(_resourcePath))
-            {
-                properties.Add(new EdmPropertyConstructor("ResourcePath", new EdmStringConstant(_resourcePath)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return new EdmStringConstant(_resourcePath);
         }
     }
 }

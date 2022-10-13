@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class QuerySegmentSupportedConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _querySegmentSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.QuerySegmentSupported";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="QuerySegmentSupportedConfiguration"/></returns>
-        public QuerySegmentSupportedConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_querySegmentSupported.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("QuerySegmentSupported", new EdmBooleanConstant(_querySegmentSupported.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return new EdmBooleanConstant(_querySegmentSupported ?? true);
         }
     }
 }

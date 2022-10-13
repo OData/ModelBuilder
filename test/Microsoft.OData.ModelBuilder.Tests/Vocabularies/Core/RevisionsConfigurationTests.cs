@@ -171,6 +171,36 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Core
             Assert.Equal(Kind.ToString(), revisionKindValue.EnumMembers.FirstOrDefault().Name);
         }
 
+        [Fact]
+        public void ComputedCanBeAddedAsPrimitiveAnnotationToProperty()
+        {
+            // Arrange & Act
+            var modelBuilder = new ODataModelBuilder();
+            modelBuilder.EntityType<Customer>().Property(c => c.Name).HasComputed().IsComputed(false);
+
+            var model = modelBuilder.GetServiceModel();
+
+            // Assert
+            var csdl = model.SerializeAsXml();
+
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-16\"?>" +
+            "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"http://docs.oasis-open.org/odata/ns/edmx\">" +
+              "<edmx:DataServices>" +
+                "<Schema Namespace=\"Microsoft.OData.ModelBuilder.Tests.TestModels\" xmlns=\"http://docs.oasis-open.org/odata/ns/edm\">" +
+                  "<EntityType Name=\"Customer\">" +
+                    "<Property Name=\"Name\" Type=\"Edm.String\" />" +
+                  "</EntityType>" +
+                  "<Annotations Target=\"Microsoft.OData.ModelBuilder.Tests.TestModels.Customer/Name\">" +
+                    "<Annotation Term=\"Org.OData.Core.V1.Computed\" Bool=\"false\" />" +
+                  "</Annotations>" +
+                "</Schema>" +
+                "<Schema Namespace=\"Default\" xmlns=\"http://docs.oasis-open.org/odata/ns/edm\">" +
+                  "<EntityContainer Name=\"Container\" />" +
+                "</Schema>" +
+              "</edmx:DataServices>" +
+            "</edmx:Edmx>", csdl);
+        }
+
         private EdmRecordExpression GetAnnotationTermEdmRecordExpression(IEdmVocabularyAnnotation annotation)
         {
             EdmRecordExpression revisionsProperties = null;

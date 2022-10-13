@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class RequiresTypeConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private string _requiresType;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Core.V1.RequiresType";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="RequiresTypeConfiguration"/></returns>
-        public RequiresTypeConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Terms annotated with this term can only be applied to elements that have a type that is identical to or derived from the given type name
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (!string.IsNullOrEmpty(_requiresType))
-            {
-                properties.Add(new EdmPropertyConstructor("RequiresType", new EdmStringConstant(_requiresType)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return new EdmStringConstant(_requiresType);
         }
     }
 }

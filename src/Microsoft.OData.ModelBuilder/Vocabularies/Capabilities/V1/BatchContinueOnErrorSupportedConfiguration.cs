@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class BatchContinueOnErrorSupportedConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _batchContinueOnErrorSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.BatchContinueOnErrorSupported";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="BatchContinueOnErrorSupportedConfiguration"/></returns>
-        public BatchContinueOnErrorSupportedConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Service supports the continue on error preference. Supports $batch requests. Services that apply the BatchContinueOnErrorSupported term should also specify the ContinueOnErrorSupported property from the BatchSupport term.
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_batchContinueOnErrorSupported.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("BatchContinueOnErrorSupported", new EdmBooleanConstant(_batchContinueOnErrorSupported.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return new EdmBooleanConstant(_batchContinueOnErrorSupported ?? true);
         }
     }
 }

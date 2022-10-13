@@ -390,6 +390,58 @@ namespace <#= @namespace #>
             return new EdmCollectionExpression(records);
 <#+
         }
+        else if (term.Type.Definition.TypeKind == EdmTypeKind.TypeDefinition || term.Type.Definition.TypeKind == EdmTypeKind.Primitive)
+        {
+            var fullTypeName = actualType.AsActualType().FullTypeName();
+            var fullName = term.FullName();
+            var name = fullName.Substring(fullName.LastIndexOf('.') + 1);
+            var camelName = $"{CamelCase(name)}";
+            if (fullTypeName == "Edm.String")
+            {
+#>
+            return new EdmStringConstant(_<#= camelName #>);
+<#+
+            }
+            else if (fullTypeName == "Edm.PrimitiveType")
+            {
+#>
+            if (_<#= camelName #> != null)
+            {
+                return new EdmStringConstant(_<#= camelName #>.ToString());
+            }
+
+<#+
+            }
+            else if (fullTypeName == "Edm.Int32")
+            {
+#>
+            return new EdmIntegerConstant(_<#= camelName #> ?? 0);
+<#+
+            }
+
+            else if (fullTypeName == "Edm.Int16")
+            {
+#>
+            return new EdmIntegerConstant(_<#= camelName #> ?? 0);
+<#+
+            }
+            else if (fullTypeName == "Edm.Boolean")
+            {
+#>
+            return new EdmBooleanConstant(_<#= camelName #> ?? true);
+<#+
+            }
+            else
+            {
+                var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
+#>
+            if (_<#= camelName #>.HasValue)
+            {
+                 return new <#= edmTypeConstant#>(_<#= camelName #>.Value);
+            }
+<#+
+            }
+        }
         else
         {
 #>
@@ -567,13 +619,6 @@ using Microsoft.OData.Edm.Vocabularies;
         private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
 <#+
         }
-
-        if(actualType.TypeKind == EdmTypeKind.Primitive && returnType == expectedReturnType)
-        {
-#>
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
-<#+
-        }
 #>
         private <#= clrType #> _<#= CamelCase(name) #>;
 <#+
@@ -673,24 +718,6 @@ using Microsoft.OData.Edm.Vocabularies;
 
                 return;
             }
-        }
-
-        if(actualType.TypeKind == EdmTypeKind.Primitive && returnType == expectedReturnType)
-        {
-#>
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="<#= returnType #>"/></returns>
-        public <#= returnType #> HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
-<#+
         }
 
         var methodPrefix = "Has";

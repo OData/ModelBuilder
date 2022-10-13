@@ -3,6 +3,7 @@
 
 using System;
 using Microsoft.OData.Edm;
+using Microsoft.OData.Edm.Csdl;
 using Microsoft.OData.Edm.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder
@@ -12,6 +13,11 @@ namespace Microsoft.OData.ModelBuilder
     /// </summary>
     public abstract partial class VocabularyTermConfiguration : IRecord
     {
+        /// <summary>
+        /// Gets or sets the vocabulary annotation location.
+        /// </summary>
+        public EdmVocabularyAnnotationSerializationLocation Location { get; set; } = EdmVocabularyAnnotationSerializationLocation.OutOfLine;
+
         /// <summary>
         /// The name of the <see cref="IEdmTerm"/> to build.
         /// </summary>
@@ -43,6 +49,7 @@ namespace Microsoft.OData.ModelBuilder
             }
 
             var annotation = new EdmVocabularyAnnotation(target, term, expression);
+            annotation.SetSerializationLocation(model, Location);
             model.SetVocabularyAnnotation(annotation);
         }
     }

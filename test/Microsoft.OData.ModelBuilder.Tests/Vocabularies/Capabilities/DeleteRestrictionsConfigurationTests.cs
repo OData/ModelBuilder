@@ -134,6 +134,44 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Capabilities
             Assert.Equal("*", restrictedPropertiesValue.Value);
         }
 
+        [Fact]
+        public void TopSupportedCanBeAddedAsPrimitiveAnnotationToEntitySet()
+        {
+            // Arrange & Act
+            var modelBuilder = new ODataModelBuilder();
+            modelBuilder.EntityType<Customer>().HasKey(c => c.CustomerId);
+            modelBuilder.EntitySet<Customer>("Customers1").HasTopSupported().IsTopSupported(false);
+            modelBuilder.EntitySet<Customer>("Customers2").HasTopSupported().IsTopSupported(true).Location = Edm.Csdl.EdmVocabularyAnnotationSerializationLocation.Inline;
+
+            var model = modelBuilder.GetServiceModel();
+
+            // Assert
+            var csdl = model.SerializeAsXml();
+
+            Assert.Equal("<?xml version=\"1.0\" encoding=\"utf-16\"?>" +
+  "<edmx:Edmx Version=\"4.0\" xmlns:edmx=\"http://docs.oasis-open.org/odata/ns/edmx\">" +
+    "<edmx:DataServices>" +
+      "<Schema Namespace=\"Microsoft.OData.ModelBuilder.Tests.TestModels\" xmlns=\"http://docs.oasis-open.org/odata/ns/edm\">" +
+        "<EntityType Name=\"Customer\">" +
+          "<Key><PropertyRef Name=\"CustomerId\" /></Key>" +
+          "<Property Name=\"CustomerId\" Type=\"Edm.Int32\" Nullable=\"false\" />" +
+        "</EntityType>" +
+        "<Annotations Target=\"Default.Container/Customers1\">" +
+          "<Annotation Term=\"Org.OData.Capabilities.V1.TopSupported\" Bool=\"false\" />" +
+        "</Annotations>" +
+      "</Schema>" +
+      "<Schema Namespace=\"Default\" xmlns=\"http://docs.oasis-open.org/odata/ns/edm\">" +
+        "<EntityContainer Name=\"Container\">" +
+          "<EntitySet Name=\"Customers1\" EntityType=\"Microsoft.OData.ModelBuilder.Tests.TestModels.Customer\" />" +
+          "<EntitySet Name=\"Customers2\" EntityType=\"Microsoft.OData.ModelBuilder.Tests.TestModels.Customer\">" +
+            "<Annotation Term=\"Org.OData.Capabilities.V1.TopSupported\" Bool=\"true\" />" +
+          "</EntitySet>" +
+        "</EntityContainer>" +
+      "</Schema>" +
+    "</edmx:DataServices>" +
+  "</edmx:Edmx>", csdl);
+        }
+
         private T GetRecordValue<T>(EdmRecordExpression record, string name) where T : class
             => record.FindProperty(name)?.Value as T;
     }
