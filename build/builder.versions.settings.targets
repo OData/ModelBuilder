@@ -111,7 +111,7 @@
       <VersionMajor>$([System.Convert]::ToInt16('$(VersionMajor)'))</VersionMajor>
       <VersionMinor>$([System.Convert]::ToInt16('$(VersionMinor)'))</VersionMinor>
       <VersionBuild>$([System.Convert]::ToUInt16('$(VersionBuild)'))</VersionBuild>
-      <VersionRevision>$([System.Convert]::ToInt16('$(VersionRevision)'))</VersionRevision>
+      <VersionRevision>$([System.Convert]::ToUInt16('$(VersionRevision)'))</VersionRevision>
     </PropertyGroup>
   </Target>
 
