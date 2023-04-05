@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return new EdmBooleanConstant(_autoExpand ?? true);
+            return _autoExpand.HasValue ? new EdmBooleanConstant(_autoExpand) : null;
         }
     }
 }

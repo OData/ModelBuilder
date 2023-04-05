@@ -37,7 +37,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return new EdmBooleanConstant(_operationAvailable ?? true);
+            return _operationAvailable.HasValue ? new EdmBooleanConstant(_operationAvailable) : null;
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return new EdmBooleanConstant(_dereferenceableIDs ?? true);
+            return _dereferenceableIDs.HasValue ? new EdmBooleanConstant(_dereferenceableIDs) : null;
         }
     }
 }

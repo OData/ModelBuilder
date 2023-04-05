@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return new EdmBooleanConstant(_crossJoinSupported ?? true);
+            return _crossJoinSupported.HasValue ? new EdmBooleanConstant(_crossJoinSupported) : null;
         }
     }
 }

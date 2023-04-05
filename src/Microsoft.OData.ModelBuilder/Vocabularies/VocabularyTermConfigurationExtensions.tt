@@ -405,30 +405,27 @@ namespace <#= @namespace #>
             else if (fullTypeName == "Edm.PrimitiveType")
             {
 #>
-            if (_<#= camelName #> != null)
-            {
-                return new EdmStringConstant(_<#= camelName #>.ToString());
-            }
+            return _<#= camelName #> != null ? new EdmStringConstant(_<#= camelName #>.ToString()) : null;
 
 <#+
             }
             else if (fullTypeName == "Edm.Int32")
             {
 #>
-            return new EdmIntegerConstant(_<#= camelName #> ?? 0);
+            return _<#= camelName #>.HasValue ? new EdmIntegerConstant(_<#= camelName #>) : null;
 <#+
             }
 
             else if (fullTypeName == "Edm.Int16")
             {
 #>
-            return new EdmIntegerConstant(_<#= camelName #> ?? 0);
+            return _<#= camelName #>.HasValue ? new EdmIntegerConstant(_<#= camelName #>) : null;
 <#+
             }
             else if (fullTypeName == "Edm.Boolean")
             {
 #>
-            return new EdmBooleanConstant(_<#= camelName #> ?? true);
+            return _<#= camelName #>.HasValue ? new EdmBooleanConstant(_<#= camelName #>) : null;
 <#+
             }
             else
@@ -438,6 +435,10 @@ namespace <#= @namespace #>
             if (_<#= camelName #>.HasValue)
             {
                  return new <#= edmTypeConstant#>(_<#= camelName #>.Value);
+            }
+            else
+            {
+                return null;
             }
 <#+
             }

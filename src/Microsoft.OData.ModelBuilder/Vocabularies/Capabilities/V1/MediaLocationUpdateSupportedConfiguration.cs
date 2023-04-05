@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return new EdmBooleanConstant(_mediaLocationUpdateSupported ?? true);
+            return _mediaLocationUpdateSupported.HasValue ? new EdmBooleanConstant(_mediaLocationUpdateSupported) : null;
         }
     }
 }
