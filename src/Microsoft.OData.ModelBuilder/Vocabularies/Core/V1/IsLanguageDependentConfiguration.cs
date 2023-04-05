@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return _isLanguageDependent.HasValue ? new EdmBooleanConstant(_isLanguageDependent) : null;
+            return _isLanguageDependent.HasValue ? new EdmBooleanConstant(_isLanguageDependent.Value) : null;
         }
     }
 }

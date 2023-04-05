@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return _skipSupported.HasValue ? new EdmBooleanConstant(_skipSupported) : null;
+            return _skipSupported.HasValue ? new EdmBooleanConstant(_skipSupported.Value) : null;
         }
     }
 }

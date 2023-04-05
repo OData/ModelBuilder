@@ -37,7 +37,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return _defaultNamespace.HasValue ? new EdmBooleanConstant(_defaultNamespace) : null;
+            return _defaultNamespace.HasValue ? new EdmBooleanConstant(_defaultNamespace.Value) : null;
         }
     }
 }

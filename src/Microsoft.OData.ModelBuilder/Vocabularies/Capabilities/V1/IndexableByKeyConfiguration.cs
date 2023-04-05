@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return _indexableByKey.HasValue ? new EdmBooleanConstant(_indexableByKey) : null;
+            return _indexableByKey.HasValue ? new EdmBooleanConstant(_indexableByKey.Value) : null;
         }
     }
 }

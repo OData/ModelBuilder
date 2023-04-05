@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return _annotationValuesInQuerySupported.HasValue ? new EdmBooleanConstant(_annotationValuesInQuerySupported) : null;
+            return _annotationValuesInQuerySupported.HasValue ? new EdmBooleanConstant(_annotationValuesInQuerySupported.Value) : null;
         }
     }
 }

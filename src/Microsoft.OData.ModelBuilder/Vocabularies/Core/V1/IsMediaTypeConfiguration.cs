@@ -35,7 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return _isMediaType.HasValue ? new EdmBooleanConstant(_isMediaType) : null;
+            return _isMediaType.HasValue ? new EdmBooleanConstant(_isMediaType.Value) : null;
         }
     }
 }
