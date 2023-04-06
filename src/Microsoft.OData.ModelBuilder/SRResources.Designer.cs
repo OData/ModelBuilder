@@ -448,7 +448,7 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime property..
+        ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime or System.DateOnly property..
         /// </summary>
         internal static string MustBeDateTimeProperty {
             get {

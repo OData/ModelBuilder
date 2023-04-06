@@ -672,6 +672,13 @@
             <param name="clrType">The type to test.</param>
             <returns>True if the type is a DateTime; false otherwise.</returns>
         </member>
+        <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsDateOnly(System.Type)">
+            <summary>
+            Determine if a type is a DateOnly.
+            </summary>
+            <param name="clrType">The type to test.</param>
+            <returns>True if the type is a DateOnly; false otherwise.</returns>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsTimeSpan(System.Type)">
             <summary>
             Determine if a type is a TimeSpan.
@@ -4297,7 +4304,7 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeDateTimeProperty">
             <summary>
-              Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime property..
+              Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.DateTime or System.DateOnly property..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeEnumProperty">
