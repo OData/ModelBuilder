@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class TopSupportedConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _topSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.TopSupported";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="TopSupportedConfiguration"/></returns>
-        public TopSupportedConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Supports $top
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_topSupported.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("TopSupported", new EdmBooleanConstant(_topSupported.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _topSupported.HasValue ? new EdmBooleanConstant(_topSupported.Value) : null;
         }
     }
 }

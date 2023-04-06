@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class OrderedConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _ordered;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Core.V1.Ordered";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="OrderedConfiguration"/></returns>
-        public OrderedConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Collection has a stable order. Ordered collections of primitive or complex types can be indexed by ordinal.
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_ordered.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("Ordered", new EdmBooleanConstant(_ordered.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _ordered.HasValue ? new EdmBooleanConstant(_ordered.Value) : null;
         }
     }
 }

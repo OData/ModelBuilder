@@ -322,6 +322,7 @@ public abstract class Microsoft.OData.ModelBuilder.StructuralTypeConfiguration`1
 public abstract class Microsoft.OData.ModelBuilder.VocabularyTermConfiguration : IRecord {
 	protected VocabularyTermConfiguration ()
 
+	Microsoft.OData.Edm.Csdl.EdmVocabularyAnnotationSerializationLocation Location  { public get; public set; }
 	string TermName  { public abstract get; }
 
 	public virtual void SetVocabularyAnnotations (Microsoft.OData.Edm.EdmModel model, Microsoft.OData.Edm.Vocabularies.IEdmVocabularyAnnotatable target)
@@ -1651,7 +1652,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuer
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration IsAnnotationValuesInQuerySupported (bool annotationValuesInQuerySupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1661,7 +1661,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSu
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration IsAsynchronousRequestsSupported (bool asynchronousRequestsSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1671,7 +1670,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSu
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration IsBatchContinueOnErrorSupported (bool batchContinueOnErrorSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1697,7 +1695,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfigur
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration IsBatchSupported (bool batchSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1772,7 +1769,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfig
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration IsComputeSupported (bool computeSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1803,7 +1799,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConf
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration IsCrossJoinSupported (bool crossJoinSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1938,7 +1933,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfigur
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration IsIndexableByKey (bool indexableByKey)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1982,7 +1976,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedC
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration IsKeyAsSegmentSupported (bool keyAsSegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -1992,7 +1985,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSup
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration IsMediaLocationUpdateSupported (bool mediaLocationUpdateSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2089,7 +2081,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedC
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration IsQuerySegmentSupported (bool querySegmentSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2174,7 +2165,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfigura
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration IsSkipSupported (bool skipSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2215,7 +2205,6 @@ public class Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfigurat
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration IsTopSupported (bool topSupported)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2307,7 +2296,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfigurat
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration IsAdditionalProperties (bool additionalProperties)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2336,7 +2324,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration : Micr
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration IsAutoExpand (bool autoExpand)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2346,7 +2333,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfigurat
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration IsAutoExpandReferences (bool autoExpandReferences)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2356,7 +2342,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration : Micros
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration IsComputed (bool computed)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2366,7 +2351,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfigurat
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration IsComputedDefaultValue (bool computedDefaultValue)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2377,7 +2361,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration : Micro
 	string TermName  { public virtual get; }
 
 	public Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration HasContentID (string contentID)
-	public Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration HasDynamicProperty (string name, object value)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -2386,7 +2369,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration :
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration IsConventionalIDs (bool conventionalIDs)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2409,7 +2391,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration 
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration IsDefaultNamespace (bool defaultNamespace)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2419,7 +2400,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguratio
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration IsDereferenceableIDs (bool dereferenceableIDs)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2430,7 +2410,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration : Mic
 	string TermName  { public virtual get; }
 
 	public Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration HasDescription (string description)
-	public Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration HasDynamicProperty (string name, object value)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
 
@@ -2449,7 +2428,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration : Micro
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration IsImmutable (bool immutable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2459,7 +2437,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfigurati
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration IsIsLanguageDependent (bool isLanguageDependent)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2469,7 +2446,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration : Mic
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration IsIsMediaType (bool isMediaType)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2479,7 +2455,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration : Microsoft
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration IsIsURL (bool isURL)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2508,7 +2483,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration :
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration HasLongDescription (string longDescription)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2527,7 +2501,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration : Micro
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration HasMediaType (string mediaType)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2560,7 +2533,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration : M
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration HasODataVersions (string oDataVersions)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2570,7 +2542,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguratio
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration IsOperationAvailable (bool operationAvailable)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2599,7 +2570,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration : Microso
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration IsOrdered (bool ordered)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2618,7 +2588,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration 
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration IsPositionalInsert (bool positionalInsert)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2646,7 +2615,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration : Mi
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration HasRequiresType (string requiresType)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2668,7 +2636,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration : Mi
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration HasResourcePath (string resourcePath)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }
@@ -2698,7 +2665,6 @@ public class Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration : M
 
 	string TermName  { public virtual get; }
 
-	public Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration HasDynamicProperty (string name, object value)
 	public Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration HasSchemaVersion (string schemaVersion)
 	public virtual Microsoft.OData.Edm.IEdmExpression ToEdmExpression ()
 }

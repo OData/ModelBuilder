@@ -5898,14 +5898,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AnnotationValuesInQuerySupportedConfiguration.IsAnnotationValuesInQuerySupported(System.Boolean)">
             <summary>
             Supports annotation values within system query options
@@ -5924,14 +5916,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.AsynchronousRequestsSupportedConfiguration.IsAsynchronousRequestsSupported(System.Boolean)">
             <summary>
             Service supports the asynchronous request preference
@@ -5949,14 +5933,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchContinueOnErrorSupportedConfiguration.IsBatchContinueOnErrorSupported(System.Boolean)">
             <summary>
@@ -6043,14 +6019,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.BatchSupportedConfiguration.IsBatchSupported(System.Boolean)">
             <summary>
@@ -6340,14 +6308,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.ComputeSupportedConfiguration.IsComputeSupported(System.Boolean)">
             <summary>
             Supports $compute
@@ -6443,14 +6403,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.CrossJoinSupportedConfiguration.IsCrossJoinSupported(System.Boolean)">
             <summary>
@@ -6980,14 +6932,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.IndexableByKeyConfiguration.IsIndexableByKey(System.Boolean)">
             <summary>
             Supports key values according to OData URL conventions
@@ -7165,14 +7109,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.KeyAsSegmentSupportedConfiguration.IsKeyAsSegmentSupported(System.Boolean)">
             <summary>
             Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection
@@ -7190,14 +7126,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.MediaLocationUpdateSupportedConfiguration.IsMediaLocationUpdateSupported(System.Boolean)">
             <summary>
@@ -7660,14 +7588,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.QuerySegmentSupportedConfiguration.IsQuerySegmentSupported(System.Boolean)">
             <summary>
             Supports [passing query options in the request body](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_PassingQueryOptionsintheRequestBody)
@@ -8065,14 +7985,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.SkipSupportedConfiguration.IsSkipSupported(System.Boolean)">
             <summary>
             Supports $skip
@@ -8173,14 +8085,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Capabilities.V1.TopSupportedConfiguration.IsTopSupported(System.Boolean)">
             <summary>
@@ -8378,14 +8282,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AdditionalPropertiesConfiguration.IsAdditionalProperties(System.Boolean)">
             <summary>
             Instances of this type may contain properties in addition to those declared in $metadata
@@ -8465,14 +8361,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandConfiguration.IsAutoExpand(System.Boolean)">
             <summary>
             The service will automatically expand this stream or navigation property even if not requested with $expand
@@ -8490,14 +8378,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.AutoExpandReferencesConfiguration.IsAutoExpandReferences(System.Boolean)">
             <summary>
@@ -8517,14 +8397,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedConfiguration.IsComputed(System.Boolean)">
             <summary>
             A value for this property is generated on both insert and update
@@ -8542,14 +8414,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ComputedDefaultValueConfiguration.IsComputedDefaultValue(System.Boolean)">
             <summary>
@@ -8569,14 +8433,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ContentIDConfiguration.HasContentID(System.String)">
             <summary>
             A unique identifier for nested entities within a request.
@@ -8594,14 +8450,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ConventionalIDsConfiguration.IsConventionalIDs(System.Boolean)">
             <summary>
@@ -8709,14 +8557,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DefaultNamespaceConfiguration.IsDefaultNamespace(System.Boolean)">
             <summary>
             Functions, actions and types in this namespace can be referenced in URLs with or without namespace- or alias- qualification.
@@ -8736,14 +8576,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DereferenceableIDsConfiguration.IsDereferenceableIDs(System.Boolean)">
             <summary>
             Entity-ids are URLs that locate the identified entity
@@ -8761,14 +8593,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.DescriptionConfiguration.HasDescription(System.String)">
             <summary>
@@ -8814,14 +8638,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ImmutableConfiguration.IsImmutable(System.Boolean)">
             <summary>
             A value for this non-key property can be provided by the client on insert and remains unchanged on update
@@ -8839,14 +8655,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsLanguageDependentConfiguration.IsIsLanguageDependent(System.Boolean)">
             <summary>
@@ -8866,14 +8674,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsMediaTypeConfiguration.IsIsMediaType(System.Boolean)">
             <summary>
             Properties and terms annotated with this term MUST contain a valid MIME type
@@ -8891,14 +8691,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.IsURLConfiguration.IsIsURL(System.Boolean)">
             <summary>
@@ -8978,14 +8770,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.LongDescriptionConfiguration.HasLongDescription(System.String)">
             <summary>
             A lengthy description of a model element
@@ -9021,14 +8805,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.MediaTypeConfiguration.HasMediaType(System.String)">
             <summary>
@@ -9136,14 +8912,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ODataVersionsConfiguration.HasODataVersions(System.String)">
             <summary>
             A space-separated list of supported versions of the OData Protocol. Note that 4.0 is implied by 4.01 and does not need to be separately listed.
@@ -9162,14 +8930,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OperationAvailableConfiguration.IsOperationAvailable(System.Boolean)">
             <summary>
@@ -9236,14 +8996,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.OrderedConfiguration.IsOrdered(System.Boolean)">
             <summary>
             Collection has a stable order. Ordered collections of primitive or complex types can be indexed by ordinal.
@@ -9309,14 +9061,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.PositionalInsertConfiguration.IsPositionalInsert(System.Boolean)">
             <summary>
@@ -9406,14 +9150,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.RequiresTypeConfiguration.HasRequiresType(System.String)">
             <summary>
             Terms annotated with this term can only be applied to elements that have a type that is identical to or derived from the given type name
@@ -9471,14 +9207,6 @@
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.TermName">
             <inheritdoc/>
-        </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration"/></returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.ResourcePathConfiguration.HasResourcePath(System.String)">
             <summary>
@@ -9585,14 +9313,6 @@
         <member name="P:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.TermName">
             <inheritdoc/>
         </member>
-        <member name="M:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.HasDynamicProperty(System.String,System.Object)">
-            <summary>
-            Dynamic properties.
-            </summary>
-            <param name="name">The name to set</param>
-            <param name="value">The value to set</param>
-            <returns><see cref="T:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration"/></returns>
-        </member>
         <member name="M:Microsoft.OData.ModelBuilder.Core.V1.SchemaVersionConfiguration.HasSchemaVersion(System.String)">
             <summary>
             Service-defined value representing the version of the schema. Services MAY use semantic versioning, but clients MUST NOT assume this is the case.
@@ -9690,6 +9410,11 @@
         <member name="T:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration">
             <summary>
             Base vocabulary configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration.Location">
+            <summary>
+            Gets or sets the vocabulary annotation location.
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.VocabularyTermConfiguration.TermName">

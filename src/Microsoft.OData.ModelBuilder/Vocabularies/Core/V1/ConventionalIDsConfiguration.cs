@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class ConventionalIDsConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _conventionalIDs;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Core.V1.ConventionalIDs";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="ConventionalIDsConfiguration"/></returns>
-        public ConventionalIDsConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Entity-ids follow OData URL conventions
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_conventionalIDs.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("ConventionalIDs", new EdmBooleanConstant(_conventionalIDs.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _conventionalIDs.HasValue ? new EdmBooleanConstant(_conventionalIDs.Value) : null;
         }
     }
 }

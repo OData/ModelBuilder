@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class KeyAsSegmentSupportedConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _keyAsSegmentSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.KeyAsSegmentSupported";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="KeyAsSegmentSupportedConfiguration"/></returns>
-        public KeyAsSegmentSupportedConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Supports [key-as-segment convention](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part2-url-conventions.html#sec_KeyasSegmentConvention) for addressing entities within a collection
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_keyAsSegmentSupported.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("KeyAsSegmentSupported", new EdmBooleanConstant(_keyAsSegmentSupported.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _keyAsSegmentSupported.HasValue ? new EdmBooleanConstant(_keyAsSegmentSupported.Value) : null;
         }
     }
 }

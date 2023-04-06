@@ -17,23 +17,10 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class DefaultNamespaceConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _defaultNamespace;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Core.V1.DefaultNamespace";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="DefaultNamespaceConfiguration"/></returns>
-        public DefaultNamespaceConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Functions, actions and types in this namespace can be referenced in URLs with or without namespace- or alias- qualification.
@@ -50,21 +37,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_defaultNamespace.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("DefaultNamespace", new EdmBooleanConstant(_defaultNamespace.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _defaultNamespace.HasValue ? new EdmBooleanConstant(_defaultNamespace.Value) : null;
         }
     }
 }

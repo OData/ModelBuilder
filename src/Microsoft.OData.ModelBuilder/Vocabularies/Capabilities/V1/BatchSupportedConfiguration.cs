@@ -16,23 +16,10 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
     /// </summary>
     public partial class BatchSupportedConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _batchSupported;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.BatchSupported";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="BatchSupportedConfiguration"/></returns>
-        public BatchSupportedConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Supports $batch requests. Services that apply the BatchSupported term should also apply the more comprehensive BatchSupport term.
@@ -48,21 +35,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_batchSupported.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("BatchSupported", new EdmBooleanConstant(_batchSupported.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _batchSupported.HasValue ? new EdmBooleanConstant(_batchSupported.Value) : null;
         }
     }
 }

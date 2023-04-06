@@ -17,23 +17,10 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
     /// </summary>
     public partial class OperationAvailableConfiguration : VocabularyTermConfiguration
     {
-        private readonly Dictionary<string, object> _dynamicProperties = new Dictionary<string, object>();
         private bool? _operationAvailable;
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Core.V1.OperationAvailable";
-
-        /// <summary>
-        /// Dynamic properties.
-        /// </summary>
-        /// <param name="name">The name to set</param>
-        /// <param name="value">The value to set</param>
-        /// <returns><see cref="OperationAvailableConfiguration"/></returns>
-        public OperationAvailableConfiguration HasDynamicProperty(string name, object value)
-        {
-            _dynamicProperties[name] = value;
-            return this;
-        }
 
         /// <summary>
         /// Action or function is available
@@ -50,21 +37,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            var properties = new List<IEdmPropertyConstructor>();
-
-            if (_operationAvailable.HasValue)
-            {
-                properties.Add(new EdmPropertyConstructor("OperationAvailable", new EdmBooleanConstant(_operationAvailable.Value)));
-            }
-
-            properties.AddRange(_dynamicProperties.ToEdmProperties());
-
-            if (!properties.Any())
-            {
-                return null;
-            }
-
-            return new EdmRecordExpression(properties);
+            return _operationAvailable.HasValue ? new EdmBooleanConstant(_operationAvailable.Value) : null;
         }
     }
 }
