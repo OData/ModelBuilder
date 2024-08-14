@@ -16,9 +16,9 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             var entitySet = model.EntityContainer.EntitySets().Single(set => set.Name == entitySetName);
             Assert.NotNull(entitySet);
             Assert.Equal(entitySet.Name, entitySetName);
-            Assert.True(model.GetEdmType(mappedEntityClrType).IsEquivalentTo(entitySet.EntityType()));
+            Assert.True(model.GetEdmType(mappedEntityClrType).IsEquivalentTo(entitySet.EntityType));
 
-            return entitySet.EntityType();
+            return entitySet.EntityType;
         }
 
         public static IEdmEntityType AssertHasSingleton(this IEdmModel model, string singletonName, Type mappedEntityClrType)
@@ -28,9 +28,9 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             IEdmSingleton singleton = model.EntityContainer.FindSingleton(singletonName);
             Assert.NotNull(singleton);
             Assert.Equal(singletonName, singleton.Name);
-            Assert.True(model.GetEdmType(mappedEntityClrType).IsEquivalentTo(singleton.EntityType()));
+            Assert.True(model.GetEdmType(mappedEntityClrType).IsEquivalentTo(singleton.EntityType));
 
-            return singleton.EntityType();
+            return singleton.EntityType;
         }
 
         public static IEdmNavigationPropertyBinding AssertHasNavigationTarget(this IEdmNavigationSource navigationSource,

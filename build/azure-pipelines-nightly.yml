@@ -63,10 +63,10 @@ extends:
             versionSpec: '>=5.2.0'
 
         - task: UseDotNet@2
-          displayName: Use .NET 6.0
+          displayName: Use .NET 8.0
           inputs:
             packageType: 'sdk'
-            version: '6.0.x'
+            version: '8.0.x'
 
         - task: Powershell@2
           displayName: 'Skip Strong Name Validation'

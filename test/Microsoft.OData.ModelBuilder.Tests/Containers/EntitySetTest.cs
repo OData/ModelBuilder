@@ -24,7 +24,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
             Assert.NotNull(container);
             var customers = container.EntitySets().SingleOrDefault(e => e.Name == "Customers");
             Assert.NotNull(customers);
-            Assert.Equal("Customer", customers.EntityType().Name);
+            Assert.Equal("Customer", customers.EntityType.Name);
         }
 
         [Fact]

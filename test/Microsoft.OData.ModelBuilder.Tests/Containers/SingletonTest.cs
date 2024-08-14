@@ -130,7 +130,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
 
             var osCorp = container.FindSingleton("OsCorp");
             Assert.NotNull(osCorp);
-            Assert.Equal("Company", osCorp.EntityType().Name);
+            Assert.Equal("Company", osCorp.EntityType.Name);
         }
 
         [Fact]
@@ -150,11 +150,11 @@ namespace Microsoft.OData.ModelBuilder.Tests.Containers
 
             var osCorp = container.FindSingleton("OsCorp");
             Assert.NotNull(osCorp);
-            Assert.Equal("Microsoft.OData.ModelBuilder.Tests.TestModels.Company", osCorp.EntityType().FullName());
+            Assert.Equal("Microsoft.OData.ModelBuilder.Tests.TestModels.Company", osCorp.EntityType.FullName());
 
             var companies = container.FindEntitySet("Companies");
             Assert.NotNull(companies);
-            Assert.Equal(osCorp.EntityType().FullName(), companies.EntityType().FullName());
+            Assert.Equal(osCorp.EntityType.FullName(), companies.EntityType.FullName());
         }
 
         [Fact]

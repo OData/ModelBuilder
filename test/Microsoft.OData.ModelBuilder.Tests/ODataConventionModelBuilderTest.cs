@@ -2189,6 +2189,41 @@ namespace Microsoft.OData.ModelBuilder.Tests
         }
 
         [Fact]
+        public void EntityType_WithContainedNavigationProperty_Works()
+        {
+            // Arrange
+            MockType containedType = new MockType("ContainedType").Property<int>("Id");
+            MockType containingType = new MockType("ContainingType")
+                .Property<int>("Id")
+                .Property(containedType, "NavProperty", new ContainedAttribute());
+
+            var builder = ODataConventionModelBuilderFactory.Create();
+            var entitySetTypeConfig = builder.AddEntityType(containingType);
+            builder.AddEntityType(containedType);
+            builder.AddEntitySet("EntitySet", entitySetTypeConfig);
+
+            // Act
+            IEdmModel model = builder.GetEdmModel();
+
+            // Assert
+
+            var container = Assert.Single(model.SchemaElements.OfType<IEdmEntityContainer>());
+
+            var entitySet = container.FindEntitySet("EntitySet");
+            Assert.NotNull(entitySet);
+            var entitySetType = entitySet.EntityType;
+            Assert.Equal("ContainingType", entitySetType.Name);
+
+            var navProperty = entitySetType.AssertHasNavigationProperty(
+                model,
+                "NavProperty",
+                containedType,
+                isNullable: true,
+                multiplicity: EdmMultiplicity.ZeroOrOne);
+            Assert.True(navProperty.ContainsTarget);
+        }
+
+        [Fact]
         public void ComplexType_Containing_EntityCollectionNavigation_Works()
         {
             // Arrange
@@ -2603,7 +2638,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             var myOrders = container.FindEntitySet("MyOrders");
             Assert.NotNull(myOrders);
-            var myOrder = myOrders.EntityType();
+            var myOrder = myOrders.EntityType;
             Assert.Equal("MyOrder", myOrder.Name);
             AssertHasContainment(myOrder, model);
         }
@@ -2623,7 +2658,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             var myOrders = container.FindEntitySet("MySpecialOrders");
             Assert.NotNull(myOrders);
-            var myOrder = myOrders.EntityType();
+            var myOrder = myOrders.EntityType;
             Assert.Equal("MySpecialOrder", myOrder.Name);
             AssertHasContainment(myOrder, model);
             AssertHasAdditionalContainment(myOrder, model);

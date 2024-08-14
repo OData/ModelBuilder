@@ -1183,7 +1183,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             builder.EntitySet<EntityTypeWithEnumTypePropertyTestModel>("Entities");
             IEdmModel model = builder.GetEdmModel();
             IEdmEntitySet entitySet = model.EntityContainer.FindEntitySet("Entities");
-            return entitySet.EntityType();
+            return entitySet.EntityType;
         }
     }
 
