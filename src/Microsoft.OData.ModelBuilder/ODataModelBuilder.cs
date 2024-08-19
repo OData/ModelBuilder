@@ -632,10 +632,10 @@ namespace Microsoft.OData.ModelBuilder
             // The type of entity set should have key(s) defined.
             foreach (IEdmEntitySet entitySet in model.EntityContainer.Elements.OfType<IEdmEntitySet>())
             {
-                if (!entitySet.EntityType().Key().Any())
+                if (!entitySet.EntityType.Key().Any())
                 {
                     throw Error.InvalidOperation(SRResources.EntitySetTypeHasNoKeys, entitySet.Name,
-                        entitySet.EntityType().FullName());
+                        entitySet.EntityType.FullName());
                 }
             }
 

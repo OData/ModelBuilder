@@ -46,7 +46,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull("model");
             }
 
-            IEdmEntityType elementType = navigationSource.EntityType();
+            IEdmEntityType elementType = navigationSource.EntityType;
             IEnumerable<IEdmEntityType> derivedTypes = model.FindAllDerivedTypes(elementType).Cast<IEdmEntityType>();
 
             //// Add navigation link builders for all navigation properties of entity.

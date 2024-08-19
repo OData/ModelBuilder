@@ -299,7 +299,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             var myOrders = container.FindEntitySet("MyOrders");
             Assert.NotNull(myOrders);
-            var edmMyOrder = myOrders.EntityType();
+            var edmMyOrder = myOrders.EntityType;
             Assert.Equal("MyOrder", edmMyOrder.Name);
             AssertHasContainment(edmMyOrder, model);
         }
@@ -326,7 +326,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             var myOrders = container.FindEntitySet("MyOrders");
             Assert.NotNull(myOrders);
-            var edmMyOrder = myOrders.EntityType();
+            var edmMyOrder = myOrders.EntityType;
             Assert.Equal("MyOrder", edmMyOrder.Name);
             AssertHasContainment(edmMyOrder, model);
         }
@@ -352,7 +352,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             var myOrders = container.FindEntitySet("MySpecialOrders");
             Assert.NotNull(myOrders);
-            var edmMyOrder = myOrders.EntityType();
+            var edmMyOrder = myOrders.EntityType;
             Assert.Equal("MySpecialOrder", edmMyOrder.Name);
             AssertHasContainment(edmMyOrder, model);
             AssertHasAdditionalContainment(edmMyOrder, model);
@@ -385,7 +385,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             var myOrders = container.FindEntitySet("MySpecialOrders");
             Assert.NotNull(myOrders);
-            var edmMyOrder = myOrders.EntityType();
+            var edmMyOrder = myOrders.EntityType;
             Assert.Equal("MySpecialOrder", edmMyOrder.Name);
             AssertHasContainment(edmMyOrder, model);
             AssertHasAdditionalContainment(edmMyOrder, model);
@@ -942,7 +942,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             Assert.Null(decimalType.Precision);
-            Assert.Equal(0, decimalType.Scale);
+            Assert.Null(decimalType.Scale);
             Assert.Null(stringType.MaxLength);
         }
 
