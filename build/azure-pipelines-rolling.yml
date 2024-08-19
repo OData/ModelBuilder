@@ -1,5 +1,4 @@
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
-
 trigger:
 # Set batch to true, it means to let system waits to run until current run is completed,
 # Then starts another run with all changes.
@@ -7,137 +6,124 @@ trigger:
   branches:
     include:
     - main
+    - release-1.x
 
 # Pull request (PR) triggers
 pr:
 - main
 
-pool:
-  vmImage: 'windows-2022'
-  
+resources:
+  repositories:
+  - repository: self
+    type: git
+    ref: refs/heads/main
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release
+
 variables:
-  BuildPlatform: 'Any CPU'
-  BuildConfiguration: 'Release'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
   snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
   snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
-  ProductBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)'
+  productBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(buildConfiguration)'
   mainDll: 'Microsoft.OData.ModelBuilder.dll'
   testDll: 'Microsoft.OData.ModelBuilder.Tests.dll'
   skipComponentGovernanceDetection: true
 
-steps:
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  parameters:
+    pool:
+      name: MSSecurity-1ES-Build-Agents-Pool
+      image: MSSecurity-1ES-Windows-2019
+      os: windows
+    customBuildTags:
+    - ES365AIMigrationTooling
+    stages:
+    - stage: build
+      jobs:
+      - job: Release
+        steps:
+        - task: PoliCheck@2
+          displayName: 'Run PoliCheck ".\src"'
+          inputs:
+            inputType: CmdLine
+            cmdLineArgs: '/F:$(Build.SourcesDirectory)/src /T:9 /Sev:"1|2" /PE:2 /O:poli_result_src.xml'
 
-- task: PoliCheck@1
-  displayName: 'Run PoliCheck ".\src"'
-  inputs:
-    inputType: CmdLine
-    cmdLineArgs: '/F:$(Build.SourcesDirectory)/src /T:9 /Sev:"1|2" /PE:2 /O:poli_result_src.xml'
+        - task: PoliCheck@2
+          displayName: 'Run PoliCheck ".\test"'
+          inputs:
+            inputType: CmdLine
+            cmdLineArgs: '/F:$(Build.SourcesDirectory)/test /T:9 /Sev:"1|2" /PE:2 /O:poli_result_test.xml'
 
-- task: PoliCheck@1
-  displayName: 'Run PoliCheck ".\test"'
-  inputs:
-    inputType: CmdLine
-    cmdLineArgs: '/F:$(Build.SourcesDirectory)/test /T:9 /Sev:"1|2" /PE:2 /O:poli_result_test.xml'
+        - task: NuGetToolInstaller@0
+          displayName: 'Use NuGet >=5.2.0'
+          inputs:
+            versionSpec: '>=5.2.0'
+            checkLatest: true
 
-# Install the nuget tooler.
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet >=5.2.0'
-  inputs:
-    versionSpec: '>=5.2.0'
-    checkLatest: true
-    
-# Add this Command to Include the .NET 6 SDK
-- task: UseDotNet@2
-  displayName: Use .NET 6.0
-  inputs:
-    packageType: 'sdk'
-    version: '6.0.x'
+        - task: UseDotNet@2
+          displayName: Use .NET 6.0
+          inputs:
+            packageType: 'sdk'
+            version: '6.0.x'
 
-# Build the Product project
-- task: DotNetCoreCLI@2
-  displayName: 'build Microsoft.OData.ModelBuilder.csproj '
-  inputs:
-    projects: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.csproj'
-    arguments: '--configuration $(BuildConfiguration) --no-incremental'
+        - task: DotNetCoreCLI@2
+          displayName: 'Build Microsoft.OData.ModelBuilder.csproj '
+          inputs:
+            projects: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.csproj'
+            arguments: '--configuration $(buildConfiguration) --no-incremental'
 
-# Build the Unit test project
-- task: DotNetCoreCLI@2
-  displayName: 'build Microsoft.OData.ModelBuilder Unit test project'
-  inputs:
-    projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
-    arguments: '--configuration $(BuildConfiguration) --no-incremental'
+        - task: DotNetCoreCLI@2
+          displayName: 'Build Microsoft.OData.ModelBuilder Unit test project'
+          inputs:
+            projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
+            arguments: '--configuration $(buildConfiguration) --no-incremental'
 
-- task: UseDotNet@2
-  displayName: Use .NET 3.x
-  inputs:
-    packageType: 'sdk'
-    version: '3.x'
+        - task: UseDotNet@2
+          displayName: Use .NET 3.x
+          inputs:
+            packageType: 'sdk'
+            version: '3.x'
 
-# Run the Unit test
-- task: DotNetCoreCLI@2
-  displayName: 'Unit Tests (Microsoft.OData.ModelBuilder.Tests.csproj) '
-  inputs:
-    command: test
-    projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
-    arguments: '--configuration $(BuildConfiguration) --no-build'
+        - task: DotNetCoreCLI@2
+          displayName: 'Unit Tests (Microsoft.OData.ModelBuilder.Tests.csproj) '
+          inputs:
+            command: test
+            projects: '$(Build.SourcesDirectory)\test\Microsoft.OData.ModelBuilder.Tests\Microsoft.OData.ModelBuilder.Tests.csproj'
+            arguments: '--configuration $(buildConfiguration) --no-build'
 
-# because the assemblies are delay-signed, we need to disable
-# strong name validation so that the tests may run,
-# otherwise our assemblies will fail to load
-- task: Powershell@2
-  displayName: 'Skip strong name validation'
-  inputs:
-    targetType: 'inline'
-    script: |
-      & "$(snExe)" /Vr $(ProductBinPath)\$(mainDll)
-      & "$(snExe64)" /Vr $(ProductBinPath)\$(mainDll)
-      & "$(snExe)" /Vr $(testBinPath)\$(testDll)
-      & "$(snExe64)" /Vr $(testBinPath)\$(testDll)
-  enabled: false
-  
-# CredScan
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
-  displayName: 'Run CredScan - Src'
-  inputs:
-    toolMajorVersion: 'V2'
-    scanFolder: '$(Build.SourcesDirectory)\src'
-    debugMode: false
+        - task: Powershell@2
+          displayName: 'Skip Strong Name Validation'
+          inputs:
+            targetType: 'inline'
+            script: |
+              & "$(snExe)" /Vr $(productBinPath)\$(mainDll)
+              & "$(snExe64)" /Vr $(productBinPath)\$(mainDll)
+              & "$(snExe)" /Vr $(testBinPath)\$(testDll)
+              & "$(snExe64)" /Vr $(testBinPath)\$(testDll)
+          enabled: false
 
-- task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
-  displayName: 'Run CredScan - Test'
-  inputs:
-    toolMajorVersion: 'V2'
-    scanFolder: '$(Build.SourcesDirectory)\test'
-    debugMode: false
-  
-# Microsoft.CodeAnalysis.FxCopAnalyzers is added into the project.
-# Typically, .NET Standard (.NET Core) project doesn't need the FxCop.
+        - task: BinSkim@3
+          displayName: 'Run BinSkim - Product Binaries'
+          inputs:
+            InputType: Basic
+            AnalyzeTarget: '$(productBinPath)\**\Microsoft.OData.ModelBuilder.dll'
+            AnalyzeSymPath: '$(productBinPath)'
+            AnalyzeVerbose: true
+            AnalyzeHashes: true
+            AnalyzeEnvironment: true
 
-# Needn't the AntiMalware@3 task?
-- task: AntiMalware@3
-  displayName: 'Run MpCmdRun.exe - ProductBinPath'
-  inputs:
-    FileDirPath: '$(ProductBinPath)'
-  enabled: false
+        - task: PublishSecurityAnalysisLogs@3
+          displayName: 'Publish Security Analysis Logs'
+          inputs:
+            ArtifactName: SecurityLogs
 
-- task: BinSkim@3
-  displayName: 'Run BinSkim - Product Binaries'
-  inputs:
-    InputType: Basic
-    AnalyzeTarget: '$(ProductBinPath)\**\Microsoft.OData.ModelBuilder.dll'
-    AnalyzeSymPath: '$(ProductBinPath)'
-    AnalyzeVerbose: true
-    AnalyzeHashes: true
-    AnalyzeEnvironment: true
-
-- task: PublishSecurityAnalysisLogs@2
-  displayName: 'Publish Security Analysis Logs'
-  inputs:
-    ArtifactName: SecurityLogs
-
-- task: PostAnalysis@1
-  displayName: 'Post Analysis'
-  inputs:
-    BinSkim: true
-    CredScan: true
-    PoliCheck: true
+        - task: PostAnalysis@2
+          displayName: 'Post Analysis'
+          inputs:
+            BinSkim: true
+            CredScan: true
+            PoliCheck: true
