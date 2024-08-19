@@ -126,6 +126,12 @@ extends:
             CredScan: true
             PoliCheck: true
 
+        # ESRP code signing task depends on .NET Core 2.x SDK
+        - task: UseDotNet@2
+          displayName: Use .NET Core 2.x
+          inputs:
+            version: '2.1.x'
+
         # CodeSign
         - task: EsrpCodeSigning@1
           displayName: 'ESRP CodeSign - OData'
