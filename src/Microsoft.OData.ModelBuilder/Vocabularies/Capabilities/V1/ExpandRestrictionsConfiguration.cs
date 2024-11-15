@@ -50,7 +50,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// $expand is supported for stream properties and media resources
+        /// $expand is supported for stream properties and media streams
         /// </summary>
         /// <param name="streamsExpandable">The value to set</param>
         /// <returns><see cref="ExpandRestrictionsConfiguration"/></returns>

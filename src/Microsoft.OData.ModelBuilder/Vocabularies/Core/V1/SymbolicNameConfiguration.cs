@@ -12,30 +12,30 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Core.V1
 {
     /// <summary>
-    /// A long description of a model element
+    /// A symbolic name for a model element
     /// </summary>
-    public partial class LongDescriptionConfiguration : VocabularyTermConfiguration
+    public partial class SymbolicNameConfiguration : VocabularyTermConfiguration
     {
-        private string _longDescription;
+        private string _symbolicName;
 
         /// <inheritdoc/>
-        public override string TermName => "Org.OData.Core.V1.LongDescription";
+        public override string TermName => "Org.OData.Core.V1.SymbolicName";
 
         /// <summary>
-        /// A long description of a model element
+        /// A symbolic name for a model element
         /// </summary>
-        /// <param name="longDescription">The value to set</param>
-        /// <returns><see cref="LongDescriptionConfiguration"/></returns>
-        public LongDescriptionConfiguration HasLongDescription(string longDescription)
+        /// <param name="symbolicName">The value to set</param>
+        /// <returns><see cref="SymbolicNameConfiguration"/></returns>
+        public SymbolicNameConfiguration HasSymbolicName(string symbolicName)
         {
-            _longDescription = longDescription;
+            _symbolicName = symbolicName;
             return this;
         }
 
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
-            return new EdmStringConstant(_longDescription);
+            return new EdmStringConstant(_symbolicName);
         }
     }
 }

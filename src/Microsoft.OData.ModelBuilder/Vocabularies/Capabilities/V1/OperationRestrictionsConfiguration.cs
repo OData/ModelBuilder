@@ -21,6 +21,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         private readonly HashSet<PermissionTypeConfiguration> _permissions = new HashSet<PermissionTypeConfiguration>();
         private readonly HashSet<CustomParameterConfiguration> _customHeaders = new HashSet<CustomParameterConfiguration>();
         private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
+        private readonly HashSet<HttpResponseConfiguration> _errorResponses = new HashSet<HttpResponseConfiguration>();
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.OperationRestrictions";
@@ -117,6 +118,29 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             return this;
         }
 
+        /// <summary>
+        /// Possible error responses returned by the request.
+        /// </summary>
+        /// <param name="errorResponsesConfiguration">The configuration to set</param>
+        /// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
+        public OperationRestrictionsConfiguration HasErrorResponses(Func<HttpResponseConfiguration, HttpResponseConfiguration> errorResponsesConfiguration)
+        {
+            var instance = new HttpResponseConfiguration();
+            instance = errorResponsesConfiguration?.Invoke(instance);
+            return HasErrorResponses(instance);
+        }
+
+        /// <summary>
+        /// Possible error responses returned by the request.
+        /// </summary>
+        /// <param name="errorResponses">The value(s) to set</param>
+        /// <returns><see cref="OperationRestrictionsConfiguration"/></returns>
+        public OperationRestrictionsConfiguration HasErrorResponses(params HttpResponseConfiguration[] errorResponses)
+        {
+            _errorResponses.UnionWith(errorResponses);
+            return this;
+        }
+
         /// <inheritdoc/>
         public override IEdmExpression ToEdmExpression()
         {
@@ -151,6 +175,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
                 if (collection.Any())
                 {
                     properties.Add(new EdmPropertyConstructor("CustomQueryOptions", new EdmCollectionExpression(collection)));
+                }
+            }
+
+            if (_errorResponses.Any())
+            {
+                var collection = _errorResponses.Select(item => item.ToEdmExpression()).Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("ErrorResponses", new EdmCollectionExpression(collection)));
                 }
             }
 
