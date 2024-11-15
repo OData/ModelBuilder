@@ -157,18 +157,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             builder.ComplexType<BadOpenComplexType>();
 
             // Act & Assert
-#if NETCOREAPP3_1_OR_GREATER
             ExceptionAssert.ThrowsArgument(() => builder.GetEdmModel(),
                 "propertyInfo",
                 "Found more than one dynamic property container in type 'BadOpenComplexType'. " +
                 "Each open type must have at most one dynamic property container. (Parameter 'propertyInfo')");
-#else
-            ExceptionAssert.ThrowsArgument(() => builder.GetEdmModel(),
-                "propertyInfo",
-                "Found more than one dynamic property container in type 'BadOpenComplexType'. " +
-                "Each open type must have at most one dynamic property container.\r\n" +
-                "Parameter name: propertyInfo");
-#endif
         }
 
         [Fact]

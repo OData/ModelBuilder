@@ -288,11 +288,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
         {
             if (exceptionMessage != null)
             {
-#if NETCOREAPP3_1_OR_GREATER
                 exceptionMessage = exceptionMessage + " (Parameter '" + paramName + "')";
-#else
-                exceptionMessage = exceptionMessage + "\r\nParameter name: " + paramName;
-#endif
                 if (actualValue != null)
                 {
                     exceptionMessage += String.Format(CultureReplacer.DefaultCulture, "\r\nActual value was {0}.", actualValue);
@@ -377,7 +373,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             return ThrowsArgumentOutOfRange(
                         testCode,
                         paramName,
-                        String.Format(CultureReplacer.DefaultCulture, "Value must be less than or equal to {0}.", maxValue), false, actualValue);
+                        string.Format(CultureReplacer.DefaultCulture, "Value must be less than or equal to {0}.", maxValue), false, actualValue);
         }
 
         /// <summary>
@@ -392,15 +388,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
         /// <exception cref="ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
         public static InvalidEnumArgumentException ThrowsInvalidEnumArgument(Action testCode, string paramName, int invalidValue, Type enumType, bool allowDerivedExceptions = false)
         {
-#if NETCOREAPP3_1_OR_GREATER
-            string message = String.Format(CultureReplacer.DefaultCulture,
+            string message = string.Format(CultureReplacer.DefaultCulture,
                                            "The value of argument '{0}' ({1}) is invalid for Enum type '{2}'. (Parameter '{0}')",
                                            paramName, invalidValue, enumType.Name);
-#else
-            string message = String.Format(CultureReplacer.DefaultCulture,
-                                           "The value of argument '{0}' ({1}) is invalid for Enum type '{2}'.{3}Parameter name: {0}",
-                                           paramName, invalidValue, enumType.Name, Environment.NewLine);
-#endif
+
             return Throws<InvalidEnumArgumentException>(testCode, message, allowDerivedExceptions);
         }
 

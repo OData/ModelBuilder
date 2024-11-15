@@ -168,7 +168,6 @@ namespace Microsoft.OData.ModelBuilder
             return GetPrimitivePropertyConfiguration(propertyExpression, nullable: false) as PrecisionPropertyConfiguration;
         }
 
-#if NET6_0_OR_GREATER
         /// <summary>
         /// Adds a <see cref="TimeOnly"/> primitive property to the EDM type.
         /// </summary>
@@ -194,7 +193,6 @@ namespace Microsoft.OData.ModelBuilder
         {
             return GetPrimitivePropertyConfiguration(propertyExpression, nullable: false) as PrecisionPropertyConfiguration;
         }
-#endif
 
         /// <summary>
         /// Adds an duration primitive property to the EDM type.

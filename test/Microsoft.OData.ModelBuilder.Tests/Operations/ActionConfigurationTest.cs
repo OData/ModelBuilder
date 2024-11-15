@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
-using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using Xunit;
 
 namespace Microsoft.OData.ModelBuilder.Tests.Operations

@@ -74,13 +74,10 @@ namespace Microsoft.OData.ModelBuilder
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(Date?), GetPrimitiveType(EdmPrimitiveTypeKind.Date)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOfDay), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOfDay?), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
-
-#if NET6_0_OR_GREATER
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(DateOnly), GetPrimitiveType(EdmPrimitiveTypeKind.Date)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(DateOnly?), GetPrimitiveType(EdmPrimitiveTypeKind.Date)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOnly), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(TimeOnly?), GetPrimitiveType(EdmPrimitiveTypeKind.TimeOfDay)),
-#endif
 
                 // Keep the Binary and XElement in the end, since there are not the default mappings for Edm.Binary and Edm.String.
                 new KeyValuePair<Type, IEdmPrimitiveType>(typeof(XElement), GetPrimitiveType(EdmPrimitiveTypeKind.String)),

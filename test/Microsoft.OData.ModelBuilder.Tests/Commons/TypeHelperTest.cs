@@ -211,7 +211,6 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             Assert.Equal(expected, TypeHelper.IsDateTime(type));
         }
 
-#if NET6_0_OR_GREATER
         [Theory]
         [InlineData(typeof(object), false)]
         [InlineData(typeof(ICollection), false)]
@@ -222,7 +221,6 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
         {
             Assert.Equal(expected, TypeHelper.IsDateOnly(type));
         }
-#endif
 
         [Theory]
         [InlineData(typeof(object), false)]
