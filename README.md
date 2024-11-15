@@ -2,8 +2,10 @@ OData Model Builder
  ============= 
  Component | Build  | Status 
 --------|--------- |---------
-Model Builder|Rolling | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Rolling?branchName=main"/>
-Model Builder|Nightly | <img src="https://identitydivision.visualstudio.com/OData/_apis/build/status/OData.ModelBuilder/OData.ModelBuilder-Nightly?branchName=main"/>
+Model Builder|Rolling | [![Build Status](https://identitydivision.visualstudio.com/OData/_apis/build/status%2FOData.ModelBuilder%2FOData.ModelBuilder-rolling-1ES?repoName=OData%2FModelBuilder&branchName=main)](https://identitydivision.visualstudio.com/OData/_build/latest?definitionId=2690&repoName=OData%2FModelBuilder&branchName=main)
+Model Builder|Nightly | [![Build Status](https://identitydivision.visualstudio.com/OData/_apis/build/status%2FOData.ModelBuilder%2FOData.ModelBuilder-nightly-1ES?repoName=OData%2FModelBuilder&branchName=main)](https://identitydivision.visualstudio.com/OData/_build/latest?definitionId=2691&repoName=OData%2FModelBuilder&branchName=main)
+
+
 
 ## 1. Introduction
 This is the official OData Model Builder repository.
