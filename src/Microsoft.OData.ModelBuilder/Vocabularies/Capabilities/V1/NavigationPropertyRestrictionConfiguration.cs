@@ -12,7 +12,10 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
     /// <summary>
-    /// Org.OData.Capabilities.V1.NavigationPropertyRestriction
+    /// Using a property of `NavigationPropertyRestriction` in a [`NavigationRestrictions`](#NavigationRestrictions) annotation
+    ///           is discouraged in favor of using an annotation with the corresponding term from this vocabulary and a target path starting with a container and ending in the `NavigationProperty`,
+    ///           unless the favored alternative is impossible because a dynamic expression requires an instance path whose evaluation
+    ///           starts at the target of the `NavigationRestrictions` annotation. See [this example](../examples/Org.OData.Capabilities.V1.capabilities.md).
     /// </summary>
     public partial class NavigationPropertyRestrictionConfiguration : IRecord
     {
@@ -56,6 +59,10 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 
         /// <summary>
         /// Navigation properties can be navigated
+        /// The target path of a [`NavigationRestrictions`](#NavigationRestrictions) annotation followed by this
+        ///             navigation property path addresses the resource to which the other properties of `NavigationPropertyRestriction` apply.
+        ///             Instance paths that occur in dynamic expressions are evaluated starting at the boundary between both paths,
+        ///             which must therefore be chosen accordingly.
         /// </summary>
         /// <param name="navigationProperty">The value to set</param>
         /// <returns><see cref="NavigationPropertyRestrictionConfiguration"/></returns>

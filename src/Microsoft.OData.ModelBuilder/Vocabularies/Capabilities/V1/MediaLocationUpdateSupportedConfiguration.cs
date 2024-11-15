@@ -12,7 +12,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Capabilities.V1
 {
     /// <summary>
-    /// Stream property supports update of its media edit URL and/or media read URL
+    /// Stream property or media stream supports update of its media edit URL and/or media read URL
     /// </summary>
     public partial class MediaLocationUpdateSupportedConfiguration : VocabularyTermConfiguration
     {
@@ -22,7 +22,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         public override string TermName => "Org.OData.Capabilities.V1.MediaLocationUpdateSupported";
 
         /// <summary>
-        /// Stream property supports update of its media edit URL and/or media read URL
+        /// Stream property or media stream supports update of its media edit URL and/or media read URL
         /// </summary>
         /// <param name="mediaLocationUpdateSupported">The value to set</param>
         /// <returns><see cref="MediaLocationUpdateSupportedConfiguration"/></returns>

@@ -15,6 +15,11 @@
     <None Remove="Microsoft.OData.ModelBuilder.xml" />
     <None Remove="Microsoft.OData.ModelBuilder.*.nuspec" />
     <None Remove="obj\**\Microsoft.OData.ModelBuilder.version.cs" />
+    <None Remove="Vocabularies\VocabularyTermConfigurationExtensions.tt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Vocabularies\VocabularyTermConfigurationExtensions.tt" />
   </ItemGroup>
   
   <ItemGroup>
@@ -34,11 +39,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SRResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Vocabularies\VocabularyTermConfigurationExtensions.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>VocabularyTermConfigurationExtensions.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,13 +46,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SRResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Vocabularies\VocabularyTermConfigurationExtensions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VocabularyTermConfigurationExtensions.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
