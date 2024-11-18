@@ -12,3 +12,14 @@ pipelines:
           lastModifiedDate: 2024-11-15
         armory:
           lastModifiedDate: 2024-11-15
+  2691:
+    retail:
+      source:
+        credscan:
+          lastModifiedDate: 2024-11-18
+        eslint:
+          lastModifiedDate: 2024-11-18
+        psscriptanalyzer:
+          lastModifiedDate: 2024-11-18
+        armory:
+          lastModifiedDate: 2024-11-18
