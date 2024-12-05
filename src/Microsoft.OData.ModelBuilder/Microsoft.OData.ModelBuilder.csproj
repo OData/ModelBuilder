@@ -4,6 +4,7 @@
     <TargetFrameworks>net8.0</TargetFrameworks>
     <RootNamespace>Microsoft.OData.ModelBuilder</RootNamespace>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
     
     <!-- Let's generate our own assembly info -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -39,6 +40,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>VocabularyTermConfigurationExtensions.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <ItemGroup>
