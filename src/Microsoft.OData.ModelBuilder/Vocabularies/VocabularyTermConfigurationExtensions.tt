@@ -1,7 +1,8 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Runtime" #>
-<#@ assembly name="$(NuGetPackageRoot)microsoft.odata.edm\7.9.0\lib\net45\Microsoft.OData.Edm.dll" #>
+<#@ assembly name="System.Linq" #>
+<#@ assembly name="System.Collections" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -296,7 +297,8 @@ class Manager : GeneratedTextTransformation
 
     public Manager(GeneratedTextTransformation transformation, IEdmModel model)
     {
-        _templateDirectory = Path.GetDirectoryName(transformation.Host.TemplateFile);
+        var fullFilePath = transformation.Host.ResolvePath("VocabularyTermConfigurationExtensions.tt");
+        _templateDirectory = Path.GetDirectoryName(fullFilePath);
         _model = model;
     }
 
@@ -888,6 +890,18 @@ using Microsoft.OData.Edm.Vocabularies;
 
 <#+
             }
+            else if (fullTypeName == "Edm.Geometry")
+            {
+#>
+            if (_<#= camelName #> != null)
+            {
+                var formatter = Microsoft.Spatial.WellKnownTextSqlFormatter.Create(true);
+                string geometryValue = Microsoft.Spatial.FormatterExtensions.Write(formatter, _<#= camelName #>);
+                properties.Add(new EdmPropertyConstructor("<#= name #>", new EdmStringConstant(geometryValue)));
+            }
+
+<#+
+            }
             else
             {
                 var edmTypeConstant = fullTypeName.Replace(".", string.Empty) + "Constant";
@@ -944,6 +958,9 @@ using Microsoft.OData.Edm.Vocabularies;
                 break;
             case "Edm.PropertyPath":
                 clrType = "EdmPropertyPathExpression";
+                break;
+            case "Edm.Geometry":
+                clrType = "Microsoft.Spatial.Geometry";
                 break;
             default:
                 clrType = name.Substring(name.LastIndexOf('.') + 1);

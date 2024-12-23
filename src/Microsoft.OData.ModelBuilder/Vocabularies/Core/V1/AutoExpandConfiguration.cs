@@ -12,7 +12,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Core.V1
 {
     /// <summary>
-    /// The service will automatically expand this stream or navigation property even if not requested with $expand
+    /// The service will automatically expand this stream property, navigation property, or the media stream of this media entity type even if not requested with $expand
     /// </summary>
     public partial class AutoExpandConfiguration : VocabularyTermConfiguration
     {
@@ -22,7 +22,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         public override string TermName => "Org.OData.Core.V1.AutoExpand";
 
         /// <summary>
-        /// The service will automatically expand this stream or navigation property even if not requested with $expand
+        /// The service will automatically expand this stream property, navigation property, or the media stream of this media entity type even if not requested with $expand
         /// </summary>
         /// <param name="autoExpand">The value to set</param>
         /// <returns><see cref="AutoExpandConfiguration"/></returns>
