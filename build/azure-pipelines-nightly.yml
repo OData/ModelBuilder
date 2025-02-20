@@ -133,10 +133,16 @@ extends:
             version: '2.1.x'
 
         # CodeSign
-        - task: EsrpCodeSigning@1
+        - task: EsrpCodeSigning@5
           displayName: 'ESRP CodeSign - OData'
           inputs:
             ConnectedServiceName: 'ESRP CodeSigning - OData'
+            AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
+            AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d'
+            AuthAKVName: ODataESRPKeyVault
+            AuthCertName: ODataCodeSignAuth-AutoRotate
+            AuthSignCertName: ODataCodeSigningCert2024
+            ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2'
             FolderPath: '$(productBinPath)'
             Pattern: 'Microsoft.OData.ModelBuilder.dll'
             signConfigType: inlineSignParams
@@ -219,10 +225,16 @@ extends:
             command: custom
             arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(buildConfiguration);ProductRoot=$(productBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols -Symbols -SymbolPackageFormat snupkg'
 
-        - task: EsrpCodeSigning@1
+        - task: EsrpCodeSigning@5
           displayName: 'ESRP CodeSigning Nuget Packages'
           inputs:
             ConnectedServiceName: 'ESRP CodeSigning - OData'
+            AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
+            AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d'
+            AuthAKVName: ODataESRPKeyVault
+            AuthCertName: ODataCodeSignAuth-AutoRotate
+            AuthSignCertName: ODataCodeSigningCert2024
+            ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2'
             FolderPath: '$(Build.ArtifactStagingDirectory)\Nuget'
             Pattern: '*.nupkg'
             signConfigType: inlineSignParams
