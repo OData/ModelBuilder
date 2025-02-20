@@ -18,12 +18,19 @@ pool:
   vmImage: 'windows-2022'
 
 variables:
-  BuildPlatform: 'Any CPU'
-  BuildConfiguration: 'Release'
-  snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
-  snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
-  ProductBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)'
-  skipComponentGovernanceDetection: true
+- name: BuildPlatform
+  value: 'Any CPU'
+- name: BuildConfiguration
+  value: 'Release'
+- name: snExe
+  value: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
+- name: snExe64
+  value: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
+- name: ProductBinPath
+  value: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(BuildConfiguration)'
+- name: skipComponentGovernanceDetection
+  value: true
+- group: OData-ESRP-CodeSigning
   
 steps:
 - task: NuGetToolInstaller@0
@@ -129,13 +136,13 @@ steps:
 - task: EsrpCodeSigning@5
   displayName: 'ESRP CodeSign - WebApi Product Signing'
   inputs:
-    ConnectedServiceName: 'ESRP CodeSigning - OData'
-    AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
-    AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d'
-    AuthAKVName: ODataESRPKeyVault
-    AuthCertName: ODataCodeSignAuth-AutoRotate
-    AuthSignCertName: ODataCodeSigningCert2024
-    ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2'
+    ConnectedServiceName: $(ODataEsrpConnectionServiceName)
+    AppRegistrationClientId: '$(ODataEsrpAppRegistrationClientId)'
+    AppRegistrationTenantId: '$(ODataEsrpAppRegistrationTenantId)'
+    AuthAKVName: $(ODataEsrpAuthKVName)
+    AuthCertName: $(ODataEsrpAuthCertName)
+    AuthSignCertName: $(ODataEsrpAuthSignCertName)
+    ServiceEndpointUrl: '$(ODataEsrpServiceEndpointUrl)'
     FolderPath: '$(ProductBinPath)'
     Pattern: 'Microsoft.OData.ModelBuilder.dll'
     signConfigType: inlineSignParams
@@ -220,13 +227,13 @@ steps:
 - task: EsrpCodeSigning@5
   displayName: 'ESRP CodeSigning Nuget Packages'
   inputs:
-    ConnectedServiceName: 'ESRP CodeSigning - OData'
-    AppRegistrationClientId: 'ce6e119c-a8c2-4744-9699-cd5389102d0d'
-    AppRegistrationTenantId: '33e01921-4d64-4f8c-a055-5bdaffd5e33d'
-    AuthAKVName: ODataESRPKeyVault
-    AuthCertName: ODataCodeSignAuth-AutoRotate
-    AuthSignCertName: ODataCodeSigningCert2024
-    ServiceEndpointUrl: 'https://api.esrp.microsoft.com/api/v2'
+    ConnectedServiceName: $(ODataEsrpConnectionServiceName)
+    AppRegistrationClientId: '$(ODataEsrpAppRegistrationClientId)'
+    AppRegistrationTenantId: '$(ODataEsrpAppRegistrationTenantId)'
+    AuthAKVName: $(ODataEsrpAuthKVName)
+    AuthCertName: $(ODataEsrpAuthCertName)
+    AuthSignCertName: $(ODataEsrpAuthSignCertName)
+    ServiceEndpointUrl: '$(ODataEsrpServiceEndpointUrl)'
     FolderPath: '$(Build.ArtifactStagingDirectory)\Nuget'
     Pattern: '*.nupkg'
     signConfigType: inlineSignParams
