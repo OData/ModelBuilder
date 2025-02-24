@@ -35,8 +35,6 @@ variables:
   value: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
 - name: productBinPath
   value: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(buildConfiguration)'
-- name: skipComponentGovernanceDetection
-  value: true
 - group: OData-ESRP-CodeSigning
 
 extends:
@@ -70,10 +68,10 @@ extends:
             versionSpec: '>=5.2.0'
 
         - task: UseDotNet@2
-          displayName: Use .NET 8.0
+          displayName: Use .NET 6.0
           inputs:
             packageType: 'sdk'
-            version: '8.0.x'
+            version: '6.0.x'
 
         - task: Powershell@2
           displayName: 'Skip Strong Name Validation'
