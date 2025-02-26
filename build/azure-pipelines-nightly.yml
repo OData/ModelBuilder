@@ -25,12 +25,19 @@ resources:
     ref: refs/tags/release
 
 variables:
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  snExe: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
-  snExe64: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
-  productBinPath: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(buildConfiguration)'
-  skipComponentGovernanceDetection: true
+- name: buildPlatform
+  value: 'Any CPU'
+- name: buildConfiguration
+  value: 'Release'
+- name: snExe
+  value: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
+- name: snExe64
+  value: 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\sn.exe'
+- name: productBinPath
+  value: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(buildConfiguration)'
+- name: skipComponentGovernanceDetection
+  value: true
+- group: OData-ESRP-CodeSigning
 
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
@@ -133,10 +140,16 @@ extends:
             version: '2.1.x'
 
         # CodeSign
-        - task: EsrpCodeSigning@1
+        - task: EsrpCodeSigning@5
           displayName: 'ESRP CodeSign - OData'
           inputs:
-            ConnectedServiceName: 'ESRP CodeSigning - OData'
+            ConnectedServiceName: $(ODataEsrpConnectionServiceName)
+            AppRegistrationClientId: '$(ODataEsrpAppRegistrationClientId)'
+            AppRegistrationTenantId: '$(ODataEsrpAppRegistrationTenantId)'
+            AuthAKVName: $(ODataEsrpAuthAKVName)
+            AuthCertName: $(ODataEsrpAuthCertName)
+            AuthSignCertName: $(ODataEsrpAuthSignCertName)
+            ServiceEndpointUrl: '$(ODataEsrpServiceEndpointUrl)'
             FolderPath: '$(productBinPath)'
             Pattern: 'Microsoft.OData.ModelBuilder.dll'
             signConfigType: inlineSignParams
@@ -219,10 +232,16 @@ extends:
             command: custom
             arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(buildConfiguration);ProductRoot=$(productBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols -Symbols -SymbolPackageFormat snupkg'
 
-        - task: EsrpCodeSigning@1
+        - task: EsrpCodeSigning@5
           displayName: 'ESRP CodeSigning Nuget Packages'
           inputs:
-            ConnectedServiceName: 'ESRP CodeSigning - OData'
+            ConnectedServiceName: $(ODataEsrpConnectionServiceName)
+            AppRegistrationClientId: '$(ODataEsrpAppRegistrationClientId)'
+            AppRegistrationTenantId: '$(ODataEsrpAppRegistrationTenantId)'
+            AuthAKVName: $(ODataEsrpAuthAKVName)
+            AuthCertName: $(ODataEsrpAuthCertName)
+            AuthSignCertName: $(ODataEsrpAuthSignCertName)
+            ServiceEndpointUrl: '$(ODataEsrpServiceEndpointUrl)'
             FolderPath: '$(Build.ArtifactStagingDirectory)\Nuget'
             Pattern: '*.nupkg'
             signConfigType: inlineSignParams
