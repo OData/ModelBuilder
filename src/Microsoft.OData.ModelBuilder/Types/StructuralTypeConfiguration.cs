@@ -513,6 +513,12 @@ namespace Microsoft.OData.ModelBuilder
                 RemovedProperties.Remove(propertyInfo);
             }
 
+            // No-op if configuring the same property more than once
+            if (DynamicPropertyDictionary == propertyInfo)
+            {
+                return;
+            }
+
             if (DynamicPropertyDictionary != null)
             {
                 throw Error.Argument("propertyInfo", SRResources.MoreThanOneDynamicPropertyContainerFound, ClrType.Name);
