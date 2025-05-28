@@ -2,6 +2,7 @@
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
 using System;
+using System.Collections.Generic;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Microsoft.OData.ModelBuilder.Tests.TestModels;
 using Moq;
@@ -53,6 +54,39 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             ExceptionAssert.ThrowsArgument(() => configuration.AddDynamicPropertyDictionary(property),
                 "propertyInfo",
                 string.Format("The argument must be of type '{0}'.", "IDictionary<string, object>"));
+        }
+
+        [Fact]
+        public void AddDynamicPropertyDictionary_ThrowsIfTwoDifferentPropertiesAreAdded()
+        {
+            // Arrange
+            MockPropertyInfo propertyA = new MockPropertyInfo(typeof(IDictionary<string, object>), "TestA");
+            MockPropertyInfo propertyB = new MockPropertyInfo(typeof(IDictionary<string, object>), "TestB");
+            Mock<StructuralTypeConfiguration> mock = new Mock<StructuralTypeConfiguration> { CallBase = true };
+            mock.Setup(m => m.Name).Returns("TestEntity");
+            mock.Setup(m => m.ClrType).Returns(propertyA.Object.DeclaringType);
+            StructuralTypeConfiguration configuration = mock.Object;
+
+            // Act & Assert
+            ExceptionAssert.DoesNotThrow(() => configuration.AddDynamicPropertyDictionary(propertyA));
+            ExceptionAssert.ThrowsArgument(() => configuration.AddDynamicPropertyDictionary(propertyB),
+                "propertyInfo",
+                string.Format("Found more than one dynamic property container in type '{0}'. Each open type must have at most one dynamic property container.", "Object"));
+        }
+
+        [Fact]
+        public void AddDynamicPropertyDictionary_DoesNotThrowIfSamePropertyIsAdded()
+        {
+            // Arrange
+            MockPropertyInfo property = new MockPropertyInfo(typeof(IDictionary<string, object>), "Test");
+            Mock<StructuralTypeConfiguration> mock = new Mock<StructuralTypeConfiguration> { CallBase = true };
+            mock.Setup(m => m.Name).Returns("TestEntity");
+            mock.Setup(m => m.ClrType).Returns(property.Object.DeclaringType);
+            StructuralTypeConfiguration configuration = mock.Object;
+
+            // Act & Assert
+            ExceptionAssert.DoesNotThrow(() => configuration.AddDynamicPropertyDictionary(property));
+            ExceptionAssert.DoesNotThrow(() => configuration.AddDynamicPropertyDictionary(property));
         }
 
         /// <summary>
