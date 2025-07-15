@@ -5,13 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Xml;
+
 using Microsoft.OData.Edm;
 using Microsoft.OData.Edm.Csdl;
 using Microsoft.OData.Edm.Validation;
 using Microsoft.OData.ModelBuilder.Tests.Commons;
 using Microsoft.OData.ModelBuilder.Tests.TestModels;
+
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Microsoft.OData.ModelBuilder.Tests
 {
@@ -188,5 +192,55 @@ namespace Microsoft.OData.ModelBuilder.Tests
                 throw new Exception(errors.First().ErrorMessage);
             }
         }
+
+#nullable enable
+        public class Foo
+        {
+            [DataMember]
+            public int Id { get; set; }
+
+            [DataMember]
+            public string[]? Codecs { get; set; }
+        }
+
+        [Fact]
+        public void NullableStrings()
+        {
+            var modelBuilder = ODataConventionModelBuilderFactory.Create();
+            modelBuilder.EntitySet<Foo>("foos");
+
+            var model = modelBuilder.GetEdmModel();
+
+            var csdl = GetCSDL(model);
+            outputHelper.WriteLine(csdl);
+        }
+        public class Foo2
+        {
+            [DataMember]
+            public int Id { get; set; }
+
+            [DataMember]
+            public string?[] Codecs { get; set; }
+        }
+
+        [Fact]
+        public void NullableStrings2()
+        {
+            var modelBuilder = ODataConventionModelBuilderFactory.Create();
+            modelBuilder.EntitySet<Foo2>("foos");
+
+            var model = modelBuilder.GetEdmModel();
+
+            var csdl = GetCSDL(model);
+            outputHelper.WriteLine(csdl);
+        }
+
+        private readonly ITestOutputHelper outputHelper;
+
+        public CsdlMetadataTest(ITestOutputHelper outputHelper)
+        {
+            this.outputHelper = outputHelper;
+        }
+#nullable disable
     }
 }
