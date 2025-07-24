@@ -10,6 +10,7 @@ using System.Reflection;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Conventions;
 using Microsoft.OData.ModelBuilder.Conventions.Attributes;
+using Microsoft.OData.ModelBuilder.Providers;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -133,6 +134,8 @@ namespace Microsoft.OData.ModelBuilder
         /// <remarks>Use this action to modify the <see cref="ODataModelBuilder"/> configuration that has been inferred by convention.</remarks>
         public Action<ODataConventionModelBuilder> OnModelCreating { get; set; }
 
+        internal List<IEdmTypeMappingProvider> EdmTypeMappingProviders { get; } = new List<IEdmTypeMappingProvider>();
+
         internal void Initialize(IAssemblyResolver assembliesResolver, bool isQueryCompositionMode)
         {
             _isQueryCompositionMode = isQueryCompositionMode;
@@ -140,9 +143,28 @@ namespace Microsoft.OData.ModelBuilder
             _mappedTypes = new HashSet<StructuralTypeConfiguration>();
             _ignoredTypes = new HashSet<Type>();
             ModelAliasingEnabled = true;
+            EdmLibHelpers.ConfigurePrimitiveTypeMappingProvider(() =>
+            {
+                // TODO: If DefaultEdmTypeMappingProvider is public, we'd need to modify logic so we don't add it multiple times
+                // If CompositeEdmTypeMappingProvider is public, we should check and remove it if it's already added
+                // Or make change in the AddEdmTypeMappingProvider method to not add either to the list
+                List<IEdmTypeMappingProvider> edmTypeMappingProviders =
+                [
+                    .. this.EdmTypeMappingProviders,
+                    new DefaultEdmTypeMappingProvider(),
+                ];
+
+                return new CompositeEdmTypeMappingProvider(edmTypeMappingProviders);
+            });
             _allTypesWithDerivedTypeMapping = new Lazy<IDictionary<Type, Type[]>>(
                 () => BuildDerivedTypesMapping(assembliesResolver),
                 isThreadSafe: false);
+        }
+
+        internal static IEdmPrimitiveTypeMappingProvider DiscoverProviders<IEdmPrimitiveTypeMappingProvider, IAssemblyResolver>(
+            Func<IAssemblyResolver, IEdmPrimitiveTypeMappingProvider> factory, IAssemblyResolver assemblyResolver)
+        {
+            return factory(assemblyResolver);
         }
 
         /// <summary>
@@ -1160,6 +1182,18 @@ namespace Microsoft.OData.ModelBuilder
             {
                 base.ValidateModel(model);
             }
+        }
+
+        internal void AddConvention(IODataModelConvention convention)
+        {
+            if (convention == null)
+            {
+                throw Error.ArgumentNull("convention");
+            }
+
+            // TODO: Where in the list should we insert the convention?
+            // Check for duplicates
+            _conventions.Add(convention);
         }
     }
 }

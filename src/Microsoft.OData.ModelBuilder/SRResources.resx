@@ -342,4 +342,7 @@
   <data name="InvalidInstanceAnnotationName" xml:space="preserve">
     <value>The input instance annotation name '{0}' is not invalid. An instance annotation should be simple identifier with '.' in it.</value>
   </data>
+  <data name="MustBeSpatialEdmTypeKind" xml:space="preserve">
+    <value>'{0}' is not a valid spatial primitive type kind and cannot be mapped to property '{1}' on type '{2}'.</value>
+  </data>
 </root>

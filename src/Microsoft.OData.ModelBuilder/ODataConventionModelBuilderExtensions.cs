@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 // Licensed under the MIT License.  See License.txt in the project root for license information.
 
+using Microsoft.OData.ModelBuilder.Providers;
+
 namespace Microsoft.OData.ModelBuilder
 {
     /// <summary>
@@ -70,6 +72,45 @@ namespace Microsoft.OData.ModelBuilder
             }
 
             builder.OnModelCreating += new LowerCamelCaser(options).ApplyLowerCamelCase;
+            return builder;
+        }
+
+        public static ODataConventionModelBuilder AddEdmTypeMappingProvider(
+            this ODataConventionModelBuilder builder,
+            IEdmTypeMappingProvider edmTypeMappingProvider)
+        {
+            if (builder == null)
+            {
+                throw Error.ArgumentNull("builder");
+            }
+
+            if (edmTypeMappingProvider == null)
+            {
+                throw Error.ArgumentNull("edmTypeMappingProvider");
+            }
+
+            builder.EdmTypeMappingProviders.Add(edmTypeMappingProvider);
+
+            return builder;
+        }
+
+        public static ODataConventionModelBuilder AddModelConventions(
+            this ODataConventionModelBuilder builder,
+            params IODataModelConvention[] conventions)
+        {
+            if (builder == null)
+            {
+                throw Error.ArgumentNull("builder");
+            }
+            if (conventions == null)
+            {
+                throw Error.ArgumentNull("conventions");
+            }
+            foreach (IODataModelConvention convention in conventions)
+            {
+                builder.AddConvention(convention);
+            }
+
             return builder;
         }
     }

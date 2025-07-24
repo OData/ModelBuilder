@@ -3,6 +3,7 @@
 
 using System;
 using System.Reflection;
+using Microsoft.OData.Edm;
 
 namespace Microsoft.OData.ModelBuilder
 {
@@ -45,6 +46,11 @@ namespace Microsoft.OData.ModelBuilder
         {
             get { return _elementType; }
         }
+
+        /// <summary>
+        /// Gets the target Edm type kind of this property. Call the extension methods to set this property.
+        /// </summary>
+        public EdmPrimitiveTypeKind? ElementTargetEdmTypeKind { get; internal set; }
 
         /// <summary>
         /// Sets the CollectionProperty to nullable.

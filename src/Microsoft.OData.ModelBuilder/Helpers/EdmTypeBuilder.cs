@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
@@ -354,7 +353,7 @@ namespace Microsoft.OData.ModelBuilder.Helpers
                     case PropertyKind.Primitive:
                         PrimitivePropertyConfiguration primitiveProperty = (PrimitivePropertyConfiguration)property;
                         EdmPrimitiveTypeKind typeKind = primitiveProperty.TargetEdmTypeKind ??
-                                                        GetTypeKind(primitiveProperty.PropertyInfo.PropertyType);
+                            GetTypeKind(primitiveProperty.PropertyInfo.PropertyType);
                         IEdmTypeReference primitiveTypeReference = EdmCoreModel.Instance.GetPrimitive(
                             typeKind,
                             primitiveProperty.NullableProperty);
@@ -443,46 +442,60 @@ namespace Microsoft.OData.ModelBuilder.Helpers
 
         private IEdmProperty CreateStructuralTypeCollectionPropertyBody(EdmStructuredType type, CollectionPropertyConfiguration collectionProperty)
         {
-            IEdmTypeReference elementTypeReference;
-            Type clrType = TypeHelper.GetUnderlyingTypeOrSelf(collectionProperty.ElementType);
-
-            if (clrType == typeof(object))
-            {
-                elementTypeReference = EdmCoreModel.Instance.GetUntyped();
-            }
-            else if (TypeHelper.IsEnum(clrType))
-            {
-                IEdmType edmType = GetEdmType(clrType);
-
-                if (edmType == null)
-                {
-                    throw Error.InvalidOperation(SRResources.EnumTypeDoesNotExist, clrType.Name);
-                }
-
-                IEdmEnumType enumElementType = (IEdmEnumType)edmType;
-                bool isNullable = collectionProperty.ElementType != clrType;
-                elementTypeReference = new EdmEnumTypeReference(enumElementType, isNullable);
-            }
-            else
-            {
-                IEdmType edmType = GetEdmType(collectionProperty.ElementType);
-                if (edmType != null)
-                {
-                    IEdmComplexType elementType = edmType as IEdmComplexType;
-                    Contract.Assert(elementType != null);
-                    elementTypeReference = new EdmComplexTypeReference(elementType, collectionProperty.NullableProperty);
-                }
-                else
-                {
-                    elementTypeReference =
-                        EdmLibHelpers.GetEdmPrimitiveTypeReferenceOrNull(collectionProperty.ElementType);
-                    Contract.Assert(elementTypeReference != null);
-                }
-            }
+            IEdmTypeReference elementTypeReference= GetElementTypeReference(this, collectionProperty);
 
             return type.AddStructuralProperty(
                 collectionProperty.Name,
                 new EdmCollectionTypeReference(new EdmCollectionType(elementTypeReference)));
+
+            static IEdmTypeReference GetElementTypeReference(EdmTypeBuilder thisParam, CollectionPropertyConfiguration colProperty)
+            {
+                Type clrType = TypeHelper.GetUnderlyingTypeOrSelf(colProperty.ElementType);
+
+                // 1) Untyped
+                if (clrType == typeof(object))
+                {
+                    return EdmCoreModel.Instance.GetUntyped();
+                }
+
+                // 2) Enum
+                if (TypeHelper.IsEnum(clrType))
+                {
+                    IEdmType enumEdmType = thisParam.GetEdmType(clrType);
+
+                    if (enumEdmType == null)
+                    {
+                        throw Error.InvalidOperation(SRResources.EnumTypeDoesNotExist, clrType.Name);
+                    }
+
+                    IEdmEnumType enumElementType = (IEdmEnumType)enumEdmType;
+                    bool isNullable = colProperty.ElementType != clrType;
+
+                    return new EdmEnumTypeReference(enumElementType, isNullable);
+                }
+
+                // 3) Explicit primitive override
+                if (colProperty.ElementTargetEdmTypeKind != null)
+                {
+                    return EdmCoreModel.Instance.GetPrimitive(colProperty.ElementTargetEdmTypeKind.Value, colProperty.NullableProperty);
+                }
+
+                // 4) Complex or primitive inferred from known types
+                IEdmType edmType = thisParam.GetEdmType(colProperty.ElementType);
+                if (edmType != null)
+                {
+                    IEdmComplexType elementType = edmType as IEdmComplexType;
+                    Contract.Assert(elementType != null);
+
+                    return new EdmComplexTypeReference(elementType, colProperty.NullableProperty);
+                }
+
+                // Fallback: primitive by CLR mapping
+                IEdmTypeReference primitiveTypeReference = EdmLibHelpers.GetEdmPrimitiveTypeReferenceOrNull(colProperty.ElementType);
+                Contract.Assert(primitiveTypeReference != null);
+
+                return primitiveTypeReference;
+            }
         }
 
         private IEdmProperty CreateStructuralTypeEnumPropertyBody(EdmStructuredType type, EnumPropertyConfiguration enumProperty)

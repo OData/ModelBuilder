@@ -3331,6 +3331,11 @@
             Returns the type of Elements in the Collection
             </summary>
         </member>
+        <member name="P:Microsoft.OData.ModelBuilder.CollectionPropertyConfiguration.ElementTargetEdmTypeKind">
+            <summary>
+            Gets the target Edm type kind of this property. Call the extension methods to set this property.
+            </summary>
+        </member>
         <member name="M:Microsoft.OData.ModelBuilder.CollectionPropertyConfiguration.IsNullable">
             <summary>
             Sets the CollectionProperty to nullable.
@@ -3340,6 +3345,19 @@
             <summary>
             Sets the CollectionProperty to required (i.e. non-nullable).
             </summary>
+        </member>
+        <member name="T:Microsoft.OData.ModelBuilder.CollectionPropertyConfigurationExtensions">
+            <summary>
+            Extension methods for <see cref="T:Microsoft.OData.ModelBuilder.CollectionPropertyConfiguration"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.CollectionPropertyConfigurationExtensions.AsSpatial(Microsoft.OData.ModelBuilder.CollectionPropertyConfiguration,Microsoft.OData.Edm.EdmPrimitiveTypeKind)">
+            <summary>
+            Sets an Edm spatial primitive type kind (e.g., GeographyPoint, GeometryLineString, etc).
+            </summary>
+            <param name="property">Reference to the calling primitive property configuration.</param>
+            <param name="spatialKind">The spatial kind to set.</param>
+            <returns>Returns itself so that multiple calls can be chained.</returns>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.ComplexPropertyConfiguration">
             <summary>
@@ -3633,7 +3651,7 @@
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.PrimitivePropertyConfigurationExtensions">
             <summary>
-            Extensions method for <see cref="T:Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration"/>.
+            Extension methods for <see cref="T:Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration"/>.
             </summary>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.PrimitivePropertyConfigurationExtensions.AsDate(Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration)">
@@ -3650,6 +3668,14 @@
             Edm type kind as <see cref="T:Microsoft.OData.Edm.TimeOfDay"/>
             </summary>
             <param name="property">Reference to the calling primitive property configuration.</param>
+            <returns>Returns itself so that multiple calls can be chained.</returns>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.PrimitivePropertyConfigurationExtensions.AsSpatial(Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration,Microsoft.OData.Edm.EdmPrimitiveTypeKind)">
+            <summary>
+            Sets an Edm spatial primitive type kind (e.g., GeographyPoint, GeometryLineString, etc).
+            </summary>
+            <param name="property">Reference to the calling primitive property configuration.</param>
+            <param name="spatialKind">The spatial kind to set.</param>
             <returns>Returns itself so that multiple calls can be chained.</returns>
         </member>
         <member name="T:Microsoft.OData.ModelBuilder.PropertyConfiguration">
@@ -4071,6 +4097,43 @@
             </summary>
             <returns>Returns itself so that multiple calls can be chained.</returns>
         </member>
+        <member name="T:Microsoft.OData.ModelBuilder.Providers.IEdmTypeMappingProvider">
+            <summary>
+            Defines a service for mapping between CLR types and OData <see cref="T:Microsoft.OData.Edm.IEdmType"/> representations.
+            Implementations provide bidirectional conversion: from CLR types to Edm primitive types,
+            and from Edm type references back to CLR types.
+            </summary>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Providers.IEdmTypeMappingProvider.TryGetEdmType(System.Type,Microsoft.OData.Edm.IEdmPrimitiveType@)">
+            <summary>
+            Attempts to resolve a CLR type to its corresponding Edm primitive type.
+            </summary>
+            <param name="clrType">The CLR type to map.</param>
+            <param name="primitiveType">
+            When this method returns <c>true</c>, contains the associated <see cref="T:Microsoft.OData.Edm.IEdmPrimitiveType"/>; 
+            otherwise <c>null</c>.
+            </param>
+            <returns>
+            <c>true</c> if the CLR type has a corresponding Edm primitive type; otherwise <c>false</c>.
+            </returns>
+            <remarks>
+            This method currently targets Edm primitive types only. A future evolution could return an
+            <see cref="T:Microsoft.OData.Edm.IEdmTypeReference"/> to support non-primitive mappings.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.OData.ModelBuilder.Providers.IEdmTypeMappingProvider.TryGetClrType(Microsoft.OData.Edm.IEdmTypeReference,System.Type@)">
+            <summary>
+            Attempts to resolve an Edm type reference to its corresponding CLR type.
+            </summary>
+            <param name="edmTypeReference">The Edm type reference to map.</param>
+            <param name="clrType">
+            When this method returns <c>true</c>, contains the associated CLR <see cref="T:System.Type"/>; 
+            otherwise <c>null</c>.
+            </param>
+            <returns>
+            <c>true</c> if the Edm type reference has a corresponding CLR type; otherwise <c>false</c>.
+            </returns>
+        </member>
         <member name="T:Microsoft.OData.ModelBuilder.SRResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -4325,6 +4388,11 @@
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBePrimitiveType">
             <summary>
               Looks up a localized string similar to The type &apos;{0}&apos; must be a primitive type..
+            </summary>
+        </member>
+        <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeSpatialEdmTypeKind">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; is not a valid spatial primitive type kind and cannot be mapped to property &apos;{1}&apos; on type &apos;{2}&apos;..
             </summary>
         </member>
         <member name="P:Microsoft.OData.ModelBuilder.SRResources.MustBeTimeSpanProperty">

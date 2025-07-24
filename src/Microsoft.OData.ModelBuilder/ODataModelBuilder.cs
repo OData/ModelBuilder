@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder.Helpers;
+using Microsoft.OData.ModelBuilder.Providers;
 
 namespace Microsoft.OData.ModelBuilder
 {

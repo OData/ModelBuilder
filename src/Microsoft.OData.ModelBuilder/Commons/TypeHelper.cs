@@ -8,6 +8,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.OData.ModelBuilder.Providers;
 
 namespace Microsoft.OData.ModelBuilder
 {
