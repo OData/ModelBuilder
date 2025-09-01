@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Microsoft.OData.Edm;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using Microsoft.OData.ModelBuilder.Providers;
 
 namespace Microsoft.OData.ModelBuilder
 {

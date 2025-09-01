@@ -493,6 +493,15 @@ namespace Microsoft.OData.ModelBuilder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a valid spatial primitive type kind and cannot be mapped to property &apos;{1}&apos; on type &apos;{2}&apos;..
+        /// </summary>
+        internal static string MustBeSpatialEdmTypeKind {
+            get {
+                return ResourceManager.GetString("MustBeSpatialEdmTypeKind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The property &apos;{0}&apos; on type &apos;{1}&apos; must be a System.TimeSpan property..
         /// </summary>
         internal static string MustBeTimeSpanProperty {

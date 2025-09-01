@@ -13,6 +13,7 @@ using Microsoft.OData.Edm.Validation;
 using Microsoft.OData.Edm.Vocabularies;
 using Microsoft.OData.ModelBuilder.Annotations;
 using Microsoft.OData.ModelBuilder.Config;
+using Microsoft.OData.ModelBuilder.Providers;
 using Microsoft.OData.ModelBuilder.Vocabularies;
 
 namespace Microsoft.OData.ModelBuilder.Helpers

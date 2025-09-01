@@ -12,7 +12,7 @@ namespace Microsoft.OData.ModelBuilder
     /// </summary>
     public class DefaultAssemblyResolver : IAssemblyResolver
     {
-        private Assembly[] _assemblies = GetAssembliesInteral();
+        private Assembly[] _assemblies = GetAssembliesInternal();
 
         /// <summary>
         /// This static instance is used in the shared code in places where the request container context
@@ -25,7 +25,7 @@ namespace Microsoft.OData.ModelBuilder
         /// </summary>
         public IEnumerable<Assembly> Assemblies => _assemblies;
 
-        private static Assembly[] GetAssembliesInteral()
+        private static Assembly[] GetAssembliesInternal()
         {
             return AppDomain.CurrentDomain.GetAssemblies();
         }
