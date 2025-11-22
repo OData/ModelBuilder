@@ -12,7 +12,7 @@ namespace Microsoft.OData.ModelBuilder
     {
         /// <summary>
         /// If this primitive property is <see cref="System.DateTime"/>, this method will make the target
-        /// Edm type kind as <see cref="Date"/>
+        /// Edm type kind as <see cref="System.DateOnly"/>
         /// </summary>
         /// <param name="property">Reference to the calling primitive property configuration.</param>
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
@@ -35,11 +35,34 @@ namespace Microsoft.OData.ModelBuilder
 
         /// <summary>
         /// If this primitive property is <see cref="System.TimeSpan"/>, this method will make the target
-        /// Edm type kind as <see cref="TimeOfDay"/>
+        /// Edm type kind as <see cref="System.TimeOnly"/>
         /// </summary>
         /// <param name="property">Reference to the calling primitive property configuration.</param>
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
         public static PrimitivePropertyConfiguration AsTimeOfDay(this PrimitivePropertyConfiguration property)
+        {
+            if (property == null)
+            {
+                throw Error.ArgumentNull("property");
+            }
+
+            if (!TypeHelper.IsTimeSpan(property.RelatedClrType) && !TypeHelper.IsTimeOnly(property.RelatedClrType))
+            {
+                throw Error.Argument("property", SRResources.MustBeTimeSpanProperty, property.PropertyInfo.Name,
+                    property.DeclaringType.FullName);
+            }
+
+            property.TargetEdmTypeKind = EdmPrimitiveTypeKind.TimeOfDay;
+            return property;
+        }
+
+        /// <summary>
+        /// If this primitive property is <see cref="System.TimeSpan"/>, this method will make the target
+        /// Edm type kind as <see cref="System.TimeOnly"/>
+        /// </summary>
+        /// <param name="property">Reference to the calling primitive property configuration.</param>
+        /// <returns>Returns itself so that multiple calls can be chained.</returns>
+        public static PrimitivePropertyConfiguration AsTimeOnly(this PrimitivePropertyConfiguration property)
         {
             if (property == null)
             {

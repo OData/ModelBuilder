@@ -267,11 +267,11 @@ namespace Microsoft.OData.ModelBuilder
                         case bool boolVal:
                             expression = new EdmBooleanConstant(boolVal);
                             break;
-                        case Date date:
-                            expression = new EdmDateConstant(date);
+                        case DateOnly dateOnly:
+                            expression = new EdmDateConstant(dateOnly);
                             break;
-                        case TimeOfDay date:
-                            expression = new EdmTimeOfDayConstant(date);
+                        case TimeOnly timeOnly:
+                            expression = new EdmTimeOfDayConstant(timeOnly);
                             break;
                         case DateTime datetime:
                             expression = new EdmDateTimeOffsetConstant(datetime);

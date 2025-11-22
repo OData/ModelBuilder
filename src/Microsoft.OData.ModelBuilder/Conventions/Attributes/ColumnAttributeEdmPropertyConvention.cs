@@ -61,7 +61,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             }
             else if (String.Compare(typeName, "time", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                primitiveProperty.AsTimeOfDay();
+                primitiveProperty.AsTimeOnly();
             }
         }
     }

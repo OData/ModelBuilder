@@ -555,11 +555,13 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
 
         // Custom ThrowsException so we can filter the stack trace.
         [Serializable]
-        private class ThrowsException : Xunit.Sdk.ThrowsException
+        private class ThrowsException : Xunit.Sdk.XunitException
         {
-            public ThrowsException(Type type) : base(type) { }
+            public ThrowsException(Type type) 
+                : base($"Assert.Throws() Failure: Expected exception type: {type.FullName}") { }
 
-            public ThrowsException(Type type, Exception ex) : base(type, ex) { }
+            public ThrowsException(Type type, Exception ex) 
+                : base($"Assert.Throws() Failure: Expected exception type: {type.FullName}, Actual: {ex.GetType().FullName}") { }
         }
     }
 }

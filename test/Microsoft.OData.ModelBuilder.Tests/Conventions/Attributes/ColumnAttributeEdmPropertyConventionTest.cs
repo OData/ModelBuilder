@@ -60,9 +60,9 @@ namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
         [InlineData("time", true)]
         [InlineData("tIme", true)]
         [InlineData("edm.timeofday", false)]
-        [InlineData("eDm.TimeOfDay", false)]
+        [InlineData("Edm.TimeOfDay", false)]
         [InlineData("any", false)]
-        public void Apply_SetsTimeSpanProperty_AsEdmTimeOfDay(string typeName, bool expect)
+        public void Apply_SetsTimeSpanProperty_AsEdmTimeOnly(string typeName, bool expect)
         {
             // Arrange
             MockType type = new MockType("Customer")

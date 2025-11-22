@@ -214,7 +214,7 @@ namespace Microsoft.OData.ModelBuilder
         public static bool IsDateOnly(Type clrType)
         {
             Type underlyingTypeOrSelf = GetUnderlyingTypeOrSelf(clrType);
-            return underlyingTypeOrSelf.FullName == "System.DateOnly";
+            return underlyingTypeOrSelf == typeof(DateOnly);
         }
 
         /// <summary>
@@ -226,6 +226,17 @@ namespace Microsoft.OData.ModelBuilder
         {
             Type underlyingTypeOrSelf = GetUnderlyingTypeOrSelf(clrType);
             return underlyingTypeOrSelf == typeof(TimeSpan);
+        }
+
+        /// <summary>
+        /// Determine if a type is a TimeOnly.
+        /// </summary>
+        /// <param name="clrType">The type to test.</param>
+        /// <returns>True if the type is a TimeOnly; false otherwise.</returns>
+        public static bool IsTimeOnly(Type clrType)
+        {
+            Type underlyingTypeOrSelf = GetUnderlyingTypeOrSelf(clrType);
+            return underlyingTypeOrSelf == typeof(TimeOnly);
         }
 
         /// <summary>

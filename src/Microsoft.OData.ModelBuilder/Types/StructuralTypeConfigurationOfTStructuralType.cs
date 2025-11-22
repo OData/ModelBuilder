@@ -143,32 +143,6 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
-        /// Adds an time-of-day primitive property to the EDM type.
-        /// </summary>
-        /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
-        /// For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
-        /// <returns>A configuration object that can be used to further configure the property.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Nested generics appropriate here")]
-        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "More specific expression type is clearer")]
-        public PrecisionPropertyConfiguration Property(Expression<Func<TStructuralType, TimeOfDay?>> propertyExpression)
-        {
-            return GetPrimitivePropertyConfiguration(propertyExpression, nullable: true) as PrecisionPropertyConfiguration;
-        }
-
-        /// <summary>
-        /// Adds an time-of-day primitive property to the EDM type.
-        /// </summary>
-        /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.
-        /// For example, in C# <c>t => t.MyProperty</c> and in Visual Basic .NET <c>Function(t) t.MyProperty</c>.</param>
-        /// <returns>A configuration object that can be used to further configure the property.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "Nested generics appropriate here")]
-        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "More specific expression type is clearer")]
-        public PrecisionPropertyConfiguration Property(Expression<Func<TStructuralType, TimeOfDay>> propertyExpression)
-        {
-            return GetPrimitivePropertyConfiguration(propertyExpression, nullable: false) as PrecisionPropertyConfiguration;
-        }
-
-        /// <summary>
         /// Adds a <see cref="TimeOnly"/> primitive property to the EDM type.
         /// </summary>
         /// <param name="propertyExpression">A lambda expression representing the navigation property for the relationship.

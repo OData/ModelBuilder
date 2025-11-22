@@ -73,23 +73,23 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         }
 
         [Fact]
-        public void CanCreateEntityWithCompoundKey_ForDateAndTimeOfDay()
+        public void CanCreateEntityWithCompoundKey_ForDateOnlyAndTimeOnly()
         {
             // Arrange
             var builder = new ODataModelBuilder();
-            var entity = builder.EntityType<EntityTypeWithDateAndTimeOfDay>();
-            entity.HasKey(e => new { e.Date, e.TimeOfDay });
+            var entity = builder.EntityType<EntityTypeWithDateOnlyAndTimeOnly>();
+            entity.HasKey(e => new { e.DateOnly, e.TimeOnly });
 
             // Act
             var model = builder.GetServiceModel();
 
             // Assert
             var entityType =
-                model.SchemaElements.OfType<IEdmEntityType>().Single(e => e.Name == "EntityTypeWithDateAndTimeOfDay");
+                model.SchemaElements.OfType<IEdmEntityType>().Single(e => e.Name == "EntityTypeWithDateOnlyAndTimeOnly");
             Assert.Equal(2, entityType.Properties().Count());
             Assert.Equal(2, entityType.DeclaredKey.Count());
-            Assert.NotNull(entityType.DeclaredKey.SingleOrDefault(k => k.Name == "Date"));
-            Assert.NotNull(entityType.DeclaredKey.SingleOrDefault(k => k.Name == "TimeOfDay"));
+            Assert.NotNull(entityType.DeclaredKey.SingleOrDefault(k => k.Name == "DateOnly"));
+            Assert.NotNull(entityType.DeclaredKey.SingleOrDefault(k => k.Name == "TimeOnly"));
         }
 
         [Fact]
@@ -725,10 +725,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             public IDictionary<string, object> DynamicProperties { get; set; }
         }
 
-        public class EntityTypeWithDateAndTimeOfDay
+        public class EntityTypeWithDateOnlyAndTimeOnly
         {
-            public Date Date { get; set; }
-            public TimeOfDay TimeOfDay { get; set; }
+            public DateOnly DateOnly { get; set; }
+            public TimeOnly TimeOnly { get; set; }
         }
 
         [Fact]

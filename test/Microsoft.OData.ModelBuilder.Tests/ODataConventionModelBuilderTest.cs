@@ -3471,9 +3471,9 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
         public DateTimeOffset? ReleaseDate { get; set; }
 
-        public Date PublishDate { get; set; }
+        public DateOnly PublishDate { get; set; }
 
-        public TimeOfDay? ShowTime { get; set; }
+        public TimeOnly? ShowTime { get; set; }
 
         public ProductVersion Version { get; set; }
 

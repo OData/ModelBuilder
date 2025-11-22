@@ -43,10 +43,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Property
                     { type.GetProperty("RandomRandomComplexType"), typeof(RandomComplexType) },
                     { type.GetProperty("CollectionDateTimes"), typeof(DateTime) },
                     { type.GetProperty("CollectionNullableDateTimes"), typeof(DateTime?) },
-                    { type.GetProperty("CollectionDates"), typeof(Date) },
-                    { type.GetProperty("CollectionNullableDates"), typeof(Date?) },
-                    { type.GetProperty("CollectionTimesOfDays"), typeof(TimeOfDay) },
-                    { type.GetProperty("CollectionNullableTimesOfDays"), typeof(TimeOfDay?) },
+                    { type.GetProperty("CollectionDates"), typeof(DateOnly) },
+                    { type.GetProperty("CollectionNullableDates"), typeof(DateOnly?) },
+                    { type.GetProperty("CollectionTimesOfDays"), typeof(TimeOnly) },
+                    { type.GetProperty("CollectionNullableTimesOfDays"), typeof(TimeOnly?) },
                 };
             }
         }
@@ -113,10 +113,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Property
             public IEnumerable<DateTime> CollectionDateTimes { get; set; }
             public IEnumerable<DateTime?> CollectionNullableDateTimes { get; set; }
 
-            public IEnumerable<Date> CollectionDates { get; set; }
-            public IEnumerable<Date?> CollectionNullableDates { get; set; }
-            public IEnumerable<TimeOfDay> CollectionTimesOfDays { get; set; }
-            public IEnumerable<TimeOfDay?> CollectionNullableTimesOfDays { get; set; }
+            public IEnumerable<DateOnly> CollectionDates { get; set; }
+            public IEnumerable<DateOnly?> CollectionNullableDates { get; set; }
+            public IEnumerable<TimeOnly> CollectionTimesOfDays { get; set; }
+            public IEnumerable<TimeOnly?> CollectionNullableTimesOfDays { get; set; }
         }
 
         internal class RandomComplexType { }

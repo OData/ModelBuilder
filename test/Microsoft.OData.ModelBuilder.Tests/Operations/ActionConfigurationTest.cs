@@ -760,11 +760,11 @@ namespace Microsoft.OData.ModelBuilder.Tests.Operations
         }
 
         [Theory]
-        [InlineData(typeof(Date), "Edm.Date")]
-        [InlineData(typeof(Date?), "Edm.Date")]
-        [InlineData(typeof(TimeOfDay), "Edm.TimeOfDay")]
-        [InlineData(typeof(TimeOfDay?), "Edm.TimeOfDay")]
-        public void CanCreateEdmModel_WithDateAndTimeOfDay_AsActionParameter(Type paramType, string expect)
+        [InlineData(typeof(DateOnly), "Edm.Date")]
+        [InlineData(typeof(DateOnly?), "Edm.Date")]
+        [InlineData(typeof(TimeOnly), "Edm.TimeOfDay")]
+        [InlineData(typeof(TimeOnly?), "Edm.TimeOfDay")]
+        public void CanCreateEdmModel_WithDateOnlyAndTimeOnly_AsActionParameter(Type paramType, string expect)
         {
             // Arrange
             ODataModelBuilder builder = ODataModelBuilderMocks.GetModelBuilderMock<ODataModelBuilder>();

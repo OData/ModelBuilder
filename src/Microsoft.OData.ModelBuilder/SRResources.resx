@@ -270,6 +270,9 @@
   <data name="MustBeTimeSpanProperty" xml:space="preserve">
     <value>The property '{0}' on type '{1}' must be a System.TimeSpan property.</value>
   </data>
+  <data name="MustBeTimeOnlyProperty" xml:space="preserve">
+    <value>The property '{0}' on type '{1}' must be a System.TimeOnly property.</value>
+  </data>
   <data name="MustHaveMatchingMultiplicity" xml:space="preserve">
     <value>The multiplicity of the '{0}' property must be '{1}'.</value>
   </data>
