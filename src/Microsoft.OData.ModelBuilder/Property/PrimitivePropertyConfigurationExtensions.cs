@@ -11,8 +11,8 @@ namespace Microsoft.OData.ModelBuilder
     public static class PrimitivePropertyConfigurationExtensions
     {
         /// <summary>
-        /// If this primitive property is <see cref="System.DateTime"/>, this method will make the target
-        /// Edm type kind as <see cref="System.DateOnly"/>
+        /// If this primitive property is <see cref="System.DateTime"/> or <see cref="System.DateOnly"/>, this method will make the target
+        /// Edm type kind as <see cref="EdmPrimitiveTypeKind.Date"/>
         /// </summary>
         /// <param name="property">Reference to the calling primitive property configuration.</param>
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
@@ -34,8 +34,31 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
+        /// If this primitive property is <see cref="System.DateTime"/> or <see cref="System.DateOnly"/>, this method will make the target
+        /// Edm type kind as <see cref="EdmPrimitiveTypeKind.Date"/>
+        /// </summary>
+        /// <param name="property">Reference to the calling primitive property configuration.</param>
+        /// <returns>Returns itself so that multiple calls can be chained.</returns>
+        public static PrimitivePropertyConfiguration AsDateOnly(this PrimitivePropertyConfiguration property)
+        {
+            if (property == null)
+            {
+                throw Error.ArgumentNull("property");
+            }
+
+            if (!TypeHelper.IsDateTime(property.RelatedClrType) && !TypeHelper.IsDateOnly(property.RelatedClrType))
+            {
+                throw Error.Argument("property", SRResources.MustBeDateTimeProperty, property.PropertyInfo.Name,
+                    property.DeclaringType.FullName);
+            }
+
+            property.TargetEdmTypeKind = EdmPrimitiveTypeKind.Date;
+            return property;
+        }
+
+        /// <summary>
         /// If this primitive property is <see cref="System.TimeSpan"/>, this method will make the target
-        /// Edm type kind as <see cref="System.TimeOnly"/>
+        /// Edm type kind as <see cref="EdmPrimitiveTypeKind.TimeOfDay"/>
         /// </summary>
         /// <param name="property">Reference to the calling primitive property configuration.</param>
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
@@ -57,8 +80,8 @@ namespace Microsoft.OData.ModelBuilder
         }
 
         /// <summary>
-        /// If this primitive property is <see cref="System.TimeSpan"/>, this method will make the target
-        /// Edm type kind as <see cref="System.TimeOnly"/>
+        /// If this primitive property is <see cref="System.TimeSpan"/> or <see cref="System.TimeOnly"/>, this method will make the target
+        /// Edm type kind as <see cref="EdmPrimitiveTypeKind.TimeOfDay"/>
         /// </summary>
         /// <param name="property">Reference to the calling primitive property configuration.</param>
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
@@ -69,7 +92,7 @@ namespace Microsoft.OData.ModelBuilder
                 throw Error.ArgumentNull("property");
             }
 
-            if (!TypeHelper.IsTimeSpan(property.RelatedClrType))
+            if (!TypeHelper.IsTimeSpan(property.RelatedClrType) && !TypeHelper.IsTimeOnly(property.RelatedClrType))
             {
                 throw Error.Argument("property", SRResources.MustBeTimeSpanProperty, property.PropertyInfo.Name,
                     property.DeclaringType.FullName);

@@ -100,8 +100,8 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
             EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
-            file.Property(f => f.Birthday).AsDate();
-            file.Property(f => f.PublishDay).AsDate();
+            file.Property(f => f.Birthday).AsDateOnly();
+            file.Property(f => f.PublishDay).AsDateOnly();
 
             // Act
             IEdmModel model = builder.GetServiceModel();

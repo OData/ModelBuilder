@@ -57,7 +57,7 @@ namespace Microsoft.OData.ModelBuilder.Conventions.Attributes
             string typeName = columnAttribute.TypeName;
             if (String.Compare(typeName, "date", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                primitiveProperty.AsDate();
+                primitiveProperty.AsDateOnly();
             }
             else if (String.Compare(typeName, "time", StringComparison.OrdinalIgnoreCase) == 0)
             {
