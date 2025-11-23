@@ -401,6 +401,11 @@ public sealed class Microsoft.OData.ModelBuilder.PrimitivePropertyConfigurationE
 	[
 	ExtensionAttribute(),
 	]
+	public static Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration AsDateOnly (Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration property)
+
+	[
+	ExtensionAttribute(),
+	]
 	public static Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration AsTimeOfDay (Microsoft.OData.ModelBuilder.PrimitivePropertyConfiguration property)
 
 	[
