@@ -70,7 +70,7 @@ extends:
             versionSpec: '>=5.2.0'
 
         - task: UseDotNet@2
-          displayName: Use .NET Core SDK 10.x
+          displayName: Use .NET Core 10.x
           inputs:
             version: 10.x
             includePreviewVersions: true
@@ -99,10 +99,10 @@ extends:
             arguments: '--configuration $(buildConfiguration) --no-incremental'
 
         - task: UseDotNet@2
-          displayName: Use .NET 3.x
+          displayName: Use .NET Core 10.x
           inputs:
-            packageType: 'sdk'
-            version: '3.x'
+            version: 10.x
+            includePreviewVersions: true
 
         - task: DotNetCoreCLI@2
           displayName: 'Unit Tests (Microsoft.OData.ModelBuilder.Tests.csproj) '

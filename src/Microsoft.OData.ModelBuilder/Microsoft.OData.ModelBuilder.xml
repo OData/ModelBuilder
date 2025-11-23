@@ -691,7 +691,7 @@
             Determine if a type is a TimeOnly.
             </summary>
             <param name="clrType">The type to test.</param>
-            <returns>True if the type is a TimeSpan; false otherwise.</returns>
+            <returns>True if the type is a TimeOnly; false otherwise.</returns>
         </member>
         <member name="M:Microsoft.OData.ModelBuilder.TypeHelper.IsEnum(System.Type)">
             <summary>

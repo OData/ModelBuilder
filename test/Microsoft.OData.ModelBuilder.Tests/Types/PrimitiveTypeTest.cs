@@ -136,7 +136,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty property = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "TimeOfDayProperty"));
+            IEdmProperty property = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "TimeOnlyProperty"));
             Assert.NotNull(property);
             Assert.Equal("Edm.TimeOfDay", property.Type.FullName());
         }

@@ -60,7 +60,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Conventions.Attributes
         [InlineData("time", true)]
         [InlineData("tIme", true)]
         [InlineData("edm.timeofday", false)]
-        [InlineData("Edm.TimeOfDay", false)]
+        [InlineData("eDm.TimeOfDay", false)]
         [InlineData("any", false)]
         public void Apply_SetsTimeSpanProperty_AsEdmTimeOnly(string typeName, bool expect)
         {
