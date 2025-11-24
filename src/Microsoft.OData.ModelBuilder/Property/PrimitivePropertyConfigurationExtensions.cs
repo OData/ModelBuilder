@@ -18,19 +18,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
         public static PrimitivePropertyConfiguration AsDate(this PrimitivePropertyConfiguration property)
         {
-            if (property == null)
-            {
-                throw Error.ArgumentNull("property");
-            }
-
-            if (!TypeHelper.IsDateTime(property.RelatedClrType) && !TypeHelper.IsDateOnly(property.RelatedClrType))
-            {
-                throw Error.Argument("property", SRResources.MustBeDateTimeProperty, property.PropertyInfo.Name,
-                    property.DeclaringType.FullName);
-            }
-
-            property.TargetEdmTypeKind = EdmPrimitiveTypeKind.Date;
-            return property;
+            return property.AsDateOnly();
         }
 
         /// <summary>
@@ -64,19 +52,7 @@ namespace Microsoft.OData.ModelBuilder
         /// <returns>Returns itself so that multiple calls can be chained.</returns>
         public static PrimitivePropertyConfiguration AsTimeOfDay(this PrimitivePropertyConfiguration property)
         {
-            if (property == null)
-            {
-                throw Error.ArgumentNull("property");
-            }
-
-            if (!TypeHelper.IsTimeSpan(property.RelatedClrType) && !TypeHelper.IsTimeOnly(property.RelatedClrType))
-            {
-                throw Error.Argument("property", SRResources.MustBeTimeSpanProperty, property.PropertyInfo.Name,
-                    property.DeclaringType.FullName);
-            }
-
-            property.TargetEdmTypeKind = EdmPrimitiveTypeKind.TimeOfDay;
-            return property;
+            return property.AsTimeOnly();
         }
 
         /// <summary>
