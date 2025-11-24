@@ -44,7 +44,7 @@ extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     settings:
-      networkIsolationPolicy: Preferred,Bad,Nuget.org,AzureKeyVault,AzureActiveDirectory,AzureStorage
+      networkIsolationPolicy: Bad,NuGet,AzureKeyVault,AzureActiveDirectory,AzureStorage
       # Change to Good,Nuget.org if it gets too restrictive
       # AzureKeyVault,AzureActiveDirectory,AzureStorage Allow policies required for the ESRP task
     pool:
