@@ -104,8 +104,8 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.True(complexType.Property(t => t.NullableLongProperty).NullableProperty);
             Assert.True(complexType.Property(t => t.NullableShortProperty).NullableProperty);
             Assert.True(complexType.Property(t => t.NullableTimeSpanProperty).NullableProperty);
-            Assert.True(complexType.Property(t => t.NullableDateProperty).NullableProperty);
-            Assert.True(complexType.Property(t => t.NullableTimeOfDayProperty).NullableProperty);
+            Assert.True(complexType.Property(t => t.NullableDateOnlyProperty).NullableProperty);
+            Assert.True(complexType.Property(t => t.NullableTimeOnlyProperty).NullableProperty);
 
             // Assert.True(complexType.Property(t => t.StreamProperty).OptionalProperty);
             Assert.True(complexType.Property(t => t.StringProperty).NullableProperty);
@@ -130,8 +130,8 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             Assert.False(complexType.Property(t => t.ShortProperty).NullableProperty);
             Assert.False(complexType.Property(t => t.TimeSpanProperty).NullableProperty);
             Assert.False(complexType.Property(t => t.DateTimeProperty).NullableProperty);
-            Assert.False(complexType.Property(t => t.DateProperty).NullableProperty);
-            Assert.False(complexType.Property(t => t.TimeOfDayProperty).NullableProperty);
+            Assert.False(complexType.Property(t => t.DateOnlyProperty).NullableProperty);
+            Assert.False(complexType.Property(t => t.TimeOnlyProperty).NullableProperty);
         }
 
         [Fact]
@@ -564,11 +564,11 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         public DateTime DateTimeProperty { get; set; }
         public DateTime? NullableDateTimeProperty { get; set; }
 
-        public Date DateProperty { get; set; }
-        public Date? NullableDateProperty { get; set; }
+        public DateOnly DateOnlyProperty { get; set; }
+        public DateOnly? NullableDateOnlyProperty { get; set; }
 
-        public TimeOfDay TimeOfDayProperty { get; set; }
-        public TimeOfDay? NullableTimeOfDayProperty { get; set; }
+        public TimeOnly TimeOnlyProperty { get; set; }
+        public TimeOnly? NullableTimeOnlyProperty { get; set; }
 
         public string StringProperty { get; set; }
         public Stream StreamProperty { get; set; }

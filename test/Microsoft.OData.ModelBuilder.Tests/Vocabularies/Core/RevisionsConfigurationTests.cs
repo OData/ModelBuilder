@@ -27,7 +27,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Core
 
             var revisionsBuilder = modelBuilder
                 .EntitySet<Customer>("Customers")
-                .HasRevisions(a=>a.HasKind(RevisionKind.Deprecated).HasDescription(Description).HasVersion(Version).HasDynamicProperty("Date", Date).HasDynamicProperty("RemovalDate", RemovalDate));
+                .HasRevisions(a=>a.HasKind(RevisionKind.Deprecated).HasDescription(Description).HasVersion(Version).HasDynamicProperty("DateOnly", Date).HasDynamicProperty("RemovalDate", RemovalDate));
 
             var model = modelBuilder.GetServiceModel();
             var container = model.SchemaElements.OfType<IEdmEntityContainer>().SingleOrDefault();
@@ -120,7 +120,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Core
             var revisionsBuilder = modelBuilder
                .ComplexType<Address>()
                .Property(a => a.HouseNumber)
-               .HasRevisions(a => a.HasKind(RevisionKind.Deprecated).HasDescription(Description).HasVersion(Version).HasDynamicProperty("Date", Date).HasDynamicProperty("RemovalDate", RemovalDate));
+               .HasRevisions(a => a.HasKind(RevisionKind.Deprecated).HasDescription(Description).HasVersion(Version).HasDynamicProperty("DateOnly", Date).HasDynamicProperty("RemovalDate", RemovalDate));
 
             var model = modelBuilder.GetServiceModel();
             var property = model.SchemaElements.OfType<IEdmComplexType>().Single().DeclaredProperties.OfType<IEdmProperty>().FirstOrDefault(a => a.Name == "HouseNumber");
@@ -131,7 +131,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Core
 
             var revisionsProperties = GetAnnotationTermEdmRecordExpression(annotation);
 
-            var dateNameValue = GetRecordValue<EdmDateTimeOffsetConstant>(revisionsProperties, "Date");
+            var dateNameValue = GetRecordValue<EdmDateTimeOffsetConstant>(revisionsProperties, "DateOnly");
             Assert.NotNull(dateNameValue);
 
             Assert.Equal(Date, dateNameValue.Value);
@@ -149,7 +149,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Core
             var actionConfiguration = modelBuilder.Action("MyAction");
 
             var operationRestrictionsBuilder = actionConfiguration
-                .HasRevisions(a => a.HasKind(RevisionKind.Deprecated).HasDescription(Description).HasVersion(Version).HasDynamicProperty("Date", Date).HasDynamicProperty("RemovalDate", RemovalDate));
+                .HasRevisions(a => a.HasKind(RevisionKind.Deprecated).HasDescription(Description).HasVersion(Version).HasDynamicProperty("DateOnly", Date).HasDynamicProperty("RemovalDate", RemovalDate));
 
             var model = modelBuilder.GetServiceModel();
             var action = model.SchemaElements.OfType<IEdmAction>().Single();
@@ -160,7 +160,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Vocabularies.Core
 
             var revisionsProperties = GetAnnotationTermEdmRecordExpression(annotation);
 
-            var dateNameValue = GetRecordValue<EdmDateTimeOffsetConstant>(revisionsProperties, "Date");
+            var dateNameValue = GetRecordValue<EdmDateTimeOffsetConstant>(revisionsProperties, "DateOnly");
             Assert.NotNull(dateNameValue);
 
             Assert.Equal(Date, dateNameValue.Value);

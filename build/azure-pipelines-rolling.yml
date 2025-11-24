@@ -7,11 +7,13 @@ trigger:
     include:
     - main
     - release-1.x
+    - dev-3.x
 
 # Pull request (PR) triggers
 pr:
 - main
 - release-1.x
+- dev-3.x
 
 resources:
   repositories:
@@ -66,10 +68,10 @@ extends:
             checkLatest: true
 
         - task: UseDotNet@2
-          displayName: Use .NET 8.0
+          displayName: Use .NET Core 10.x
           inputs:
-            packageType: 'sdk'
-            version: '8.0.x'
+            version: 10.x
+            includePreviewVersions: true
 
         - task: DotNetCoreCLI@2
           displayName: 'Build Microsoft.OData.ModelBuilder.csproj '
@@ -84,10 +86,10 @@ extends:
             arguments: '--configuration $(buildConfiguration) --no-incremental'
 
         - task: UseDotNet@2
-          displayName: Use .NET 3.x
+          displayName: Use .NET Core 10.x
           inputs:
-            packageType: 'sdk'
-            version: '3.x'
+            version: 10.x
+            includePreviewVersions: true
 
         - task: DotNetCoreCLI@2
           displayName: 'Unit Tests (Microsoft.OData.ModelBuilder.Tests.csproj) '

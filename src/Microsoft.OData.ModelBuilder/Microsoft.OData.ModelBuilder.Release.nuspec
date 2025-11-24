@@ -16,7 +16,7 @@
     <icon>images\odata.png</icon>
     <repository type="git" url="https://github.com/OData/ModelBuilder.git" branch="master" />
     <dependencies>
-      <group targetFramework=".NET8.0">
+      <group targetFramework=".NET10.0">
         <dependency id="Microsoft.OData.Edm" version="$ODataLibPackageDependency$" />
         <dependency id="Microsoft.Spatial" version="$ODataLibPackageDependency$" />
         <dependency id="System.ComponentModel.Annotations" version="$SystemComponentPackageDependency$" />
@@ -24,9 +24,9 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="$ProductRoot$\net8.0\Microsoft.OData.ModelBuilder.dll" target="lib\net8.0" />
-    <file src="$ProductRoot$\net8.0\Microsoft.OData.ModelBuilder.xml" target="lib\net8.0" />
-    <file src="$ProductRoot$\net8.0\Microsoft.OData.ModelBuilder.pdb" target="lib\net8.0" />
+    <file src="$ProductRoot$\net10.0\Microsoft.OData.ModelBuilder.dll" target="lib\net10.0" />
+    <file src="$ProductRoot$\net10.0\Microsoft.OData.ModelBuilder.xml" target="lib\net10.0" />
+    <file src="$ProductRoot$\net10.0\Microsoft.OData.ModelBuilder.pdb" target="lib\net10.0" />
     <file src="$SourcesRoot$\images\odata.png" target="images\" />
   </files>
 </package>

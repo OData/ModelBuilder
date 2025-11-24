@@ -953,7 +953,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             ODataModelBuilder builder = new ODataModelBuilder();
             var entity = builder.EntityType<PrecisionEnitity>().HasKey(p => p.Id);
             entity.Property(p => p.DurationProperty).Precision = 5;
-            entity.Property(p => p.TimeOfDayProperty).Precision = 6;
+            entity.Property(p => p.TimeOnlyProperty).Precision = 6;
             entity.Property(p => p.DateTimeOffsetProperty).Precision = 7;
             entity.Property(p => p.OnlyTime).Precision = 8;
 
@@ -962,19 +962,19 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmEntityType edmEntityType = model.SchemaElements.OfType<IEdmEntityType>().First(p => p.Name == "PrecisionEnitity");
             IEdmTemporalTypeReference durationType =
                 (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("DurationProperty")).Type;
-            IEdmTemporalTypeReference timeOfDayType =
-                (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("TimeOfDayProperty")).Type;
+            IEdmTemporalTypeReference timeOnlyType1 =
+                (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("TimeOnlyProperty")).Type;
             IEdmTemporalTypeReference dateTimeOffsetType =
                 (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("DateTimeOffsetProperty")).Type;
 
             // Assert
             Assert.Equal(5, durationType.Precision.Value);
-            Assert.Equal(6, timeOfDayType.Precision.Value);
+            Assert.Equal(6, timeOnlyType1.Precision.Value);
             Assert.Equal(7, dateTimeOffsetType.Precision.Value);
 
-            IEdmTemporalTypeReference timeOnlyType =
+            IEdmTemporalTypeReference timeOnlyType2 =
                 (IEdmTemporalTypeReference)edmEntityType.DeclaredProperties.First(p => p.Name.Equals("OnlyTime")).Type;
-            Assert.Equal(8, timeOnlyType.Precision.Value);
+            Assert.Equal(8, timeOnlyType2.Precision.Value);
         }
 
         [Fact]
@@ -1127,7 +1127,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             public TimeSpan DurationProperty { get; set; }
 
-            public TimeOfDay TimeOfDayProperty { get; set; }
+            public TimeOnly TimeOnlyProperty { get; set; }
 
             public DateTimeOffset DateTimeOffsetProperty { get; set; }
 

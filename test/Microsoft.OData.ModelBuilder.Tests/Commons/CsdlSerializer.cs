@@ -25,7 +25,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             StringWriter writer = new StringWriter();
             var xwriter = XmlWriter.Create(writer);
             IEnumerable<EdmError> errors;
-            if (CsdlWriter.TryWriteCsdl(model, xwriter, CsdlTarget.OData, out errors))
+            if (CsdlWriter.TryWriteCsdl(model, xwriter, out errors))
             {
                 xwriter.Flush();
                 return writer.ToString();

@@ -100,8 +100,8 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
             EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
-            file.Property(f => f.Birthday).AsDate();
-            file.Property(f => f.PublishDay).AsDate();
+            file.Property(f => f.Birthday).AsDateOnly();
+            file.Property(f => f.PublishDay).AsDateOnly();
 
             // Act
             IEdmModel model = builder.GetServiceModel();
@@ -121,34 +121,34 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
         }
 
         [Fact]
-        public void CreateTimeOfDayPrimitiveProperty()
+        public void CreateTimeOnlyPrimitiveProperty()
         {
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
             EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
-            PrimitivePropertyConfiguration timeOfDay = file.Property(f => f.TimeOfDayProperty);
+            PrimitivePropertyConfiguration timeOnly = file.Property(f => f.TimeOnlyProperty);
 
             // Act
             IEdmModel model = builder.GetServiceModel();
 
             // Assert
-            Assert.Equal(PropertyKind.Primitive, timeOfDay.Kind);
+            Assert.Equal(PropertyKind.Primitive, timeOnly.Kind);
 
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty property = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "TimeOfDayProperty"));
+            IEdmProperty property = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "TimeOnlyProperty"));
             Assert.NotNull(property);
             Assert.Equal("Edm.TimeOfDay", property.Type.FullName());
         }
 
         [Fact]
-        public void CreateTimeOfDayPrimitiveProperty_FromTimeSpan()
+        public void CreateTimeOnlyPrimitiveProperty_FromTimeSpan()
         {
             // Arrange
             ODataModelBuilder builder = new ODataModelBuilder();
             EntityTypeConfiguration<PrimitiveFile> file = builder.EntityType<PrimitiveFile>();
-            file.Property(f => f.CreatedTime).AsTimeOfDay();
-            file.Property(f => f.EndTime).AsTimeOfDay();
+            file.Property(f => f.CreatedTime).AsTimeOnly();
+            file.Property(f => f.EndTime).AsTimeOnly();
 
             // Act
             IEdmModel model = builder.GetServiceModel();
@@ -174,9 +174,9 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
         public Stream StreamData { get; set; }
 
-        public Date DateProperty { get; set; }
+        public DateOnly DateProperty { get; set; }
 
-        public TimeOfDay TimeOfDayProperty { get; set; }
+        public TimeOnly TimeOnlyProperty { get; set; }
 
         public DateTime Birthday { get; set; }
         public DateTime? PublishDay { get; set; }
