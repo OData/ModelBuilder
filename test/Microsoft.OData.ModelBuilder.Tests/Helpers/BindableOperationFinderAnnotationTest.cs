@@ -126,22 +126,22 @@ namespace Microsoft.OData.ModelBuilder.Tests.Helpers
 
             // Assert
             Assert.Equal(3, movieOperations.Length);
-            Assert.Single(movieOperations.Where(a => a.Name == "CollectionMovieActionInCache3"));
-            Assert.Single(movieOperations.Where(a => a.Name == "CollectionMovieActionInCache4"));
-            Assert.Single(movieOperations.Where(a => a.Name == "CollectionMovieFunctionInCache3"));
+            Assert.Single(movieOperations, a => a.Name == "CollectionMovieActionInCache3");
+            Assert.Single(movieOperations, a => a.Name == "CollectionMovieActionInCache4");
+            Assert.Single(movieOperations, a => a.Name == "CollectionMovieFunctionInCache3");
 
             Assert.Equal(4, customerOperations.Length);
-            Assert.Single(customerOperations.Where(a => a.Name == "CollectionCustomerActionInCache1"));
-            Assert.Single(customerOperations.Where(a => a.Name == "CollectionCustomerActionInCache2"));
-            Assert.Single(customerOperations.Where(a => a.Name == "CollectionCustomerFunctionInCache1"));
-            Assert.Single(customerOperations.Where(a => a.Name == "CollectionCustomerFunctionInCache2"));
+            Assert.Single(customerOperations, a => a.Name == "CollectionCustomerActionInCache1");
+            Assert.Single(customerOperations, a => a.Name == "CollectionCustomerActionInCache2");
+            Assert.Single(customerOperations, a => a.Name == "CollectionCustomerFunctionInCache1");
+            Assert.Single(customerOperations, a => a.Name == "CollectionCustomerFunctionInCache2");
 
             Assert.Equal(5, blockBusterOperations.Length);
-            Assert.Single(blockBusterOperations.Where(a => a.Name == "CollectionBlockbusterActionInCache5"));
-            Assert.Single(blockBusterOperations.Where(a => a.Name == "CollectionBlockbusterFunctionInCache5"));
-            Assert.Single(blockBusterOperations.Where(a => a.Name == "CollectionMovieActionInCache3"));
-            Assert.Single(blockBusterOperations.Where(a => a.Name == "CollectionMovieActionInCache4"));
-            Assert.Single(blockBusterOperations.Where(a => a.Name == "CollectionMovieFunctionInCache3"));
+            Assert.Single(blockBusterOperations, a => a.Name == "CollectionBlockbusterActionInCache5");
+            Assert.Single(blockBusterOperations, a => a.Name == "CollectionBlockbusterFunctionInCache5");
+            Assert.Single(blockBusterOperations, a => a.Name == "CollectionMovieActionInCache3");
+            Assert.Single(blockBusterOperations, a => a.Name == "CollectionMovieActionInCache4");
+            Assert.Single(blockBusterOperations, a => a.Name == "CollectionMovieFunctionInCache3");
         }
 
         public class Movie

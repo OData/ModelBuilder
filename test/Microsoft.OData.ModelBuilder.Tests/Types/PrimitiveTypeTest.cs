@@ -62,7 +62,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty dateProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "DateProperty"));
+            IEdmProperty dateProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "DateProperty");
             Assert.NotNull(dateProperty);
             Assert.Equal("Edm.Date", dateProperty.Type.FullName());
         }
@@ -85,11 +85,11 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty dateProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "OnlyDate"));
+            IEdmProperty dateProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "OnlyDate");
             Assert.NotNull(dateProperty);
             Assert.Equal("Edm.Date", dateProperty.Type.FullName());
 
-            IEdmProperty timeProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "OnlyTime"));
+            IEdmProperty timeProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "OnlyTime");
             Assert.NotNull(timeProperty);
             Assert.Equal("Edm.TimeOfDay", timeProperty.Type.FullName());
         }
@@ -109,12 +109,12 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             // Assert
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty birthdayProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "Birthday"));
+            IEdmProperty birthdayProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "Birthday");
             Assert.NotNull(birthdayProperty);
             Assert.False(birthdayProperty.Type.IsNullable);
             Assert.Equal("Edm.Date", birthdayProperty.Type.FullName());
 
-            IEdmProperty publishDayProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "PublishDay"));
+            IEdmProperty publishDayProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "PublishDay");
             Assert.NotNull(publishDayProperty);
             Assert.True(publishDayProperty.Type.IsNullable);
             Assert.Equal("Edm.Date", publishDayProperty.Type.FullName());
@@ -136,7 +136,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
 
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty property = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "TimeOnlyProperty"));
+            IEdmProperty property = Assert.Single(fileType.DeclaredProperties, p => p.Name == "TimeOnlyProperty");
             Assert.NotNull(property);
             Assert.Equal("Edm.TimeOfDay", property.Type.FullName());
         }
@@ -156,12 +156,12 @@ namespace Microsoft.OData.ModelBuilder.Tests.Types
             // Assert
             IEdmEntityType fileType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
 
-            IEdmProperty createProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "CreatedTime"));
+            IEdmProperty createProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "CreatedTime");
             Assert.NotNull(createProperty);
             Assert.False(createProperty.Type.IsNullable);
             Assert.Equal("Edm.TimeOfDay", createProperty.Type.FullName());
 
-            IEdmProperty endProperty = Assert.Single(fileType.DeclaredProperties.Where(p => p.Name == "EndTime"));
+            IEdmProperty endProperty = Assert.Single(fileType.DeclaredProperties, p => p.Name == "EndTime");
             Assert.NotNull(endProperty);
             Assert.True(endProperty.Type.IsNullable);
             Assert.Equal("Edm.TimeOfDay", endProperty.Type.FullName());

@@ -510,7 +510,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmNavigationProperty usersNav = roleEntityType.AssertHasNavigationProperty(model, "User",
                 typeof(User), isNullable: false, multiplicity: EdmMultiplicity.One);
 
-            Assert.Equal(EdmOnDeleteAction.Cascade, usersNav.OnDelete);
+            Assert.Equal(EdmOnDeleteAction.Cascade, usersNav.OnDelete.Action);
 
             IEdmStructuralProperty dependentProperty = Assert.Single(usersNav.DependentProperties());
             Assert.Equal("UserForeignKey", dependentProperty.Name);
@@ -542,7 +542,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmNavigationProperty usersNav = roleEntityType.AssertHasNavigationProperty(model, "User",
                 typeof(User), isNullable: false, multiplicity: EdmMultiplicity.One);
 
-            Assert.Equal(EdmOnDeleteAction.None, usersNav.OnDelete);
+            Assert.Null(usersNav.OnDelete);
 
             IEdmStructuralProperty dependentProperty = Assert.Single(usersNav.DependentProperties());
             Assert.Equal("UserForeignKey", dependentProperty.Name);
@@ -573,7 +573,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             roleEntityType.AssertHasNavigationProperty(model, "User", typeof(User), isNullable: false,
                 multiplicity: EdmMultiplicity.One);
 
-            IEdmProperty edmProperty = Assert.Single(roleEntityType.Properties().Where(c => c.Name == "UserForeignKey"));
+            IEdmProperty edmProperty = Assert.Single(roleEntityType.Properties(), c => c.Name == "UserForeignKey");
             Assert.False(edmProperty.Type.IsNullable);
         }
 
@@ -600,7 +600,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             roleEntityType.AssertHasNavigationProperty(model, "User", typeof(User), isNullable: true,
                 multiplicity: EdmMultiplicity.ZeroOrOne);
 
-            IEdmProperty edmProperty = Assert.Single(roleEntityType.Properties().Where(c => c.Name == "UserStringForeignKey"));
+            IEdmProperty edmProperty = Assert.Single(roleEntityType.Properties(), c => c.Name == "UserStringForeignKey");
             Assert.True(edmProperty.Type.IsNullable);
         }
 
@@ -651,7 +651,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmNavigationProperty usersNav = roleEntityType.AssertHasNavigationProperty(model, "User",
                 typeof(MultiUser), isNullable: false, multiplicity: EdmMultiplicity.One);
 
-            Assert.Equal(EdmOnDeleteAction.Cascade, usersNav.OnDelete);
+            Assert.Equal(EdmOnDeleteAction.Cascade, usersNav.OnDelete.Action);
 
             Assert.Equal(2, usersNav.DependentProperties().Count());
             Assert.Equal("UserKey1", usersNav.DependentProperties().First().Name);
@@ -687,7 +687,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmNavigationProperty usersNav = roleEntityType.AssertHasNavigationProperty(model, "User",
                 typeof(MultiUser), isNullable: false, multiplicity: EdmMultiplicity.One);
 
-            Assert.Equal(EdmOnDeleteAction.Cascade, usersNav.OnDelete);
+            Assert.Equal(EdmOnDeleteAction.Cascade, usersNav.OnDelete.Action);
 
             Assert.Equal(2, usersNav.DependentProperties().Count());
             Assert.Equal("UserKey1", usersNav.DependentProperties().First().Name);
@@ -856,7 +856,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             EntityTypeConfiguration principalEntityType = Assert.Single(
-                builder.StructuralTypes.OfType<EntityTypeConfiguration>().Where(e => e.Name == "ForeignPrincipal"));
+                builder.StructuralTypes.OfType<EntityTypeConfiguration>(), e => e.Name == "ForeignPrincipal");
 
             PropertyConfiguration propertyConfig = Assert.Single(principalEntityType.Properties);
             PrimitivePropertyConfiguration primitiveConfig =
@@ -1039,7 +1039,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             // Assert
             Assert.NotNull(model);
             IEdmEntityType entityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "EntityTypeWithAnnotation"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "EntityTypeWithAnnotation");
             Assert.Single(entityType.Properties());
 
             InstanceAnnotationContainerAnnotation instanceAnnoteDict =
@@ -1072,11 +1072,11 @@ namespace Microsoft.OData.ModelBuilder.Tests
             // Assert
             Assert.NotNull(model);
             IEdmEntityType baseEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "EntityTypeWithAnnotation"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "EntityTypeWithAnnotation");
             Assert.Single(baseEntityType.Properties());
 
             IEdmEntityType derivedEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "DerivedEntityTypeWithAnnotation"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "DerivedEntityTypeWithAnnotation");
 
             InstanceAnnotationContainerAnnotation basePropertyAnnotation =
                 model.GetAnnotationValue<InstanceAnnotationContainerAnnotation>(baseEntityType);

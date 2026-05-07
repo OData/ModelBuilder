@@ -73,12 +73,12 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             IEdmEntityType lowerCamelCaserEntity =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(e => e.Name == "LowerCamelCaserModelAliasEntity"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), e => e.Name == "LowerCamelCaserModelAliasEntity");
             Assert.Equal(4, lowerCamelCaserEntity.Properties().Count());
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "ID"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "name"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "Something"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "color"));
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "ID");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "name");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "Something");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "color");
         }
 
         [Fact]
@@ -99,18 +99,18 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             IEdmEntityType lowerCamelCaserEntity =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(e => e.Name == "LowerCamelCaserEntity"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), e => e.Name == "LowerCamelCaserEntity");
             IEdmComplexType lowerCamelCaserComplex =
-                Assert.Single(model.SchemaElements.OfType<IEdmComplexType>().Where(e => e.Name == "LowerCamelCaserComplex"));
+                Assert.Single(model.SchemaElements.OfType<IEdmComplexType>(), e => e.Name == "LowerCamelCaserComplex");
             Assert.Equal(5, lowerCamelCaserEntity.Properties().Count());
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "iD"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "Name"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "details"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "Something"));
-            Assert.Single(lowerCamelCaserEntity.Properties().Where(p => p.Name == "complexProperty"));
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "iD");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "Name");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "details");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "Something");
+            Assert.Single(lowerCamelCaserEntity.Properties(), p => p.Name == "complexProperty");
             Assert.Equal(2, lowerCamelCaserComplex.Properties().Count());
-            Assert.Single(lowerCamelCaserComplex.Properties().Where(p => p.Name == "price"));
-            Assert.Single(lowerCamelCaserComplex.Properties().Where(p => p.Name == "MyNotes"));
+            Assert.Single(lowerCamelCaserComplex.Properties(), p => p.Name == "price");
+            Assert.Single(lowerCamelCaserComplex.Properties(), p => p.Name == "MyNotes");
         }
 
         [Fact]
@@ -127,13 +127,13 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             IEdmEntityType lowerCamelCaserModelAliasEntity =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(e => e.Name == "LowerCamelCaserModelAliasEntity"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), e => e.Name == "LowerCamelCaserModelAliasEntity");
             Assert.Equal(5, lowerCamelCaserModelAliasEntity.Properties().Count());
-            Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "IDExplicitly"));
-            Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "name"));
-            Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "Something"));
-            Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "color"));
-            Assert.Single(lowerCamelCaserModelAliasEntity.Properties().Where(p => p.Name == "Price"));
+            Assert.Single(lowerCamelCaserModelAliasEntity.Properties(), p => p.Name == "IDExplicitly");
+            Assert.Single(lowerCamelCaserModelAliasEntity.Properties(), p => p.Name == "name");
+            Assert.Single(lowerCamelCaserModelAliasEntity.Properties(), p => p.Name == "Something");
+            Assert.Single(lowerCamelCaserModelAliasEntity.Properties(), p => p.Name == "color");
+            Assert.Single(lowerCamelCaserModelAliasEntity.Properties(), p => p.Name == "Price");
         }
 
         [Fact]
@@ -148,11 +148,11 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             IEdmEnumType lowerCamelCaserEnum =
-                Assert.Single(model.SchemaElements.OfType<IEdmEnumType>().Where(e => e.Name == "LowerCamelCaserEnum"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEnumType>(), e => e.Name == "LowerCamelCaserEnum");
             Assert.Equal(EdmTypeKind.Enum, lowerCamelCaserEnum.TypeKind);
             Assert.Equal(2, lowerCamelCaserEnum.Members.Count());
-            Assert.Single(lowerCamelCaserEnum.Members.Where(p => p.Name == "enumMember1"));
-            Assert.Single(lowerCamelCaserEnum.Members.Where(p => p.Name == "enumMember2"));
+            Assert.Single(lowerCamelCaserEnum.Members, p => p.Name == "enumMember1");
+            Assert.Single(lowerCamelCaserEnum.Members, p => p.Name == "enumMember2");
         }
     }
 

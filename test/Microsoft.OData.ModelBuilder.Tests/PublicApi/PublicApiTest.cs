@@ -45,8 +45,7 @@ namespace Microsoft.OData.ModelBuilder.Tests.PublicApi
                 var displayBaseline = baselineString.SliceCenter(diffPoint, sliceSize);
                 var displayOutput = outputString.SliceCenter(diffPoint, sliceSize);
 
-                Assert.True(false,
-                    string.Format("Base line file {1} and output file {2} do not match, please check.{0}" +
+                Assert.Fail(string.Format("Base line file {1} and output file {2} do not match, please check.{0}" +
                     "Baseline:{0}\"{3}\"{0}" +
                     "Output:  {0}\"{4}\"{0}{0}" +
                     "To update the baseline, please run:{0}{0}" +
