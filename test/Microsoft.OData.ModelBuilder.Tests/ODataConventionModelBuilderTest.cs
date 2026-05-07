@@ -257,9 +257,9 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmEnumType colorType = Assert.Single(model.SchemaElements.OfType<IEdmEnumType>());
             Assert.Equal("Microsoft.OData.ModelBuilder.Tests.TestModels.Color", enumKey.Type.Definition.FullTypeName());
             Assert.Equal(3, colorType.Members.Count());
-            Assert.Single(colorType.Members.Where(m => m.Name == "Red"));
-            Assert.Single(colorType.Members.Where(m => m.Name == "Green"));
-            Assert.Single(colorType.Members.Where(m => m.Name == "Blue"));
+            Assert.Single(colorType.Members, m => m.Name == "Red");
+            Assert.Single(colorType.Members, m => m.Name == "Green");
+            Assert.Single(colorType.Members, m => m.Name == "Blue");
         }
 
         [Fact]
@@ -2798,7 +2798,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             IEdmEntityType entityType = model.AssertHasEntityType(typeof(RequiredEmployee));
-            IEdmProperty property = Assert.Single(entityType.DeclaredProperties.Where(e => e.Name == "Address"));
+            IEdmProperty property = Assert.Single(entityType.DeclaredProperties, e => e.Name == "Address");
             Assert.False(property.Type.IsNullable);
         }
 
@@ -2814,7 +2814,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
 
             // Assert
             IEdmEntityType entityType = model.AssertHasEntityType(typeof(QueryLimitEmployee));
-            IEdmProperty property = Assert.Single(entityType.DeclaredProperties.Where(e => e.Name == "Address"));
+            IEdmProperty property = Assert.Single(entityType.DeclaredProperties, e => e.Name == "Address");
 
             Assert.True(EdmLibHelpers.IsNotFilterable(property, null, null, model, true));
             Assert.True(EdmLibHelpers.IsNotSortable(property, null, null, model, true));
@@ -2963,19 +2963,19 @@ namespace Microsoft.OData.ModelBuilder.Tests
             IEdmEntityType entityType = Assert.Single(model.SchemaElements.OfType<IEdmEntityType>());
             Assert.Equal("DateTimeModel", entityType.Name);
 
-            IEdmProperty edmProperty = Assert.Single(entityType.Properties().Where(e => e.Name == "BirthdayA"));
+            IEdmProperty edmProperty = Assert.Single(entityType.Properties(), e => e.Name == "BirthdayA");
             Assert.Equal("Edm.DateTimeOffset", edmProperty.Type.FullName());
             Assert.False(edmProperty.Type.IsNullable);
 
-            edmProperty = Assert.Single(entityType.Properties().Where(e => e.Name == "BirthdayB"));
+            edmProperty = Assert.Single(entityType.Properties(), e => e.Name == "BirthdayB");
             Assert.Equal("Edm.DateTimeOffset", edmProperty.Type.FullName());
             Assert.True(edmProperty.Type.IsNullable);
 
-            edmProperty = Assert.Single(entityType.Properties().Where(e => e.Name == "BirthdayC"));
+            edmProperty = Assert.Single(entityType.Properties(), e => e.Name == "BirthdayC");
             Assert.Equal("Collection(Edm.DateTimeOffset)", edmProperty.Type.FullName());
             Assert.False(edmProperty.Type.IsNullable);
 
-            edmProperty = Assert.Single(entityType.Properties().Where(e => e.Name == "BirthdayD"));
+            edmProperty = Assert.Single(entityType.Properties(), e => e.Name == "BirthdayD");
             Assert.Equal("Collection(Edm.DateTimeOffset)", edmProperty.Type.FullName());
             Assert.True(edmProperty.Type.IsNullable);
         }
@@ -3013,12 +3013,12 @@ namespace Microsoft.OData.ModelBuilder.Tests
             // Assert
             Assert.NotNull(model);
             IEdmEntityType baseEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "BaseOpenEntityType"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "BaseOpenEntityType");
             Assert.True(baseEntityType.IsOpen);
             Assert.Single(baseEntityType.Properties());
 
             IEdmEntityType derivedEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "DerivedOpenEntityType"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "DerivedOpenEntityType");
             Assert.True(derivedEntityType.IsOpen);
             Assert.Equal(2, derivedEntityType.Properties().Count());
 
@@ -3044,12 +3044,12 @@ namespace Microsoft.OData.ModelBuilder.Tests
             // Assert
             Assert.NotNull(model);
             IEdmEntityType baseEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "BaseEntityType"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "BaseEntityType");
             Assert.False(baseEntityType.IsOpen);
             Assert.Single(baseEntityType.Properties());
 
             IEdmEntityType derivedEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "DerivedEntityType"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "DerivedEntityType");
             Assert.True(derivedEntityType.IsOpen);
             Assert.Equal(2, derivedEntityType.Properties().Count());
         }
@@ -3067,7 +3067,7 @@ namespace Microsoft.OData.ModelBuilder.Tests
             // Assert
             Assert.NotNull(model);
             IEdmEntityType entityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "EntityTypeWithAnnotation"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "EntityTypeWithAnnotation");
             Assert.Single(entityType.Properties());
 
             InstanceAnnotationContainerAnnotation instanceAnnoteDict =
@@ -3089,11 +3089,11 @@ namespace Microsoft.OData.ModelBuilder.Tests
             // Assert
             Assert.NotNull(model);
             IEdmEntityType baseEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "EntityTypeWithAnnotation"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "EntityTypeWithAnnotation");
             Assert.Single(baseEntityType.Properties());
 
             IEdmEntityType derivedEntityType =
-                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>().Where(c => c.Name == "DerivedEntityTypeWithAnnotation"));
+                Assert.Single(model.SchemaElements.OfType<IEdmEntityType>(), c => c.Name == "DerivedEntityTypeWithAnnotation");
             Assert.Equal(2, derivedEntityType.Properties().Count());
 
             InstanceAnnotationContainerAnnotation basePropertyAnnotation =

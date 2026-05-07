@@ -74,11 +74,10 @@ namespace Microsoft.OData.ModelBuilder.Tests.Commons
             Expression<Func<Dependent, Principal, bool>> expr = null;
 
             // Act
-            IDictionary<PropertyInfo, PropertyInfo> properties =
-                PropertyPairSelectorVisitor.GetSelectedProperty(expr);
+            IDictionary<PropertyInfo, PropertyInfo> properties = PropertyPairSelectorVisitor.GetSelectedProperty(expr);
 
             // Assert
-            Assert.Equal(0, properties.Count);
+            Assert.Empty(properties);
         }
 
         [Fact]

@@ -4,21 +4,21 @@
     <VersionMajor Condition="'$(VersionMajor)' == ''">3</VersionMajor>
     <VersionMinor Condition="'$(VersionMinor)' == ''">0</VersionMinor>
     <VersionBuild Condition="'$(VersionBuild)' == ''">0</VersionBuild>
-    <VersionRelease Condition="'$(VersionRelease)' == ''">preview.1</VersionRelease>
+    <VersionRelease Condition="'$(VersionRelease)' == ''">rc</VersionRelease>
   </PropertyGroup>
   
     <!-- For NuGet Package Dependencies -->
   <PropertyGroup>
-    <ODataLibPackageDependency>[9.0.0-preview.3, 10.0.0)</ODataLibPackageDependency>
+    <ODataLibPackageDependency>[9.0.0-rc, 10.0.0)</ODataLibPackageDependency>
     <SystemComponentPackageDependency>[4.6.0,)</SystemComponentPackageDependency>
   </PropertyGroup>
 
   <!--
-    Revision number is a date code. Note that this only work for 6 years before the year part (year minus 2020)
+    Revision number is a date code. Note that this only work for 6 years before the year part (year minus 2025)
     overflows the UInt16. The system convert below will throw errors when this happens.
   -->
   <PropertyGroup>
-    <VersionStartYear Condition="'$(VersionStartYear)' == ''">2020</VersionStartYear>
+    <VersionStartYear Condition="'$(VersionStartYear)' == ''">2025</VersionStartYear>
     <VersionDateCode>$([System.Convert]::ToUInt16('$([MSBuild]::Add(1, $([MSBuild]::Subtract($([System.DateTime]::Now.Year), $(VersionStartYear)))))$([System.DateTime]::Now.ToString("MMdd"))'))</VersionDateCode>
     <VersionRevision Condition="'$(VersionRevision)' == '' OR '$(VersionRevision)' == '0'">$([System.Convert]::ToString($(VersionDateCode)))</VersionRevision>
   </PropertyGroup>
@@ -45,7 +45,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <VersionStartYear Condition="'$(VersionStartYear)' == ''">2020</VersionStartYear>
+    <VersionStartYear Condition="'$(VersionStartYear)' == ''">2025</VersionStartYear>
     <VersionMajor Condition="'$(VersionMajor)' == '0'">INVALID_VersionMajor</VersionMajor>
     <VersionMajor Condition="'$(VersionMajor)' == ''">INVALID_VersionMajor</VersionMajor>
     <VersionMinor Condition="'$(VersionMinor)' == ''">INVALID_VersionMinor</VersionMinor>
