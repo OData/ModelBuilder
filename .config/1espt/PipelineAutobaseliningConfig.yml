@@ -29,11 +29,11 @@ pipelines:
         credscan:
           lastModifiedDate: 2025-02-20
         eslint:
-          lastModifiedDate: 2025-02-20
+          lastModifiedDate: 2026-06-22
         psscriptanalyzer:
-          lastModifiedDate: 2025-02-20
+          lastModifiedDate: 2026-06-22
         armory:
-          lastModifiedDate: 2025-02-20
+          lastModifiedDate: 2026-06-22
   406416:
     retail:
       source:
