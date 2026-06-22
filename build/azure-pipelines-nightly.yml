@@ -37,7 +37,9 @@ variables:
   value: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(buildConfiguration)'
 - name: skipComponentGovernanceDetection
   value: true
-- group: OData-ESRP-CodeSigning
+- group: OData-Shared
+- name: AZURE_ARTIFACTS_FEED
+  value: $(ODataFeed)
 
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
@@ -65,9 +67,8 @@ extends:
             nuGetFeedType: external
             publishFeedCredentials: 'MyGet.org - ODL Feed'
         steps:
-        - task: NuGetToolInstaller@0
-          inputs:
-            versionSpec: '>=5.2.0'
+        - task: NuGetAuthenticate@1
+          displayName: 'Authenticate to the feed'
 
         - task: UseDotNet@2
           displayName: Use .NET 8.0
