@@ -37,7 +37,7 @@ variables:
   value: '$(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\bin\$(buildConfiguration)'
 - name: skipComponentGovernanceDetection
   value: true
-- group: OData-ESRP-CodeSigning
+- group: OData-Shared
 - name: AZURE_ARTIFACTS_FEED
   value: $(ODataFeed)
 
