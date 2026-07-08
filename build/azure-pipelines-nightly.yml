@@ -66,6 +66,14 @@ extends:
             packagesToPush: '$(Build.ArtifactStagingDirectory)\Nuget\*Nightly*.nupkg'
             nuGetFeedType: external
             publishFeedCredentials: 'MyGet.org - ODL Feed'
+          - output: nuget
+            displayName: 'NuGet push - Packages to Internal Feed'
+            packageParentPath: '$(Build.ArtifactStagingDirectory)\Nuget'
+            packagesToPush: $(Build.ArtifactStagingDirectory)\Nuget\*.nupkg
+            nuGetFeedType: internal
+            publishVstsFeed: $(ODataPublishFeed)
+            allowPackageConflicts: true
+            publishPackageMetadata: true
         steps:
         - task: NuGetAuthenticate@1
           displayName: 'Authenticate to the feed'
