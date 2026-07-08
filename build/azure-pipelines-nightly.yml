@@ -69,7 +69,7 @@ extends:
           - output: nuget
             displayName: 'NuGet push - Packages to Internal Feed'
             packageParentPath: '$(Build.ArtifactStagingDirectory)\Nuget'
-            packagesToPush: $(Build.ArtifactStagingDirectory)\Nuget\Microsoft.OData.ModelBuilder*nupkg
+            packagesToPush: '$(Build.ArtifactStagingDirectory)\Nuget\*.nupkg;$(Build.ArtifactStagingDirectory)\Nuget\*.snupkg'
             nuGetFeedType: internal
             publishVstsFeed: $(ODataPublishFeed)
             allowPackageConflicts: true
