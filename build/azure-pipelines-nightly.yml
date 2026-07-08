@@ -69,7 +69,7 @@ extends:
           - output: nuget
             displayName: 'NuGet push - Packages to Internal Feed'
             packageParentPath: '$(Build.ArtifactStagingDirectory)\Nuget'
-            packagesToPush: '$(Build.ArtifactStagingDirectory)\Nuget\*.nupkg;$(Build.ArtifactStagingDirectory)\Nuget\*.snupkg'
+            packagesToPush: $(Build.ArtifactStagingDirectory)\Nuget\*nupkg
             nuGetFeedType: internal
             publishVstsFeed: $(ODataPublishFeed)
             allowPackageConflicts: true
