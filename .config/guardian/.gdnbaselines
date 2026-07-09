@@ -1,0 +1,129 @@
+{
+  "properties": {
+    "helpUri": "https://eng.ms/docs/microsoft-security/security/azure-security/cloudai-security-fundamentals-engineering/security-integration/guardian-wiki/microsoft-guardian/general/baselines"
+  },
+  "version": "1.0.0",
+  "baselines": {
+    "default": {
+      "name": "default",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "lastUpdatedDate": "2026-06-22 14:57:48Z"
+    }
+  },
+  "results": {
+    "a00bacd9cf10c2fd10ed2b394b8625dd0066a893b32c45e87ed005890ddf766c": {
+      "signature": "a00bacd9cf10c2fd10ed2b394b8625dd0066a893b32c45e87ed005890ddf766c",
+      "alternativeSignatures": [
+        "3c964e8c7a2708c00c982970ef7ba988e656352c963cb15cd91b5f0ca3c039b9",
+        "1dff91b1fce2124c781c825df26b8d0f793478cf5cdc70c8b48e8f91b00c0e49",
+        "11ce05bb6ab0dbcfd460c7f475f4984d591663e02e5cec2d173b8857bf5fd907"
+      ],
+      "target": "test/Microsoft.OData.ModelBuilder.Tests/PublicApi/PublicApiHelper.cs",
+      "line": 130,
+      "uriBaseId": "file:///D:/a/_work/1/s/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "roslynanalyzers",
+      "ruleId": "CA1310",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "expirationDate": "2026-12-09 14:59:42Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-06-22 14:59:42Z"
+    },
+    "d9c63d3b6f36a2f9b131aee664f6b50016c085f27066fb285b02ccbdb82e386f": {
+      "signature": "d9c63d3b6f36a2f9b131aee664f6b50016c085f27066fb285b02ccbdb82e386f",
+      "alternativeSignatures": [
+        "bf60dab69c1a4415ff20a4a4d23ee94411d78b9b48ca3d299ab0cf161f9b2f0e",
+        "6db3cd5ead95ecacb2abb75a63c9019b6cfbbddb38382a424503f79910f978e7",
+        "7b674dc27ec1285d622303a9cf046c4b7fae8b872a0a5ae19cf3a86da8721940"
+      ],
+      "target": "test/Microsoft.OData.ModelBuilder.Tests/PublicApi/PublicApiHelper.cs",
+      "line": 687,
+      "uriBaseId": "file:///D:/a/_work/1/s/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "roslynanalyzers",
+      "ruleId": "CA1310",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "expirationDate": "2026-12-09 14:59:42Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-06-22 14:59:42Z"
+    },
+    "5b35ce842be155bc8d518ea4fd4e338ab12a47587a4441b4248c5439224c5364": {
+      "signature": "5b35ce842be155bc8d518ea4fd4e338ab12a47587a4441b4248c5439224c5364",
+      "alternativeSignatures": [
+        "56595d04b3ab20f4ddd167d16e753a2368a56699b86a21a9d180afe8021bd4be",
+        "30912bf2011eebf998fae3bb62d02fa04fa0ca1f65c3784d436b7f09d4a2a786",
+        "d4215f24fd40e169f124fffc0f4d9ddc7caee1f2a83f5eb1ba2af044ff891091"
+      ],
+      "target": "test/Microsoft.OData.ModelBuilder.Tests/PublicApi/PublicApiHelper.cs",
+      "line": 696,
+      "uriBaseId": "file:///D:/a/_work/1/s/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "roslynanalyzers",
+      "ruleId": "CA1310",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "expirationDate": "2026-12-09 14:59:42Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-06-22 14:59:42Z"
+    },
+    "1f292d46f92bfb61e2e54629ea3a3aae9a82a3f52ddb15bb92e4271f9e5a5c12": {
+      "signature": "1f292d46f92bfb61e2e54629ea3a3aae9a82a3f52ddb15bb92e4271f9e5a5c12",
+      "alternativeSignatures": [
+        "a862f57fa329c349a91b400ab187fbf74c4993a0677e479cb7ffd23030ba8383",
+        "9c5ead0f89ed92537b463ee13b3896dc136f78cf08ad64b01dcddfe4bc74d048",
+        "d3d0fbce051f00eb8e07cc5d1fd2f6cf23757632556c01d6711b84fd898afa14"
+      ],
+      "target": "test/Microsoft.OData.ModelBuilder.Tests/PublicApi/PublicApiHelper.cs",
+      "line": 707,
+      "uriBaseId": "file:///D:/a/_work/1/s/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "roslynanalyzers",
+      "ruleId": "CA1310",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "expirationDate": "2026-12-09 14:59:42Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-06-22 14:59:42Z"
+    },
+    "af6a66ae88f05023f2a60f67c619b6adc6dbb93d870c67c96648d687b2027109": {
+      "signature": "af6a66ae88f05023f2a60f67c619b6adc6dbb93d870c67c96648d687b2027109",
+      "alternativeSignatures": [
+        "2741f145d404d3c3d8f10650c53470b61d3544d823528e3d2c2acb2395283bf1",
+        "3f67f5c7c1b7f8aac5e5af4883f52e1aedf09c58e7189ac1bc1ecf13853d67de",
+        "cb26edb71775ada144b7ee985151cad288e0336cc8a52789918b44ab29256a37"
+      ],
+      "target": "test/Microsoft.OData.ModelBuilder.Tests/PublicApi/PublicApiHelper.cs",
+      "line": 720,
+      "uriBaseId": "file:///D:/a/_work/1/s/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "roslynanalyzers",
+      "ruleId": "CA1310",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "expirationDate": "2026-12-09 14:59:42Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-06-22 14:59:42Z"
+    },
+    "bd65719e721bc0a2297ddcd9a00a950a6cd160650f28a6830c34736d67e3c64d": {
+      "signature": "bd65719e721bc0a2297ddcd9a00a950a6cd160650f28a6830c34736d67e3c64d",
+      "alternativeSignatures": [
+        "5ecd1db9a764330cba1eead2b160c6b198b8589075b341ca8d8d472bb076ba18",
+        "494c2874d7279dd657dee50b1c8ecbcda4311484889a8e056cc11f2b73c35d27",
+        "83694afee11e163db1ad54fa02f1b37d230b17fe5cbd4b7e9e443e1b4ebf6051"
+      ],
+      "target": "test/Microsoft.OData.ModelBuilder.Tests/PublicApi/PublicApiHelper.cs",
+      "line": 877,
+      "uriBaseId": "file:///D:/a/_work/1/s/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "roslynanalyzers",
+      "ruleId": "CA1310",
+      "createdDate": "2026-06-22 14:56:37Z",
+      "expirationDate": "2026-12-09 14:59:42Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-06-22 14:59:42Z"
+    }
+  }
+}
