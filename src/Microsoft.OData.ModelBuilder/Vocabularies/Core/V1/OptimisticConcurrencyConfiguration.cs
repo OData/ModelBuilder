@@ -12,7 +12,7 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Core.V1
 {
     /// <summary>
-    /// Data modification requires the use of ETags. A non-empty collection contains the set of properties that are used to compute the ETag. An empty collection means that the service won't tell how it computes the ETag.
+    /// Data modification requires the use of ETags. A non-empty collection contains the set of properties that are used to compute the ETag. An empty collection means that the service won't tell how it computes the ETag
     /// </summary>
     public partial class OptimisticConcurrencyConfiguration : VocabularyTermConfiguration
     {
@@ -22,7 +22,7 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         public override string TermName => "Org.OData.Core.V1.OptimisticConcurrency";
 
         /// <summary>
-        /// Data modification requires the use of ETags. A non-empty collection contains the set of properties that are used to compute the ETag. An empty collection means that the service won't tell how it computes the ETag.
+        /// Data modification requires the use of ETags. A non-empty collection contains the set of properties that are used to compute the ETag. An empty collection means that the service won't tell how it computes the ETag
         /// </summary>
         /// <param name="optimisticConcurrency">The value(s) to set</param>
         /// <returns><see cref="OptimisticConcurrencyConfiguration"/></returns>

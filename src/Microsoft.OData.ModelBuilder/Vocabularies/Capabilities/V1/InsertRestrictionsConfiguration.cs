@@ -29,6 +29,7 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
         private string _description;
         private string _longDescription;
+        private readonly HashSet<HttpResponseConfiguration> _errorResponses = new HashSet<HttpResponseConfiguration>();
 
         /// <inheritdoc/>
         public override string TermName => "Org.OData.Capabilities.V1.InsertRestrictions";
@@ -215,13 +216,36 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// A lengthy description of the request
+        /// A long description of the request
         /// </summary>
         /// <param name="longDescription">The value to set</param>
         /// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
         public InsertRestrictionsConfiguration HasLongDescription(string longDescription)
         {
             _longDescription = longDescription;
+            return this;
+        }
+
+        /// <summary>
+        /// Possible error responses returned by the request.
+        /// </summary>
+        /// <param name="errorResponsesConfiguration">The configuration to set</param>
+        /// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+        public InsertRestrictionsConfiguration HasErrorResponses(Func<HttpResponseConfiguration, HttpResponseConfiguration> errorResponsesConfiguration)
+        {
+            var instance = new HttpResponseConfiguration();
+            instance = errorResponsesConfiguration?.Invoke(instance);
+            return HasErrorResponses(instance);
+        }
+
+        /// <summary>
+        /// Possible error responses returned by the request.
+        /// </summary>
+        /// <param name="errorResponses">The value(s) to set</param>
+        /// <returns><see cref="InsertRestrictionsConfiguration"/></returns>
+        public InsertRestrictionsConfiguration HasErrorResponses(params HttpResponseConfiguration[] errorResponses)
+        {
+            _errorResponses.UnionWith(errorResponses);
             return this;
         }
 
@@ -312,6 +336,15 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             if (!string.IsNullOrEmpty(_longDescription))
             {
                 properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
+            }
+
+            if (_errorResponses.Any())
+            {
+                var collection = _errorResponses.Select(item => item.ToEdmExpression()).Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("ErrorResponses", new EdmCollectionExpression(collection)));
+                }
             }
 
             properties.AddRange(_dynamicProperties.ToEdmProperties());

@@ -23,6 +23,8 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         private readonly HashSet<CustomParameterConfiguration> _customQueryOptions = new HashSet<CustomParameterConfiguration>();
         private string _description;
         private string _longDescription;
+        private readonly HashSet<HttpResponseConfiguration> _errorResponses = new HashSet<HttpResponseConfiguration>();
+        private bool? _typecastSegmentSupported;
         private ReadByKeyRestrictionsTypeConfiguration _readByKeyRestrictions;
 
         /// <inheritdoc/>
@@ -132,13 +134,47 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
         }
 
         /// <summary>
-        /// A lengthy description of the request
+        /// A long description of the request
         /// </summary>
         /// <param name="longDescription">The value to set</param>
         /// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
         public ReadRestrictionsConfiguration HasLongDescription(string longDescription)
         {
             _longDescription = longDescription;
+            return this;
+        }
+
+        /// <summary>
+        /// Possible error responses returned by the request.
+        /// </summary>
+        /// <param name="errorResponsesConfiguration">The configuration to set</param>
+        /// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+        public ReadRestrictionsConfiguration HasErrorResponses(Func<HttpResponseConfiguration, HttpResponseConfiguration> errorResponsesConfiguration)
+        {
+            var instance = new HttpResponseConfiguration();
+            instance = errorResponsesConfiguration?.Invoke(instance);
+            return HasErrorResponses(instance);
+        }
+
+        /// <summary>
+        /// Possible error responses returned by the request.
+        /// </summary>
+        /// <param name="errorResponses">The value(s) to set</param>
+        /// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+        public ReadRestrictionsConfiguration HasErrorResponses(params HttpResponseConfiguration[] errorResponses)
+        {
+            _errorResponses.UnionWith(errorResponses);
+            return this;
+        }
+
+        /// <summary>
+        /// Entities of a specific derived type can be read by specifying a type-cast segment
+        /// </summary>
+        /// <param name="typecastSegmentSupported">The value to set</param>
+        /// <returns><see cref="ReadRestrictionsConfiguration"/></returns>
+        public ReadRestrictionsConfiguration IsTypecastSegmentSupported(bool typecastSegmentSupported)
+        {
+            _typecastSegmentSupported = typecastSegmentSupported;
             return this;
         }
 
@@ -212,6 +248,20 @@ namespace Microsoft.OData.ModelBuilder.Capabilities.V1
             if (!string.IsNullOrEmpty(_longDescription))
             {
                 properties.Add(new EdmPropertyConstructor("LongDescription", new EdmStringConstant(_longDescription)));
+            }
+
+            if (_errorResponses.Any())
+            {
+                var collection = _errorResponses.Select(item => item.ToEdmExpression()).Where(item => item != null);
+                if (collection.Any())
+                {
+                    properties.Add(new EdmPropertyConstructor("ErrorResponses", new EdmCollectionExpression(collection)));
+                }
+            }
+
+            if (_typecastSegmentSupported.HasValue)
+            {
+                properties.Add(new EdmPropertyConstructor("TypecastSegmentSupported", new EdmBooleanConstant(_typecastSegmentSupported.Value)));
             }
 
             if (_readByKeyRestrictions != null)

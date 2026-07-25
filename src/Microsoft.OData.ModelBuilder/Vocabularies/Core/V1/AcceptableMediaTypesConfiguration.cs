@@ -12,7 +12,8 @@ using Microsoft.OData.Edm.Vocabularies;
 namespace Microsoft.OData.ModelBuilder.Core.V1
 {
     /// <summary>
-    /// Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated stream property
+    /// Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated binary, stream, or string property or term
+    /// The annotation of a TypeDefinition propagates to the model elements having this type
     /// </summary>
     public partial class AcceptableMediaTypesConfiguration : VocabularyTermConfiguration
     {
@@ -22,7 +23,8 @@ namespace Microsoft.OData.ModelBuilder.Core.V1
         public override string TermName => "Org.OData.Core.V1.AcceptableMediaTypes";
 
         /// <summary>
-        /// Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated stream property
+        /// Lists the MIME types acceptable for the annotated entity type marked with HasStream="true" or the annotated binary, stream, or string property or term
+        /// The annotation of a TypeDefinition propagates to the model elements having this type
         /// </summary>
         /// <param name="acceptableMediaTypes">The value(s) to set</param>
         /// <returns><see cref="AcceptableMediaTypesConfiguration"/></returns>
