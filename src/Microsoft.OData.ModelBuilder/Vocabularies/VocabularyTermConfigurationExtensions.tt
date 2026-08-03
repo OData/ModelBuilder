@@ -1,7 +1,7 @@
 ﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Runtime" #>
-<#@ assembly name="$(NuGetPackageRoot)microsoft.odata.edm\9.0.0-preview.3\lib\net10\Microsoft.OData.Edm.dll" #>
+<#@ assembly name="$(NuGetPackageRoot)microsoft.odata.edm\9.0.0\lib\net10.0\Microsoft.OData.Edm.dll" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
