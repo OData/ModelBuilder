@@ -77,6 +77,8 @@ extends:
             allowPackageConflicts: true
             publishPackageMetadata: true
         steps:
+        - template: /build/templates/ensure-nuget-config.yml@self
+
         - task: NuGetAuthenticate@1
           displayName: 'Authenticate to the feed'
 
@@ -151,7 +153,7 @@ extends:
             version: '2.1.x'
 
         # CodeSign
-        - task: EsrpCodeSigning@5
+        - task: EsrpCodeSigning@6
           displayName: 'ESRP CodeSign - OData'
           inputs:
             ConnectedServiceName: $(ODataEsrpConnectionServiceName)
@@ -243,7 +245,7 @@ extends:
             command: custom
             arguments: 'pack $(Build.SourcesDirectory)\src\Microsoft.OData.ModelBuilder\Microsoft.OData.ModelBuilder.Release.nuspec -NonInteractive -OutputDirectory $(Build.ArtifactStagingDirectory)\Nuget -Properties Configuration=$(buildConfiguration);ProductRoot=$(productBinPath);SourcesRoot=$(Build.SourcesDirectory);VersionFullSemantic=$(VersionFullSemantic);VersionNuGetSemantic=$(VersionNuGetSemantic);SystemComponentPackageDependency="$(SystemComponentPackageDependency)";ODataLibPackageDependency="$(ODataLibPackageDependency)" -Verbosity Detailed -Symbols -Symbols -SymbolPackageFormat snupkg'
 
-        - task: EsrpCodeSigning@5
+        - task: EsrpCodeSigning@6
           displayName: 'ESRP CodeSigning Nuget Packages'
           inputs:
             ConnectedServiceName: $(ODataEsrpConnectionServiceName)
@@ -274,3 +276,8 @@ extends:
                   }
               ]
             VerboseLogin: true
+
+        - task: NuGetToolInstaller@1
+          displayName: 'Use NuGet 7.x (minimum 7.6.0) for package publishing'
+          inputs:
+            versionSpec: '>=7.6.0 <8.0.0'
