@@ -68,6 +68,8 @@ extends:
             inputType: CmdLine
             cmdLineArgs: '/F:$(Build.SourcesDirectory)/test /T:9 /Sev:"1|2" /PE:2 /O:poli_result_test.xml'
 
+        - template: /build/templates/ensure-nuget-config.yml@self
+
         - task: NuGetAuthenticate@1
           displayName: 'Authenticate to the feed'
 
